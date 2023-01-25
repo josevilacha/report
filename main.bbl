@@ -1,4 +1,4 @@
-\begin{thebibliography}{187}
+\begin{thebibliography}{190}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -305,18 +305,6 @@ J~Bergström.
 \newblock URL
   \url{https://linkinghub.elsevier.com/retrieve/pii/S0142961201003672}.
 
-\bibitem[Bergström et~al.(2003)Bergström, {C.M. Rimnac}, and {S.M.
-  Kurtz}]{bergstromPredictionMultiaxialMechanical2003}
-Jörgen~S. Bergström, {C.M. Rimnac}, and {S.M. Kurtz}.
-\newblock Prediction of multiaxial mechanical behavior for conventional and
-  highly crosslinked {UHMWPE} using a hybrid constitutive model.
-\newblock \emph{Biomaterials}, 24\penalty0 (8):\penalty0 1365--1380, April
-  2003.
-\newblock ISSN 01429612.
-\newblock \doi{10.1016/S0142-9612(02)00514-8}.
-\newblock URL
-  \url{https://linkinghub.elsevier.com/retrieve/pii/S0142961202005148}.
-
 \bibitem[Bergström(2015)]{bergstromMechanicsSolidPolymers2015}
 J.S. Bergström.
 \newblock \emph{Mechanics of {Solid} {Polymers} : {Theory} and {Computational}
@@ -360,6 +348,18 @@ J.S. Bergström and L.B. Hilbert.
 \newblock \doi{10.1016/j.mechmat.2004.09.002}.
 \newblock URL
   \url{https://linkinghub.elsevier.com/retrieve/pii/S0167663604001310}.
+
+\bibitem[Bergström et~al.(2003)Bergström, {C.M. Rimnac}, and {S.M.
+  Kurtz}]{bergstromPredictionMultiaxialMechanical2003}
+Jörgen~S. Bergström, {C.M. Rimnac}, and {S.M. Kurtz}.
+\newblock Prediction of multiaxial mechanical behavior for conventional and
+  highly crosslinked {UHMWPE} using a hybrid constitutive model.
+\newblock \emph{Biomaterials}, 24\penalty0 (8):\penalty0 1365--1380, April
+  2003.
+\newblock ISSN 01429612.
+\newblock \doi{10.1016/S0142-9612(02)00514-8}.
+\newblock URL
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S0142961202005148}.
 
 \bibitem[Bershtein and Yegorov(1985)]{bershteinGeneralMechanismTransition1985}
 V.A Bershtein and V.M Yegorov.
@@ -708,19 +708,6 @@ Zakaria El-Qoubaa and Ramzi Othman.
 \newblock URL
   \url{https://linkinghub.elsevier.com/retrieve/pii/S0167663615002793}.
 
-\bibitem[Şerban et~al.(2013)Şerban, Weber, Marşavina, Silberschmidt, and
-  Hufenbach]{serbanTensilePropertiesSemicrystalline2013}
-Dan~Andrei Şerban, Glenn Weber, Liviu Marşavina, Vadim~V. Silberschmidt, and
-  Werner Hufenbach.
-\newblock Tensile properties of semi-crystalline thermoplastic polymers:
-  {Effects} of temperature and strain rates.
-\newblock \emph{Polymer Testing}, 32\penalty0 (2):\penalty0 413--425, April
-  2013.
-\newblock ISSN 01429418.
-\newblock \doi{10.1016/j.polymertesting.2012.12.002}.
-\newblock URL
-  \url{https://linkinghub.elsevier.com/retrieve/pii/S0142941812002346}.
-
 \bibitem[Evans and Rawlings(1969)]{evansThermallyActivatedDeformation1969}
 A.~G. Evans and R.~D. Rawlings.
 \newblock The {Thermally} {Activated} {Deformation} of {Crystalline}
@@ -805,6 +792,16 @@ Jevan Furmanski, Carl~M. Cady, and Eric~N. Brown.
 \newblock \doi{10.1016/j.polymer.2012.11.010}.
 \newblock URL
   \url{https://linkinghub.elsevier.com/retrieve/pii/S003238611200938X}.
+
+\bibitem[Gawin et~al.(1996)Gawin, Schrefler, and
+  Galindo]{gawinThermoHydroMechanical1996}
+Dariusz Gawin, Bernhard~A. Schrefler, and M.~Galindo.
+\newblock Thermo-hydro-mechanical analysis of partially saturated porous
+  materials.
+\newblock \emph{Engineering Computations}, 13\penalty0 (7):\penalty0 113--143,
+  November 1996.
+\newblock ISSN 0264-4401.
+\newblock \doi{10.1108/02644409610151584}.
 
 \bibitem[Ghorbel(2008)]{ghorbelViscoplasticConstitutiveModel2008}
 Elhem Ghorbel.
@@ -1029,11 +1026,10 @@ D.~W. Holmes, J.~G. Loughran, and H.~Suehrcke.
 
 \bibitem[Holzapfel(2000)]{holzapfelNonlinearSolidMechanics2000}
 Gerhard~A. Holzapfel.
-\newblock \emph{Nonlinear {Solid} {Mechanics}: {A} {Continuum} {Approach} for
-  {Engineering}}.
-\newblock Wiley, April 2000.
+\newblock \emph{Nonlinear {{Solid Mechanics}}: {{A Continuum Approach}} for
+  {{Engineering}}}.
+\newblock {Wiley}, April 2000.
 \newblock ISBN 978-0-471-82319-3.
-\newblock Google-Books-ID: \_ZkeAQAAIAAJ.
 
 \bibitem[Hong et~al.(2004{\natexlab{a}})Hong, Rastogi, and
   Strobl]{hongModelTreatingTensile2004}
@@ -1665,6 +1661,15 @@ Bernard A.~G. Schrauwen, Roel P.~M. Janssen, Leon~E. Govaert, and Han E.~H.
 \newblock tex.ids= schrauwenIntrinsicDeformationBehavior2004a publisher:
   American Chemical Society.
 
+\bibitem[Simo and Miehe(1992)]{simoAssociativeCoupledThermoplasticity1992}
+J.~C. Simo and C.~Miehe.
+\newblock Associative coupled thermoplasticity at finite strains:
+  {{Formulation}}, numerical analysis and implementation.
+\newblock \emph{Computer Methods in Applied Mechanics and Engineering},
+  98\penalty0 (1):\penalty0 41--104, July 1992.
+\newblock ISSN 0045-7825.
+\newblock \doi{10.1016/0045-7825(92)90170-O}.
+
 \bibitem[Simo(1987)]{simoFullyThreedimensionalFinitestrain1987}
 J.C. Simo.
 \newblock On a fully three-dimensional finite-strain viscoelastic damage model:
@@ -1675,13 +1680,6 @@ J.C. Simo.
 \newblock \doi{10.1016/0045-7825(87)90107-1}.
 \newblock URL
   \url{https://linkinghub.elsevier.com/retrieve/pii/0045782587901071}.
-
-\bibitem[Simo and Miehe(1992)]{simoAssociativeCoupledThermoplasticity1992}
-JC~Simo and Ch~Miehe.
-\newblock Associative coupled thermoplasticity at finite strains:
-  {{Formulation}}, numerical analysis and implementation.
-\newblock \emph{Computer Methods in Applied Mechanics and Engineering},
-  98\penalty0 (1):\penalty0 41--104, 1992.
 
 \bibitem[Smart and Williams(1972)]{smartComparisonSingleintegralNonlinear1972}
 J.~Smart and J.~G. Williams.
@@ -1748,6 +1746,14 @@ Jose Teixeira-Pinto, Carole Nadot-Martin, Fabienne Touchard, Mikaël Gueguen,
 \newblock URL
   \url{https://linkinghub.elsevier.com/retrieve/pii/S0167663616000041}.
 
+\bibitem[Tezduyar et~al.(2006)Tezduyar, Sathe, Keedy, and
+  Stein]{tezduyar2006space}
+Tayfun~E Tezduyar, Sunil Sathe, Ryan Keedy, and Keith Stein.
+\newblock Space\textendash time finite element techniques for computation of
+  fluid\textendash structure interactions.
+\newblock \emph{Computer methods in applied mechanics and engineering},
+  195\penalty0 (17-18):\penalty0 2002--2027, 2006.
+
 \bibitem[Tobolsky(1960)]{tobolskyPropertiesStructurePolymers1960}
 Arthur~Victor Tobolsky.
 \newblock \emph{Properties and {Structure} of {Polymers}}.
@@ -1772,6 +1778,16 @@ S.~Turner.
   306--316, 1966.
 \newblock ISSN 1548-2634.
 \newblock \doi{10.1002/pen.760060406}.
+
+\bibitem[Turska and
+  Schrefler(1993)]{turskaConvergenceConditionsPartitioned1993a}
+E.~Turska and B.A. Schrefler.
+\newblock On convergence conditions of partitioned solution procedures for
+  consolidation problems.
+\newblock \emph{Computer Methods in Applied Mechanics and Engineering},
+  106\penalty0 (1-2):\penalty0 51--63, July 1993.
+\newblock ISSN 00457825.
+\newblock \doi{10.1016/0045-7825(93)90184-Y}.
 
 \bibitem[Uchida and Tada(2013)]{uchidaMicroMesoMacroscopic2013}
 Makoto Uchida and Naoya Tada.
@@ -1958,5 +1974,18 @@ F.~J. Zoepfl, V.~Markovi\'{c}, and Joseph Silverman.
   \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/pol.1984.170220907}.
 \newblock \_eprint:
   https://onlinelibrary.wiley.com/doi/pdf/10.1002/pol.1984.170220907.
+
+\bibitem[Şerban et~al.(2013)Şerban, Weber, Marşavina, Silberschmidt, and
+  Hufenbach]{serbanTensilePropertiesSemicrystalline2013}
+Dan~Andrei Şerban, Glenn Weber, Liviu Marşavina, Vadim~V. Silberschmidt, and
+  Werner Hufenbach.
+\newblock Tensile properties of semi-crystalline thermoplastic polymers:
+  {Effects} of temperature and strain rates.
+\newblock \emph{Polymer Testing}, 32\penalty0 (2):\penalty0 413--425, April
+  2013.
+\newblock ISSN 01429418.
+\newblock \doi{10.1016/j.polymertesting.2012.12.002}.
+\newblock URL
+  \url{https://linkinghub.elsevier.com/retrieve/pii/S0142941812002346}.
 
 \end{thebibliography}

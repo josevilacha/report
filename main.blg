@@ -1,33 +1,39 @@
-This is BibTeX, Version 0.99d
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainnat.bst
-Reallocating 'name_of_file' (item size: 1) to 17 items.
 A level-1 auxiliary file: introduction.aux
-Reallocating 'name_of_file' (item size: 1) to 36 items.
 A level-1 auxiliary file: thermo_mechanical_problem_short.aux
-Reallocating 'name_of_file' (item size: 1) to 55 items.
 A level-1 auxiliary file: semi_crystalline_polymer_thermomechanical_behavior.aux
-White space in argument---line 168 of file semi_crystalline_polymer_thermomechanical_behavior.aux
+White space in argument---line 169 of file semi_crystalline_polymer_thermomechanical_behavior.aux
  : \citation{gsellYieldTransientEffects1981
  :                                          }
 I'm skipping whatever remains of this command
-Reallocating 'name_of_file' (item size: 1) to 56 items.
 A level-1 auxiliary file: state_of_the_art_modeling_semi_crystalline_polymers.aux
 White space in argument---line 192 of file state_of_the_art_modeling_semi_crystalline_polymers.aux
  : \citation{brusselle-dupendMechanicalBehaviorSemicrystalline2001
  :                                                                 ,brusselle-dupendMechanicalBehaviorSemicrystalline2003}
 I'm skipping whatever remains of this command
-Reallocating 'name_of_file' (item size: 1) to 15 items.
 A level-1 auxiliary file: conclusion.aux
-Reallocating 'name_of_file' (item size: 1) to 29 items.
-Reallocating 'field_info' (item size: 4) to 12336 items.
+Reallocated field_info (elt_size=4) to 12336 items from 5000.
 Database file #1: semi_crystalline_polymer.bib
-Repeated entry---line 5282 of file semi_crystalline_polymer.bib
+Repeated entry---line 4971 of file semi_crystalline_polymer.bib
+ : @book{holzapfelNonlinearSolidMechanics2000
+ :                                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7702 of file semi_crystalline_polymer.bib
+ : @article{luDecompositionDeformationRepresentation1975
+ :                                                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 8667 of file semi_crystalline_polymer.bib
  : @book{tobolskyPropertiesStructurePolymers1960
  :                                              ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 8692 of file semi_crystalline_polymer.bib
+ : @article{simoAssociativeCoupledThermoplasticity1992
+ :                                                    ,
+I'm skipping whatever remains of this entry
+Reallocated str_pool (elt_size=1) to 130000 items from 65000.
 Warning--I didn't find a database entry for "DINEN1991_1_2"
 Warning--I didn't find a database entry for "NAFEMSbenchmarks"
 Warning--I didn't find a database entry for "jansen2000GeneralizedaMethodIntegrating"
@@ -38,13 +44,11 @@ Warning--I didn't find a database entry for "liu2018HeatassistedIncrementalSheet
 Warning--I didn't find a database entry for "elsheikh2021ComprehensiveReviewResidual"
 Warning--I didn't find a database entry for "fellipa_partitioned_1988"
 Warning--I didn't find a database entry for "hron_monolithic_2006"
-Warning--I didn't find a database entry for "tezduyar2006space"
 Warning--I didn't find a database entry for "lin_parallel_2010"
 Warning--I didn't find a database entry for "gee_truly_2011"
 Warning--I didn't find a database entry for "verdugo_unified_2016"
 Warning--I didn't find a database entry for "mayr_hybrid_2020"
 Warning--I didn't find a database entry for "carter_finite_1989"
-Warning--I didn't find a database entry for "gawinThermoHydroMechanical1996"
 Warning--I didn't find a database entry for "ibrahimbegovic_covariant_2002"
 Warning--I didn't find a database entry for "danowski_computational_2014"
 Warning--I didn't find a database entry for "netz_high-order_2013"
@@ -88,7 +92,6 @@ Warning--I didn't find a database entry for "piperno_partitioned_2001"
 Warning--I didn't find a database entry for "michler_efficient_2005"
 Warning--I didn't find a database entry for "piperno_partitioned_1995"
 Warning--I didn't find a database entry for "farhat_high_1997"
-Warning--I didn't find a database entry for "turskaConvergenceConditionsPartitioned1993a"
 Warning--I didn't find a database entry for "erbts_accelerated_2012"
 Warning--I didn't find a database entry for "erbts_partitioned_2015"
 Warning--I didn't find a database entry for "wendt_partitioned_2015"
@@ -103,50 +106,49 @@ Warning--I didn't find a database entry for "vilach"
 Warning--I didn't find a database entry for "frankViscoelasticViscoplasticConstitutive2001"
 Warning--I didn't find a database entry for "Budiansky"
 Warning--I didn't find a database entry for "niko2006"
-Reallocating 'str_pool' (item size: 1) to 130000 items.
 Warning--to sort, need author or key in frostChapterDeformationMechanisms1982
 Warning--empty author in frostChapterDeformationMechanisms1982
 Warning--empty booktitle in klahn1970strain
 Warning--empty institution in valanisTheoryViscoplasticityYield1970
-You've used 187 entries,
+You've used 190 entries,
             2773 wiz_defined-function locations,
-            2276 strings with 65649 characters,
-and the built_in function-call counts, 96071 in all, are:
-= -- 9681
-> -- 4802
-< -- 109
-+ -- 1630
-- -- 1441
-* -- 8757
-:= -- 15103
-add.period$ -- 1096
-call.type$ -- 187
-change.case$ -- 1030
-chr.to.int$ -- 185
-cite$ -- 379
-duplicate$ -- 3836
-empty$ -- 7449
-format.name$ -- 1757
-if$ -- 19941
+            2295 strings with 66260 characters,
+and the built_in function-call counts, 97667 in all, are:
+= -- 9836
+> -- 4892
+< -- 110
++ -- 1660
+- -- 1468
+* -- 8911
+:= -- 15350
+add.period$ -- 1110
+call.type$ -- 190
+change.case$ -- 1048
+chr.to.int$ -- 188
+cite$ -- 385
+duplicate$ -- 3898
+empty$ -- 7571
+format.name$ -- 1789
+if$ -- 20270
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 199
-newline$ -- 1471
-num.names$ -- 748
-pop$ -- 1304
+missing$ -- 202
+newline$ -- 1491
+num.names$ -- 760
+pop$ -- 1329
 preamble$ -- 1
-purify$ -- 853
+purify$ -- 868
 quote$ -- 0
-skip$ -- 2690
+skip$ -- 2734
 stack$ -- 0
-substring$ -- 4689
-swap$ -- 361
+substring$ -- 4770
+swap$ -- 367
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1982
+type$ -- 2015
 warning$ -- 4
-while$ -- 887
+while$ -- 902
 width$ -- 0
-write$ -- 3492
-(There were 3 error messages)
+write$ -- 3541
+(There were 6 error messages)

@@ -1,0 +1,288 @@
+\chapter{Thermomechanical problem} \label{sec:thermomechanical_problem}
+
+This section provides a fundamental description of a solid material response when subject to both mechanical and thermal loads in a finite strain setting.
+It also discusses the application of thermodynamics with internal variables, along with the resulting inferences about the constitutive behavior of the material that makes up the solid, setting up a suitable background for the remainder of the paper.
+
+\section{Kinematics of deformation}
+
+Let a deformable body $\mathscr{B}$ occupy an open region $\Omega_0$ of the tridimensional Euclidean space $\mathscr{E}$ with a regular boundary $\partial \Omega_0$ in its reference configuration.
+A smooth one-to-one function defines its motion \(\bm{\varphi}\colon \Omega\times \mathbf{R}\to \mathscr{E}\), mapping each material particle of coordinates $\bm{X}$ in the reference configuration to its position $\bm{x}$ in the deformed configuration.
+Accordingly, the displacement is defined as \(\bm{u}\equiv \bm{x} - \bm{X}\).
+In this paper, the finite deformation of the body is described with respect to the initial configuration, following the so-called Lagrangian or material description.
+Accordingly, the well-known deformation gradient second-order tensor is defined as \(\bm{F}(\bm{X},t)\equiv \nabla_0\bm\varphi(\bm{X},t)\), and its determinant, denoted as \(J\equiv \text{det}\;\bm{F} \geq 0\) represents the local unit volume change.
+
+\section{Fundamental conservation principles} \label{sec:fundamental_conservation_princ}
+
+In continuum thermomechanics, there is a set of conservation principles and thermodynamic laws that, irrespective of the quantities used to describe the mechanical behavior of a body undergoing large deformations, must always be satisfied, namely,
+\begin{align}
+  \text{div}_0\;\bm{P} + \bm{b}_0 = \rho_0 \ddot{\bm{u}},\quad & \text{(balance of momentum)};
+                                                                 \label{eq:material_equilibrium}\\
+  \bm{F}^{-1}\bm{P} = \bm{P}^{T}\bm{F} ^{-T},\quad & \text{(balance of moment of momentum)};\\
+  \rho_0 \dot e = \bm{P} :\dot{\bm{F}} + \rho_0 r -\operatorname{div}_0 \bm{q}_0,\quad & \text{(balance of energy)};\label{eq:balance_energy}\\
+  \rho_0 \dot s + \operatorname{div}_0 \left[\frac{\bm{q}_0}{\theta}\right] - \frac{\rho_0 r}{\theta} \geq 0,\quad & \text{(entropy production inequality)}\label{eq:entropy_production},
+\end{align}
+where $\bm{b}_0$ is the body forces field, measured in force per unit undeformed volume; $\rho_0$ is the material density, measured in mass per unit undeformed volume; \(\bm{P}\) is the first Piola-Kirchhoff stress tensor; \(e\) is the internal energy per unit mass; \(r\) is the heat supply per unit mass; \(\bm{q}_0\) the first Piola-Kirchhoff heat flux vector, measured in heat power per unit undeformed surface; $\theta$ is the absolute temperature; and $s$ is specific entropy per unit mass.
+The second order tensor $\dot{\bm{F}}$ is the appropriate strain rate measure, such that the double contraction $\bm{P}:\dot{\bm{F}}$ represents the stress power per unit volume in the undeformed configuration of the body.
+
+\section{Thermodynamically consistent constitutive modeling}
+
+The stresses and heat fluxes in the governing equations need to be associated with the deformations and temperatures via constitutive laws that represent the physical behavior of the material.
+For a simple material, the thermodynamic state is assumed to be completely defined by the instantaneous values of a finite number of state variables, i.e., \(\{\bm{F}, \theta, \bm{g}, \bm{\alpha}\}\), where \(\bm{\alpha} \equiv \{\alpha_k\}\) is a set of internal variables, scalar or tensorial, associated with dissipative mechanisms.
+The constitutive description of the material must be consistent with the principles established by Equations~\eqref{eq:material_equilibrium}-\eqref{eq:entropy_production}, yielding the following constitutive relations
+\begin{gather}
+  \bm{P} = \rho_0 \frac{\partial \psi}{\partial \bm{F}},\\
+  s = - \frac{\partial \psi}{\partial \theta},\\
+  \psi = \psi(\bm{F},\theta, \bm{\alpha}),\label{eq:thermo_mech_helmholtz_free_energy}\\
+  \dot{\bm{\alpha}} = f(\bm{F}, \theta, \bm{g}_0,\bm{\alpha}),\\
+  \bm{q}_0 = g(\bm{F}, \theta, \bm{g}_0, \bm{\alpha}),
+\end{gather}
+where \(\psi \equiv e - \theta s\) denotes the Helmholtz free energy.
+These still need to comply with the second law of thermodynamics, which places constraints on the evolution equations for the internal variables and the constitutive equation for the heat flux.
+
+The development of concrete models that are framed within constitutive theory can be achieved by postulating suitable functions for the  Helmholtz free energy and other required components, such as dissipation potentials and yield surfaces.
+Regarding the constitutive model for the heat flux, the second law of thermodynamics essentially requires the heat flow to occur in the opposite direction of the temperature gradient.
+The Fourier heat conduction law for isotropic conduction in the deformed volume is one of the simplest and most popular alternatives, defining the heat flux as
+\begin{equation}
+  \bm{q}_0 = - k_0 \bm{C}^{-1} \bm{g}_0,
+\end{equation}
+where \(k_0\) is the thermal conductivity, \(\bm{g}_0 = \nabla_0 \theta\) is the material gradient of the temperature, and \(\bm{C} = \bm{F}^T \bm{F}\) is the right Cauchy-Green strain tensor.
+
+\section{Heat conduction equation}
+\label{sec:heat-cond-equat}
+
+In the context of thermomechanics, the most common form of the energy balance equation (Equation~\eqref{eq:balance_energy}) is the heat conduction equation.
+Let \(C_{\bm F}\) denote the specific heat , i.e., the amount of heat required to change a unit mass of a substance by one degree in temperature at fixed deformation, defined as
+\begin{equation} \label{eq:def_cv_partial}
+  C_{\bm F}\equiv \left.\frac{\partial e}{\partial \theta}\right|_{\bm F}=-\frac{\partial^{2} \psi}{\partial \theta^{2}} \theta=\frac{\partial s}{\partial \theta} \theta.
+\end{equation}
+Applying Equation~\eqref{eq:def_cv_partial}, introducing the so-called Gough-Joule effect or thermoelastoplastic heating (or cooling) effect, denoted by \(\mathcal H^\text{ep}\), as
+\begin{equation}
+  \mathcal H^\text{ep} = - \rho_0\theta\left(\frac{\partial^2 \psi}{\partial \bm{F}\partial \theta}: \dot{\bm{F}} + \frac{\partial^2 \psi}{\partial \bm{\alpha} \partial \theta}*\dot{\bm{\alpha}} \right),
+\end{equation}
+and the internal dissipation \(\mathcal D_\text{int}\), given by
+\begin{equation}
+  \mathcal D_\text{int} = \bm{P}:\dot{\bm{F}} - \rho_0(\dot \psi + \dot \theta s),
+\end{equation}
+the energy balance equation can be recast as
+\begin{equation}
+  \rho_0 C_{\bm F} \dot \theta = \rho_0 r - \operatorname{div}_0 \bm{q}_0 + \mathcal D_\text{int} + \mathcal H^\text{ep}.
+\end{equation}
+
+\section{Weak equilibrium and the principle of virtual work}
+
+Together with the set of boundary and initial conditions, Equations~\eqref{eq:material_equilibrium} and \eqref{eq:balance_energy} are the so-called strong, point-wise, or local equilibrium equations, as they enforce the balance of momentum and energy at every material particle of the body.
+The weak form of the linear momentum and energy balance equations can be formulated through the Virtual Work Principle as
+\begin{equation} \label{eq:weak_momentum_balance}
+  \int_{\Omega_0} [\bm{P}(\bm{F},\theta):\nabla_0 \bm{\eta} - (\bm{b}_0(t)-\rho_0\ddot{\bm{u}}(t))\cdot \bm{\eta}]d v - \int_{\partial\Omega_0} (\bm{P}\bm{n}_{0})\cdot \bm{\eta} \ \mathrm{d} a = 0\;,
+\end{equation}
+\begin{multline} \label{eq:weak_energy_balance}
+  \int_{\Omega_0}   \left[-\bm{q}_{0}(\bm{F},\theta)\cdot \nabla_0 \xi - \left(\mathcal D_\text{int}(\bm{F},\theta)+\mathcal H^\text{ep}(\bm{F},\theta)+ \rho_0 r(t)-\rho_0C_{\bm F}\dot\theta(t)\right) \xi\right]d v\\ + \int_{\partial\Omega_0} \bm{q}_{0}\cdot \bm{n}_{0} \xi \ \mathrm{d} a = 0,
+\end{multline}
+where at each point of $\mathscr{B}$, the First Piola-Kirchhoff stress tensor is the solution to the material thermomechanical constitutive initial value problem and the virtual displacements \(\bm{\eta}\) and virtual temperatures \(\xi\) satisfy the essential boundary conditions of the problem in a homogeneous sense.
+The coupling between the mechanical and thermal fields can be understood from a physical point of view as follows:
+\begin{itemize}
+\item the temperature influences the mechanical field through additional thermal stresses and potentially temperature-dependent material properties.
+\item  the mechanical field affects the thermal field through coupling terms which can be interpreted as heat sources (dissipation and thermomechanical structure heating); geometric coupling due to the deformation of the domain, which affects boundary conditions and the heat conduction law.
+\end{itemize}
+
+\section{Finite Element Method} \label{sec:fem_mech}
+
+It is now possible to apply the Finite Element Method to the solution of the thermomechanical initial boundary value problem, providing a suitable spatial discretization in a finite element mesh.
+Defining the global vector of nodal displacements \(\mathbf{u}\) and the global vector of nodal temperatures \(\bm{\uptheta}\) as
+\begin{gather}
+  \mathbf{u}(t) = \Big[ u_1^1(t),\dots,u^1_{n_\text{dim}}(t),\dots, u_1^{N}(t),\dots,u^{N}_{n_\text{dim}}(t)\Big]^T,\\
+  \bm{\uptheta}(t) = \left[ \theta^1(t), \theta^2(t), \dots, \theta^{N}(t)\right]^T,
+\end{gather}
+where \(n_\text{dim}\) denotes the number of spatial dimensions considered and \(N\) the total number of nodes in the mesh, the displacement, $\bm{u}(\bm{X}, t)$, and temperature, \(\theta(\bm{X}, t)\), fields defined over the global domain $\Omega_0$, can be approximated at any point $\bm{X}$ by appropriate interpolation functions.
+Doing so yields the discretized versions of the momentum and energy balance equations, i.e.,
+\begin{gather}
+  \mathbf{r}_{u}(\mathbf{u}, \bm{\uptheta}, t)\equiv\mathbf{M} \ddot{\mathbf{u}}(t) +\mathbf{f}_u^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{u}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_momentum_balance} \\
+  \mathbf{r}_{\theta}(\mathbf{u}, \bm{\uptheta}, t)\equiv \mathbf{C} \dot{\bm{\uptheta}}(t)  + \mathbf{f}_\theta^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{\theta}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_energy_balance}
+\end{gather}
+where $\mathbf{f}_u^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{u}$ are the mechanical global vectors of internal and external forces, $\mathbf{f}_\theta^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{\theta}$ are the thermal global vectors of internal and external forces, $\mathbf{M}$ is the mass matrix, \(\mathbf{C}\) is the thermal capacitance matrix.
+The previous matricial entities are usually obtained by the appropriate assemblage of their elemental counterparts, defined by the appropriate integral quantities.
+
+\section{Time discretization}
+
+In the context of thermomechanical problems, a general path-dependent model depends on both the instantaneous deformation and temperature states as well as their history.
+Under these circumstances, for complex deformation, $\bm{F}(t)$, or temperature paths, $\theta(t)$, the solution of the constitutive initial value problem for a given set of initial conditions is typically unknown.
+Therefore, employing a suitable numerical approach is necessary to integrate the rate constitutive equations, being an implicit backward-Euler scheme adopted in the present contribution.
+
+The space-discrete time-continuous equilibrium equations (Equations~\eqref{eq:disc_momentum_balance} and \eqref{eq:disc_energy_balance}) can be integrated by employing an adequate and robust time discretization scheme.
+The fully discrete problem can be written in an abstract notation as
+\begin{gather}
+  \mathbf{r}_{u}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1})=\bm{0}\,\label{eq:mech_problem}\\
+  \mathbf{r}_{\theta}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1}) = \bm{0}. \label{eq:therm_problem}
+\end{gather}
+For quasi-static structural problems and steady-state heat flow problems, the temporal integration is fully restrained at the constitutive level, as previously addressed.
+For transient problems, the Generalised-$\alpha$ method is a popular alternative, which establishes finite-difference approximations of the temporal derivatives and evaluates the equilibrium at generalised midpoints, providing enough freedom to have second-order accuracy, unconditional stability in linear problems and optimal numerical dissipation in terms of a sole parameter $\rho_{\infty}$.
+In the absence of further mention, the Generalised-$\alpha$ for first-order systems is employed to integrate the transient thermal response \citep{jansen2000GeneralizedaMethodIntegrating}.
+
+\section{Solution of the thermomechanical problem}
+
+It is generally understood that thermomechanics is a crucial physical phenomenon in engineering applications and a highly sought-after feature in computational models.
+These effects play a central role in mainstream and heavy-duty thermomechanical applications such as rocket nozzles \citep{kuhl2002ThermomechanicalAnalysisOptimization,danowski_monolithic_2013}, disk brakes and clutches \citep{yevtushenko2015NumericalAnalysisThermal}, heat-assisted incremental sheet forming \citep{liu2018HeatassistedIncrementalSheet} and thermal stresses due to machining \citep{elsheikh2021ComprehensiveReviewResidual}, for instance.
+After spatial and temporal discretization, the thermomechanical problem is reduced to a system of coupled nonlinear algebraic equations on the mechanical variables (displacement) and thermal variables (temperatures).
+Generally speaking, the strategies typically employed to solve this problem can be classified into two groups: monolithic and partitioned approaches.
+The latter can be further divided into explicit (loosely or weakly coupled) and implicit (strongly coupled) schemes, depending on the type of coupling enforcement.
+When comparing them, one should keep in mind that the most desirable properties of an algorithm for solving coupled problems are unconditional stability, high accuracy, ease of implementation, low memory requirements, high computational efficiency, and the potential for software reuse \citep{fellipa_partitioned_1988}.
+Although a significant fraction of scientific research on solution techniques for coupled multi-physics problems has not originated from the thermomechanics community, but rather from the Fluid-Structure Interaction field, the following sections present a review of these concepts linked with thermomechanics literature.
+
+\subsection{Monolithic schemes}
+\label{sec:monolithic-schemes}
+
+Monolithic algorithms solve the nonlinear multi-physics system of equations simultaneously, fulfilling the coupling conditions exactly.
+Together with implicit time-integration techniques, monolithic schemes can provide unconditional stability and are typically associated with good robustness.
+These methods are often typified by the direct application of Newton's method to the coupled equations, requiring the computation of the cross-derivative blocks between fields.
+To solve the potentially large system of equations arising from the application of Newton's method, iterative methods are preferable to direct methods, partly due to memory footprint considerations.
+Newton-Krylov methods with the generalized minimal residual method (GMRES) or the biconjugate gradient stabilized method (BiCGStab) as Krylov subspace solvers are among the most widely used in multi-physics problems  \citep{hron_monolithic_2006}.
+The effective solution of a large system of equations, including any potential nonlinearities, is particularly difficult for monolithic algorithms \citep{danowski_monolithic_2013}, as the algebraic properties of different blocks can be very distinct.
+In fact, a good preconditioning strategy is a key component of effective solvers for large-scale multi-physics problems and this has been the main development topic of monolithic schemes in the last decade \citep{tezduyar2006space, lin_parallel_2010, gee_truly_2011, danowski_monolithic_2013, verdugo_unified_2016, mayr_hybrid_2020}.
+In short, the great appeal of monolithic schemes is the robustness and stability of the solution method, which comes at the expense of poor flexibility and extensive development and maintenance costs.
+
+Monolithic schemes have been successfully  used in the literature to tackle thermomechanical problems considering a variety of constitutive behaviors.
+Carter and Booker \citep{carter_finite_1989} consider thermoelastic materials, Gawin and Schrefler \citep{gawinThermoHydroMechanical1996} deal with thermo-hydro-mechanical problems in partially saturated porous materials, while Ibrahimbegovic and Chorfi \citep{ibrahimbegovic_covariant_2002} present a thermoplasticity covariant formulation, including large viscoplastic strains, strain localization, and cyclic loading cases.
+Danowski \citep{danowski_computational_2014} deals with various temperature-dependent, isotropic, elastic, and elastoplastic material models for small and finite strains, incorporating the effect of high temperatures predominating in rocket nozzles.
+Both Netz \citep{netz_high-order_2013} and Rothe and coworkers \citep{rothe_monolithic_2015} present monolithic approaches, based on the multilevel Newton method, for the solution of the thermomechanical problem involving thermovisco-plastic materials.
+More recently, Felder and coworkers \citep{felder_thermomechanically_2021} proposed a finite strain thermomechanically coupled two-surface damage-plasticity theory.
+The authors obtain the solution for the three coupled fields, displacement, nonlocal damage variable, and temperature, employing an implicit and monolithic solution scheme.
+Relevant application of monolithic solution schemes to thermomechanical contact interaction can be found in \citet{zavarise1992RealContactMechanisms,wriggers1993ThermomechanicalContactRigorous,oancea1997FiniteElementFormulation,hueber2009ThermomechanicalContactProblems,dittmann2014IsogeometricAnalysisThermomechanical,seitz2018ComputationalApproachThermoelastoplastic}.
+
+\subsection{Partitioned schemes}
+\label{sec:partitioned-schemes}
+
+The earliest contributions regarding the partitioned treatment of coupled systems emerged in the mid-1970s, involving structure-structure interactions and fluid-structure interactions (see, e.g., \cite{belytschko_mesh_1976}, \cite{park_stabilization_1977}, \cite{belytschko_stability_1978}, \cite{hughes_implicit-explicit_1978} and \cite{belytschko_mixed_1979}).
+There are usually many ways of partitioning a complex system into subsystems or fields.
+Felippa and Park \citep{felippa_staggered_1980} provide a very pragmatic and helpful criterion for selecting the fields to be considered.
+According to their definition, a field is characterized by computational considerations.
+It is a segment of the overall problem for which a separable software module is either available or readily prepared if the interaction terms are suppressed.
+As such, a partitioned approach to the solution of multi-physics problems employs analyzers specific to each field separately integrated in time.
+The coupling between the fields is achieved through proper communication between the individual components using prediction, substitution, and synchronization techniques.
+This renders a flexible and easy-to-implement solution scheme, which suffers from some numerical issues, which will be mentioned soon.
+
+As previously stated, partitioned schemes can be either explicit or implicit.
+In explicit schemes, the solution is found by solving each field sequentially with a one-directional data transfer, using a suitable problem split.
+In one exemplary time step, an explicit coupling algorithm solves the mechanical problem first, then sends relevant data to the thermal solver, and finally solves the thermal problem without providing feedback on the thermal solution to the mechanical solver.
+It has been used in the context of thermoelasticity \citep{argyris_natural_1981, armero_new_1992, johansson_thermoelastic_1993, miehe_entropic_1995, miehe_theory_1995, holzapfel_entropy_1996}, thermoplasticity \citep{armero_new_1992, armero_priori_1993, simo_associative_1992, wriggers_coupled_1992, agelet_de_saracibar_numerical_1998, agelet_de_saracibar_formulation_1999,lee2015NumericalModelingAnalysis}, thermoviscoplasticity \citep{adam_numerical_2002,adam_thermomechanical_2005,miehe2011CoupledThermoviscoplasticityGlassy} and contact \citep{wriggers1994ContactConstraintsCoupled,agelet_de_saracibar_numerical_1998,xing_three_2002,bergman2004FiniteElementModel}.
+The isothermic and adiabatic splits are the most common operator splits in thermomechanical problems.
+The isothermal split is arguably the most straightforward and natural approach, as noted in \cite{argyris_natural_1981}, one of the earliest contributions on the topic.
+This scheme seeks to solve the thermomechanical problem by first solving the mechanical problem at a constant temperature and then solving a purely thermal phase at a fixed configuration---newly updated.
+As an alternative, Armero and Simo \citep{armero_new_1992} proposed the adiabatic split, which consists of a mechanical phase at constant entropy, followed by purely thermal conduction at fixed configuration.
+In terms of implementation complexity, the adiabatic split is comparable to the isothermal split and is unconditionally stable, a remarkable advantage in comparison with the conditionally stable isothermal split.
+It is, however, more challenging to extend to other material models as it requires the modification and creation of specific algorithmic components at the constitutive level, which might not be readily available.
+
+There are several techniques to improve the stability and accuracy characteristics of explicit partitioned approaches, e.g., algebraic augmentation \citep{park_stabilization_1977, park_stabilization_1983}, double-pass approach \citep{armero_new_1992, piperno_explicitimplicit_1997, farhat_provably_2006, farhat_robust_2010}, prediction techniques \citep{piperno_explicitimplicit_1997, piperno_partitioned_2001, michler_efficient_2005, farhat_provably_2006}, and subcycling \citep{piperno_partitioned_1995, farhat_high_1997, piperno_explicitimplicit_1997}.
+Irrespective of the theoretical temporal convergence order of the partitioned explicit scheme, the fully coupled discretized equations of the problem will never be exactly satisfied at each time instant.
+There is a lag between the solution of the different fields, e.g., the mechanical and thermal fields, in a thermomechanical problem, which can be interpreted as an additional discretization error \citep{michler_efficient_2005}.
+The convergence conditions of partitioned solution procedures are also discussed by Turska and Schrefler \citep{turskaConvergenceConditionsPartitioned1993a} in the context of consolidation problems.
+
+In implicit schemes, inter-field iterations are performed until a given tolerance for the different field's unknowns is reached---irrespective of the type of operator split employed.
+It converges to the solution of the monolithic scheme and thus can satisfy the discrete version of the coupled problem exactly.
+Regardless of the eventual conditional stability of the corresponding explicit scheme, the implicit alternative can be unconditionally stable---it has the same temporal stability properties as the monolithic scheme---but the convergence of the inter-field iterations is not guaranteed or may take an excessive number of iterations.
+This embodies a significant limitation and places a severe restriction on the use of these strategies.
+Nonetheless, several acceleration techniques are available in the literature to speed up convergence.
+Most of these are developed in the context of Fluid-Structure Interaction, but their application to thermomechanical problems is not widespread, which ultimately is the primary motivation of this work (see Section~\ref{sec:implicit_solution_coupl}).
+
+There are a few contributions regarding the use of implicit partitioned schemes in the context of thermomechanics.
+Erbts and Düster \citep{erbts_accelerated_2012} solve problems involving thermoelasticity at finite strains, Netz \citep{netz_high-order_2013} explores thermoviscoelastic problems, and Da\-now\-ski \citep{danowski_computational_2014} presents results on thermoelasticity and thermoelastoplasticity.
+Including more than two fields, Erbts and coworkers \citep{erbts_partitioned_2015} tackle electro-thermomechanical problems, as do Wendt and coworkers \citep{wendt_partitioned_2015}, which also consider radiative heat transfer.
+Successful applications to thermomechanical problems involving contact have been reported in \citet{johansson_thermoelastic_1993,rieger2004AdaptiveMethodsThermomechanical,temizer2011ThermomechanicalContactHomogenization,kruger2020PorousductileFractureThermoelastoplastic}, to name a few.
+
+Regarding computational efficiency, according to Michler \citep{michler_efficient_2005}, solving a fluid-structure interaction problem to the same accuracy using an explicit scheme is less efficient than employing an implicit approach.
+For the same total number of iterations, the difference in the accuracy reached ranges from one to three orders of magnitude---although the implicit coupling is more expensive for the same number of iterations, naturally.
+These findings contradict a claim made in \cite{felippa_partitioned_2001}, which is not supported by any numerical results.
+In the numerical examples presented in \cite{danowski_computational_2014}, the monolithic solver is, in most cases, faster than an implicit scheme employing Aitken relaxation for problems in thermomechanics.
+The differences range from 120\% to 140\% in favor of the monolithic scheme.
+Supporting evidence for these conclusions can also be found in \cite{novascone_evaluation_2015}.
+The authors report  CPU time ratios between the implicit partitioned and monolithic approaches, ranging from 0.635 to 3.75 on the coupling magnitude.
+This evidence suggests that implicit schemes can deliver competitive simulation times with the same accuracy as the monolithic if more sophisticated coupling techniques are used to accelerate the convergence and improve the robustness of the inter-field iterations, with the added benefit of more straightforward implementation and extension.
+
+Lastly, it is important to recall the recommendations given in \cite{felippa_partitioned_2001} regarding the choice between partitioned and monolithic approaches.
+According to the authors, the circumstances that favor the partitioned approach for tackling a coupled problem are a research environment with few delivery constraints, access to existing software, localized interaction effects, and widespread spatial/temporal component characteristics.
+The opposite circumstances, involving a commercial environment, a rigid deliverable timetable, massive software development resources, global interaction effects, and comparable length and time scales, favor a monolithic approach.
+Therefore, one can readily see a number of applications where partitioned strategies fit very well, involving small development times and preservation of pre-existing technology.
+
+\section{Implicit partitioned schemes for thermomechanics} \label{sec:implicit_solution_coupl}
+
+The cornerstone of partitioned solution schemes is to solve the thermal and mechanical problems separately, i.e., Equation~\eqref{eq:mech_problem} is solved considering a fixed temperature, and Equation~\eqref{eq:therm_problem} is solved assuming a fixed configuration.
+For convenience, consider the existence of two functions, \(\bm{\mathcal{U}}_{n+1}\) and \(\bm{\mathcal{T}}_{n+1}\), that represent these solution procedures at instant \(t_{n+1}\), such that
+\begin{align}
+  \mathbf{u} = \bm{\mathcal{U}}_{n+1}(\bm{\uptheta}) & \rightarrow \text{solve } \mathbf{r}_{u}^{n+1}(\mathbf{u}, \bm{\uptheta}, t_{n+1})=\bm{0} \text{ in order to obtain } \mathbf{u}\;, \label{eq:def_solvers_u} \\
+  \bm{\uptheta} = \bm{\mathcal{T}}_{n+1}(\mathbf{u}) & \rightarrow \text{solve } \mathbf{r}_{\theta}^{n+1}(\mathbf{u}, \bm{\uptheta}, t_{n+1})=\bm{0} \text{ in order to obtain } \bm{\uptheta}. \label{eq:def_solvers_t}
+\end{align}
+In the following, the time-step subscripts $(\bullet)_{n+1}$ on the solvers are dropped for notation compactness.
+
+The standard conceptual approach found in the literature for implicit solution schemes is to adopt a fixed-point scheme, such as
+\begin{equation}
+  \bm{\uptheta}^{k}_* = \bm{\mathcal{T}} \circ \bm{\mathcal{U}}(\bm{\uptheta}^k) \quad \text{or} \quad \mathbf{u}^{k}_* = \bm{\mathcal{U}} \circ \bm{\mathcal{T}}(\mathbf{u}^k),
+\end{equation}
+where \(\circ\) denotes function composition.
+The solution found from the fixed-point scheme, \(\bm{\uptheta}^{k}_*\) or \(\mathbf{u}^{k}_*\) can then be accelerated, i.e.,
+\begin{equation}
+  \bm{\uptheta}^{k+1} = \bm{\mathcal{A}}(\bm{\uptheta}^{k}_*) \quad \text{or} \quad \mathbf{u}^{k+1} = \bm{\mathcal{A}}(\mathbf{u}^{k}_*),
+\end{equation}
+with \(\pazocal{A}\) denoting an appropriate acceleration scheme, which can also use previous iterations.
+The superscript \(k\) denotes the nonlinear iterations performed within each time step.
+
+A slightly different conceptualization of the thermomechanical coupled problem is pursued here.
+Generally, a fixed-point procedure can be transformed into a root-finding problem.
+In this case, the goal is to define suitable functions, built from \(\bm{\mathcal{U}}\) and \(\bm{\mathcal{T}}\), whose roots are also the solutions to the thermomechanical problem (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}).
+In the thermomechanical context, the following residual functions are employed
+\begin{equation} \label{eq:def_res_jacobi}
+  \bm{\mathcal{R}}_\text{J}(\mathbf{u}, \bm{\uptheta}) =
+  \left\{\begin{array}{c}
+           \mathbf{u} - \bm{\mathcal{U}}(\bm{\uptheta})\\
+           \bm{\uptheta} - \bm{\mathcal{T}}(\mathbf{u})
+         \end{array}\right\},
+     \end{equation}
+     and
+     \begin{equation} \label{eq:def_res_gauss_seidel}
+       \bm{\mathcal{R}}_\text{GS}(\bm{\uptheta}) =
+       \bm{\uptheta} - \bm{\mathcal{T}}\circ \bm{\mathcal{U}}(\bm{\uptheta}) \quad \text{or} \quad \bm{\mathcal{R}}^*_\text{GS}(\mathbf{u}) =
+       \mathbf{u} - \bm{\mathcal{U}}\circ \bm{\mathcal{T}}(\mathbf{u}),
+     \end{equation}
+     where the subscript 'J' stands for Jacobi and the subscript 'GS' for Gauss-Seidel.
+     The reason underlying such a notation choice is made clear later in Section~\ref{sec:fixed_point_approach}.
+     It should be noted that the residuals, as given here, are the symmetric counterparts of the definitions commonly employed in FSI.
+
+     Since the methods described below for the solution of nonlinear systems of equations apply to both functions \(\bm{\mathcal{R}}_\mathrm{J}\) and \(\bm{\mathcal{R}}_\mathrm{GS}\), a general function denoted as \(\bm{\mathcal{R}}\), whose variable is \(\mathbf{x}\), is conveniently adopted in the following discussion.
+     However, for practical purposes, the residual adopted in this work is \(\bm{\mathcal{R}}_\text{GS}\) (Equation~\eqref{eq:def_res_gauss_seidel}).
+     Moreover, one of the fields must be chosen as the first, which may be crucial for the stability and convergence rate of the approach \citep{joosten_analysis_2009}.
+     Here, the focus is on the sequence coinciding with the isothermic split, where the mechanical problem is solved first at a fixed temperature, followed by the solution of the thermal problem at a fixed configuration.
+     Then the thermal problem is solved at a fixed configuration.
+
+     As previously stated, the solution to the thermomechanical problem (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}) can be conceptually posed as the solution of
+     \begin{equation} \label{eq:abstract_residue_equation}
+       \bm{\mathcal{R}}(\mathbf{x}) = 0,
+     \end{equation}
+     where $\mathbf x$ stands for the appropriate unknowns based on the residual chosen, e.g., the temperature at all nodes in the mesh in the case of selecting the residual found in the first expression of Equation~\eqref{eq:def_res_gauss_seidel}.
+     It should be mentioned that unknowns in all mesh nodes must be considered for a volumetric coupling, such as in a thermomechanical problem.
+     This is in contrast with fluid-structure interaction, where just the degrees of freedom at the interface must be taken into account.
+     For completeness, also consider the function
+     \begin{equation}
+       \bm{\mathcal{S}}(\mathbf{x}) = \mathbf{x} - \bm{\mathcal{R}}(\mathbf{x}),
+     \end{equation}
+     whose fixed-point is the solution to the nonlinear equation system in Equation~\eqref{eq:abstract_residue_equation}.
+     Therefore, a broad class of standard implicit methods available in the literature can be applied to solve the problem at hand, allowing the use of appropriate libraries when available.
+     The accelerated fixed-point counterparts can be properly identified, as shown in the remainder of this section.
+
+     In the present work, the criteria used for the choice of the implicit methods most suitable are similar to the ones provided by \cite{fang_two_2009} for problems in the context of electronic structure problems.
+     These can be summarized as follows:
+     \begin{enumerate}
+     \item The dimensionality of the problem is large;
+     \item \(\bm{\mathcal{R}}\) is continuously differentiable, but the analytical form of its derivative is not readily available, or is computationally expensive to compute;
+     \item The cost evaluation of \(\bm{\mathcal{R}}(\mathbf{x})\) is computationally demanding;
+     \item The problem is noisy, i.e., the computed function values of \(\bm{\mathcal{R}}\) usually contain errors.
+     \end{enumerate}
+     Attending to the previous criteria, the most suitable methods should comply with the following desirable features: they must minimize the number of calls to \(\bm{\mathcal{R}}\), as it is expensive to compute; the amount of information saved from previous iterations must also be judiciously chosen as the problem's dimensionality is large; and, they cannot require the analytical derivative of \(\bm{\mathcal{R}}\), since it is not available.
+
+     In general, any implicit method for solving nonlinear systems of equations available in the literature can be used to solve the partitioned thermomechanical problem as long as it meets these criteria.
+     The approaches considered here are: the fixed-point method, the constant underrelaxation method, the Aitken relaxation method, the Broyden-like methods, especially Broyden's method, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
+     The critical aspects of these methods and other fundamental concepts are discussed in the remainder of this section.
+
+     \smallskip
+     \noindent \textit{Remark.} To make it clear to the reader, each time $\bm{\mathcal{R}}(\bullet)$ appears in the formulas; it represents a new execution to the solution sequence of the fields, which requires new calls to the mechanical solver, thermal solver and data communication.
+     \smallskip
+
+     For details see Vila-Chã et al. \citep{vilach}.
+     more general

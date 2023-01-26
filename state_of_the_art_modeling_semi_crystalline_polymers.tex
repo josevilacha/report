@@ -94,6 +94,7 @@ In Figure~\ref{fig:burgers_mat_response}, the phenomena of strain recovery, cree
 \begin{figure}
   \includegraphics[width=0.9\textwidth]{example-image-a}
   \caption{Respnse of the Burgers material in (a) constant strain rate experiment, (b) a stress relaxation experiment and a (c) creep experiment with recovery.}
+\label{fig:burgers_mat}
 \end{figure}
 
 \begin{remark}[Choice of internal variables]
@@ -188,14 +189,16 @@ This class of models will not be discussed further in the text since, due to the
 A viscoelastic constitutive model fit for large strains and capable of capturing the required nonlinear behaviors can be achieved by specifying nonlinear laws for the behavior of the elements in a rheological model.
 It is by far the most common approach, and to introduce it, the laws available for viscous elements are presented first, followed by the corresponding laws for elastic elements, the necessary kinematic decomposition to produce a large strain three-dimensional and the introduction of the thermal field, and finally the most relevant models available in the literature that follow this approach.
 
-\begin{remark}[Phenomenological vs. First principles]
-	A phenomenological model rests on fitting parameters and empirical assumptions.
-	A first principle rests on reasoning from first principles.
-	What are first principles? It depends on the chosen abstraction level.
-	We have continuum mechanics, kinetic theory/statistical mechanics, molecular dynamics and quantum mechanics.
-	Here only continuum mechanics and kinetic theroy are considered.
-	Give examples? What moves from one to the other? \colorbox{BrickRed}{Complete this!!!!}
-\end{remark}
+%
+
+% \begin{remark}[Phenomenological vs. First principles]
+% 	A phenomenological model rests on fitting parameters and empirical assumptions.
+% 	A first principle rests on reasoning from first principles.
+% 	What are first principles? It depends on the chosen abstraction level.
+% 	We have continuum mechanics, kinetic theory/statistical mechanics, molecular dynamics and quantum mechanics.
+% 	Here only continuum mechanics and kinetic theroy are considered.
+% 	Give examples? What moves from one to the other? \colorbox{BrickRed}{Complete this!!!!}
+% \end{remark}
 
 \subsection{Viscous elements}
 \label{sec:viscous_elements}
@@ -383,7 +386,7 @@ where $c_1^g$ and $c_2^g$ are the WLF parameters \citep{wardIntroductionMechanic
 Some of the same authors \citep{richetonThermodynamicInvestigationYieldstress2007} compare the models of Eyring (see Equation~\eqref{eq:eyring_model}), Argon (see Equation~\eqref{eq:argon_model_free_enthalpy}) and their cooperative model in the prediction of PMMA's and PC's yield stress.
 
 Other models, however, do not fit neatly into the scheme outlined above.
-\colorbox{BrickRed}{See \cite{kellyInfluenceLimitingDislocation1974} and gen with $n$ for the exponential law.}
+% \colorbox{BrickRed}{See \cite{kellyInfluenceLimitingDislocation1974} and gen with $n$ for the exponential law.}
 Power laws are fairly common empirical laws for the flow rule \citep{brownPowerlawCreepEquation1980}.
 They are given, for example, as \citep{bergstromMechanicsSolidPolymers2015}
 \begin{equation}

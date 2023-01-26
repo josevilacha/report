@@ -242,7 +242,6 @@ In the thermomechanical context, the following residual functions are employed
        \mathbf{u} - \bm{\mathcal{U}}\circ \bm{\mathcal{T}}(\mathbf{u}),
      \end{equation}
      where the subscript 'J' stands for Jacobi and the subscript 'GS' for Gauss-Seidel.
-     The reason underlying such a notation choice is made clear later in Section~\ref{sec:fixed_point_approach}.
      It should be noted that the residuals, as given here, are the symmetric counterparts of the definitions commonly employed in FSI.
 
      Since the methods described below for the solution of nonlinear systems of equations apply to both functions \(\bm{\mathcal{R}}_\mathrm{J}\) and \(\bm{\mathcal{R}}_\mathrm{GS}\), a general function denoted as \(\bm{\mathcal{R}}\), whose variable is \(\mathbf{x}\), is conveniently adopted in the following discussion.
@@ -266,7 +265,7 @@ In the thermomechanical context, the following residual functions are employed
      Therefore, a broad class of standard implicit methods available in the literature can be applied to solve the problem at hand, allowing the use of appropriate libraries when available.
      The accelerated fixed-point counterparts can be properly identified, as shown in the remainder of this section.
 
-     In the present work, the criteria used for the choice of the implicit methods most suitable are similar to the ones provided by \cite{fang_two_2009} for problems in the context of electronic structure problems.
+     In the present work, the criteria used for the choice of the implicit methods most suitable are similar to the ones provided by Fang and Saad \citep{fang_two_2009} for problems in the context of electronic structure problems.
      These can be summarized as follows:
      \begin{enumerate}
      \item The dimensionality of the problem is large;
@@ -277,12 +276,8 @@ In the thermomechanical context, the following residual functions are employed
      Attending to the previous criteria, the most suitable methods should comply with the following desirable features: they must minimize the number of calls to \(\bm{\mathcal{R}}\), as it is expensive to compute; the amount of information saved from previous iterations must also be judiciously chosen as the problem's dimensionality is large; and, they cannot require the analytical derivative of \(\bm{\mathcal{R}}\), since it is not available.
 
      In general, any implicit method for solving nonlinear systems of equations available in the literature can be used to solve the partitioned thermomechanical problem as long as it meets these criteria.
-     The approaches considered here are: the fixed-point method, the constant underrelaxation method, the Aitken relaxation method, the Broyden-like methods, especially Broyden's method, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
-     The critical aspects of these methods and other fundamental concepts are discussed in the remainder of this section.
+     The approaches considered by the author in \cite{vila-chaNumericalAssessmentPartitioned2023a}: the fixed-point method, the constant underrelaxation method, the Aitken relaxation method, the Broyden-like methods, especially Broyden's method, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
 
      \smallskip
      \noindent \textit{Remark.} To make it clear to the reader, each time $\bm{\mathcal{R}}(\bullet)$ appears in the formulas; it represents a new execution to the solution sequence of the fields, which requires new calls to the mechanical solver, thermal solver and data communication.
      \smallskip
-
-     For details see Vila-Chã et al. \citep{vilach}.
-     more general

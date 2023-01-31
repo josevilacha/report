@@ -382,15 +382,22 @@ where $\lambda$ is the length of the dislocation produced, $p$ the probability o
 The mobile discolation densitiy, $\rho_m$, or the ideal shear force, $\tau_c$, can also be taken as an internal variable and made to evolve according to a rate equation.
 See \cite{klahn1970strain} and \cite{kocks1975thermodynamics} for thorough discussions on the modeling of the deformation mechanisms in crystalline solids.
 
-Finally, one must keep in mind that both the nucleation and velocity controlled models produce similar expressions, but their interpretations differ \citep{fotheringhamRoleRecoveryForces1978}.
-In fact, following the terminology in \citep{gsellYieldTransientEffects1981}, the strain rate equation for a given kinetic process can be written as
+For an amorphous or semi-crystaline polymer,  Equations~\eqref{eq:flow_rule_thermally_activated} and \eqref{eq:pre_exponential_def} can still be employed, with a slightly different interpretation for the quantities involved and keeping in mind that the kinetic units are not as precisely defined as the in case of crystalline solids.
+Thus, the strain rate is still given by
 \begin{equation}
-  \dot\gamma = \bar{b}\rho_m \bar{v},
+  \label{eq:plaston_formula}
+  \dot \gamma = b \rho_m \bar{v}_m,
 \end{equation}
-where $\bar b$ is the mean length of the plastic wave, $rho_m$ the length density of plastic waves and $\bar v$ their mean velocity.
-Since the plastic waves are thermally released, their mean veloctiy $\bar v$ is given by their mean free path before they are traped again, $y_m$, the frequency of attempst to cross the boundary and the probability ...
+i.e., by the product of the density of kinetic units responsible for the deformation, $\rho_m$, the amount of displacement per kinetic unit, $b$, and their average velocity, $\bar v_m$.
+This velocity is approximately given by
+\begin{equation}
+  \bar v_m = L \nu_G \exp\left(-\frac{\Delta G(\tau)}{k_B T}\right),
+\end{equation}
+where $L$ is the mean free path of the kinetic unit, $\nu_G$ is the rate of attempts to move over the obstacle impeding its motion, and the Arrhenius term is the probability that the thermal fluctuations will supply the energy necessary to overcome said obstacle \citep{gsellYieldTransientEffects1981, gilmanPLASTICWAVEMYTH1992}.
 
-The deformation mechanism discussed so far concerned themselves with the motion of kinetic units by themselves.
+Finally, one must keep in mind that both the nucleation and velocity controlled models produce similar expressions, but their interpretations differ \citep{fotheringhamRoleRecoveryForces1978}.
+
+The deformation mechanism discussed so far concerned the motion of kinetic units by themselves.
 However, some kinetic processes are cooperative in nature, occurring only when several kinetic units act in unison.
 In fact, Cherry and Holmes \citep{cherryYieldAdhesiveJoints1969} mention that the fited values to the activation volume in Eyring's model are to large to agree with their corresponding physical interpretation (see Equation~\eqref{eq:eyring_model}.)
 To model this situation, Fotheringham and Cherry \citep{fotheringhamCommentCompressionYield1976, fotheringhamRoleRecoveryForces1978} assume that $n$ kinetic units all following the Eyring model are needed to substantiate a deformation mechanism.
@@ -439,23 +446,27 @@ For example, assuming that $\dot \gamma$ is a function of the stress, time and t
 \end{equation}
 where $f_\tau$, $f_t$ and $f_T$ are possibly experimentally defined functions.
 
-Table~\ref{tab:flow_rules} summarizes the different flow rules discussed so far.
-It includes the application domain of each and some authors who have used them in the context of polymer modeling.
-\begin{table}[htbp]
-\caption{Summary of the flow rules employed in the modeling of polymers.}
-\label{tab:flow_rules}
-  \begin{tabular}{lllll}
-  Model & Equation  & Domain of application  &  References & Observations \\
-  Newton viscosity &  &  &  &  \\
-  Eyring's model &  &  &  &  \\
-  Cooperative model &  &  &  &  \\
-  Argon's model &  &  &  & \\
-  Richeton's model & & & & \\
- \end{tabular}
-\end{table}
+% Table~\ref{tab:flow_rules} summarizes the different flow rules discussed so far.
+% It includes the application domain of each and some authors who have used them in the context of polymer modeling.
+% \begin{landscape}
+% \begin{table}[!ht]
+% \caption{Summary of the flow rules employed in the modeling of polymers.}
+% \label{tab:flow_rules}
+%   \begin{tabular}{lcccl}
+%   \hline
+%   Model\vphantom{\Big\vert} & Equation  & Domain of application & Observations \\ \hline\hline
+%   Newton viscosity & $\displaystyle	\dot \gamma = \frac{\dot \gamma_0 v}{k_B T}\exp\left(-\frac{\Delta H}{k_BT}\right)\tau=\frac{1}{\eta}\tau,$  (Eq.~\eqref{eq:newton_fluid_flow_rule_scalar}) & $v\tau \ll k_B T$  & Describes ordinary flow.  \\
+%   Eyring's model & $\displaystyle\dot \gamma = \dot\gamma_0 \exp\left(-\frac{\Delta H}{k_BT}\right)\sinh\left(\frac{v\tau}{k_BT}\right)$ (Eq.~\eqref{eq:eyring_model}) & $\tau < \Delta H/v$   &  \\
+%   Argon's model &  &   & \\
+%   Cooperative model &  &  &    \\
+%   Richeton's model & & &  \\
+%   \hline\hline
+%  \end{tabular}
+% \end{table}
+% \end{landscape}
 
 \paragraph{Structure variables}
-So far all the descriptions provided for the strain rate, exclude the consideration of the material's history or equivalently or appropriate internal variables, in this context also called structure variables (see \cite{kocks} and \cite{frost}).
+So far all the descriptions provided for the strain rate, exclude the consideration of the material's history or equivalently or appropriate internal variables, in this context also called structure variables (see \cite{kocks1975thermodynamics} and \cite{frostDeformationmechanismMapsPlasticity1982}).
 Thus, the implicit assumption is either that the structure remains constant during flow, i.e.,
 \begin{equation}
   \bm \alpha = \bm \alpha_0,
@@ -466,7 +477,7 @@ or that it has reached as a steady state, i.e.,
 \end{equation}
 
 Either of these hypothesis is often unreasonable, and fails to explain the nonlinear behavior of polymer, especially in the transient upon loading in a constant strain rate test.
-The most common targets of modeling are the athermal strength, $\hat \tau$, (see Equation~\eqref{}) and the mobile dislocation density, $\rho_m$, (see Equation~\eqref{}).
+The most common targets of modeling are the athermal strength, $\hat \tau$, and the mobile dislocation density, $\rho_m$, (see Equations~\eqref{eq:flow_rule_thermally_activated} and \eqref{eq:pre_exponential_def}).
 
 Regarding the athermal strength $\hat \tau$, two natural assumptions are that it may depend on both the plastic strain $\gamma$ and time, thus, by the chain rule, one finds
 \begin{equation}
@@ -489,7 +500,7 @@ The corresponding rate equation can be written as
   \dot{\hat \tau} = m\left(\frac{{\hat \tau}_1 - {\hat \tau}}{{\hat \tau}_0}\right)\dot w^p.
 \end{equation}
 
-Zaïri et al. \cite{zairiElastoviscoplasticConstitutiveEquations2007} propose similar rate equations for partial contributions, $\hat \tau^{(1)}$ and $\hat \tau^{(2)}$m, to the athermal strength, $\hat \tau$.
+Zaïri et al. \citep{zairiElastoviscoplasticConstitutiveEquations2007} propose similar rate equations for partial contributions, $\hat \tau^{(1)}$ and $\hat \tau^{(2)}$m, to the athermal strength, $\hat \tau$, when modeling glassy polymers.
 The former concerns the hardening effect of the network aligniment, such that the corresponding rate equation is defined as
 \begin{equation}
   \dot{\hat\tau}^{(1)} = m\left(\frac{\hat\tau^{(1)} - (1 - \alpha)\hat\tau^{(1)}_0}{\hat\tau^{(1)}_0}\right)\dot w^p,
@@ -510,42 +521,47 @@ Note that, despite the use of the plastic work instead of the plastic strain in 
 This is because the mapping between the two can be made one-to-one such that $\hat \tau(\gamma)=\tilde{\hat \tau}(w^p)\equiv \hat\tau(w^p(\gamma))$.
 See \cite{desouzanetoComputationalMethodsPlasticity2008} for the full derivation.
 
-The rate equation for the athermal strength, $s$, is chosen according to Equation~\eqref{eq:rate_equation_bpa}.
+Boyce et al. \cite{boyceLargeInelasticDeformation1988} propose an entirely similar rate equation for the athermal strength in a glassy polymer as
 \begin{equation}
-	\dot{s}=h \cdot\left(1-\frac{s}{s_{s s}\left(T, \dot{\gamma}^{\mathrm{C}}\right)}\right) \cdot \dot{\gamma}^{\mathrm{C}},
+  \label{eq:rate_equation_bpa}
+	\dot{\hat \tau}=h \left(1-\frac{\hat \tau}{\hat \tau_{1} \left(T, \dot{\gamma}\right)}\right)\dot{\gamma}
 \end{equation}
-such that the initial structure is represented by the value of $s$ at the upper yield point, $s_0$, $h$ is the slope of the yield drop with respect to the plastic strain, $s_{ss}$ is the value $s$ reaches at steady state, i.e., the "preferred" structure, and, as indicated, $s_{ss}$ may depend on temperature and strain rate.
-The presence of this internal variable enables the distinctive strain softening of glassy polymers, which is not observed in semi-crystalline polymers above the glass transition temperature.
+employing however the strain rate as the "driving force" behind its change.
+The initial structure is represented by the value of $\hat \tau$ at the upper yield point, $\hat \tau_0$, $h$ is the slope of the yield drop with respect to the strain, $\hat \tau_1$ is the value $\hat \tau$ reaches at steady state, i.e., the "preferred" structure, and, as indicated, $\hat \tau_1$ may depend on temperature and strain rate.
+This choice for the rate equation of the athermal strength enables the modeling of the distinctive glassy polymer strain softening.
 
-It describes the transition  athermal shear stress $s_0$ at the pre-defined initial yield stress, 0.01 in this case, to $s_1$ at the peak yield stress while remaining the strain softening from $s_1$ to the saturated state $s_2$ (low yield), and it is expressed as
+Seeking to model the effect of manufacturing-induced voids in polymer-based composites, Chowdhury et al. \citep{chowdhuryEffectsManufacturingInducedVoids2008} present an extension of Equation~\eqref{eq:rate_equation_bpa}.
+It describes the transition  athermal shear stress $\hat\tau_0$ at the pre-defined initial yield stress, 0.01 in this case, to $\hat\tau_1$ at the peak yield stress while remaining the strain softening from $\hat\tau_1$ to the saturated state $\hat\tau_2$ (low yield), and it is expressed as
 \begin{equation}
 	\label{eq:two_athermal_strength_evo}
-	\dot{s}=H_1(\gamma^C)\left(1-\frac{s}{s_1}\right) \dot{\gamma}^C+H_2(\gamma^C)\left(1-\frac{s}{s_2}\right)\dot{\gamma}^C,
+	\dot{\hat\tau}=H_1(\gamma)\left(1-\frac{\hat\tau}{\hat\tau_1}\right) \dot{\gamma}+H_2(\gamma)\left(1-\frac{\hat\tau}{\hat\tau_2}\right)\dot{\gamma},
 \end{equation}
 where the smooth Heaviside-like functions $H_i$, $i=1,2$ are given by
 \begin{equation}
-	H_1(\gamma^C)=-h_1\left\{\tanh \left(\frac{\gamma^C-\gamma^p}{f \gamma^p}\right)-1\right\} ; \quad H_2(\gamma^C)=h_2\left\{\tanh \left(\frac{\gamma^C-\gamma^p}{f \gamma^p}\right)+1\right\},
+	H_1(\gamma)=-h_1\left\{\tanh \left(\frac{\gamma-\gamma^p}{f \gamma^p}\right)-1\right\} ; \quad H_2(\gamma)=h_2\left\{\tanh \left(\frac{\gamma-\gamma^p}{f \gamma^p}\right)+1\right\},
 \end{equation}
 % See Gseel transient
 where $h_1$ and $h_2$ are the hardening (softening) parameters, $f$ the smoothing factor and $\gamma^p$ the plastic strain at the peak yielding point.
-Also the response, of the elastic element A is now a linear combination of the response obtained from a 3-chain model (Equation~\eqref{eq:three_chain_model}) and an 8-chain model (Equation~\eqref{eq:eigth_chain_model}).
-This approach is also pursued by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, where however a fourth athermal shear stress $s_3$ is considered, connected to the yield of the crystalline phase.
+This approach is also pursued by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, where however a fourth athermal shear stress $\hat \tau_3$ is considered, connected to the yield of the crystalline phase in a semi-crystalline polymer.
 According to the authors, this property can depend on the temperature, the strain rate, the crystallinity and humidity.
-The rate equation for the athermal strength $s$ is given similarly to Equation~\eqref{eq:two_athermal_strength_evo} as
+The rate equation for the athermal strength $\hat\tau$ is given similarly to Equation~\eqref{eq:two_athermal_strength_evo} as
 \begin{equation}
-	\dot{s}=H_1(\gamma^C) \left(1-\frac{s}{s_1}\right)  \dot{\gamma}^C+H_2(\gamma^C) \left(1-\frac{s}{s_2}\right)  \dot{\gamma}^C+H_3(\gamma^C) \left(1-\frac{s}{s_3}\right)  \dot{\gamma}^C,
+	\dot{\hat\tau}=H_1(\gamma) \left(1-\frac{\hat\tau}{\hat\tau_1}\right)  \dot{\gamma}+H_2(\gamma) \left(1-\frac{\hat\tau}{\hat\tau_2}\right)  \dot{\gamma}+H_3(\gamma) \left(1-\frac{\hat\tau}{\hat\tau_3}\right)  \dot{\gamma},
 \end{equation}
 The corresponding smooth functions are given by
 \begin{align}
-	H_1(\gamma^C)&=-h_1\left\{\tanh \left(\frac{\gamma^C-\gamma^{p,1}}{f \gamma^{p,1}}\right)-1\right\}, \\
-	H_2(\gamma^C)&=h_2\left\{-\tanh \left(\frac{\gamma^C-\gamma^{p,1}}{f \gamma^{p,1}}\right) \tanh \left(\frac{\gamma^C-\gamma^{p,2}}{f \gamma^{p,2}}\right)+1\right\}, \\
-	H_3(\gamma^C)&=h_3\left\{\tanh \left(\frac{\gamma^C-\gamma^{p,2}}{f \gamma^{p,2}}\right)+1\right\},
+	H_1(\gamma)&=-h_1\left\{\tanh \left(\frac{\gamma-\gamma^{p,1}}{f \gamma^{p,1}}\right)-1\right\}, \\
+	H_2(\gamma)&=h_2\left\{-\tanh \left(\frac{\gamma-\gamma^{p,1}}{f \gamma^{p,1}}\right) \tanh \left(\frac{\gamma-\gamma^{p,2}}{f \gamma^{p,2}}\right)+1\right\}, \\
+	H_3(\gamma)&=h_3\left\{\tanh \left(\frac{\gamma-\gamma^{p,2}}{f \gamma^{p,2}}\right)+1\right\},
 \end{align}
 where $h_1, h_2$ and $h_3$ are the hardening (softening) parameters, $f$ is the smoothing factor, as before, and it is chosen as $0.3$, $\gamma^{p,1}$ is the plastic strains at the peak yielding point and $\gamma^{p,2}$ is the low yield point just before the yielding of the crystal structure takes place.
 
-Figure~\ref{fig:rate_equations_for_athermal_strength} the different evolutions of the athermal strength.
+% Figure~\ref{fig:rate_equations_for_athermal_strength} collects some of the different evolutions of the athermal strength.
 
-In gsell81 the authors discussed the linera evolution of the mobile dislocation density to obtain the transitnet
+In \citep{gsellYieldTransientEffects1981}, the authors discuss modeling of the density of kinetic units to capture the changes the inverse transient in glassy polymers, also verified for semi-crystaline polymer at large strains.
+They propose that whenever a polymer experiences a strain rate increase or decrease, the density of kinetic units changes linearly over a particular strain interval until it reaches the new equilibrium value characteristic of the new strain rate.
+
+Another popular approach to capture the change in structure of the polymer is to postulate an appropriate rate equation for the backstress
 
 \paragraph{Multiple groups of kinetic units}
 
@@ -967,6 +983,7 @@ In fact the most widely used model of this type is the so-called Arruda-Boyce mo
 Also expanding on the model of Boyce et al. \citep{boyceLargeInelasticDeformation1988} (BPA model), Chowdhury et al. \citep{chowdhuryEffectsManufacturingInducedVoids2008} proposes in the context of manufacturing-induced voids in polymer-based composites a very similar model, formulated however hypoelastically.
 The model was later, validated on epoxy resins, a plastic polymer by Poulain et al. \citep{poulainFinitestrainElastoviscoplasticBehavior2014}.
 As in the BPA model, the athermal strength (Equation~\eqref{eq:argon_model_free_enthalpy}) is taken as an internal variable following, however, a different rate equation (Equation~\eqref{eq:rate_equation_chowdhury}).
+Also the response, of the elastic element A is now a linear combination of the response obtained from a 3-chain model (Equation~\eqref{eq:three_chain_model}) and an 8-chain model (Equation~\eqref{eq:eigth_chain_model}).
 Hao et al. \citep{haoUnifiedAmorphousCrystalline2022} propose a very similar model, where however the rate equation for the athermal strength is given by Equation~\eqref{eq:rate_equation_hao}, rendering a model able to capture the double yield phenomenon in semi-crystalline polymers.
 The last authors also take into account the thermomechanical aspects of polymer modeling account for the self-heating and thermal softening.
 They validate their model against experimental results obtained on epoxy, nylon10 and PA6.
@@ -1263,6 +1280,7 @@ The authors validate their model employing both polyethylenes (UHWPE and XLPE) a
 Ayoub et al. \citep{ayoubModellingLargeDeformation2010, ayoubEffectsCrystalContent2011} present a model very similar to \cite{ahziModelingDeformationBehavior2003} and \cite{boyceConstitutiveModelFinite2000} to describe the mechanical behavior of HDPE.
 The inelastic mechanisms involve two parallel elements: a visco-hyperelastic network resistance acting in parallel with a viscoelastic–viscoplastic intermolecular resistance where the amorphous and crystalline phases are explicitly taken into consideration.
 The semi-crystalline polymer is considered as a two-phase composite in a way similar to what has already been described.
+\colorbox{BrickRed}{Add the difference with exponent and the try to capture PE and comparison with different HDPE, LDPE, ULPE}
 A similar model can be found in \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, where the major difference is the arrangment of the mechanical elements in the rheological model.
 Very recently, Cundiff et al. \citep{cundiffModelingViscoplasticBehavior2022} propose another model where the inclusion of the crystallinity is achieved in the same way.
 Regarding the the constitutive description of each phase it employs much of the same laws found in \cite{ahziModelingDeformationBehavior2003} and \cite{chowdhuryEffectsManufacturingInducedVoids2008}, already described.

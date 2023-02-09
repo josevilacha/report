@@ -30,7 +30,7 @@ The stresses and heat fluxes in the governing equations need to be associated wi
 For a simple material, the thermodynamic state is assumed to be completely defined by the instantaneous values of a finite number of state variables, i.e., \(\{\bm{F}, \theta, \bm{g}, \bm{\alpha}\}\), where \(\bm{\alpha} \equiv \{\alpha_k\}\) is a set of internal variables, scalar or tensorial, associated with dissipative mechanisms.
 The constitutive description of the material must be consistent with the principles established by Equations~\eqref{eq:material_equilibrium}-\eqref{eq:entropy_production}, yielding the following constitutive relations
 \begin{gather}
-  \bm{P} = \rho_0 \frac{\partial \psi}{\partial \bm{F}},\\
+  \bm{P} = \rho_0 \frac{\partial \psi}{\partial \bm{F}},\label{eq:constitutive_equation_stress_thermoelasticity}\\
   s = - \frac{\partial \psi}{\partial \theta},\\
   \psi = \psi(\bm{F},\theta, \bm{\alpha}),\label{eq:thermo_mech_helmholtz_free_energy}\\
   \dot{\bm{\alpha}} = f(\bm{F}, \theta, \bm{g}_0,\bm{\alpha}),\\

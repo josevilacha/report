@@ -1,71 +1,93 @@
 \chapter{Numerical results} \label{sec:numerical_results}
 
-\section{Wishlist}
-
-Independent variables
-\begin{itemize}
-  \item strain rate, temperature
-  \item stress, temperature
-\end{itemize}
-
-Loading type
-\begin{itemize}
-  \item uniaxial traction
-  \item uniaxial compression
-  \item pure shear
-  \item biaxial traction
-  \item hydrostatic compression
-  \item torsion
-\end{itemize}
-
-time dependency
-\begin{itemize}
-  \item impulse
-  \item constant
-  \item ramp
-  \item harmonic
-  \item cyclic
-\end{itemize}
-
-The most interesting loading schemes are:
-\begin{itemize}
-  \item constant strain rate;
-  \item stress relaxation
-  \item creep
-  \item jump constant strain rate at different strains
-  \item loading unloading
-  \item free shrinkage
-\end{itemize}
+This chapter presents two sets of results concerning the subject of thermomechanical modeling of semi-crystalline polymers.
+The first is adapted from \cite{vilacha} and pertains to the implicit partitioned solution of the thermomechanical model employing a elasto-plastic description for the material.
+The nonlinear solvers available are compared and analysed according to their CPU time, memory use and ...
+The second pertains to the implementation and validation of state of the art constitutive models for semi-crystalline polymers.
+Two models are considered.
+One is applicable to polymer plastics, in general, and does not concider the bulk crystallinity of the polymer excplicitly.
+The other considers the crystallinity of the polymer explicitly and attempts to describe the polymer at different cyrstallinities with only one set of material parameters.
 
 
-\section{Constant strain rate experiments}
+\section{Solution of the thermomechanical problem}
 
-The experiments employed will be.
 
-Compare yield stresses.
+\section{State of the art in semi-crystalline polymer modeling}
 
-Verify thermal sofetening.
+This section presents results regarding the state of the art in semi-crystalline polymer modeling.
+The first model is due to Hao et al. \citep{hao} and it does not consider cyrstallinity.
+It
 
-Try and choose polymers above and below the glass transition temperature. Need to model the intrinsic softening.
+The reference experimental results were obtained by Khan and Farrohk \citep{khan} for Nylon101 in compression.
 
-Check how the initial stiffness varies with the strain rate and the temperature.
 
-\section{Unloading}
 
-Remaining deformation Strobl and friends
-
-\section{Free shrinkage}
-
-Remaining deformation
-
-\section{Heated shrinkage}
-
-\colorbox{CyanBlue}{Try the self healing stuff for fibers.}
-
-\section{Stress relaxation}
-
-Test with stress relaxation, maybe master curve.
-
-\section{Creep}
-
-Test with creep, maybe master curve.
+% \section{Wishlist}
+%
+% Independent variables
+% \begin{itemize}
+%   \item strain rate, temperature
+%   \item stress, temperature
+% \end{itemize}
+%
+% Loading type
+% \begin{itemize}
+%   \item uniaxial traction
+%   \item uniaxial compression
+%   \item pure shear
+%   \item biaxial traction
+%   \item hydrostatic compression
+%   \item torsion
+% \end{itemize}
+%
+% time dependency
+% \begin{itemize}
+%   \item impulse
+%   \item constant
+%   \item ramp
+%   \item harmonic
+%   \item cyclic
+% \end{itemize}
+%
+% The most interesting loading schemes are:
+% \begin{itemize}
+%   \item constant strain rate;
+%   \item stress relaxation
+%   \item creep
+%   \item jump constant strain rate at different strains
+%   \item loading unloading
+%   \item free shrinkage
+% \end{itemize}
+%
+%
+% \section{Constant strain rate experiments}
+%
+% The experiments employed will be.
+%
+% Compare yield stresses.
+%
+% Verify thermal sofetening.
+%
+% Try and choose polymers above and below the glass transition temperature. Need to model the intrinsic softening.
+%
+% Check how the initial stiffness varies with the strain rate and the temperature.
+%
+% \section{Unloading}
+%
+% Remaining deformation Strobl and friends
+%
+% \section{Free shrinkage}
+%
+% Remaining deformation
+%
+% \section{Heated shrinkage}
+%
+% \colorbox{CyanBlue}{Try the self healing stuff for fibers.}
+%
+% \section{Stress relaxation}
+%
+% Test with stress relaxation, maybe master curve.
+%
+% \section{Creep}
+%
+% Test with creep, maybe master curve.

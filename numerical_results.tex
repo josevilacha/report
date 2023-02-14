@@ -228,6 +228,8 @@ where $L$ is a characteristic dimension of the specimen from the center of the d
 If $\tau_\text{therm} \ll 1$, it is safe to assume an adiabatic evolution, however if $\tau_\text{therm}\gg 1$, the experiment progresses isothermically.
 $\tau_\text{therm}\approx 1$ points to  a coupled problem, in the sense that some heat is removed from the specimen as the experiment progresses, without however preventing an increase in temperature.
 
+\colorbox{BrickRed}{How isothermic and adabiatic in practice?}
+
 \subsection{\cite{haoUnifiedAmorphousCrystalline2022}}
 
 Following the description in \cite{haoUnifiedAmorphousCrystalline2022}, the experimental results employed for validation are those of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006} obtained during the uniaxial compression of nylon 101 at a constant strain rate.
@@ -286,7 +288,7 @@ The strain rates considered are \SIlist{1e-5;1e-2;1e0}{\per\second}.
 The first corresponds to an adiabatic evolution and the last to and isothermal evolution, as evaluated by the dimensionless parameter $\tau_\text{therm}$ \citep{haoUnifiedAmorphousCrystalline2022}.
 A strain rate of \SI{1e-2}{\per\second} coincides, however, with a coupled process, which is neither adiabatic nor isothermic.
 The strain rate \SI{1e-2}{\per\second} is simulated employing both adabatic and isothermal conditions.
-The stress-strain and temperature-strain curves obtained are compared in Figure~\ref{fig:stress_temp_strain_hao_results} to the experimental results in \cite{khanThermomechanicalResponseNylon2006} and the numerical results obtained by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}.
+The stress-strain and temperature-strain curves obtained are compared in Figure~\ref{fig:stress_temp_strain_hao_results} to the experimental results in \cite{khanThermomechanicalResponseNylon2006} and the numerical results obtained by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}. \colobox{BrickRed}{Where in the cylinder are these values taken from?}
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\textwidth]{figures/stress_temp_strain_hao_results}
@@ -300,10 +302,16 @@ To the point in Figure~\ref{fig:stress_temp_strain_hao_results}, only the strain
 This phenomenon is also correctly described by the model, with a slight underestimation of the stress response for the higher strain rates.
 Conversely, regarding the second yield, the model predicts overestimates slightly the stress.
 
-Regarding the implementation and numerical solution found in the present work, for the lowest strain rate considered (\SI{1e-5}{\per\second}), there is perfect agreement with the results in \cite{haoUnifiedAmorphousCrystalline2022}.
+Regarding the implementation and numerical solution found in the present work, for the lowest strain rate considered (\SI{1e-5}{\per\second}), there is perfect agreement with the numerical results presented in \cite{haoUnifiedAmorphousCrystalline2022}.
 The same can't be said for the other two strain rates.
-The description of the first yield is in good agreement betweeen the two sets of numerical results at both strain rates.
-
+Still, until the first yield and subsequent softening ther is good agreement betweeen the two sets of numerical results.
+As the strain increases there is a larger descrepency between the two.
+There a few reasons for this.
+The first concerns mainly the experiment corresponding to a strain rate of \SI{1e-2}{\per\second}, which in the present work as simulated as an adiabatic process.
+This is not strictly true and contributes to differences relative to the reference results, which were obtained employing a fully thermomechanical description of the problem including conduction inside the cylinder and converction at its borders.
+A further contributing factor, that also affects the response obtained in the present work at \SI{1}{\per\second} is the heterogeneity of the response in the results in \cite{haoUnifiedAmorphousCrystalline2022}.
+Despite a homogeneous temperature distribution equal to \SI{71}{\celsius}, the plastic deformation is heterogeneous, breaking the assumptions of the numerical tool employed in this work and further motivating differences in the results obtained.
+In general, the implementation developed in this work compares favourably with the one found in \cite{haoUnifiedAmorphousCrystalline2022}.
 
 \subsection{Composite model}
 

@@ -1,7 +1,7 @@
 \chapter{Numerical results} \label{sec:numerical_results}
 
 This chapter presents two sets of results concerning the subject of thermomechanical modeling of semi-crystalline polymers.
-The first is adapted from \cite{vilacha} and pertains to the implicit partitioned solution of the thermomechanical model employing a elasto-plastic description for the material.
+The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of the thermomechanical model employing a elasto-plastic description for the material.
 The nonlinear solvers available are compared and analysed according to their CPU time, memory use and ...
 The second pertains to the implementation and validation of state of the art constitutive models for semi-crystalline polymers.
 
@@ -34,8 +34,8 @@ The second pertains to the implementation and validation of state of the art con
          \vphantom{\Big |}Linear hardening coefficient at \(T_0\) & \(H\) & (\si{\newton\milli\meter^{-2}}) & 129.24\\
          \vphantom{\Big |}Saturation exponent & \(\delta\) & (-) & 16.93\\
          \vphantom{\Big |}Saturation yield stress at \(T_0\) & \(\sigma_{y,\infty}\) & (\si{\newton\milli\meter^{-2}}) & 715\\
-         \vphantom{\Big |}Thermal softening parameter (\(\sigma_{y,0}\)) & \(\omega_0\) & (\si{\kelvin^{-1}}) & 2e-3\\
-         \vphantom{\Big |}Thermal softening parameter (\(\sigma_{u,\infty}, H\)) & \(\omega_h\) & (\si{\kelvin^{-1}}) & 2e-3\\
+         \vphantom{\Big |}Thermal softening parameter (\(\sigma_{y,0}\)) & \(\w_0\) & (\si{\kelvin^{-1}}) & 2e-3\\
+         \vphantom{\Big |}Thermal softening parameter (\(\sigma_{u,\infty}, H\)) & \(\w_h\) & (\si{\kelvin^{-1}}) & 2e-3\\
          \hline
          \multicolumn{3}{l}{\textbf{Boundary Conditions}\vphantom{\Big |}} & \\\hline
          \vphantom{\Big |}Radius of the cylindrical bar & \(r\) & (\si{\milli\meter}) & 6.413\\
@@ -206,76 +206,104 @@ The second pertains to the implementation and validation of state of the art con
 \section{State of the art in semi-crystalline polymer modeling}
 
 This section analyses two state-of-the-art constitutive models for semi-crystalline polymers.
-The first model is described in \cite{hao} and is applicable to polymer plastics, in general, neglecting to consider the bulk crystallinity of the polymer excplicitly.
-The second model can be found in \cite{hameed} and considers the crystallinity of the polymer explicitly, attempting to describe the polymer at different cyrstallinities with only one set of material parameters.
+The first model is described in \cite{haoUnifiedAmorphousCrystalline2022} and is applicable to polymer plastics in general, neglecting to consider the bulk crystallinity of the polymer excplicitly.
+The second model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and considers the crystallinity of the polymer explicitly, attempting to describe the polymer at different cyrstallinities with only one set of material parameters.
 
 \paragraph{Computational framework}
-The solution of the thermomechanical problem in what follows is achieved employing an approach described thorougly in \cite{berg} and \cite{alves}, whose \verb|Python| is available in the group.
-It is restrcited to uniaxial loading, traction or compression.
-Homogeneous.
-Eithre isothermal or adiabatic.
+The solution of the thermomechanical problem is achieved employing an approach described thorougly in \cite{bergstromMechanicsSolidPolymers2015} and \cite{alvesFastOptimizationbasedParameter2022}, whose \verb|Python| implementation is available in-house.
+It is restrcited to displacement-driven uniaxial loading, traction or compression, and it achieves the solution of the mechanical problem through a minimization procedure.
+In each time step the axial stretch is prescribed and the transversal stretches are obtained as those leading to a minimum in the transversal stresses.
+This minimum should be zero as the boundary condition on the laterial surfaces corresponds to a free surface.
+Accordingly, it is implicitly assumed that the response is homogeneous, which allows for comparisons solely with experimental results where the intrinsic response of the material is shown, free of size effects.
 
-\subsection{Single phase model}
+Regarding the thermal field, its inclusion is restricted to the isothermic and adiabatic cases.
+The former coincides with a strain rate sufficiently slow so that the heat generated from the deformation is easily offloaded to the environment, keeping the temperature constant.
+The latter corresponds to a strain rate so fast that no energy is exchanged with the environment during loading, approaching an adiabatic condition.
+Arruda et al. \citep{arrudaEffectsStrainRate1995} employ the dimensionless number defined as $\tau_\text{therm} = t_\text{test}/t_d$ to probe how appropriate either of these assumptions is.
+$t_\text{test}$ is defined as the test time to reach the true strain of $-1.0$ (in compression), and $t_d$ is thermal diffusion time of the speciment, which may be approximated as
+\begin{equation}
+  t_d \approx \frac{L^2}{2(k/\rho C_\mathbf{F})},
+\end{equation}
+where $L$ is a characteristic dimension of the specimen from the center of the deforming region to the nearest heat sink.
+If $\tau_\text{therm} \ll 1$, it is safe to assume an adiabatic evolution, however if $\tau_\text{therm}\gg 1$, the experiment progresses isothermically.
+$\tau_\text{therm}\approx 1$ points to  a coupled problem, in the sense that some heat is removed from the specimen as the experiment progresses, without however preventing an increase in temperature.
 
-The thermomemechanical problem under analysis consists of the compression of cylinder.
-The problem consists of a cylindrical bar of radius $r=\SI{6.413}{\milli\meter}$ and length $h=\SI{53.334}{\milli\meter}$.
-The bar is initially at room $T_{0}=T_{\infty}=\SI{295}{\kelvin}$ and is subject to heat transfer by convection at all boundaries, with a heat transfer coefficient $h_{c} = \SI{17.5e-3}{\newton\milli\meter^{-1}\second^{-1}\kelvin^{-1}}$.
-The material is modeled by the constitutive model proposed by Hao et al. \citep{hao}, and the material properties are given in Table~\ref{tab:matpropsnecking}.
+\subsection{\cite{haoUnifiedAmorphousCrystalline2022}}
+
+Following the description in \cite{haoUnifiedAmorphousCrystalline2022}, the experimental results employed for validation are those of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006} obtained during the uniaxial compression of nylon 101 at a constant strain rate.
+The material is modeled by the constitutive model proposed by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, and the material properties are given in Table~\ref{tab:mat_prop_hao}.
 %
-\begin{table}
+\begin{table}[htbp]
   \centering
-  \caption{Material properties and initial and boundary conditions for the problem concerning the necking of a thermoplastic circular bar.}
-  \label{tab:matpropsnecking}
+  \caption{Material properties and initial conditions for the uniaxial compression of nylon 101.}
+  \label{tab:mat_prop_hao}
   \begin{tabular}{lccS[exponent-mode=engineering]}
     \hline\hline
     \multicolumn{3}{l}{\textbf{Material Properties}} & {\vphantom{\Big |}Effective value}\\
     \hline
-    \vphantom{\Big |}Density & \(\rho\) & (\si{\newton\second^2\milli\meter^{-4}}) & 7.8e-9\\
-    \vphantom{\Big |}Bulk modulus & \(\kappa\) & (\si{\newton\milli\meter^{-2}}) & 164206\\
-    \vphantom{\Big |}Shear modulus & \(\mu\) & (\si{\newton\milli\meter^{-2}}) & 801938\\
-    \vphantom{\Big |}Conductivity & \(k\) & (\si{\newton\second^{-1}\kelvin^{-1}}) & 45\\
-    \vphantom{\Big |}Heat capacity & \(C_{\mathbf F}\) & (\si{\milli\meter^2\second^{-2}\kelvin^{-1}}) & 460e6\\
-    \vphantom{\Big |}Coefficient of thermal expansion & \(\alpha_T\) & (\si{\kelvin^{-1}}) & 10e-6\\
-    \vphantom{\Big |}Dissipation factor & \(\chi\) & (-) & 900e-3\\
-    \vphantom{\Big |}Initial yield stress at \(T_0\) & \(\sigma_{y,0}\) & (\si{\newton\milli\meter^{-2}}) & 450\\
-    \vphantom{\Big |}Linear hardening coefficient at \(T_0\) & \(H\) & (\si{\newton\milli\meter^{-2}}) & 129.24\\
-    \vphantom{\Big |}Saturation exponent & \(\delta\) & (-) & 16.93\\
-    \vphantom{\Big |}Saturation yield stress at \(T_0\) & \(\sigma_{y,\infty}\) & (\si{\newton\milli\meter^{-2}}) & 715\\
-    \vphantom{\Big |}Thermal softening parameter (\(\sigma_{y,0}\)) & \(\omega_0\) & (\si{\kelvin^{-1}}) & 2e-3\\
-    \vphantom{\Big |}Thermal softening parameter (\(\sigma_{u,\infty}, H\)) & \(\omega_h\) & (\si{\kelvin^{-1}}) & 2e-3\\
+    \vphantom{\Big |}Density & \(\rho\) & (\si{\newton\second^2\milli\meter^{-4}}) & 1.150e-9\\
+    \vphantom{\Big |}Young modulus at $T_\text{ref}$ & \(E_{a,\text{ref}}\) & (\si{\newton\milli\meter^{-2}}) & 3.01e3\\
+    \vphantom{\Big |}Reference temperature & \(T_\text{ref}\) & (\si{\kelvin}) & 295\\
+    \vphantom{\Big |}Temperature dependence coefficient & \(\beta\) & (-) & 0.0037\\
+    \vphantom{\Big |}Poisson's coefficient & \(\nu_I\) & (-) & 0.39\\
+    \vphantom{\Big |}Heat capacity & \(C_{\mathbf F}\) & (\si{\milli\meter^2\second^{-2}\kelvin^{-1}}) & 1.500e6\\
+    \vphantom{\Big |}Athermal peak strength & \(s_1\) & (\si{\mega\pascal}) & 140\\
+    \vphantom{\Big |}First saturation strength & \(s_2\) & (\si{\mega\pascal}) & 138\\
+    \vphantom{\Big |}Second saturation strength & \(s_3\) & (\si{\mega\pascal}) & 183\\
+    \vphantom{\Big |}Pre-peak hardening & \(h_1\) & (\si{\mega\pascal}) & 627e1\\
+    \vphantom{\Big |}Post-peak softening & \(h_2\) & (\si{\mega\pascal}) & 503e1\\
+    \vphantom{\Big |}Second yield hardening & \(h_3\) & (\si{\mega\pascal}) & 740\\
+    \vphantom{\Big |}Peak plastic strain & \(\gamma^{p,1}\) & (-) & 0.0270\\
+    \vphantom{\Big |}Activation plastic strain ($\dot\varepsilon = \SI{1e-5}{\per\second}$) & \(\gamma^{p,2}\) & (-) & 0.0298\\
+    \vphantom{\Big |}Smooth factor & \(f\) & (-) & {0.3}\\
+    \vphantom{\Big |}Pressure sensitivity & \(\alpha\) & (-) & {0}\\
+    \vphantom{\Big |}Rate sensitivity & \(m\) & (-) & 0.66\\
+    \vphantom{\Big |}Pre-exponential strain rate & \(\dot\gamma_0\) & (\si{\per\second}) & 329\\
+    \vphantom{\Big |}Rate sensitivity & \(A\) & (\si{\kelvin\per\mega\pascal}) & 115\\
+    \vphantom{\Big |}Rubbery modulus & \(C_r\) & (\si{\mega\pascal}) & {-}\\
+    \vphantom{\Big |}Number of rigid links & \(N\) & (-) & {-}\\
     \hline
-    \multicolumn{3}{l}{\textbf{Boundary Conditions}\vphantom{\Big |}} & \\\hline
-    \vphantom{\Big |}Radius of the cylindrical bar & \(r\) & (\si{\milli\meter}) & 6.413\\
-    \vphantom{\Big |}Length of the cylindrical bar & \(h\) & (\si{\milli\meter}) & 53.334\\
-    \vphantom{\Big |}Maximum displacement at both ends & \(\bar u_y\) & (\si{\milli\meter}) & 8\\
-    \vphantom{\Big |}Time to maximum displacement & \(t\) & (\si{\second}) & 8\\
-    \vphantom{\Big |}Heat transfer coefficient & \(h_c\) & (\si{\newton\milli\meter^{-1}\kelvin^{-1}}) & 17.5e-3\\
-    % \multicolumn{3}{l}{\vphantom{\Big |}All mechanical degrees of freedom fixed in the \(y\)- and \(z\)-directions.}\\
-    \hline
+    % \multicolumn{3}{l}{\textbf{Boundary Conditions}\vphantom{\Big |}} & \\\hline
+    % \vphantom{\Big |}Radius of the cylindrical bar & \(r\) & (\si{\milli\meter}) & 6.413\\
+    % \vphantom{\Big |}Length of the cylindrical bar & \(h\) & (\si{\milli\meter}) & 53.334\\
+    % \vphantom{\Big |}Maximum displacement at both ends & \(\bar u_y\) & (\si{\milli\meter}) & 8\\
+    % \vphantom{\Big |}Time to maximum displacement & \(t\) & (\si{\second}) & 8\\
+    % \vphantom{\Big |}Heat transfer coefficient & \(h_c\) & (\si{\newton\milli\meter^{-1}\kelvin^{-1}}) & 17.5e-3\\
+    % % \multicolumn{3}{l}{\vphantom{\Big |}All mechanical degrees of freedom fixed in the \(y\)- and \(z\)-directions.}\\
+    % \hline
     \multicolumn{3}{l}{\textbf{Initial Conditions}\vphantom{\Big |}} & \\\hline
-    Initial temperature & \(T_0\) & (\si{\kelvin}) & {293}\\
-    \hline
-    \multicolumn{3}{l}{\textbf{Reference value} \vphantom{\Big |}} & \\\hline
-    \vphantom{\Big |}Temperature at outer radius (\(r\)) & & (\si{\kelvin}) & \\
-    \vphantom{\Big |}Longitudinal reaction forces & & (\si{\newton}) & \\
+    \vphantom{\Big |}Initial temperature & \(T_0\) & (\si{\kelvin}) & 295\\
+    \vphantom{\Big |}Initial equivalent strength & \(s_0\) & (\si{\mega\pascal}) & 120\\
+    % \hline
+    % \multicolumn{3}{l}{\textbf{Reference value} \vphantom{\Big |}} & \\\hline
+    % \vphantom{\Big |}Temperature at outer radius (\(r\)) & & (\si{\kelvin}) & \\
+    % \vphantom{\Big |}Longitudinal reaction forces & & (\si{\newton}) & \\
     \hline\hline
   \end{tabular}
 \end{table}
 
-Given the restrictions of the tool available for solution only \SI{1e-5}{\per\second} and \SI{1}{\per \second}, corresponding to isothermic and adabatic.
-Given the value of the dimensionless parameter.
-
-The results are shown in Figure~\ref{fig:res_hao}
-\begin{figure}
+The strain rates considered are \SIlist{1e-5;1e-2;1e0}{\per\second}.
+The first corresponds to an adiabatic evolution and the last to and isothermal evolution, as evaluated by the dimensionless parameter $\tau_\text{therm}$ \citep{haoUnifiedAmorphousCrystalline2022}.
+A strain rate of \SI{1e-2}{\per\second} coincides, however, with a coupled process, which is neither adiabatic nor isothermic.
+The strain rate \SI{1e-2}{\per\second} is simulated employing both adabatic and isothermal conditions.
+The stress-strain and temperature-strain curves obtained are compared in Figure~\ref{fig:stress_temp_strain_hao_results} to the experimental results in \cite{khanThermomechanicalResponseNylon2006} and the numerical results obtained by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}.
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.6\textwidth]{example-image-a}
-  \caption{Results hao}
-\label{fig:res_hao}
+  \includegraphics[width=0.85\textwidth]{figures/stress_temp_strain_hao_results}
+  \caption{Comparison between the experimental results of \cite{khanThermomechanicalResponseNylon2006}, the numerical results of \cite{haoUnifiedAmorphousCrystalline2022} and the present work for a uniaxial compressive test at strain rates of \SIlist{1e-5;1e-2;1e0}{\per\second}. (a) True strain-true stress curve. (b) True strain-temperature curve.}
+\label{fig:stress_temp_strain_hao_results}
 \end{figure}
 
-The results are good
-The double yield is captured.
-The difference can be interpeted as non homegenouss average lower plastic .
+Discussing first the fitness of the model proposed in \cite{haoUnifiedAmorphousCrystalline2022} to describe the experimental results of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006}, the model captures adequately the elastic range and the first yield point.
+As seen from the experimental results, nylon 101 displays double yield, which becomes more noticeable as the rain rate increases.
+To the point in Figure~\ref{fig:stress_temp_strain_hao_results}, only the strain rates of \SIlist{1e-2;1e0}{\per\second} show a prominent double yield.
+This phenomenon is also correctly described by the model, with a slight underestimation of the stress response for the higher strain rates.
+Conversely, regarding the second yield, the model predicts overestimates slightly the stress.
+
+Regarding the implementation and numerical solution found in the present work, for the lowest strain rate considered (\SI{1e-5}{\per\second}), there is perfect agreement with the results in \cite{haoUnifiedAmorphousCrystalline2022}.
+The same can't be said for the other two strain rates.
+The description of the first yield is in good agreement betweeen the two sets of numerical results at both strain rates.
+
 
 \subsection{Composite model}
 

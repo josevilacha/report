@@ -351,9 +351,11 @@ The expression found for the free enthalpy is
 \end{equation}
 where $\mu$ and $\nu$ are the shear modulus and Poisson coefficient, $\hat \tau$ is the athermal strength defined as
 \begin{equation}
+  \label{eq:athermal_strength_elasticity_rel}
 	\hat \tau = \frac{0.077 \mu}{1-\nu},
 \end{equation}
 $\omega$ the net angle of rotation of the molecular segment between the initial configuration and the activated configuration, and $a$ the mean molecular radius.
+The relationship between the athermal strength and the shear modulus in Equation~\eqref{eq:athermal_strength_elasticity_rel} can be used to establish the temperature of the athermal dependence \citep{haoUnifiedAmorphousCrystalline2022}.
 
 In the case of amorphous polymers, however, Ward and Sweeney \citep{wardIntroductionMechanicalProperties2004} mention that computer simulations of polymer chains at the atomic level on both glassy atactic polypropylene and polycarbonate did not yield a dominant deformation mechanism that should be the target of modeling.
 
@@ -859,11 +861,11 @@ In the one-dimensional rheological model, the dissipation is due to the linear d
 where ${\dot \gamma}^i$ is the strain rate the dashpot $i$ is subject to and $\sigma^i$ is the stress across the same element.
 In three-dimensions, this is rational yields
 \begin{equation}
-	\mathcal D_\text{int}^i = \chi\mathbf \sigma_i : \mathbf D^i,
+	\mathcal D_\text{int}^i = \chi_\text{d}\mathbf \sigma_i : \mathbf D^i,
 \end{equation}
 where $\bm \sigma^i$ is the Cauchy stress tensor across the $i$th viscous elements and $\mathbf D^i$ the corresponding rate of deformation tensor.
-$\chi\in [0, 1]$ is a constant dissipation factor, commonly chosen in the range $\chi\approx 0.85$ to 0.95 for metals \citep{simoAssociativeCoupledThermoplasticity1992} and equal to 1 for polymers \citep{okerekeTwoprocessConstitutiveModel2019, haoRatedependentConstitutiveModel2022}.
-The possibility of $\chi<1$ materializes the fact that some plastic work may be stored in the material.
+$\chi_\text{d}\in [0, 1]$ is a constant dissipation factor, commonly chosen in the range $\chi_\text{d}\approx 0.85$ to 0.95 for metals \citep{simoAssociativeCoupledThermoplasticity1992} and equal to 1 for polymers \citep{okerekeTwoprocessConstitutiveModel2019, haoRatedependentConstitutiveModel2022}.
+The possibility of $\chi_\text{d}<1$ materializes the fact that some plastic work may be stored in the material.
 
 The thermoelastic Gough-Joule effect can be written as
 \begin{equation}
@@ -1271,6 +1273,7 @@ These are combined according to the degree of crystallinity, $\chi$, in two ways
 \end{figure}
 The crystallization rate is expressed following a non-isothermal phenomenological expression based on the modiﬁed Avrami equation
 \begin{equation}
+  \label{eq:rate_eq_cryst}
 	\dot \chi = \chi_\infty \frac{\dot\varepsilon_\text{eq}}{\dot\varepsilon_\text{ref} } m K_\text{av}(T) (-\ln(1-y))^{(m-1)/m} (1-y)\exp\left(\xi\frac{\operatorname{tr} \bm \sigma}{G_\text{comp}}\right),
 \end{equation}
 where $\chi_\infty$ is the maximum degree of crystallinity, $m$ is the Avrami, $\xi$ is a dimensionless model parameter, $G_\text{comp}$ is the composite bulk modulus, $\dot \varepsilon_\text{eq}$ is the applied equivalent strain rate and $\dot\varepsilon_\text{ref}$ is taken as the maximum strain rate for which experimental results are available for the calibration of the model parameters.
@@ -1335,11 +1338,12 @@ where $\beta$ is an appropriate exponent.
 It is found from a fit of the Young modulus as a function of the degree of crystallinity, as shown in Figure~\ref{fig:deg_cryst_stiff}.
 Comparing with experimental results obtained for polyethylene samples containing degrees of crystallinity between 15 and 72\%, the model is able to accurately capture the change in response with crystallinity before the strain hardening becomes evident.
 Different material parameters for each crystallinity are needed to capture the strain hardening at large strains (> 1).
-A similar model can be found in \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, where the major difference is the substitution of the Maxwell arm in the network resistance for two arms, one corresponding to the amorhpous contribution and other to the crystalline contribution.
+A similar model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, where the major difference is the substitution of the Maxwell arm in the network resistance for two arms, one corresponding to the amorhpous contribution and other to the crystalline contribution.
 They are combined as shown in Equation~\eqref{eq:mod_voigt_mixture_rule}.
 This approach allows for a better fit across different degrees of crystallinity when strain hardening becomes evident employing the same material parameters.
-Very recently, Cundiff et al. \citep{cundiffModelingViscoplasticBehavior2022} propose another model where the inclusion of the crystallinity is achieved through a simple Voigt mixture rule (see Equation~\eqref{eq:voigt_mixture_rule}).
-Regarding the the constitutive description of each phase it employs much of the same laws found in \cite{ahziModelingDeformationBehavior2003} and \cite{chowdhuryEffectsManufacturingInducedVoids2008}, already described.
+Very recently, Cundiff et al. \citep{cundiffModelingViscoplasticBehavior2022} propose another model where the inclusion of the crystallinity is achieved through the modified Voigt mixture rule (see Equation~\eqref{eq:mod_voigt_mixture_rule}).
+Regarding the constitutive description of each phase it employs much of the same laws found in \cite{ahziModelingDeformationBehavior2003} and \cite{chowdhuryEffectsManufacturingInducedVoids2008}, already described.
+It describes strain rate crystallization through a rate equation similar to Equation~\eqref{eq:rate_eq_cryst}.
 
 Lastly, the two-phase model of Cangemi and Meimon for semi-crystalline polymers \citep{cangemiTwoPhaseModelMechanical2001} achieves the inclusion of the bulk crystallinity into the description of a semi-crystalline polymer in a different way.
 It is based on the continuum mixture theory such that according to the microstructure of semi-crystalline polymers, the free amorphous phase is assumed comparable to a fluid which saturates the complementary space to that of the solid structure, the crystalline phase plus the rigid amorphous phase.

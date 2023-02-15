@@ -2,9 +2,7 @@
 
 This chapter presents two sets of results concerning the subject of thermomechanical modeling of semi-crystalline polymers.
 The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of the thermomechanical model employing a elasto-plastic description for the material.
-The nonlinear solvers available are compared and analysed according to their CPU time, memory use and ...
 The second pertains to the implementation and validation of state of the art constitutive models for semi-crystalline polymers.
-
 
 \section{Necking of a thermoelastoplastic circular bar}
      \label{sec:mech-driv-probl}
@@ -29,7 +27,7 @@ The second pertains to the implementation and validation of state of the art con
          \vphantom{\Big |}Conductivity & \(k\) & (\si{\newton\second^{-1}\kelvin^{-1}}) & 45\\
          \vphantom{\Big |}Heat capacity & \(C_{\mathbf F}\) & (\si{\milli\meter^2\second^{-2}\kelvin^{-1}}) & 460e6\\
          \vphantom{\Big |}Coefficient of thermal expansion & \(\alpha_T\) & (\si{\kelvin^{-1}}) & 10e-6\\
-         \vphantom{\Big |}Dissipation factor & \(\chi\) & (-) & 900e-3\\
+         \vphantom{\Big |}Dissipation factor & \(\chi_\text{d}\) & (-) & 900e-3\\
          \vphantom{\Big |}Initial yield stress at \(T_0\) & \(\sigma_{y,0}\) & (\si{\newton\milli\meter^{-2}}) & 450\\
          \vphantom{\Big |}Linear hardening coefficient at \(T_0\) & \(H\) & (\si{\newton\milli\meter^{-2}}) & 129.24\\
          \vphantom{\Big |}Saturation exponent & \(\delta\) & (-) & 16.93\\
@@ -56,10 +54,6 @@ The second pertains to the implementation and validation of state of the art con
      \end{table}
 
      %
-     This classical benchmark in isothermal elastoplasticity renders a bifurcation problem where a geometric imperfection triggers the necking phenomenon.
-     In the thermomechanical version, the combination of the plastic dissipation in the bulk material and the heat transfer at the boundaries produce a temperature field that becomes progressively more heterogeneous during the loading.
-     With growing elongation, the temperature rise in the center of the bar increases relative to the exterior boundary and triggers the necking as a result, even for a geometrically perfect setup.
-
      The problem is analyzed using two-dimensional axisymmetric QUAD4-FBAR elements \citep{de_souza_neto_design_1996} for the mechanical problem and QUAD4 elements for the thermal problem.
      Figure~\ref{fig:necking} illustrates the problem setup, the finite element mesh employed in the 2D simulations, and distinct stages of deformation and temperature field during the prescribed elongation, evidencing the significant necking of the bar.
      %
@@ -106,10 +100,11 @@ The second pertains to the implementation and validation of state of the art con
 
      \subsubsection{Comparison of implicit solution methods}
 
-     As in Section~\ref{sec:comparison_thick_cylinder}, the chosen set of implicit methods for the solution of thermomechanical problems are compared, this time considering a thermoplastic constitutive behavior.
+     In this section, appropriate implicit methods for solving thermomechanical problems with thermoplastic constitutive behavior are compared.
+     These are the fixed-point method, the Aitken relaxation method, two Broyden-like methods, both Type I, with $\beta=-1$ and $s=1$ (coinciding with Broyden's method) or $s=2$, a Newton–GMRES method, and MPE method in cycling mode with $p=1$ and $q=3$.
      The maximum displacement at both ends is restricted to \SI{5}{\milli\meter}, applied in \SI{5}{\second} in 100 increments (\(\Delta t = \SI{0.05}{\second}\)) to prevent an excessive elongation of the elements in the finite element simulation.
      The coupling strength is correlated with the value of thermal softening parameters \(w_0\) and \(w_h\), set to be equal.
-     Its effect on the implicit solution of the problem is an increased number of nonlinear iterations to solve the problem, as is illustrated in Figure~\ref{fig:necking_single_iter_diff_w_0_n_iter_time_quad4fbar_pred}, although with less prominence than in the previous problem (Figure~\ref{fig:thick_cylinder_single_iter_n_iter_diff_coeff_exp_time_quad4fbar_pred}).
+     Its effect on the implicit solution of the problem is an increased number of nonlinear iterations to solve the problem, as is illustrated in Figure~\ref{fig:necking_single_iter_diff_w_0_n_iter_time_quad4fbar_pred}.
      It depicts the number of nonlinear iterations needed to solve the coupled problem at each time step and the corresponding total number of residual evaluations as a function of the thermal expansion coefficient for the fixed-point method in the solution of the necking of a circular bar with \(w_0=w_h\in\{\SI{2e-3}{},\, \SI{4.89e-3}{},\, \SI{1e-2}{}\}\,\si{\kelvin^{-1}}\).
      A higher total number of nonlinear iterations per time step is necessary to solve the problem as \(w_0\) and \(w_h\) increase, corresponding to a taller and broader peak in the number of iterations needed to solve the problem per time step.
      The coupling strength is the most intense when the necking begins, which occurs at different moments as \(w_0\) and \(w_h\) vary.
@@ -133,14 +128,13 @@ The second pertains to the implementation and validation of state of the art con
      \end{figure}
 
 
-     It is pointed out that what is depticted in Figures~\ref{fig:thick_cylinder_single_iter_n_iter_diff_coeff_exp_time_quad4fbar_pred} and \ref{fig:thick_cylinder_comparison_best_n_iter_time_quad4fbar_pred} is the number of nonlinear and not the number of residual evaluation per time step.
+     It is pointed out that what is depticted in Figures~\ref{fig:necking_single_iter_diff_w_0_n_iter_time_quad4fbar_pred} and \ref{fig:necking_comparison_best_n_iter_time_quad4fbar_pred} is the number of nonlinear and not the number of residual evaluation per time step.
      Thus, for comparisons concerning the computational efficiency of the different methods under analysis, the information shown in
      Figure~\ref{fig:necking_comparison_best_cpu_time_n_iter_coupl_strength_quad4fbar_pred} is more appropriate, as it displays the total CPU time in seconds and the total number of residual evaluations as a function of the thermal softening parameters.
-     As before, the best performing methods are the Broyden-like methods, whose performance is very similar.
+     The best performing methods are the Broyden-like methods, whose performance is very similar.
      They are followed by the Aitken relaxation and the MPE in cycling mode, also displaying a comparable efficiency.
      The Newton-GMRES method is the worse performing method considered, being around 20\% slower than the Broyden-like methods and roughly on par with the fixed-point method.
      Moreover, it fails to converge for \(w_0=w_h=\SI{2e-3}{\kelvin^{-1}}\).
-     The comments in Section~\ref{sec:comparison_thick_cylinder} regarding memory requirements and ease of implementation also apply here.
      Table~\ref{tab:necking_res_cpu_nr_func_best} summarizes all the results previously discussed regarding the computational time each implicit method takes and the number of residual evaluations.
 
      \begin{figure}[!hbtp]
@@ -185,36 +179,37 @@ The second pertains to the implementation and validation of state of the art con
        \end{tabular}
      \end{table}
 
-     \subsubsection{Effect of predictors}
-
-     Figure~\ref{fig:necking_comparison_best_pred_total_iters_coupl_strength_quad4fbar_pred} presents the effect of employing a linear or quadratic predictor on the number of residual evaluations needed to fully solve the thermomechanical problem under analysis as a function of the softening parameters.
-     All methods improve using the polynomial predictors, with the best effects being achieved using the quadratic predictor.
-     The decrease in residual evaluations is around 30\% for all methods using the quadratic predictor at \(w_0=w_h=\SI{1e-2}{\kelvin^{-1}}\) corresponding to the strongest coupling, except for the MPE.
-     The polynomial vector extrapolation method displays a much smaller increase in efficiency from the polynomial predictors considered.
-     This is again because using a predictor the problem is solved at most time steps in a single nonlinear iterations, requiring each five residual evaluations.
-     Thus 100 increments lead to 500 residual evalutions for the whole simulation if each time step is solved in a single nonlinear iteration.
-     Further considerations previously mentioned in Section~\ref{sec:effect_pred_thick} also apply.
-     Finally, the use of predictors allows the Newton-GMRES method to converge for \(w_0=w_h=\SI{2e-3}{\kelvin^{-1}}\).
-
-     \begin{figure}[!hbtp]
-       \centering
-       \includegraphics[width=.95\textwidth]{necking_comparison_best_pred_total_iters_coupl_strength_quad4fbar_pred}
-       \caption{Total number of iterations as a function of the thermal softening parameters \(w_0=w_h\) using a linear, a quadratic, and no predictor in the solution of the necking of a circular bar with \(w_0=w_h=\SIrange{2e-3}{1e-2}{\kelvin^{-1}}\).}
-       \label{fig:necking_comparison_best_pred_total_iters_coupl_strength_quad4fbar_pred}
-     \end{figure}
+     % \subsubsection{Effect of predictors}
+     %
+     % Figure~\ref{fig:necking_comparison_best_pred_total_iters_coupl_strength_quad4fbar_pred} presents the effect of employing a linear or quadratic predictor on the number of residual evaluations needed to fully solve the thermomechanical problem under analysis as a function of the softening parameters.
+     % All methods improve using the polynomial predictors, with the best effects being achieved using the quadratic predictor.
+     % The decrease in residual evaluations is around 30\% for all methods using the quadratic predictor at \(w_0=w_h=\SI{1e-2}{\kelvin^{-1}}\) corresponding to the strongest coupling, except for the MPE.
+     % The polynomial vector extrapolation method displays a much smaller increase in efficiency from the polynomial predictors considered.
+     % This is again because using a predictor the problem is solved at most time steps in a single nonlinear iterations, requiring each five residual evaluations.
+     % Thus 100 increments lead to 500 residual evalutions for the whole simulation if each time step is solved in a single nonlinear iteration.
+     % Further considerations previously mentioned in Section~\ref{sec:effect_pred_thick} also apply.
+     % Finally, the use of predictors allows the Newton-GMRES method to converge for \(w_0=w_h=\SI{2e-3}{\kelvin^{-1}}\).
+     %
+     % \begin{figure}[!hbtp]
+     %   \centering
+     %   \includegraphics[width=.95\textwidth]{necking_comparison_best_pred_total_iters_coupl_strength_quad4fbar_pred}
+     %   \caption{Total number of iterations as a function of the thermal softening parameters \(w_0=w_h\) using a linear, a quadratic, and no predictor in the solution of the necking of a circular bar with \(w_0=w_h=\SIrange{2e-3}{1e-2}{\kelvin^{-1}}\).}
+     %   \label{fig:necking_comparison_best_pred_total_iters_coupl_strength_quad4fbar_pred}
+     % \end{figure}
 
 \section{State of the art in semi-crystalline polymer modeling}
 
 This section analyses two state-of-the-art constitutive models for semi-crystalline polymers.
-The first model is described in \cite{haoUnifiedAmorphousCrystalline2022} and is applicable to polymer plastics in general, neglecting to consider the bulk crystallinity of the polymer excplicitly.
-The second model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and considers the crystallinity of the polymer explicitly, attempting to describe the polymer at different cyrstallinities with only one set of material parameters.
+The first model is described in \cite{haoUnifiedAmorphousCrystalline2022} aand is applicable to polymer plastics in general, without explicitly considering the polymer's bulk crystallinity.
+Alternatively, the second model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and considers the crystallinity of the polymer explicitly, attempting to describe the polymer at different cyrstallinities with only one set of material parameters.
+The main features of each model are described throughout Chatper~\ref{ch:modeling_semi_crystalline_polymer}.
 
 \paragraph{Computational framework}
 The solution of the thermomechanical problem is achieved employing an approach described thorougly in \cite{bergstromMechanicsSolidPolymers2015} and \cite{alvesFastOptimizationbasedParameter2022}, whose \verb|Python| implementation is available in-house.
 It is restrcited to displacement-driven uniaxial loading, traction or compression, and it achieves the solution of the mechanical problem through a minimization procedure.
 In each time step the axial stretch is prescribed and the transversal stretches are obtained as those leading to a minimum in the transversal stresses.
 This minimum should be zero as the boundary condition on the laterial surfaces corresponds to a free surface.
-Accordingly, it is implicitly assumed that the response is homogeneous, which allows for comparisons solely with experimental results where the intrinsic response of the material is shown, free of size effects.
+Accordingly, it is implicitly assumed that the response is homogeneous, which allows for comparisons solely with experimental results where the intrinsic response of the material is shown.
 
 \paragraph{Inclusion of the thermal}
 Regarding the thermal field, its inclusion is restricted to the isothermic and adiabatic cases.
@@ -229,13 +224,14 @@ where $L$ is a characteristic dimension of the specimen from the center of the d
 If $\tau_\text{therm} \ll 1$, it is safe to assume an adiabatic evolution, however if $\tau_\text{therm}\gg 1$, the experiment progresses isothermically.
 $\tau_\text{therm}\approx 1$ points to  a coupled problem, in the sense that some heat is removed from the specimen as the experiment progresses, without however preventing an increase in temperature.
 
-In the present work, an adiabatic evolution is achieved through the inclusion of the temperature as an internal variable of the model, whose rate equation is the heat conduction equation (see Equation~\eqref{eq:heat_conduction}), discarding the heat conduction term and seting the internal dissipation according to the constitutive model prescribed.
-To ensure an isothermic evolution, temperature is treated as a model parameter and remains constant throughout the simulation.
+In the present work, an adiabatic evolution is achieved through the inclusion of the temperature as an internal variable of the model, whose rate equation is the heat conduction equation (see Equation~\eqref{eq:heat_conduction}), discarding the heat conduction term and setting the internal dissipation according to the constitutive model prescribed.
+On the other hand, to ensure an isothermic evolution, the temperature is treated as a model parameter and remains constant throughout the simulation.
 
 \subsection{\cite{haoUnifiedAmorphousCrystalline2022}}
 
 Following the description in \cite{haoUnifiedAmorphousCrystalline2022}, the experimental results employed for validation are those of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006} obtained during the uniaxial compression of nylon 101 at a constant strain rate.
 The material is modeled by the constitutive model proposed by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, and the material properties are given in Table~\ref{tab:mat_prop_hao}.
+They are taken from \cite{haoUnifiedAmorphousCrystalline2022}, with the exception of the parameter $m$ whose value is taken as \num{0.66}, following \cite{haoRatedependentConstitutiveModel2022}, as the supplied value in the first contribution, \num{0.8}, did not produce the expected results.
 %
 \begin{table}[htbp]
   \centering
@@ -298,157 +294,116 @@ The stress-strain and temperature-strain curves obtained are compared in Figure~
 \label{fig:stress_temp_strain_hao_results}
 \end{figure}
 
+In \cite{haoUnifiedAmorphousCrystalline2022}, the authors mention that the activation plastic strain may vary with the temperature and the strain rate, in addition to other variables.
+They do not, however, establish a specific relation between this parameter and the strain rate for nylon 101.
+The value corresponding to $\varepsilon=\SI{1e-5}{\per\second}$ is given in Table~\ref{tab:mat_prop_hao} and found in \cite{haoUnifiedAmorphousCrystalline2022}, while the values employed for the other two strain rates are taken from \cite{haoRatedependentConstitutiveModel2022} where the same experimental data is considered by some of the same authors.
+These are $\dot\gamma^{p,2}=\num{0.0577}$ at $\dot\varepsilon = \SI{1e-2}{\per\second}$ and $\dot\gamma^{p,2}=\num{0.0705}$ at $\dot\varepsilon = \SI{1e0}{\per\second}$.
+
 Discussing first the fitness of the model proposed in \cite{haoUnifiedAmorphousCrystalline2022} to describe the experimental results of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006}, the model captures adequately the elastic range and the first yield point.
+This is due to the extended formulation of the rate equation presented by the authors (see Equation~\eqref{eq:rate_equation_hao}) which considers four different athermal strengths related to the yield of the different phases in the polymer.
 As seen from the experimental results, nylon 101 displays double yield, which becomes more noticeable as the rain rate increases.
 To the point, in Figure~\ref{fig:stress_temp_strain_hao_results}, only the strain rates of \SIlist{1e-2;1e0}{\per\second} show a prominent double yield.
 This phenomenon is also correctly described by the model, with a slight underestimation of the stress response for the higher strain rates.
-Conversely, regarding the second yield stress, the model predicts overestimates slightly the stress.
+This is achieved through the dependence of the athermal strength on the temperature through the elastic modulus, similar to what is shown in Equation~\eqref{eq:athermal_strength_elasticity_rel}.
+Conversely, regarding the second yield stress, the model overestimates the stress slightly.
 In fact, the experimental value found for the second yield stress is \SI{129.8}{\mega\pascal}, with the model predicting a value of \SI{134.5}{\mega\pascal}, amounting to a relative error of \num{3.6}\%.
 
 When the numerical results obtained in this work and in \cite{haoUnifiedAmorphousCrystalline2022} are compared, there is perfect agreement for the lowest strain rate considered (\SI{1e-5}{\per\second}).
 The same cannot be said for the other two strain rates.
 Nonetheless, until the first yield and subsequent softening, there is good agreement between the two sets of numerical results.
+\colorbox{BrickRed}{Say something more specific about the features of the model.}
 As the strain increases, the difference between the two grows larger.
 There are a few reasons for this.
 The first concerns mainly the experiment corresponding to a strain rate of \SI{1e-2}{\per\second}, which in the present work is simulated as an adiabatic process.
 This is not strictly true and contributes to differences relative to the reference results, which were obtained employing a fully thermomechanical description of the problem including conduction inside the cylinder and converction at its borders.
-A further contributing factor, that also affects the response obtained in the present work at \SI{1}{\per\second} is the heterogeneity of the response in the results in \cite{haoUnifiedAmorphousCrystalline2022}.
+A further contributing factor, that also affects the response obtained in the present work at \SI{1}{\per\second} is the heterogeneity of the response in \cite{haoUnifiedAmorphousCrystalline2022}.
 Despite a homogeneous temperature distribution, the plastic deformation is heterogeneous, breaking the assumptions of the numerical tool employed in this work and further motivating differences in the results obtained.
 Finally, concerning the temperature evolution with the strain in the adiabatic cases, it remains constant during the elastic portion of the stress-strain response, and begins to increase after this.
-The final value obtained for the \SI{1e0}{\per\second} strain rate is \colorbox{BrickRed}{Complete this}, which is close to the value obtained in \cite{haoUnifiedAmorphousCrystalline2022} equal to \colorbox{BrickRed}{Complete this}.
-However, the authors find a heterogeneous temperature distribution for the \SI{1e-2}{\per\second} case, rendering a comparison impossible.
+The final value obtained for the \SI{1e0}{\per\second} strain rate is \SI{73.4}{\celsius}, which is close to the value obtained in \cite{haoUnifiedAmorphousCrystalline2022} equal to \SI{71.5}{\celsius}, corresponding to a relative error equal to 2.7\%.
+However, the same authors find a heterogeneous temperature distribution for the \SI{1e-2}{\per\second} case, rendering a comparison impossible.
 
 In general, the implementation developed in this work compares favourably with the one found in \cite{haoUnifiedAmorphousCrystalline2022}.
 
-\subsection{Composite model}
+\subsection{\cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}}
 
-The thermomemechanical problem under analysis consists of the compression of cylinder.
-The problem consists of a cylindrical bar of radius $r=\SI{6.413}{\milli\meter}$ and length $h=\SI{53.334}{\milli\meter}$.
-The bar is initially at room $T_{0}=T_{\infty}=\SI{295}{\kelvin}$ and is subject to heat transfer by convection at all boundaries, with a heat transfer coefficient $h_{c} = \SI{17.5e-3}{\newton\milli\meter^{-1}\second^{-1}\kelvin^{-1}}$.
-The material is modeled by the constitutive model proposed by Hao et al. \citep{hao}, and the material properties are given in Table~\ref{tab:matpropsnecking}.
+Following the description in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, the experimental results employed for validation are those of Ayoub et al. \citep{ayoubEffectsCrystalContent2011} obtained during the uniaxial traction of polyethylene with different degrees of crystallinity at a constant strain rate.
+The material is modeled by the constitutive model proposed by Abdul-Hameed et al. \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, and the material properties are given in Tables~\ref{tab:mat_props_abdul_common} and \ref{tab:mat_props_abdul_inter}.
 %
-\begin{table}
+\begin{table}[hbtp]
   \centering
-  \caption{Material properties and initial and boundary conditions for the problem concerning the necking of a thermoplastic circular bar.}
-  \label{tab:matpropsnecking}
+  \caption{Material properties for the uniaxial traction of polyethylene.}
+  \label{tab:mat_props_abdul_common}
   \begin{tabular}{lccS[exponent-mode=engineering]}
     \hline\hline
     \multicolumn{3}{l}{\textbf{Material Properties}} & {\vphantom{\Big |}Effective value}\\
     \hline
-    \vphantom{\Big |}Density & \(\rho\) & (\si{\newton\second^2\milli\meter^{-4}}) & 7.8e-9\\
-    \vphantom{\Big |}Bulk modulus & \(\kappa\) & (\si{\newton\milli\meter^{-2}}) & 164206\\
-    \vphantom{\Big |}Shear modulus & \(\mu\) & (\si{\newton\milli\meter^{-2}}) & 801938\\
-    \vphantom{\Big |}Conductivity & \(k\) & (\si{\newton\second^{-1}\kelvin^{-1}}) & 45\\
-    \vphantom{\Big |}Heat capacity & \(C_{\mathbf F}\) & (\si{\milli\meter^2\second^{-2}\kelvin^{-1}}) & 460e6\\
-    \vphantom{\Big |}Coefficient of thermal expansion & \(\alpha_T\) & (\si{\kelvin^{-1}}) & 10e-6\\
-    \vphantom{\Big |}Dissipation factor & \(\chi\) & (-) & 900e-3\\
-    \vphantom{\Big |}Initial yield stress at \(T_0\) & \(\sigma_{y,0}\) & (\si{\newton\milli\meter^{-2}}) & 450\\
-    \vphantom{\Big |}Linear hardening coefficient at \(T_0\) & \(H\) & (\si{\newton\milli\meter^{-2}}) & 129.24\\
-    \vphantom{\Big |}Saturation exponent & \(\delta\) & (-) & 16.93\\
-    \vphantom{\Big |}Saturation yield stress at \(T_0\) & \(\sigma_{y,\infty}\) & (\si{\newton\milli\meter^{-2}}) & 715\\
-    \vphantom{\Big |}Thermal softening parameter (\(\sigma_{y,0}\)) & \(\omega_0\) & (\si{\kelvin^{-1}}) & 2e-3\\
-    \vphantom{\Big |}Thermal softening parameter (\(\sigma_{u,\infty}, H\)) & \(\omega_h\) & (\si{\kelvin^{-1}}) & 2e-3\\
+    \vphantom{\Big |}Temperature & \(T\) & (\si{\kelvin}) & 293\\
     \hline
-    \multicolumn{3}{l}{\textbf{Boundary Conditions}\vphantom{\Big |}} & \\\hline
-    \vphantom{\Big |}Radius of the cylindrical bar & \(r\) & (\si{\milli\meter}) & 6.413\\
-    \vphantom{\Big |}Length of the cylindrical bar & \(h\) & (\si{\milli\meter}) & 53.334\\
-    \vphantom{\Big |}Maximum displacement at both ends & \(\bar u_y\) & (\si{\milli\meter}) & 8\\
-    \vphantom{\Big |}Time to maximum displacement & \(t\) & (\si{\second}) & 8\\
-    \vphantom{\Big |}Heat transfer coefficient & \(h_c\) & (\si{\newton\milli\meter^{-1}\kelvin^{-1}}) & 17.5e-3\\
-    % \multicolumn{3}{l}{\vphantom{\Big |}All mechanical degrees of freedom fixed in the \(y\)- and \(z\)-directions.}\\
+    \multicolumn{4}{l}{\textit{Amorphous phase}}\\
     \hline
-    \multicolumn{3}{l}{\textbf{Initial Conditions}\vphantom{\Big |}} & \\\hline
-    Initial temperature & \(T_0\) & (\si{\kelvin}) & {293}\\
+    \vphantom{\Big |}Young modulus & \(E_a\) & (\si{\newton\milli\meter^{-2}}) & 4.7\\
+    \vphantom{\Big |}Poisson's coefficient  & \(\nu_a\) & (-) & 0.499\\
+    \vphantom{\Big |}Pre-exponential strain rate  & \(\dot \gamma_{0,a}\) & (\si{\per\second}) & 1.75e6\\
+    \vphantom{\Big |}Activation energy  & \(\Delta G_a\) & (\si{\per\second}) & 2.63e-22\\
+    \vphantom{\Big |}Shear resistance  & \(s_a\) & (\si{\mega\pascal}) & 6.88\\
+    \vphantom{\Big |}Rubbery modulus & \(C_r\) & (\si{\mega\pascal}) & 1.7\\
+    \vphantom{\Big |}Limiting chain extensibility & \(N_r^2\) & (-) & 202\\
+    \vphantom{\Big |}Temperature relaxation parameter & \(C\) & (\si{\per\mega\pascal\per\second}) & 1.2996e-7\\
     \hline
-    \multicolumn{3}{l}{\textbf{Reference value} \vphantom{\Big |}} & \\\hline
-    \vphantom{\Big |}Temperature at outer radius (\(r\)) & & (\si{\kelvin}) & \\
-    \vphantom{\Big |}Longitudinal reaction forces & & (\si{\newton}) & \\
+    \multicolumn{4}{l}{\textit{Crystalline phase}}\\
+    \hline
+    \vphantom{\Big |}Young modulus & \(E_c\) & (\si{\newton\milli\meter^{-2}}) & 4490\\
+    \vphantom{\Big |}Poisson's coefficient & \(\nu_c\) & (-) & 0.345\\
+    \vphantom{\Big |}Pre-exponential strain rate  & \(\dot \gamma_{0,c}\) & (\si{\per\second}) & 1.75e6\\
+    \vphantom{\Big |}Activation energy  & \(\Delta G_c\) & (\si{\per\second}) & 1.29e-22\\
+    \vphantom{\Big |}Shear resistance  & \(s_c\) & (\si{\mega\pascal}) & 190.73\\
+    \vphantom{\Big |}Shear modulus & \(C_c\) & (\si{\mega\pascal}) & 239.13\\
     \hline\hline
   \end{tabular}
 \end{table}
 
-Given the restrictions of the tool available for solution only \SI{1e-5}{\per\second} and \SI{1}{\per \second}, corresponding to isothermic and adabatic.
-Given the value of the dimensionless parameter.
-
-The results are shown in Figure~\ref{fig:res_hao}
-\begin{figure}
+\begin{table}[hbtp]
   \centering
-  \includegraphics[width=0.6\textwidth]{example-image-a}
-  \caption{Results hao}
-\label{fig:res_hao}
+  \caption{Mechanical interaction parameters.}
+  \label{tab:mat_props_abdul_inter}
+  \begin{tabular}{
+    l
+    S
+    S
+    S}
+    \hline\hline
+    \vphantom{\Big |}Parameter & {HDPE} & {LDPE} & {ULDPE}\\
+    \hline
+    \vphantom{\Big |}$\chi$ & .724 & .3 & .15\\
+    $\beta_I$ & 5.8 & 2.9 & 2.8\\
+    $\beta_N$ & 14.1 & 3.9 & 3.7\\
+    \hline\hline
+  \end{tabular}
+\end{table}
+
+The strain rates considered are \SIlist{1e-4;5e-4;1e-3;5e-3;1e-2}{\per\second}, and are all assumed to correspond to an isothermic evolution.
+The stress-strain curves obtained for polyethylenes with crystallinities equal to \SIlist{0.724;0.3;0.15}{}\% are compared in Figure~\ref{fig:stress_strain_abdul_hameed} to the experimental results in \cite{ayoubEffectsCrystalContent2011} and the numerical results obtained by Abdul-Hameed et al. \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figures/stress_strain_abdul_hameed}
+  \caption{Comparison between the experimental results of \cite{ayoubEffectsCrystalContent2011}, the numerical results of \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and the present work for a uniaxial traction test at strain rates of \SIlist{1e-4;5e-4;1e-3;5e-3;1e-2}{\per\second}. (a) HDPE ($\chi = 72.4\%$); (b) LDPE ($\chi = 30\%$); (c) ULDPE ($\chi = 15\%$).}
+\label{fig:stress_strain_abdul_hameed}
 \end{figure}
 
-The results are good
-The double yield is captured.
-The difference can be interpeted as non homegenouss average lower plastic .
+To begin, Abdul-Hameed et al.'s model \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} must be assessed for its ability to describe the experimental data in \cite{ayoubEffectsCrystalContent2011}.
+It can capture accurately the yield stress for all the crystallinities considered, however without accounting for the smooth transient between the elastic range and the "steady state" plastic flow.
+Regarding the hardening it is not captured so well.
+This is less so for the ULDPE, and it is only true at large strain ($\varepsilon_{xx}>1$) for HDPE.
+The behavior of the LDPE is not well capture from the yielding on.
+Thus, the attempt of this model to describe the behavior of polyethylene at different crystallinities employing just one set of material parameters is only moderately successful.
+\colorbox{BrickRed}{Say something more specific about the features of the model.}
 
-
-% \section{Wishlist}
-%
-% Independent variables
-% \begin{itemize}
-%   \item strain rate, temperature
-%   \item stress, temperature
-% \end{itemize}
-%
-% Loading type
-% \begin{itemize}
-%   \item uniaxial traction
-%   \item uniaxial compression
-%   \item pure shear
-%   \item biaxial traction
-%   \item hydrostatic compression
-%   \item torsion
-% \end{itemize}
-%
-% time dependency
-% \begin{itemize}
-%   \item impulse
-%   \item constant
-%   \item ramp
-%   \item harmonic
-%   \item cyclic
-% \end{itemize}
-%
-% The most interesting loading schemes are:
-% \begin{itemize}
-%   \item constant strain rate;
-%   \item stress relaxation
-%   \item creep
-%   \item jump constant strain rate at different strains
-%   \item loading unloading
-%   \item free shrinkage
-% \end{itemize}
-%
-%
-% \section{Constant strain rate experiments}
-%
-% The experiments employed will be.
-%
-% Compare yield stresses.
-%
-% Verify thermal sofetening.
-%
-% Try and choose polymers above and below the glass transition temperature. Need to model the intrinsic softening.
-%
-% Check how the initial stiffness varies with the strain rate and the temperature.
-%
-% \section{Unloading}
-%
-% Remaining deformation Strobl and friends
-%
-% \section{Free shrinkage}
-%
-% Remaining deformation
-%
-% \section{Heated shrinkage}
-%
-% \colorbox{CyanBlue}{Try the self healing stuff for fibers.}
-%
-% \section{Stress relaxation}
-%
-% Test with stress relaxation, maybe master curve.
-%
-% \section{Creep}
-%
-% Test with creep, maybe master curve.
+Turning to the comparison between the numerical results obtained in this work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
+Despite the limitations of the numerical tool available, a good agreement is expected.
+That said employing the parameters supplied in contribution just mentioned the results obtained are not those expected.
+A better agreement is found taking the shear modulus $C_c$
+Still some minor descrepancies in the hardening behavior simulated can be found in the case of the results concerning the HDPE and the LDPE.
+These are somewhat exacerbated, especially for the three larger strain rates considered in the case of ULDPE.
+On the other hand, there is full concordance in the elastic response and subsequent yielding between the two sets of numerical results at all crystallinities considered.
+This points to some differences in the network branch of the model wher the parameters already mentioned contribute to.
+That said, there is an acceptable agreement between the numerical results obtained in the present work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.

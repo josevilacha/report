@@ -1,15 +1,16 @@
-\chapter{Thermomechanical problem} \label{sec:thermomechanical_problem}
+\chapter{Thermomechanical problem} \label{ch:thermomechanical_problem}
 
-This section provides a fundamental description of a solid material response when subject to both mechanical and thermal loads in a finite strain setting.
-It also discusses the application of thermodynamics with internal variables, along with the resulting inferences about the constitutive behavior of the material that makes up the solid, setting up a suitable background for the remainder of the paper.
+This section provides a fundamental description of the response of a solid material to mechanical and thermal loads in a finite strain setting.
+It covers the use of thermodynamics with internal variables and the corresponding restrictions on the constitutive description of the material, as well as, a discussion on the methods available for solving the thermomechanical problem.
+It is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a}.
 
 \section{Kinematics of deformation}
 
-Let a deformable body $\mathscr{B}$ occupy an open region $\Omega_0$ of the tridimensional Euclidean space $\mathscr{E}$ with a regular boundary $\partial \Omega_0$ in its reference configuration.
-A smooth one-to-one function defines its motion \(\bm{\varphi}\colon \Omega\times \mathbf{R}\to \mathscr{E}\), mapping each material particle of coordinates $\bm{X}$ in the reference configuration to its position $\bm{x}$ in the deformed configuration.
-Accordingly, the displacement is defined as \(\bm{u}\equiv \bm{x} - \bm{X}\).
-In this paper, the finite deformation of the body is described with respect to the initial configuration, following the so-called Lagrangian or material description.
-Accordingly, the well-known deformation gradient second-order tensor is defined as \(\bm{F}(\bm{X},t)\equiv \nabla_0\bm\varphi(\bm{X},t)\), and its determinant, denoted as \(J\equiv \text{det}\;\bm{F} \geq 0\) represents the local unit volume change.
+Let a deformable body $\mathscr{B}$\nomenclature[V]{$\mathscr B$}{Deformable body} occupy an open region $\Omega_0$ of the tridimensional Euclidean space $\mathscr{E}$ with a regular boundary $\partial \Omega_0$ in its reference configuration.
+A smooth one-to-one function defines its motion \(\bm{\varphi}\colon \Omega\times \mathbb{R}\to \mathscr{E}\)\nomenclature[V]{$\bm \varphi$}{Motion}, mapping each material particle of coordinates $\bm{X}$\nomenclature[V]{$\bm{X}$}{Material point coordinates} in the reference configuration to its position $\bm{x}$\nomenclature[V]{$\bm x$}{Spatial point coordinates} in the deformed configuration.
+Accordingly, the displacement is defined as \(\bm{u}\equiv \bm{x} - \bm{X}\)\nomenclature[V]{$\bm u$}{Displacement}.
+In this work, the finite deformation of the body is described with respect to the initial configuration, following the so-called Lagrangian or material description.
+Accordingly, the well-known deformation gradient second-order tensor is defined as \(\bm{F}(\bm{X},t)\equiv \nabla_0\bm\varphi(\bm{X},t)\)\nomenclature[V]{$\bm F$}{Deformation gradient}, and its determinant, denoted as \(J\equiv \text{det}\;\bm{F} \geq 0\)\nomenclature[V]{$J$}{Determinant of the deformation gradient} represents the local unit volume change.
 
 \section{Fundamental conservation principles} \label{sec:fundamental_conservation_princ}
 
@@ -19,55 +20,54 @@ In continuum thermomechanics, there is a set of conservation principles and ther
                                                                  \label{eq:material_equilibrium}\\
   \bm{F}^{-1}\bm{P} = \bm{P}^{T}\bm{F} ^{-T},\quad & \text{(balance of moment of momentum)};\\
   \rho_0 \dot e = \bm{P} :\dot{\bm{F}} + \rho_0 r -\operatorname{div}_0 \bm{q}_0,\quad & \text{(balance of energy)};\label{eq:balance_energy}\\
-  \rho_0 \dot s + \operatorname{div}_0 \left[\frac{\bm{q}_0}{\theta}\right] - \frac{\rho_0 r}{\theta} \geq 0,\quad & \text{(entropy production inequality)}\label{eq:entropy_production},
+  \rho_0 \dot s + \operatorname{div}_0 \left[\frac{\bm{q}_0}{T}\right] - \frac{\rho_0 r}{T} \geq 0,\quad & \text{(entropy production inequality)}\label{eq:entropy_production},
 \end{align}
-where $\bm{b}_0$ is the body forces field, measured in force per unit undeformed volume; $\rho_0$ is the material density, measured in mass per unit undeformed volume; \(\bm{P}\) is the first Piola-Kirchhoff stress tensor; \(e\) is the internal energy per unit mass; \(r\) is the heat supply per unit mass; \(\bm{q}_0\) the first Piola-Kirchhoff heat flux vector, measured in heat power per unit undeformed surface; $\theta$ is the absolute temperature; and $s$ is specific entropy per unit mass.
+where $\bm{b}_0$ is the body forces field \nomenclature[V]{$\bm{b}$}{Body forces}, measured in force per unit undeformed volume; $\rho_0$\nomenclature[V]{$\rho$}{Density} is the material density, measured in mass per unit undeformed volume; \(\bm{P}\)\nomenclature[V]{$\bm P$}{First Piola-Kirchhoff stress tensor} is the first Piola-Kirchhoff stress tensor; \(e\)\nomenclature[V]{$e$}{Specific internal energy} is the internal energy per unit mass; \(r\)\nomenclature[V]{$r$}{Specific heat supply} is the heat supply per unit mass; \(\bm{q}_0\)\nomenclature[V]{$\bm q$}{Heat flux vector} the first Piola-Kirchhoff heat flux vector, measured in heat power per unit undeformed surface; $T$\nomenclature[V]{$T$}{Absolute temperature} is the absolute temperature; and $s$\nomenclature[V]{$s$}{Specific entropy} is specific entropy per unit mass.
 The second order tensor $\dot{\bm{F}}$ is the appropriate strain rate measure, such that the double contraction $\bm{P}:\dot{\bm{F}}$ represents the stress power per unit volume in the undeformed configuration of the body.
 
 \section{Thermodynamically consistent constitutive modeling} \label{sec:constitutive_modeling}
-
 The stresses and heat fluxes in the governing equations need to be associated with the deformations and temperatures via constitutive laws that represent the physical behavior of the material.
-For a simple material, the thermodynamic state is assumed to be completely defined by the instantaneous values of a finite number of state variables, i.e., \(\{\bm{F}, \theta, \bm{g}, \bm{\alpha}\}\), where \(\bm{\alpha} \equiv \{\alpha_k\}\) is a set of internal variables, scalar or tensorial, associated with dissipative mechanisms.
+For a simple material, the thermodynamic state is assumed to be completely defined by the instantaneous values of a finite number of state variables, i.e., \(\{\bm{F}, T, \bm{g}_0, \bm{\alpha}\}\), where $\bm g \equiv \nabla_0 T$\nomenclature[V]{$\bm g$}{Temperature gradient} is the material gradient of the temperature and \(\bm{\alpha} \equiv \{\alpha_k\}\)\nomenclature[V]{$\bm \alpha$}{Set of internal variables} is a set of internal variables, scalar or tensorial, associated with dissipative mechanisms.
 The constitutive description of the material must be consistent with the principles established by Equations~\eqref{eq:material_equilibrium}-\eqref{eq:entropy_production}, yielding the following constitutive relations
 \begin{gather}
   \bm{P} = \rho_0 \frac{\partial \psi}{\partial \bm{F}},\label{eq:constitutive_equation_stress_thermoelasticity}\\
-  s = - \frac{\partial \psi}{\partial \theta},\\
-  \psi = \psi(\bm{F},\theta, \bm{\alpha}),\label{eq:thermo_mech_helmholtz_free_energy}\\
-  \dot{\bm{\alpha}} = f(\bm{F}, \theta, \bm{g}_0,\bm{\alpha}),\\
-  \bm{q}_0 = g(\bm{F}, \theta, \bm{g}_0, \bm{\alpha}),
+  s = - \frac{\partial \psi}{\partial T},\\
+  \psi = \psi(\bm{F},T, \bm{\alpha}),\label{eq:thermo_mech_helmholtz_free_energy}\\
+  \dot{\bm{\alpha}} = f(\bm{F}, T, \bm{g}_0,\bm{\alpha}),\\
+  \bm{q}_0 = g(\bm{F}, T, \bm{g}_0, \bm{\alpha}),
 \end{gather}
-where \(\psi \equiv e - \theta s\) denotes the Helmholtz free energy.
+where \(\psi \equiv e - T s\)\nomenclature[V]{$\psi$}{Specific Helmholtz free energy} denotes the Helmholtz free energy.
 These still need to comply with the second law of thermodynamics, which places constraints on the evolution equations for the internal variables and the constitutive equation for the heat flux.
 
-The development of concrete models that are framed within constitutive theory can be achieved by postulating suitable functions for the  Helmholtz free energy and other required components, such as dissipation potentials and yield surfaces.
+The development of concrete models that are framed within constitutive theory can be achieved by postulating suitable functions for the  Helmholtz free energy and other required components, such as dissipation potentials and yield surfaces (see Chapter~\ref{ch:modeling_semi_crystalline_polymer} for more details).
 Regarding the constitutive model for the heat flux, the second law of thermodynamics essentially requires the heat flow to occur in the opposite direction of the temperature gradient.
 The Fourier heat conduction law for isotropic conduction in the deformed volume is one of the simplest and most popular alternatives, defining the heat flux as
 \begin{equation}
   \bm{q}_0 = - k_0 \bm{C}^{-1} \bm{g}_0,
 \end{equation}
-where \(k_0\) is the thermal conductivity, \(\bm{g}_0 = \nabla_0 \theta\) is the material gradient of the temperature, and \(\bm{C} = \bm{F}^T \bm{F}\) is the right Cauchy-Green strain tensor.
+where \(k_0\)\nomenclature[V]{$k$}{Thermal conductivity} is the thermal conductivity and \(\bm{C} = \bm{F}^T \bm{F}\)\nomenclature[V]{$\bm C$}{Right Cauchy-Green strain tensor} is the right Cauchy-Green strain tensor.
 
 \section{Heat conduction equation}
 \label{sec:heat-cond-equat}
 
 In the context of thermomechanics, the most common form of the energy balance equation (Equation~\eqref{eq:balance_energy}) is the heat conduction equation.
-Let \(C_{\bm F}\) denote the specific heat , i.e., the amount of heat required to change a unit mass of a substance by one degree in temperature at fixed deformation, defined as
+Let \(C_{\bm F}\)\nomenclature[V]{$C_{\bm F}$}{Specific heat at constant deformation} denote the specific heat at constant deformation , i.e., the amount of heat required to change a unit mass of a substance by one degree in temperature at fixed deformation, defined as
 \begin{equation} \label{eq:def_cv_partial}
-  C_{\bm F}\equiv \left.\frac{\partial e}{\partial \theta}\right|_{\bm F}=-\frac{\partial^{2} \psi}{\partial \theta^{2}} \theta=\frac{\partial s}{\partial \theta} \theta.
+  C_{\bm F}\equiv \left.\frac{\partial e}{\partial T}\right|_{\bm F}=-\frac{\partial^{2} \psi}{\partial T^{2}} T=\frac{\partial s}{\partial T} T.
 \end{equation}
-Applying Equation~\eqref{eq:def_cv_partial}, introducing the so-called Gough-Joule effect or thermoelastoplastic heating (or cooling) effect, denoted by \(\mathcal H^\text{ep}\), as
+Applying Equation~\eqref{eq:def_cv_partial}, introducing the so-called Gough-Joule effect or thermoelastoplastic heating (or cooling) effect, denoted by \(\mathcal H^\text{ep}\)\nomenclature[V]{$\mathcal H^\text{ep}$}{Gough-Joule heating/cooling effect}, as
 \begin{equation}
   \label{eq:def_gough_joule_effect}
-  \mathcal H^\text{ep} = - \rho_0\theta\left(\frac{\partial^2 \psi}{\partial \bm{F}\partial \theta}: \dot{\bm{F}} + \frac{\partial^2 \psi}{\partial \bm{\alpha} \partial \theta}*\dot{\bm{\alpha}} \right),
+  \mathcal H^\text{ep} = - \rho_0T\left(\frac{\partial^2 \psi}{\partial \bm{F}\partial T}: \dot{\bm{F}} + \frac{\partial^2 \psi}{\partial \bm{\alpha} \partial T}*\dot{\bm{\alpha}} \right),
 \end{equation}
-and the internal dissipation \(\mathcal D_\text{int}\), given by
+and the internal dissipation \(\mathcal D_\text{int}\)\nomenclature[V]{$\mathcal D_\text{int}$}{Internal dissipation}, given by
 \begin{equation}
-  \mathcal D_\text{int} = \bm{P}:\dot{\bm{F}} - \rho_0(\dot \psi + \dot \theta s),
+  \mathcal D_\text{int} = \bm{P}:\dot{\bm{F}} - \rho_0(\dot \psi + \dot T s),
 \end{equation}
 the energy balance equation can be recast as
 \begin{equation}
   \label{eq:heat_conduction}
-  \rho_0 C_{\bm F} \dot \theta = \rho_0 r - \operatorname{div}_0 \bm{q}_0 + \mathcal D_\text{int} + \mathcal H^\text{ep}.
+  \rho_0 C_{\bm F} \dot T = \rho_0 r - \operatorname{div}_0 \bm{q}_0 + \mathcal D_\text{int} + \mathcal H^\text{ep}.
 \end{equation}
 
 \section{Weak equilibrium and the principle of virtual work}
@@ -75,12 +75,12 @@ the energy balance equation can be recast as
 Together with the set of boundary and initial conditions, Equations~\eqref{eq:material_equilibrium} and \eqref{eq:balance_energy} are the so-called strong, point-wise, or local equilibrium equations, as they enforce the balance of momentum and energy at every material particle of the body.
 The weak form of the linear momentum and energy balance equations can be formulated through the Virtual Work Principle as
 \begin{equation} \label{eq:weak_momentum_balance}
-  \int_{\Omega_0} [\bm{P}(\bm{F},\theta):\nabla_0 \bm{\eta} - (\bm{b}_0(t)-\rho_0\ddot{\bm{u}}(t))\cdot \bm{\eta}]d v - \int_{\partial\Omega_0} (\bm{P}\bm{n}_{0})\cdot \bm{\eta} \ \mathrm{d} a = 0\;,
+  \int_{\Omega_0} [\bm{P}(\bm{F},T):\nabla_0 \bm{\eta} - (\bm{b}_0(t)-\rho_0\ddot{\bm{u}}(t))\cdot \bm{\eta}]d v - \int_{\partial\Omega_0} (\bm{P}\bm{n}_{0})\cdot \bm{\eta} \ \mathrm{d} a = 0\;,
 \end{equation}
 \begin{multline} \label{eq:weak_energy_balance}
-  \int_{\Omega_0}   \left[-\bm{q}_{0}(\bm{F},\theta)\cdot \nabla_0 \xi - \left(\mathcal D_\text{int}(\bm{F},\theta)+\mathcal H^\text{ep}(\bm{F},\theta)+ \rho_0 r(t)-\rho_0C_{\bm F}\dot\theta(t)\right) \xi\right]d v\\ + \int_{\partial\Omega_0} \bm{q}_{0}\cdot \bm{n}_{0} \xi \ \mathrm{d} a = 0,
+  \int_{\Omega_0}   \left[-\bm{q}_{0}(\bm{F},T)\cdot \nabla_0 \xi - \left(\mathcal D_\text{int}(\bm{F},T)+\mathcal H^\text{ep}(\bm{F},T)+ \rho_0 r(t)-\rho_0 C_{\bm F}\dot T(t)\right) \xi\right]d v\\ + \int_{\partial\Omega_0} \bm{q}_{0}\cdot \bm{n}_{0} \xi \ \mathrm{d} a = 0,
 \end{multline}
-where at each point of $\mathscr{B}$, the First Piola-Kirchhoff stress tensor is the solution to the material thermomechanical constitutive initial value problem and the virtual displacements \(\bm{\eta}\) and virtual temperatures \(\xi\) satisfy the essential boundary conditions of the problem in a homogeneous sense.
+where at each point of $\mathscr{B}$, the First Piola-Kirchhoff stress tensor is the solution to the material thermomechanical constitutive initial value problem and the virtual displacements \(\bm{\eta}\)\nomenclature[V]{$\bm \eta$}{Virtual displacements} and virtual temperatures \(\xi\)\nomenclature[V]{$\xi$}{Virtual temperatures} satisfy the essential boundary conditions of the problem in a homogeneous sense.
 The coupling between the mechanical and thermal fields can be understood from a physical point of view as follows:
 \begin{itemize}
 \item the temperature influences the mechanical field through additional thermal stresses and potentially temperature-dependent material properties.
@@ -90,31 +90,31 @@ The coupling between the mechanical and thermal fields can be understood from a 
 \section{Finite Element Method} \label{sec:fem_mech}
 
 It is now possible to apply the Finite Element Method to the solution of the thermomechanical initial boundary value problem, providing a suitable spatial discretization in a finite element mesh.
-Defining the global vector of nodal displacements \(\mathbf{u}\) and the global vector of nodal temperatures \(\bm{\uptheta}\) as
+Defining the global vector of nodal displacements \(\mathbf{u}\)\nomenclature[V]{$\mathbf u$}{Global vector of nodal displacements} and the global vector of nodal temperatures \(\bm{\uptheta}\)\nomenclature[V]{$\bm\uptheta$}{Global vector of nodal temperatures} as
 \begin{gather}
-  \mathbf{u}(t) = \Big[ u_1^1(t),\dots,u^1_{n_\text{dim}}(t),\dots, u_1^{N}(t),\dots,u^{N}_{n_\text{dim}}(t)\Big]^T,\\
-  \bm{\uptheta}(t) = \left[ \theta^1(t), \theta^2(t), \dots, \theta^{N}(t)\right]^T,
+  \mathbf{u}(t) = \Big[ u_1^1(t),\dots,u^1_{n_\text{dim}}(t),\dots, u_1^{n_\text{nod}}(t),\dots,u^{n_\text{nod}}_{n_\text{dim}}(t)\Big]^T,\\
+  \bm{\uptheta}(t) = \left[ T^1(t), T^2(t), \dots, T^{n_\text{nod}}(t)\right]^T,
 \end{gather}
-where \(n_\text{dim}\) denotes the number of spatial dimensions considered and \(N\) the total number of nodes in the mesh, the displacement, $\bm{u}(\bm{X}, t)$, and temperature, \(\theta(\bm{X}, t)\), fields defined over the global domain $\Omega_0$, can be approximated at any point $\bm{X}$ by appropriate interpolation functions.
+where \(n_\text{dim}\)\nomenclature[V]{$n_\text{dim}$}{Number of spatial dimensions} denotes the number of spatial dimensions considered and \(n_\text{nod}\)\nomenclature[V]{$n_\text{nod}$}{Number of nodes in the mesh} the total number of nodes in the mesh, the displacement, $\bm{u}(\bm{X}, t)$, and temperature, \(T(\bm{X}, t)\), fields defined over the global domain $\Omega_0$, can be approximated at any point $\bm{X}$ by appropriate interpolation functions.
 Doing so yields the discretized versions of the momentum and energy balance equations, i.e.,
 \begin{gather}
   \mathbf{r}_{u}(\mathbf{u}, \bm{\uptheta}, t)\equiv\mathbf{M} \ddot{\mathbf{u}}(t) +\mathbf{f}_u^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{u}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_momentum_balance} \\
-  \mathbf{r}_{\theta}(\mathbf{u}, \bm{\uptheta}, t)\equiv \mathbf{C} \dot{\bm{\uptheta}}(t)  + \mathbf{f}_\theta^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{\theta}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_energy_balance}
+  \mathbf{r}_{T}(\mathbf{u}, \bm{\uptheta}, t)\equiv \mathbf{C} \dot{\bm{\uptheta}}(t)  + \mathbf{f}_T^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{T}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_energy_balance}
 \end{gather}
-where $\mathbf{f}_u^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{u}$ are the mechanical global vectors of internal and external forces, $\mathbf{f}_\theta^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{\theta}$ are the thermal global vectors of internal and external forces, $\mathbf{M}$ is the mass matrix, \(\mathbf{C}\) is the thermal capacitance matrix.
+where $\mathbf{f}_u^\text{\;int}$\nomenclature[V]{$\mathbf f^\text{int}$}{Internal nodal force} and $\mathbf{f}^\text{\;ext}_{u}$\nomenclature[V]{$\mathbf f^\text{ext}$}{External nodal force} are the mechanical global vectors of internal and external forces, $\mathbf{f}_T^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{T}$ are the thermal global vectors of internal and external forces, $\mathbf{M}$\nomenclature[V]{$\mathbf M$}{FEM mass matrix} is the mass matrix, \(\mathbf{C}\)\nomenclature[V]{$\mathbf C$}{FEM thermal capacitance matrix} is the thermal capacitance matrix.
 The previous matricial entities are usually obtained by the appropriate assemblage of their elemental counterparts, defined by the appropriate integral quantities.
 
 \section{Time discretization}
 
 In the context of thermomechanical problems, a general path-dependent model depends on both the instantaneous deformation and temperature states as well as their history.
-Under these circumstances, for complex deformation, $\bm{F}(t)$, or temperature paths, $\theta(t)$, the solution of the constitutive initial value problem for a given set of initial conditions is typically unknown.
-Therefore, employing a suitable numerical approach is necessary to integrate the rate constitutive equations, being an implicit backward-Euler scheme adopted in the present contribution.
+Under these circumstances, for complex deformation, $\bm{F}(t)$, or temperature paths, $T(t)$, the solution of the constitutive initial value problem for a given set of initial conditions is typically unknown.
+Therefore, a suitable numerical approach is necessary to integrate the rate constitutive equations, being an implicit backward-Euler scheme adopted in the present contribution.
 
 The space-discrete time-continuous equilibrium equations (Equations~\eqref{eq:disc_momentum_balance} and \eqref{eq:disc_energy_balance}) can be integrated by employing an adequate and robust time discretization scheme.
-The fully discrete problem can be written in an abstract notation as
+The fully discrete problem can be written in an abstract notation as \nomenclature[V]{$\mathbf r$}{Nodal residue}
 \begin{gather}
   \mathbf{r}_{u}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1})=\bm{0}\,\label{eq:mech_problem}\\
-  \mathbf{r}_{\theta}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1}) = \bm{0}. \label{eq:therm_problem}
+  \mathbf{r}_{T}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1}) = \bm{0}. \label{eq:therm_problem}
 \end{gather}
 For quasi-static structural problems and steady-state heat flow problems, the temporal integration is fully restrained at the constitutive level, as previously addressed.
 For transient problems, the Generalised-$\alpha$ method is a popular alternative, which establishes finite-difference approximations of the temporal derivatives and evaluates the equilibrium at generalised midpoints, providing enough freedom to have second-order accuracy, unconditional stability in linear problems and optimal numerical dissipation in terms of a sole parameter $\rho_{\infty}$.
@@ -122,9 +122,7 @@ In the absence of further mention, the Generalised-$\alpha$ for first-order syst
 
 \section{Solution of the thermomechanical problem}
 
-It is generally understood that thermomechanics is a crucial physical phenomenon in engineering applications and a highly sought-after feature in computational models.
-These effects play a central role in mainstream and heavy-duty thermomechanical applications such as rocket nozzles \citep{kuhl2002ThermomechanicalAnalysisOptimization,danowski_monolithic_2013}, disk brakes and clutches \citep{yevtushenko2015NumericalAnalysisThermal}, heat-assisted incremental sheet forming \citep{liu2018HeatassistedIncrementalSheet} and thermal stresses due to machining \citep{elsheikh2021ComprehensiveReviewResidual}, for instance.
-After spatial and temporal discretization, the thermomechanical problem is reduced to a system of coupled nonlinear algebraic equations on the mechanical variables (displacement) and thermal variables (temperatures).
+After spatial and temporal discretization, the thermomechanical problem is reduced to a system of coupled nonlinear algebraic equations on the mechanical variables (displacement) and thermal variables (temperatures) (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}).
 Generally speaking, the strategies typically employed to solve this problem can be classified into two groups: monolithic and partitioned approaches.
 The latter can be further divided into explicit (loosely or weakly coupled) and implicit (strongly coupled) schemes, depending on the type of coupling enforcement.
 When comparing them, one should keep in mind that the most desirable properties of an algorithm for solving coupled problems are unconditional stability, high accuracy, ease of implementation, low memory requirements, high computational efficiency, and the potential for software reuse \citep{fellipa_partitioned_1988}.
@@ -207,10 +205,10 @@ Therefore, one can readily see a number of applications where partitioned strate
 \section{Implicit partitioned schemes for thermomechanics} \label{sec:implicit_solution_coupl}
 
 The cornerstone of partitioned solution schemes is to solve the thermal and mechanical problems separately, i.e., Equation~\eqref{eq:mech_problem} is solved considering a fixed temperature, and Equation~\eqref{eq:therm_problem} is solved assuming a fixed configuration.
-For convenience, consider the existence of two functions, \(\bm{\mathcal{U}}_{n+1}\) and \(\bm{\mathcal{T}}_{n+1}\), that represent these solution procedures at instant \(t_{n+1}\), such that
+For convenience, consider the existence of two functions, \(\bm{\mathcal{U}}_{n+1}\)\nomenclature[V]{$\bm{\mathcal{U}}$}{Solution procedure for the mechanical problem at constant temperature} and \(\bm{\mathcal{T}}_{n+1}\)\nomenclature[V]{$\bm{\mathcal{T}}$}{Solution procedure for the thermal problem at a fixed configuration}, that represent these solution procedures at instant \(t_{n+1}\), such that
 \begin{align}
   \mathbf{u} = \bm{\mathcal{U}}_{n+1}(\bm{\uptheta}) & \rightarrow \text{solve } \mathbf{r}_{u}^{n+1}(\mathbf{u}, \bm{\uptheta}, t_{n+1})=\bm{0} \text{ in order to obtain } \mathbf{u}\;, \label{eq:def_solvers_u} \\
-  \bm{\uptheta} = \bm{\mathcal{T}}_{n+1}(\mathbf{u}) & \rightarrow \text{solve } \mathbf{r}_{\theta}^{n+1}(\mathbf{u}, \bm{\uptheta}, t_{n+1})=\bm{0} \text{ in order to obtain } \bm{\uptheta}. \label{eq:def_solvers_t}
+  \bm{\uptheta} = \bm{\mathcal{T}}_{n+1}(\mathbf{u}) & \rightarrow \text{solve } \mathbf{r}_{T}^{n+1}(\mathbf{u}, \bm{\uptheta}, t_{n+1})=\bm{0} \text{ in order to obtain } \bm{\uptheta}. \label{eq:def_solvers_t}
 \end{align}
 In the following, the time-step subscripts $(\bullet)_{n+1}$ on the solvers are dropped for notation compactness.
 
@@ -229,7 +227,7 @@ The superscript \(k\) denotes the nonlinear iterations performed within each tim
 A slightly different conceptualization of the thermomechanical coupled problem is pursued here.
 Generally, a fixed-point procedure can be transformed into a root-finding problem.
 In this case, the goal is to define suitable functions, built from \(\bm{\mathcal{U}}\) and \(\bm{\mathcal{T}}\), whose roots are also the solutions to the thermomechanical problem (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}).
-In the thermomechanical context, the following residual functions are employed
+In the thermomechanical context, the following residual functions \nomenclature[V]{$\bm{\mathcal R}$}{Thermomechanical residual} are employed
 \begin{equation} \label{eq:def_res_jacobi}
   \bm{\mathcal{R}}_\text{J}(\mathbf{u}, \bm{\uptheta}) =
   \left\{\begin{array}{c}
@@ -256,13 +254,13 @@ In the thermomechanical context, the following residual functions are employed
      \begin{equation} \label{eq:abstract_residue_equation}
        \bm{\mathcal{R}}(\mathbf{x}) = 0,
      \end{equation}
-     where $\mathbf x$ stands for the appropriate unknowns based on the residual chosen, e.g., the temperature at all nodes in the mesh in the case of selecting the residual found in the first expression of Equation~\eqref{eq:def_res_gauss_seidel}.
+     where $\mathbf x$\nomenclature[V]{$\mathbf x$}{Abstract nodal quantity} stands for the appropriate unknowns based on the residual chosen, e.g., the temperature at all nodes in the mesh in the case of selecting the residual found in the first expression of Equation~\eqref{eq:def_res_gauss_seidel}.
      It should be mentioned that unknowns in all mesh nodes must be considered for a volumetric coupling, such as in a thermomechanical problem.
      This is in contrast with fluid-structure interaction, where just the degrees of freedom at the interface must be taken into account.
      For completeness, also consider the function
      \begin{equation}
        \bm{\mathcal{S}}(\mathbf{x}) = \mathbf{x} - \bm{\mathcal{R}}(\mathbf{x}),
-     \end{equation}
+     \end{equation}\nomenclature[V]{$\bm{\mathcal S}$}{Fixed-point function for the partitioned thermomechanical problem}
      whose fixed-point is the solution to the nonlinear equation system in Equation~\eqref{eq:abstract_residue_equation}.
      Therefore, a broad class of standard implicit methods available in the literature can be applied to solve the problem at hand, allowing the use of appropriate libraries when available.
      The accelerated fixed-point counterparts can be properly identified, as shown in the remainder of this section.

@@ -23,6 +23,9 @@ Thermomechanical interaction is key to adequately describe a large variety of te
 To include it in a numerical simulation toolbox, the problem has to be correctly formulated in a thermodynamically consistent way.
 Having achieved an appropriate formulation of the problem, the Finite Element Method can be used to solve it.
 
+It is generally understood that thermomechanics is a crucial physical phenomenon in engineering applications and a highly sought-after feature in computational models.
+These effects play a central role in mainstream and heavy-duty thermomechanical applications such as rocket nozzles \citep{kuhl2002ThermomechanicalAnalysisOptimization,danowski_monolithic_2013}, disk brakes and clutches \citep{yevtushenko2015NumericalAnalysisThermal}, heat-assisted incremental sheet forming \citep{liu2018HeatassistedIncrementalSheet} and thermal stresses due to machining \citep{elsheikh2021ComprehensiveReviewResidual}, for instance.
+
 After the spatial discretization obtained by the FEM has been provided, the complete thermomechanical problem can still be solved by employing two different strategies: a monolithic approach or a partitioned approach.
 In the former, the discretized equations representing the momentum balance and energy conservation are solved simultaneously.
 In the latter, the problems are solved independently, solving the mechanical problem at a fixed temperature and then the thermal problem at a fixed configuration, taking the so-called isothermal split as an example.
@@ -165,41 +168,24 @@ The main goals of this work are:
 
 The remainder of this document is structured as follows:
 
-\paragraph{Chapter \ref{ch:continuum_mechanics} - Continuum Thermomechanics}\mbox{}\\
+\paragraph{Chapter \ref{ch:thermomechanical_problem} - Continuum Thermomechanics}\mbox{}\\
 This chapter covers the notions required to explain how a solid responds to thermal and mechanical loads under large deformations, including the conservation laws that guarantee mechanical equilibrium and energy conservation.
 Additionally, the application of thermodynamics with internal variables is discussed, along with the resulting inferences about the constitutive behavior of the material that makes up the solid.
 
-\paragraph{Chapter \ref{ch:mechanical_problem} - Mechanical problem}\mbox{}\\
-This chapter presents the strictly mechanical problem, including the constitutive initial value problem, the weak form of the momentum balance equations, and the corresponding mechanical initial boundary value problem.
-A brief description of the application of the Finite Element Method to this problem is also included.
-
-\paragraph{Chapter \ref{ch:thermal_problem} - Thermal problem}\mbox{}\\
-This chapter presents the strictly thermal problem, including the constitutive law for the heat flux, the weak form of the energy conservation equation, and the corresponding thermal initial boundary value problem.
-A brief description of the application of the Finite Element Method to this problem is also included.
-
-\paragraph{Chapter \ref{ch:thermo_mechanical_problem} - Thermomechanical problem}\mbox{}\\
-This chapter presents the thermomechanical problem, including the constitutive initial value thermomechanical problem, the weak form of the energy conservation equation and the momentum balance equations, and the corresponding thermomechanical initial boundary value problem.
-A brief description of the application of the Finite Element Method to this problem is also included.
-
-\paragraph{Chapter \ref{ch:val_therm_solver} - Validation results for the thermal solver}\mbox{}\\
+\paragraph{Chapter \ref{ch:thermomechanical_behavior_semi_crystalline_polymer} - Thermomechanical behavior of semi-crystalline polymers}\mbox{}\\
 This chapter details the validation results for the thermal solver using as references the \cite{DINEN1991_1_2} and \cite{NAFEMSbenchmarks}.
 It includes both transient effects and boundary conditions such as natural convection and radiation.
 
-\paragraph{Chapter \ref{ch:sol_proc_coupl_fields} - Solution procedures for coupled fields}\mbox{}\\
+\paragraph{Chapter \ref{ch:modeling_semi_crystalline_polymer} - State of the art in thermomechanical semi-crystalline polymer modeling}\mbox{}\\
 This chapter presents an overview of the solution procedures for coupled problems.
 It includes monolithic schemes and partitioned schemes, both explicit and implicit approaches.
 An evaluation and discussion of the different methods are provided.
 
-\paragraph{Chapter \ref{chapter:implicit_meth} - Implicit solution methods for coupled fields}\mbox{}\\
+\paragraph{Chapter \ref{ch:numerical_results} - Numerical results}\mbox{}\\
 This chapter provides a thorough description of the available implicit methods.
 It rests on recasting the problem as a simple root-finding problem for a set of nonlinear equations.
 The methods presented are the fixed-point method, the underrelaxation method, the Aitken relaxation, the Broyden-like family of methods, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
 The number of residual evaluations, the memory requirements, the computational complexity, and the ease of implementation are all discussed for each approach.
-
-\paragraph{Chapter \ref{ch:val_acc_techniques} - Numerical results for the implicit coupling schemes}\mbox{} \\
-This chapter covers the validation results for the thermomechanical solver and the implicit schemes explored in this work.
-Each class of implicit methods is examined for efficiency, including as a function of coupling strength, and the best methods in each category are contrasted.
-The use of polynomial predictors is also explored.
 
 \paragraph{Chapter \ref{ch:conclusions} - Conclusion and Future Works}\mbox{} \\
 This chapter presents the conclusions reached in this work, and some future research directions are suggested.

@@ -1,4 +1,4 @@
-\chapter{Numerical results} \label{sec:numerical_results}
+\chapter{Numerical results} \label{ch:numerical_results}
 
 This chapter presents two sets of results concerning the subject of thermomechanical modeling of semi-crystalline polymers.
 The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of the thermomechanical model employing a elasto-plastic description for the material.
@@ -227,7 +227,7 @@ $\tau_\text{therm}\approx 1$ points to  a coupled problem, in the sense that som
 In the present work, an adiabatic evolution is achieved through the inclusion of the temperature as an internal variable of the model, whose rate equation is the heat conduction equation (see Equation~\eqref{eq:heat_conduction}), discarding the heat conduction term and setting the internal dissipation according to the constitutive model prescribed.
 On the other hand, to ensure an isothermic evolution, the temperature is treated as a model parameter and remains constant throughout the simulation.
 
-\subsection{\cite{haoUnifiedAmorphousCrystalline2022}}
+\subsection{Hao et al. (2022a)}
 
 Following the description in \cite{haoUnifiedAmorphousCrystalline2022}, the experimental results employed for validation are those of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006} obtained during the uniaxial compression of nylon 101 at a constant strain rate.
 The material is modeled by the constitutive model proposed by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, and the material properties are given in Table~\ref{tab:mat_prop_hao}.
@@ -311,7 +311,6 @@ In fact, the experimental value found for the second yield stress is \SI{129.8}{
 When the numerical results obtained in this work and in \cite{haoUnifiedAmorphousCrystalline2022} are compared, there is perfect agreement for the lowest strain rate considered (\SI{1e-5}{\per\second}).
 The same cannot be said for the other two strain rates.
 Nonetheless, until the first yield and subsequent softening, there is good agreement between the two sets of numerical results.
-\colorbox{BrickRed}{Say something more specific about the features of the model.}
 As the strain increases, the difference between the two grows larger.
 There are a few reasons for this.
 The first concerns mainly the experiment corresponding to a strain rate of \SI{1e-2}{\per\second}, which in the present work is simulated as an adiabatic process.
@@ -324,11 +323,32 @@ However, the same authors find a heterogeneous temperature distribution for the 
 
 In general, the implementation developed in this work compares favourably with the one found in \cite{haoUnifiedAmorphousCrystalline2022}.
 
-\subsection{\cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}}
+\subsection{Abdul-Hameed et al. (2014)}
 
 Following the description in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, the experimental results employed for validation are those of Ayoub et al. \citep{ayoubEffectsCrystalContent2011} obtained during the uniaxial traction of polyethylene with different degrees of crystallinity at a constant strain rate.
 The material is modeled by the constitutive model proposed by Abdul-Hameed et al. \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, and the material properties are given in Tables~\ref{tab:mat_props_abdul_common} and \ref{tab:mat_props_abdul_inter}.
 %
+
+The strain rates considered are \SIlist{1e-4;5e-4;1e-3;5e-3;1e-2}{\per\second}, and are all assumed to correspond to an isothermic evolution.
+The stress-strain curves obtained for polyethylenes with crystallinities equal to \SIlist{0.724;0.3;0.15}{}\% are compared in Figure~\ref{fig:stress_strain_abdul_hameed} to the experimental results in \cite{ayoubEffectsCrystalContent2011} and the numerical results obtained by Abdul-Hameed et al. \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
+
+To begin, Abdul-Hameed et al.'s model \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} must be assessed for its ability to describe the experimental data in \cite{ayoubEffectsCrystalContent2011}.
+It can capture accurately the yield stress for all the crystallinities considered, however without accounting for the smooth transient between the elastic range and the "steady state" plastic flow.
+This is because in the thermally activated flow rule (see Equation~\eqref{eq:flow_rule_thermally_activated}) employed for both the crystalline and amorphous contributions to the intermolecular resistance an appropriate internal variable, such as the athermal strength, and corresponding rate equation is not included.
+Regarding the hardening it is not captured so well, specially in the case of LDPE.
+This is less so for the ULDPE, and it is only true at large strain ($\varepsilon_{xx}>1$) for HDPE.
+Thus, the attempt of this model to describe the behavior of polyethylene at different crystallinities employing just one set of material parameters is only moderately successful.
+
+Turning to the comparison between the numerical results obtained in this work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
+Despite the limitations of the numerical tool available, a good agreement is expected.
+That said, employing the parameters supplied in contribution just mentioned the results obtained are not those expected.
+A better agreement is found taking the shear modulus $C_c$ multiplied by 2/3.
+Still some minor descrepancies in the hardening behavior simulated can be found in the results concerning the HDPE and the LDPE.
+These are somewhat exacerbated, especially for the three larger strain rates considered in the case of ULDPE.
+On the other hand, there is full accord in the elastic response and subsequent yielding between the two sets of numerical results at all crystallinities considered.
+This points to some differences in the network branch of the model wher the parameters already mentioned contribute to.
+That said, there is an acceptable agreement between the numerical results obtained in the present work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
+
 \begin{table}[hbtp]
   \centering
   \caption{Material properties for the uniaxial traction of polyethylene.}
@@ -381,29 +401,11 @@ The material is modeled by the constitutive model proposed by Abdul-Hameed et al
   \end{tabular}
 \end{table}
 
-The strain rates considered are \SIlist{1e-4;5e-4;1e-3;5e-3;1e-2}{\per\second}, and are all assumed to correspond to an isothermic evolution.
-The stress-strain curves obtained for polyethylenes with crystallinities equal to \SIlist{0.724;0.3;0.15}{}\% are compared in Figure~\ref{fig:stress_strain_abdul_hameed} to the experimental results in \cite{ayoubEffectsCrystalContent2011} and the numerical results obtained by Abdul-Hameed et al. \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
+\enlargethispage{10\baselineskip}
+
 \begin{figure}[hbtp]
   \centering
   \includegraphics[width=0.75\textwidth]{figures/stress_strain_abdul_hameed}
-  \caption{Comparison between the experimental results of \cite{ayoubEffectsCrystalContent2011}, the numerical results of \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and the present work for a uniaxial traction test at strain rates of \SIlist{1e-4;5e-4;1e-3;5e-3;1e-2}{\per\second}. (a) HDPE ($\chi = 72.4\%$); (b) LDPE ($\chi = 30\%$); (c) ULDPE ($\chi = 15\%$).}
+  \caption{True stress-true strain curves obtained corresponding to the experimental results of \cite{ayoubEffectsCrystalContent2011}, the numerical results of \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and the present work for a uniaxial traction test at strain rates of \SIlist{1e-4;5e-4;1e-3;5e-3;1e-2}{\per\second}. (a) HDPE ($\chi = 72.4\%$); (b) LDPE ($\chi = 30\%$); (c) ULDPE ($\chi = 15\%$).}
 \label{fig:stress_strain_abdul_hameed}
 \end{figure}
-
-To begin, Abdul-Hameed et al.'s model \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} must be assessed for its ability to describe the experimental data in \cite{ayoubEffectsCrystalContent2011}.
-It can capture accurately the yield stress for all the crystallinities considered, however without accounting for the smooth transient between the elastic range and the "steady state" plastic flow.
-Regarding the hardening it is not captured so well.
-This is less so for the ULDPE, and it is only true at large strain ($\varepsilon_{xx}>1$) for HDPE.
-The behavior of the LDPE is not well capture from the yielding on.
-Thus, the attempt of this model to describe the behavior of polyethylene at different crystallinities employing just one set of material parameters is only moderately successful.
-\colorbox{BrickRed}{Say something more specific about the features of the model.}
-
-Turning to the comparison between the numerical results obtained in this work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
-Despite the limitations of the numerical tool available, a good agreement is expected.
-That said employing the parameters supplied in contribution just mentioned the results obtained are not those expected.
-A better agreement is found taking the shear modulus $C_c$
-Still some minor descrepancies in the hardening behavior simulated can be found in the case of the results concerning the HDPE and the LDPE.
-These are somewhat exacerbated, especially for the three larger strain rates considered in the case of ULDPE.
-On the other hand, there is full concordance in the elastic response and subsequent yielding between the two sets of numerical results at all crystallinities considered.
-This points to some differences in the network branch of the model wher the parameters already mentioned contribute to.
-That said, there is an acceptable agreement between the numerical results obtained in the present work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.

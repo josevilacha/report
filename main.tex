@@ -279,7 +279,6 @@
 \author{José Luís Passos Vila-Chã}
 \date{February 2023}
 
-
 \pagenumbering{roman}
 
 %Hypertext marks
@@ -367,16 +366,149 @@
 \end{titlepage}
 
 \newpage\null\thispagestyle{blank}\newpage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
 
-\setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{3}
+Nowadays, the design and modeling of advanced materials calls for the understanding that these are hierarchical in nature, i.e. their macroscopic properties and mechanical response result from the interaction between heterogeneous structures spanning over multiple length scales.
+Examples of important materials from an industrial standpoint that benefit from this multi-scale approach are polymer blends and composite materials.
+In this view, the method of computational homogenization emerged as an effective way of modeling multi-scale heterogeneous materials by performing an homogenization procedure over a representative volume element (RVE) of the microstructure.
+However, in order to accurately capture the macroscopic behavior, it is crucial that the RVE contains enough morphological and topological information about the microstructural heterogeneities and is representative in an average sense.
+
+This work presents a computational robust and efficient program in Python, based on a molecular dynamics simulation with a multi-temperature isokinetic scheme, that is able to generate an RVE from a given set of material and geometrical input descriptors.
+In general, these may characterize the material matrix, particles/inclusions, voids and fibers, e.g. radius, ellipsoid axes magnitude and orientation, spatial position, and the corresponding phase in the heterogeneous material, volume fraction and number of particles.
+The geometrical parameters characterizing the inclusions may be specified by the user as fixed values or be made to vary according to different statistical distributions.
+Multiple phases are also supported allowing for great flexibility in the modeling of real materials.
+
+The microstructures generated are evaluated using the Minkowski structure metrics of their Voronoi cells.
+These are a very versatile tool in the detection of unwanted order or clustering, both undesirable properties in a microstructure whose purpose is to plausibly mimic real matrix-composite materials.
+Using this technique, the microstructures generated through the proposed approach are validated as it pertains to their "quality".
+
+After the generation procedure, various RVEs are discretized in a suitable finite element mesh in order to perform microscale analyses through computational homogenization.
+The various examples considered are created keeping the volume fraction constant and increasing the number of inclusions within the RVE.
+Submitting the microstructures to various loading conditions and employing different boundary conditions, it is concluded that an increase in the number of particles included leads to a more representative volume element.
+Isotropic responses are also achieved for microstructures containing only Disks and Spheres, as more inclusions are considered.
+
+\newpage\null\thispagestyle{blank}\newpage
+
+\chapter*{Resumo}
+\addcontentsline{toc}{chapter}{Resumo}
+
+Nos dias de hoje, o projeto e modelação de materiais avançados exige a perceção de que estes são compostos por estruturas hierárquicas, isto é, as suas propriedades ma\-cros\-có\-pi\-cas e a sua resposta mecânica resultam da interação entre estruturas heterogéneas que se apresentam a múltiplas escalas.
+Materiais de grande importância a nível industrial que beneficiam deste tipo de análise a várias escalas são, por exemplos, as misturas de polímeros e os materiais compósitos.
+Nesta perspetiva, o método da homogeneização computacional surgiu como uma técnica eficaz de modelar materiais heterogéneos a múltiplas escalas, através de um procedimento de homogeneização ao longo de um elemento de volume representativo (RVE) da microestrutura.
+Todavia, de modo a capturar com precisão o seu comportamento macroscópico é crucial que o RVE contenha um conjunto de informação morfológica e topológica sobre as heterogeneidades à micro escala, sendo representativo do comportamento do material em média.
+
+Esta tese apresenta um programa computacionalmente robusto e eficiente, escrito em Python, baseado em simulações de dinâmica molecular com esquema isocinético multi temperatura, que é capaz de gerar RVEs a partir de um conjunto de descritores materiais de geométricos de entrada.
+Em geral, estes podem caraterizar a matriz do material, as sua inclusões, vazios ou fibras, especificando, por exemplo, o raio das partículas, e a fase correspondente, através da sua fração volúmica e numero de inclusões.
+Dado que um número arbitrário de fases é permitido, obtém-se uma ferramenta muito flexível na modelação de materiais reais.
+
+As microestruturas geradas são avaliadas utilizando as métricas estruturais de Min\-kow\-ski das suas células Voronoi.
+Estas são uma ferramenta versátil na deteção de estruturas ordenadas ou aglomerados indesejáveis de partículas, ambas caraterísticas inconvenientes em microestruturas cujo propósito é imitar de forma plausível materiais compósitos reais.
+Utilizando esta técnica, validaram-se as microestruturas geradas através da abordagem proposta quanto à sua "qualidade".
+
+Depois de gerados, discretizaram-se vários RVEs em malhas de elementos finitos apropriadas com o objetivo de levar a cabo análises à micro escala por homogeneização computacional.
+Os vários exemplos considerados são criados mantendo a fração volúmica constante, mas aumentando o número de inclusões dentro do RVE.
+Concluí-se, submetendo as microestruturas a vários esquemas de carregamento mediante diferentes condições fronteira, que um aumento no número de partículas incluídas leva a um volume elementar mais representativo.
+Verificam-se ainda respostas isotrópicas por parte de microestruturas que contêm apenas Discos e Esferas, à medida que mais inclusões são consideradas.
+
+\newpage\null\thispagestyle{blank}\newpage
+
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+
+I wish to thank both my supervisors, Prof. Francisco Pires and Bernardo Ferreira for their guidance and help during this work.
+I hope to have fulfilled the goals set forth for this MSc thesis and to have meaningfully contributed to the work developed by the CM2S group.
+
+I am profoundly thankful for all the support and encouragement from my parents and my brother.
+All my achievements, big and small, in the journey that lead me here can be traced to their unwavering belief in me.
+
+To all the CM2S work group, I wish to express a sincere "thank you" for all the help you provided me.
+
+\newpage\null\thispagestyle{blank}\newpage
+
+\setcounter{tocdepth}{2}
 \tableofcontents
 
+\newpage\null\thispagestyle{blank}\newpage
 
 \listoffigures
+
 \newpage\null\thispagestyle{blank}\newpage
 
 \listoftables
+
+\newpage\null\thispagestyle{blank}\newpage
+
+
+\nomenclature[A]{BVP}{\textbf Boundary \textbf Value \textbf Problem}
+\nomenclature[A]{DOF}{\textbf Degrees \textbf Of \textbf Freedom}
+\nomenclature[A]{FEM}{\textbf Finite \textbf Element \textbf Method}
+\nomenclature[A]{PMVP}{\textbf Principle of \textbf Multi-scale \textbf Virtual \textbf Power}
+
+\nomenclature[A]{RVE}{\textbf Representative \textbf Volume \textbf Element}
+
+\nomenclature[N, 01]{$a$}{Scalar}
+\nomenclature[N, 02]{$\vect a$}{First order tensor}
+\nomenclature[N, 03]{$\mat A$}{Second order tensor}
+\nomenclature[N, 04]{$\mathbf a$}{Finite Element Method vector}
+\nomenclature[N, 05]{$\mathbf A$}{Finite Element Method matrix}
+\nomenclature[N, 06]{$\mathcal A$}{Body, space or set}
+
+\nomenclature[O]{$\ud(\cdot)$}{Infinitesimal}
+\nomenclature[O]{$\partial(\cdot)/\partial a$}{Partial derivative with respect to $a$}
+\nomenclature[O]{$\mathrm{div}_0(\cdot)$}{Material divergence operator}
+\nomenclature[O]{$\nabla(\cdot)$}{Spatial gradient operator}
+\nomenclature[O]{$\nabla_0(\cdot)$}{Material gradient operator}
+\nomenclature[O]{$\mathrm{det}(\cdot)$}{Determinant}
+\nomenclature[O]{$\ln(\cdot)$}{Natural logarithm}
+\nomenclature[O]{$\mathrm{tr}(\cdot)$}{Matrix trace}
+\nomenclature[O]{$\|(\cdot)\|$}{Euclidean norm}
+\nomenclature[O]{$(\cdot)\otimes(\cdot)$}{Tensorial product}
+\nomenclature[O]{$(\cdot)\cdot(\cdot)$}{Tensorial dot product}
+\nomenclature[O]{$(\cdot):(\cdot)$}{Tensorial double contraction}
+\nomenclature[O]{$(\cdot)*(\cdot)$}{Appropriate product}
+\nomenclature[O]{$\mat I$}{Second order identity tensor}
+\nomenclature[O]{$\assemble (\cdot)$}{Finite Element Method assembly operator}
+\nomenclature[O]{$\delta(\cdot)$}{Variation}
+\nomenclature[O]{$\langle(\cdot)\rangle$}{Ensemble average}
+
+% Accents
+\nomenclature[C, 01]{$\dot{(\cdot)}$}{First order time derivative}
+\nomenclature[C, 02]{$\ddot{(\cdot)}$}{Second order time derivative}
+\nomenclature[C, 03]{$\widehat{(\cdot)}$}{Incremental constitutive function}
+
+% Sets, domains and boundaries
+\nomenclature[D, 01]{$\mathcal E$}{Euclidean space}
+\nomenclature[D, 02]{$\mathscr K$}{Set of kinematically admissible macroscopic displacements}
+\nomenclature[D, 03]{$\mathscr K_\mu$}{Set of kinematically admissible minimally constrained microscopic displacements}
+\nomenclature[D, 04]{$\tilde{\mathscr K}_\mu$}{Set of kinematically admissible minimally constrained microscopic displacements fluctuations}
+\nomenclature[D, 05]{$\mathscr V$}{Set of virtual displacements}
+\nomenclature[D, 06]{$\mathscr V_\mu$}{Set of virtual displacements fluctuations}
+\nomenclature[D, 07]{$\upsilon$}{Local (or natural) normalized domain}
+\nomenclature[D, 08]{$\Omega$}{Body domain in current configuration}
+\nomenclature[D, 09]{$\partial \Omega$}{Body domain boundary in current configuration}
+\nomenclature[D, 10]{$\Omega_0$}{Body domain in reference configuration}
+\nomenclature[D, 11]{$\partial \Omega_0$}{Body domain boundary in reference configuration}
+\nomenclature[D, 12]{$\Omega_\mu$}{RVE domain in current configuration}
+\nomenclature[D, 13]{$\partial \Omega_\mu$}{RVE domain boundary in current configuration}
+\nomenclature[D, 14]{$\Omega_{\mu,0}$}{RVE domain in reference configuration}
+\nomenclature[D, 15]{$\partial \Omega_{\mu,0}$}{RVE domain boundary in reference configuration}
+
+% Subscripts and superscripts
+\nomenclature[S]{$(\cdot)^{(e)}$}{Elemental quantity}
+\nomenclature[S]{$(\cdot)^{(0)}$}{Reference material related quantity}
+\nomenclature[S]{$(\cdot)^{g}$}{Global quantity}
+\nomenclature[S]{$(\cdot)_0$}{Reference configuration, initial time}
+\nomenclature[S]{$(\cdot)_\mu$}{Microscale related quantity}
+\nomenclature[S]{${}^h(\cdot)$}{Discretized domain, interpolated field}
+\nomenclature[S]{$(\cdot)_d$}{Deviatoric component}
+\nomenclature[S]{$(\cdot)_h$}{Hydrostatic component}
+\nomenclature[S]{$(\cdot)_u$}{Quantity in the mechanical problem}
+\nomenclature[S]{$(\cdot)_T$}{Quantity in the thermal problem}
+
+
+\printnomenclature
+
 \newpage\null\thispagestyle{blank}\newpage
 
 \pagenumbering{gobble}

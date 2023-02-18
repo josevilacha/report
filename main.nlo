@@ -1,59 +1,59 @@
-\nomenclatureentry{ABVP@[{BVP}]\begingroup \textbf Boundary \textbf Value \textbf Problem\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{ADOF@[{DOF}]\begingroup \textbf Degrees \textbf Of \textbf Freedom\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{AFEM@[{FEM}]\begingroup \textbf Finite \textbf Element \textbf Method\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{APMVP@[{PMVP}]\begingroup \textbf Principle of \textbf Multi-scale \textbf Virtual \textbf Power\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{ARVE@[{RVE}]\begingroup \textbf Representative \textbf Volume \textbf Element\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{N, 01$a$@[{$a$}]\begingroup Scalar\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{N, 02$\vect a$@[{$\vect a$}]\begingroup First order tensor\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{N, 03$\mat A$@[{$\mat A$}]\begingroup Second order tensor\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{N, 04$\mathbf a$@[{$\mathbf a$}]\begingroup Finite Element Method vector\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{N, 05$\mathbf A$@[{$\mathbf A$}]\begingroup Finite Element Method matrix\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{N, 06$\mathcal A$@[{$\mathcal A$}]\begingroup Body, space or set\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\ud(\cdot)$@[{$\ud(\cdot)$}]\begingroup Infinitesimal\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\partial(\cdot)/\partial a$@[{$\partial(\cdot)/\partial a$}]\begingroup Partial derivative with respect to $a$\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\mathrm{div}_0(\cdot)$@[{$\mathrm{div}_0(\cdot)$}]\begingroup Material divergence operator\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\nabla(\cdot)$@[{$\nabla(\cdot)$}]\begingroup Spatial gradient operator\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\nabla_0(\cdot)$@[{$\nabla_0(\cdot)$}]\begingroup Material gradient operator\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\mathrm{det}(\cdot)$@[{$\mathrm{det}(\cdot)$}]\begingroup Determinant\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\ln(\cdot)$@[{$\ln(\cdot)$}]\begingroup Natural logarithm\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\mathrm{tr}(\cdot)$@[{$\mathrm{tr}(\cdot)$}]\begingroup Matrix trace\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\|(\cdot)\|$@[{$\|(\cdot)\|$}]\begingroup Euclidean norm\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$(\cdot)\otimes(\cdot)$@[{$(\cdot)\otimes(\cdot)$}]\begingroup Tensorial product\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$(\cdot)\cdot(\cdot)$@[{$(\cdot)\cdot(\cdot)$}]\begingroup Tensorial dot product\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$(\cdot):(\cdot)$@[{$(\cdot):(\cdot)$}]\begingroup Tensorial double contraction\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$(\cdot)*(\cdot)$@[{$(\cdot)*(\cdot)$}]\begingroup Appropriate product\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\mat I$@[{$\mat I$}]\begingroup Second order identity tensor\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\assemble (\cdot)$@[{$\assemble (\cdot)$}]\begingroup Finite Element Method assembly operator\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\delta(\cdot)$@[{$\delta(\cdot)$}]\begingroup Variation\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{O$\langle(\cdot)\rangle$@[{$\langle(\cdot)\rangle$}]\begingroup Ensemble average\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{C, 01$\dot{(\cdot)}$@[{$\dot{(\cdot)}$}]\begingroup First order time derivative\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{C, 02$\ddot{(\cdot)}$@[{$\ddot{(\cdot)}$}]\begingroup Second order time derivative\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{C, 03$\widehat{(\cdot)}$@[{$\widehat{(\cdot)}$}]\begingroup Incremental constitutive function\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 01$\mathcal E$@[{$\mathcal E$}]\begingroup Euclidean space\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 02$\mathscr K$@[{$\mathscr K$}]\begingroup Set of kinematically admissible macroscopic displacements\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 03$\mathscr K_\mu$@[{$\mathscr K_\mu$}]\begingroup Set of kinematically admissible minimally constrained microscopic displacements\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 04$\tilde{\mathscr K}_\mu$@[{$\tilde{\mathscr K}_\mu$}]\begingroup Set of kinematically admissible minimally constrained microscopic displacements fluctuations\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 05$\mathscr V$@[{$\mathscr V$}]\begingroup Set of virtual displacements\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 06$\mathscr V_\mu$@[{$\mathscr V_\mu$}]\begingroup Set of virtual displacements fluctuations\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 07$\upsilon$@[{$\upsilon$}]\begingroup Local (or natural) normalized domain\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 08$\Omega$@[{$\Omega$}]\begingroup Body domain in current configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 09$\partial \Omega$@[{$\partial \Omega$}]\begingroup Body domain boundary in current configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 10$\Omega_0$@[{$\Omega_0$}]\begingroup Body domain in reference configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 11$\partial \Omega_0$@[{$\partial \Omega_0$}]\begingroup Body domain boundary in reference configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 12$\Omega_\mu$@[{$\Omega_\mu$}]\begingroup RVE domain in current configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 13$\partial \Omega_\mu$@[{$\partial \Omega_\mu$}]\begingroup RVE domain boundary in current configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 14$\Omega_{\mu,0}$@[{$\Omega_{\mu,0}$}]\begingroup RVE domain in reference configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{D, 15$\partial \Omega_{\mu,0}$@[{$\partial \Omega_{\mu,0}$}]\begingroup RVE domain boundary in reference configuration\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)^{(e)}$@[{$(\cdot)^{(e)}$}]\begingroup Elemental quantity\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)^{(0)}$@[{$(\cdot)^{(0)}$}]\begingroup Reference material related quantity\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)^{g}$@[{$(\cdot)^{g}$}]\begingroup Global quantity\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)_0$@[{$(\cdot)_0$}]\begingroup Reference configuration, initial time\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)_\mu$@[{$(\cdot)_\mu$}]\begingroup Microscale related quantity\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S${}^h(\cdot)$@[{${}^h(\cdot)$}]\begingroup Discretized domain, interpolated field\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)_d$@[{$(\cdot)_d$}]\begingroup Deviatoric component\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)_h$@[{$(\cdot)_h$}]\begingroup Hydrostatic component\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)_u$@[{$(\cdot)_u$}]\begingroup Quantity in the mechanical problem\nomeqref {0}|nompageref}{xv}
-\nomenclatureentry{S$(\cdot)_T$@[{$(\cdot)_T$}]\begingroup Quantity in the thermal problem\nomeqref {0}|nompageref}{xv}
+\nomenclatureentry{ABVP@[{BVP}]\begingroup \textbf Boundary \textbf Value \textbf Problem\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{ADOF@[{DOF}]\begingroup \textbf Degrees \textbf Of \textbf Freedom\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{AFEM@[{FEM}]\begingroup \textbf Finite \textbf Element \textbf Method\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{APMVP@[{PMVP}]\begingroup \textbf Principle of \textbf Multi-scale \textbf Virtual \textbf Power\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{ARVE@[{RVE}]\begingroup \textbf Representative \textbf Volume \textbf Element\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{N, 01$a$@[{$a$}]\begingroup Scalar\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{N, 02$\vect a$@[{$\vect a$}]\begingroup First order tensor\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{N, 03$\mat A$@[{$\mat A$}]\begingroup Second order tensor\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{N, 04$\mathbf a$@[{$\mathbf a$}]\begingroup Finite Element Method vector\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{N, 05$\mathbf A$@[{$\mathbf A$}]\begingroup Finite Element Method matrix\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{N, 06$\mathcal A$@[{$\mathcal A$}]\begingroup Body, space or set\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\ud(\cdot)$@[{$\ud(\cdot)$}]\begingroup Infinitesimal\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\partial(\cdot)/\partial a$@[{$\partial(\cdot)/\partial a$}]\begingroup Partial derivative with respect to $a$\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\mathrm{div}_0(\cdot)$@[{$\mathrm{div}_0(\cdot)$}]\begingroup Material divergence operator\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\nabla(\cdot)$@[{$\nabla(\cdot)$}]\begingroup Spatial gradient operator\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\nabla_0(\cdot)$@[{$\nabla_0(\cdot)$}]\begingroup Material gradient operator\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\mathrm{det}(\cdot)$@[{$\mathrm{det}(\cdot)$}]\begingroup Determinant\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\ln(\cdot)$@[{$\ln(\cdot)$}]\begingroup Natural logarithm\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\mathrm{tr}(\cdot)$@[{$\mathrm{tr}(\cdot)$}]\begingroup Matrix trace\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\|(\cdot)\|$@[{$\|(\cdot)\|$}]\begingroup Euclidean norm\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$(\cdot)\otimes(\cdot)$@[{$(\cdot)\otimes(\cdot)$}]\begingroup Tensorial product\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$(\cdot)\cdot(\cdot)$@[{$(\cdot)\cdot(\cdot)$}]\begingroup Tensorial dot product\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$(\cdot):(\cdot)$@[{$(\cdot):(\cdot)$}]\begingroup Tensorial double contraction\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$(\cdot)*(\cdot)$@[{$(\cdot)*(\cdot)$}]\begingroup Appropriate product\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\mat I$@[{$\mat I$}]\begingroup Second order identity tensor\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\assemble (\cdot)$@[{$\assemble (\cdot)$}]\begingroup Finite Element Method assembly operator\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\delta(\cdot)$@[{$\delta(\cdot)$}]\begingroup Variation\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{O$\langle(\cdot)\rangle$@[{$\langle(\cdot)\rangle$}]\begingroup Ensemble average\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{C, 01$\dot{(\cdot)}$@[{$\dot{(\cdot)}$}]\begingroup First order time derivative\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{C, 02$\ddot{(\cdot)}$@[{$\ddot{(\cdot)}$}]\begingroup Second order time derivative\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{C, 03$\widehat{(\cdot)}$@[{$\widehat{(\cdot)}$}]\begingroup Incremental constitutive function\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 01$\mathcal E$@[{$\mathcal E$}]\begingroup Euclidean space\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 02$\mathscr K$@[{$\mathscr K$}]\begingroup Set of kinematically admissible macroscopic displacements\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 03$\mathscr K_\mu$@[{$\mathscr K_\mu$}]\begingroup Set of kinematically admissible minimally constrained microscopic displacements\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 04$\tilde{\mathscr K}_\mu$@[{$\tilde{\mathscr K}_\mu$}]\begingroup Set of kinematically admissible minimally constrained microscopic displacements fluctuations\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 05$\mathscr V$@[{$\mathscr V$}]\begingroup Set of virtual displacements\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 06$\mathscr V_\mu$@[{$\mathscr V_\mu$}]\begingroup Set of virtual displacements fluctuations\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 07$\upsilon$@[{$\upsilon$}]\begingroup Local (or natural) normalized domain\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 08$\Omega$@[{$\Omega$}]\begingroup Body domain in current configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 09$\partial \Omega$@[{$\partial \Omega$}]\begingroup Body domain boundary in current configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 10$\Omega_0$@[{$\Omega_0$}]\begingroup Body domain in reference configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 11$\partial \Omega_0$@[{$\partial \Omega_0$}]\begingroup Body domain boundary in reference configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 12$\Omega_\mu$@[{$\Omega_\mu$}]\begingroup RVE domain in current configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 13$\partial \Omega_\mu$@[{$\partial \Omega_\mu$}]\begingroup RVE domain boundary in current configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 14$\Omega_{\mu,0}$@[{$\Omega_{\mu,0}$}]\begingroup RVE domain in reference configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{D, 15$\partial \Omega_{\mu,0}$@[{$\partial \Omega_{\mu,0}$}]\begingroup RVE domain boundary in reference configuration\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)^{(e)}$@[{$(\cdot)^{(e)}$}]\begingroup Elemental quantity\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)^{(0)}$@[{$(\cdot)^{(0)}$}]\begingroup Reference material related quantity\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)^{g}$@[{$(\cdot)^{g}$}]\begingroup Global quantity\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)_0$@[{$(\cdot)_0$}]\begingroup Reference configuration, initial time\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)_\mu$@[{$(\cdot)_\mu$}]\begingroup Microscale related quantity\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S${}^h(\cdot)$@[{${}^h(\cdot)$}]\begingroup Discretized domain, interpolated field\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)_d$@[{$(\cdot)_d$}]\begingroup Deviatoric component\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)_h$@[{$(\cdot)_h$}]\begingroup Hydrostatic component\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)_u$@[{$(\cdot)_u$}]\begingroup Quantity in the mechanical problem\nomeqref {0}|nompageref}{xix}
+\nomenclatureentry{S$(\cdot)_T$@[{$(\cdot)_T$}]\begingroup Quantity in the thermal problem\nomeqref {0}|nompageref}{xix}
 \nomenclatureentry{V$\mathscr B$@[{$\mathscr B$}]\begingroup Deformable body\nomeqref {2.0}|nompageref}{11}
 \nomenclatureentry{V$\bm \varphi$@[{$\bm \varphi$}]\begingroup Motion\nomeqref {2.0}|nompageref}{11}
 \nomenclatureentry{V$\bm{X}$@[{$\bm{X}$}]\begingroup Material point coordinates\nomeqref {2.0}|nompageref}{11}
@@ -61,9 +61,9 @@
 \nomenclatureentry{V$\bm u$@[{$\bm u$}]\begingroup Displacement\nomeqref {2.0}|nompageref}{11}
 \nomenclatureentry{V$\bm F$@[{$\bm F$}]\begingroup Deformation gradient\nomeqref {2.0}|nompageref}{11}
 \nomenclatureentry{V$J$@[{$J$}]\begingroup Determinant of the deformation gradient\nomeqref {2.0}|nompageref}{11}
-\nomenclatureentry{V$\bm{b}$@[{$\bm{b}$}]\begingroup Body forces\nomeqref {2.4}|nompageref}{11}
-\nomenclatureentry{V$\rho$@[{$\rho$}]\begingroup Density\nomeqref {2.4}|nompageref}{11}
-\nomenclatureentry{V$\bm P$@[{$\bm P$}]\begingroup First Piola-Kirchhoff stress tensor\nomeqref {2.4}|nompageref}{11}
+\nomenclatureentry{V$\bm{b}$@[{$\bm{b}$}]\begingroup Body forces\nomeqref {2.4}|nompageref}{12}
+\nomenclatureentry{V$\rho$@[{$\rho$}]\begingroup Density\nomeqref {2.4}|nompageref}{12}
+\nomenclatureentry{V$\bm P$@[{$\bm P$}]\begingroup First Piola-Kirchhoff stress tensor\nomeqref {2.4}|nompageref}{12}
 \nomenclatureentry{V$e$@[{$e$}]\begingroup Specific internal energy\nomeqref {2.4}|nompageref}{12}
 \nomenclatureentry{V$r$@[{$r$}]\begingroup Specific heat supply\nomeqref {2.4}|nompageref}{12}
 \nomenclatureentry{V$\bm q$@[{$\bm q$}]\begingroup Heat flux vector\nomeqref {2.4}|nompageref}{12}
@@ -90,7 +90,7 @@
 \nomenclatureentry{V$\mathbf r$@[{$\mathbf r$}]\begingroup Nodal residue\nomeqref {2.20}|nompageref}{14}
 \nomenclatureentry{V$\bm{\mathcal{U}}$@[{$\bm{\mathcal{U}}$}]\begingroup Solution procedure for the mechanical problem at constant temperature\nomeqref {2.22}|nompageref}{18}
 \nomenclatureentry{V$\bm{\mathcal{T}}$@[{$\bm{\mathcal{T}}$}]\begingroup Solution procedure for the thermal problem at a fixed configuration\nomeqref {2.22}|nompageref}{18}
-\nomenclatureentry{V$\bm{\mathcal R}$@[{$\bm{\mathcal R}$}]\begingroup Thermomechanical residual\nomeqref {2.26}|nompageref}{18}
+\nomenclatureentry{V$\bm{\mathcal R}$@[{$\bm{\mathcal R}$}]\begingroup Thermomechanical residual\nomeqref {2.26}|nompageref}{19}
 \nomenclatureentry{V$\mathbf x$@[{$\mathbf x$}]\begingroup Abstract nodal quantity\nomeqref {2.29}|nompageref}{19}
 \nomenclatureentry{V$\bm{\mathcal S}$@[{$\bm{\mathcal S}$}]\begingroup Fixed-point function for the partitioned thermomechanical problem\nomeqref {2.30}|nompageref}{19}
 \nomenclatureentry{ADSC@[{DSC}]\begingroup \textbf Differential \textbf Scanning \textbf calorimetry\nomeqref {3.0}|nompageref}{22}

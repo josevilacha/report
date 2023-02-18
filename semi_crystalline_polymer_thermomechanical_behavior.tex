@@ -105,46 +105,51 @@ Chain disentanglement (point D in Figure~\ref{fig:stress_strain_curve_strobl}) h
 
 The thermomechanical response of semi-crystalline polymers is reviewed in this section with the explicit goal of setting targets for constitutive modeling (see Chapter~\ref{ch:modeling_semi_crystalline_polymer} and \ref{ch:numerical_results}).
 There are several factors affecting the mechanical response of semi-crystalline polymers.
-Extrinsic factors, such as temperature, strain rate, hydrostatic pressure, chemical nature of the environment (the presence of water, oxygen, organic solvents, etc.) are key to describe the behavior of a polymer.
+Extrinsic factors, such as temperature, strain rate, hydrostatic pressure, and the chemical nature of the environment, e.g., the presence of water, oxygen, and organic solvents, are critical in describing the behavior of a polymer.
 Other relevant elements in the characterization of semi-crystalline polymers are intrinsic.
-Of crucial importance are the degree of crystallinity, the lamellar thickness, the mesoscopic structure, molecular weight, physical entanglement and cross-linking, as well as polymer aging \citep{ayoubEffectsCrystalContent2011, serbanTensilePropertiesSemicrystalline2013, callister2014materials, cundiffModelingViscoplasticBehavior2022}.
+Of crucial importance are the degree of crystallinity, lamellar thickness, mesoscopic structure, molecular weight, physical entanglement, cross-linking, and polymer aging \citep{ayoubEffectsCrystalContent2011, serbanTensilePropertiesSemicrystalline2013, callister2014materials, cundiffModelingViscoplasticBehavior2022}.
 
-There are numerous experimental procedures that provide information about a material's mechanical response.
-Constant strain rate tests, mostly in the form of uniaxial loading, whether tensile or compressive, but also simple shear and torsion, are among the most relevant for the characterization of semi-crystalline polymers.
-Stress relaxation and creep experiments, as well as dynamic mechanical analysis (DMA), are also important tests that highlight the material's time-dependent response.
+Numerous experimental procedures provide information about a material's mechanical response.
+Constant strain rate tests are among the most relevant experiments for the characterization of semi-crystalline polymers, mainly through uniaxial loading experiments, whether tensile or compressive.
+Pure shear and torsion tests are also employed.
+Stress relaxation, creep experiments, and dynamic mechanical analysis are also necessary tests highlighting the material's time-dependent response.
 The polymer's behavior upon unloading must also be considered, using step-cycle and free-shrinkage tests.
-The information gathered from these last two experiments will aid in an appropriate discussion of the permanent deformation in semi-crystalline polymers, which is not as easily defined as in most metals at room temperature.
-The impact of the previously mentioned factors, such as temperature, strain rate, and hydrostatic pressure, on the mechanical response of the polymer in each type of experiment is thoroughly discussed in next paragraphs.
+The information gathered from these last two experiments will aid in an appropriate discussion of the permanent deformation in semi-crystalline polymers, which is less readily defined than in most metals at room temperature.
+The impact of the previously mentioned factors, such as temperature, strain rate, and hydrostatic pressure, on the mechanical response of the polymer in each type of experiment is thoroughly discussed in subsequent paragraphs.
 
 \subsection{Constant strain rate loading}
 
-The mechanical response of a semi-crystalline polymer in a constant strain-rate experiment is determined by several factors, as discussed above; however, in the conditions typical for most applications, they exhibit the behavior of a plastic polymer, that is, a polymer with some structural rigidity under load suitable for general-purpose applications.
-To be considered a plastic polymer, linear and branched polymers must be used below their glass transition temperature, $T_g$, which is supposed to be in the range from \SI{100}{\celsius} to \SI{400}{\celsius} and much higher than their service temperature, $T_\mathrm{ser}$, if amorphous, or below their melting temperature if semi-crystalline \citep{callister2014materials, arzhakovRelaxationPhysicalMechanical2019}.
+The mechanical response of a semi-crystalline polymer in a constant strain-rate experiment is determined by several factors, as already mentioned; however, in the conditions typical for most applications, they exhibit the behavior of a plastic polymer.
+These polymers exhibit structural rigidity under load and are suitable for general-purpose applications.
+To be included in this material class, linear and branched polymers, if amorphous, must be used below their glass transition temperature, $T_g$, supposed to be in the range from \SI{100}{\celsius} to \SI{400}{\celsius} and much higher than their service temperature, $T_\mathrm{ser}$ or below their melting temperature if semi-crystalline \citep{callister2014materials, arzhakovRelaxationPhysicalMechanical2019}.
+
+% \begin{figure}[hbtp]\
+% 	\includegraphics{mechanical_exp}
+% 	\caption{Pure shear constant strain rate experiment.}
+% \end{figure}
 
 The stress-strain curves of plastic polymers consistently show a few basic features (see Figure~\ref{fig:response_plastic_polymer}).
 The material exhibits a relatively stiff initial response, followed by yielding.
-It must be stressed, however, that in most polymers the development of permanent plastic strain is a continuous function of the applied strain, showing no discontinuity at the the nominal stress drop or extrapolated yield point \citep{wardReviewYieldBehaviour1971} (see Remark~\ref{rmrk:yield_polymer}).
-After this transient behavior, it follows a steady-state where the stress stabilizes, after which strain hardening begins, intensifying dramatically at large strains \citep{hissNetworkStretchingSlip1999,callister2014materials,makradiTwophaseSelfconsistentModel2005}.
+It must be stressed, however, that in most polymers, the development of permanent plastic strain is a continuous function of the applied strain, showing no discontinuity at the nominal stress drop or extrapolated yield point \citep{wardReviewYieldBehaviour1971} (see Remark~\ref{rmrk:yield_polymer}).
+After this transient behavior, it sometimes follows a steady state where the stress stabilizes, after which strain hardening begins, intensifying dramatically at large strains \citep{hissNetworkStretchingSlip1999,callister2014materials,makradiTwophaseSelfconsistentModel2005}.
 \begin{figure}[hbp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/response_plastic_polymer}
-	\caption{Stress-strain curves for different plastic polymers, including both glassy (PVC) and semi-crystaline (LDPE, HDPE, PTFE, PP, PA 6, PA 66) polymers in a constant strain rate uniaxial traction experiment. Adapted from \cite{gsellYieldTransientEffects1981}.}
+	\caption{Stress-strain curves for different plastic polymers, including both glassy (PVC) and semi-crystalline (LDPE, HDPE, PTFE, PP, PA 6, PA 66) polymers in a constant strain rate uniaxial traction experiment. Adapted from \cite{gsellYieldTransientEffects1981}.}
 \label{fig:response_plastic_polymer}
 \end{figure}
 
 \begin{remark}[Definition of yield in polymers]
-	YYielding is commonly defined as the beginning of plastic flow, for example, when modeling  metals far from their melting temperature, coincides.
-	It happens when a critical stress, the yield stress, is reached.
-
-	Polymers, on the other hand, present a more complex situation.
-	This is because for many polymers, there may be flow, i.e., "yielding", at any stress level.
-	In fact, the initiation of plastic strain is mainly controlled by kinetic processes and appears to play no part in determining the yield point of the material \citep{fotheringhamRoleRecoveryForces1978}, commonly defined in one of three ways: \citep{wardReviewYieldBehaviour1971}
+YYielding is commonly defined as the beginning of plastic flow.
+A common modeling assumption, employed, for example, when modeling metals far from their melting temperature, is that plastic flow only begins when a critical stress, the yield stress, is reached.
+Polymers, on the other hand, present a more complex situation because, for many polymers, there may be flow, i.e., "yielding," at any stress level.
+The initiation of plastic strain is mainly controlled by kinetic processes and appears to play no part in determining the yield stress of the material \citep{fotheringhamRoleRecoveryForces1978}, commonly defined in one of three ways: \citep{wardReviewYieldBehaviour1971}
 	\begin{itemize}
 		\item the stress at the maximum observed load;
 		\item the stress corresponding to the point of intersection of two tangent lines on the stress-strain curve;
 		\item the stress obtained when offsetting the linear portion of the response by a pre-defined strain amount.
 	\end{itemize}
-	See a Figure~\ref{fig:yield_criteria} for the corresponding graphical depictions.
+	See Figure~\ref{fig:yield_criteria} for the corresponding graphical depictions.
 	\begin{center}
 			\centering
 								\includegraphics[width=0.3\textwidth]{figures/yield_criterion_a}
@@ -159,17 +164,16 @@ After this transient behavior, it follows a steady-state where the stress stabil
 \end{remark}
 
 \paragraph{Pre-yield behavior}
-Regarding the response of a semi-crystalline polymer pre-yield, an increase in temperature will lead to a more compliant response and a lower yield strength, as shown, for example, in the results reported in \cite{brownInfluenceMolecularConformation2007} and \cite{hobeikaTemperatureStrainRate2000} for PE's.
-In fact, temperature is possibly the single most influential parameter dictating a polymer's mechanical response.
-Some polymers may exhibit brittle fracture to necking or even homogeneous rupture during an uniaxial traction test depending on the temperature \citep{wardIntroductionMechanicalProperties2004}.
+Regarding the response of a semi-crystalline polymer pre-yield, an increase in temperature will lead to a more compliant response and a lower yield strength, as shown, in Figure~\ref{fig:scheme_effect_temperature} for nylon 101 \citep{khanThermomechanicalResponseNylon2006}, and in the results reported in \cite{brownInfluenceMolecularConformation2007} and \cite{hobeikaTemperatureStrainRate2000} for PEs.
+In fact, the temperature is possibly the single most influential parameter dictating a polymer's mechanical response.
+Some polymers may exhibit brittle fracture to necking or even homogeneous rupture during a uniaxial traction test depending on the temperature \citep{wardIntroductionMechanicalProperties2004}.
 Moreover, whether the polymer is below or above its glass transition temperature results in markedly different behaviors in the case of amorphous polymers (see Figure~\ref{fig:scheme_effect_temperature} adapted from \cite{vanloockDeformationFailureMaps2018}).
-An amorphous polymer in its glassy state behaves as plastic polymer, whereas in its rubbery state it has a much more compliant response, coinciding with very large deformations and a lack of a clear yield point.
-On the other hand, even if a semi-crystalline polymer is above its glass transition temperature, the presence of a crystalline phase causes the polymer's response to be qualitatively similar to that of a plastic polymer, although less stiff than it would be at a lower temperature.
-See Figure~\ref{fig:response_plastic_polymer} keeping in mind that the glass transition temperature for HDPE is \SI{-90}{\celsius}  \citep{callister2014materials} and the experiment was performed at \SI{22}{\celsius}.
+An amorphous polymer in its glassy state behaves as a plastic polymer, whereas in its rubbery state, it has a much more compliant response, coinciding with very large deformations and a lack of a clear yield point.
+On the other hand, even if the temperature of semi-crystalline polymer is much higher than its glass transition temperature, the crystalline phase causes the polymer's response to be qualitatively similar to that of a plastic polymer, although less stiff than it would be at a lower temperature (see Figure~\ref{fig:scheme_effect_temperature}).
 \begin{figure}[hbtp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/scheme_effect_temperature}
-	\caption{Stress-strain response for poly(methyl methacrylate), an amorhpous polymer, at temperatures very close to its glass transition temperature. Adapted from \cite{vanloockDeformationFailureMaps2018}.}
+	\caption{Stress-strain curves for a semi-crystalline polymer (SCP), nylon 101 \citep{khanThermomechanicalResponseNylon2006}, and an amorphous polymer (AP), poly(methyl methacrylate) \citep{vanloockDeformationFailureMaps2018}, Above and below their glass transition temperatures, \SI{60}{\celsius} and \SI{118}{\celsius}, respectively.}
 \label{fig:scheme_effect_temperature}
 \end{figure}
 
@@ -177,12 +181,33 @@ The strain rate and the hydrostatic pressure, have the opposite effect, such tha
 More specifically regarding the effect of the strain rate on the stress response, Walley and Field \citep{walleyStrainRateSensitivity1994} present experimental results for uniaxial compressive tests on a wide selection of polymers, including semi-crystalline polymers.
 The HDPE samples display a linear relationship between the stress at different strain levels and the logarithm of the strain rate, while the PTFE's response shows a non-monotic relationship between the same quantities, which is however broadly increasing.
 A linear relationhip between the maximum stress and the logarithm of the strain rate is found for PEEK, until a critical strain rate is reached, followed by a decrease in the stress response.
+El-Qoubaa and Othman \citep{el-qoubaaStrainRateSensitivity2016} also provide an extensive set of results regarding the relationship between the strain rate, the temperature the yield strength of PEEK.
+They find, however, that the yield stress of the polymer alway increases with the strain rate as shown in Figure~\ref{fig:el_qoubaa_peek}.
+\begin{figure}[hbtp]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/yield_el_qoubaa_peek}
+	\caption{Yield stress, $\sigma_y$, as function of the strain rate, $\dot \varepsilon$, for PEEK at room temperature. Model and experimental results taken from \cite{el-qoubaaStrainRateSensitivity2016}.}
+\label{fig:yield_el_qoubaa_peek}
+\end{figure}
+
 
 An increase in bulk crystallinity will lead to a stiffer response and increased strength as evident in the results of Ayoub et al. \citep{ayoubEffectsCrystalContent2011} and Bedoui et al. \citep{bedouiMicromechanicalModelingIsotropic2006} for polyethylenes with degrees of crystallinity by weight at room temperature ranging from 15 to 72\% (see Figure~\ref{fig:deg_cryst_stiff}).
 However, the relationship between stiffness and crystallinity appears to be nonlinear.
-\begin{figure}
-	\includegraphics[width=0.6\textwidth]{figures/deg_cryst_stiff}
-  \caption{Young modulus of polyethylene as a function of the degree of crystallinity. Results taken from \cite{bedouiMicromechanicalModelingIsotropic2006} and \cite{ayoubModellingLargeDeformation2010}.}
+\begin{figure}[hbtp]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+							\centering
+							\includegraphics[width=\textwidth]{figures/deg_cryst_stiff}
+							\caption{}
+							\label{subfig:deg_cryst_stiff}
+			\end{subfigure} \hfill
+			\begin{subfigure}[b]{0.45\textwidth}
+							\centering
+							\includegraphics[width=\textwidth]{figures/deg_cryst_yield}
+							\caption{}
+							\label{subfig:deg_cryst_yield}
+			\end{subfigure}
+  \caption{Effect of the bulk crystallinity on \subref{subfig:deg_cryst_stiff} the Young modulus, $E$, and on the \subref{subfig:deg_cryst_yield} yield strength of a semi-crystalline polymer.}
 \label{fig:deg_cryst_stiff}
 \end{figure}
 That said, Schrauwen et al. \citep{schrauwenIntrinsicDeformationBehavior2004} tests in uniaxial compression samples of both PET and PE containing more similar degrees of crystallinity among the samples, 0, 21.7, and 29.7\% and 68.4, 72.3, and 76.6\%, respectively, and no differences in the stiffness are visible in the results.
@@ -245,8 +270,8 @@ The force maximum observed at the first yield point under certain conditions is 
 These experimental results make clear that such complex yielding processes are not always observed, being more likely to occur with low crystallinity ratios and low strain rates \citep{zengConstitutiveModelSemicrystalline2010}.
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/double_yield}
-	\caption{Stress-strain curve for polyethylenes exhibiting double yield. Adapted from \cite{haoRatedependentConstitutiveModel2022}.}
+	\includegraphics[width=0.9\textwidth]{figures/double_yield}
+	\caption{Stress-strain curve for polyethylenes exhibiting double yield. Adapted from \cite{khanThermomechanicalResponseNylon2006}.}
 \label{fig:double_yield}
 \end{figure}
 
@@ -260,8 +285,8 @@ The neck's stable propagation occurs when the neck area has hardened sufficientl
 If this is the case, Considéré's criterion for necking can be used to determine it.
 \begin{figure}[hbtp]
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/natural_draw_ratio}
-	\caption{Schematic depiction of cold drawing.}
+	\includegraphics[width=0.9\textwidth]{figures/natural_draw_ratio}
+	\caption{Schematic depiction of two uniaxial traction experiments. One where there is formation of a neck and stabilization, corresponding to cold drawing, and the other with neck formation and no neck stabilization, such that cold drawing is not observed.}
 \label{fig:natural_draw_ratio}
 \end{figure}
 
@@ -440,7 +465,7 @@ Glassy polymers and highly crystalline polymers exhibit similar behaviors, with 
 							\caption{}
 							\label{subfig:creep_compliance_scp}
 			\end{subfigure}
-	\caption{\subref{subfig:relax_modulus_scp} Relaxation modulus and \subref{subfig:creep_compliance_scp} creep compliance of a highly and slightly crystalline polymer, as well as a glassy polymer. Adapted from \cite{ferryViscoelasticPropertiesPolymers1980}.}
+	\caption{Typical viscoelastic properties of a very lightly crosslinked polymer (I), slightly crystalline or lightly crosslinked polymer (II), glassy polymer (III) and highly crystalline polymer. \subref{subfig:relax_modulus_scp} relaxation modulus, $G$. \subref{subfig:creep_compliance_scp} creep compliance, $J$. $A$ is an appropriate horizaontal shift constant. Adapted from \cite{ferryViscoelasticPropertiesPolymers1980}.}
 \label{fig:relax_creep_scp}
 \end{figure}
 
@@ -456,27 +481,27 @@ When $\omega\ t_c \approx 1$, i.e., $\mathrm{De} \approx 1$, for some deformatio
 The storage modulus and compliance are approximately mirror images of the stress relaxation modulus and creep compliance, since a dynamic measurement at frequency $\omega$ is qualitatively equivalent to a transient one at $t=1/\omega$.
 The glassy and crystalline polymers have values in the general neighborhood of 0.1 for the tangent loss, and may present several maxima associated with various deformation mechanisms \citep{ferryViscoelasticPropertiesPolymers1980}.
 See Figure~\ref{fig:dma_scp} for the loss and storage modulus of highly and lightly crystalline polymers.
-\begin{figure}
+\begin{figure}[hbtp]
 \centering
 \begin{subfigure}[b]{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/storage_modulus_scp}
+\caption{}
+\label{subfig:storage_modulus_scp}
+\end{subfigure} \hfill
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering
 						\includegraphics[width=\textwidth]{figures/loss_modulus_scp}
 						\caption{}
 						\label{subfig:loss_modulus_scp}
-		\end{subfigure} \hfill
-		\begin{subfigure}[b]{0.45\textwidth}
-						\centering
-						\includegraphics[width=\textwidth]{figures/storage_modulus_scp}
-						\caption{}
-						\label{subfig:storage_modulus_scp}
 		\end{subfigure}
-	\caption{Loss \subref{subfig:loss_modulus_scp} and storage \subref{subfig:storage_modulus_scp} modulus of a highly and a lightly crystalline polymer, as well as a glassy polymer. Adapted from \cite{ferryViscoelasticPropertiesPolymers1980}.}
+	\caption{Typical viscoelastic properties of a very lightly crosslinked polymer (I), slightly crystalline or lightly crosslinked polymer (II), glassy polymer (III) and highly crystalline polymer. \subref{subfig:relax_modulus_scp} storage modulus, $G^\prime$. \subref{subfig:creep_compliance_scp} loss modulus, $G^{\prime\prime}$. $A$ is an appropriate horizaontal shift constant. Adapted from \cite{ferryViscoelasticPropertiesPolymers1980}.}
 \label{fig:dma_scp}
 \end{figure}
 
 Ferry \citep{ferryViscoelasticPropertiesPolymers1980} collects some experimental results illustrating the nonlinear behavior of semi-crystalline polymers.
 For a more thorough discussion on what is the expected linear behavior for a time-dependent material see Section~\ref{sec:infinitesimal_thermo_viscoelasticity}.
-In a stress relaxation experiment, a linear behavior implies coinciding curves when relaxation modulus divided by the strain is ploted for different strains levels.
+In a stress relaxation experiment, a linear behavior implies coinciding curves when the relaxation modulus divided by the strain is ploted for different strains levels.
 However, for tensile stress relaxation of PE single crystal mats, the ratio of stress to strain decreases more rapidly with time at higher extensions, in the range of $\epsilon = \SIrange{0.0003}{0.003}{}$; the degree of nonlinearity increases markedly with decreasing temperature in the range of \SIrange{40}{10}{\celsius}.
 Nonlinear creep recovery of polyethylene has also been reported.
 It is demonstrated that after a partial stress relaxation at constant strain for various times and strain magnitudes, recovery is much slower at large strains but somewhat faster for shorter durations of the initial straining.
@@ -512,7 +537,7 @@ Focus is given here to results obtained through DMA, although most observations 
 The most important information gathered from these experiments is the temperature of the relaxation transition at a given frequency.
 Starting with low crystallinity polymers helps clarify the discussion of relaxation transitions in semi-crystalline polymers.
 In fact, for a completely amorphous polymer glass, there will be two important transitions: the alpha and beta transitions.
-The alpha transition is tightly connected to the glass transition\footnote{The glass transition is a thermodynamic transition which also implies a structure change in terms of a decrease in the free volume in addition to the cooperative motion of the polymer molecules associated with the alpha viscoelastic transition}, and it is the main viscoelastic transition, while the beta transition is another transition happening at a lower temperature \citep{arzhakovRelaxationPhysicalMechanical2019}.
+The alpha transition is tightly connected to the glass transition\footnote{The glass transition is a thermodynamic transition which also implies a structure change in terms of a decrease in the free volume in addition to the cooperative motion of the polymer molecules associated with the alpha viscoelastic transition}, and it is the main viscoelastic transition, while the beta transition is another transition happening generally at a lower temperature \citep{arzhakovRelaxationPhysicalMechanical2019}.
 Which of these happens at higher temperature may change at high enough frequencies \citep{matsuokaThermodynamicTheoryViscoelasticity1996}.
 According to Arzhakov \citep{arzhakovRelaxationPhysicalMechanical2019}, the elementary kinetic unit responsible for these transitions is a macromolecule segment, with the beta transition being linked to the quasi-independent, localized displacement of the segments (intramolecule), and the alpha transition, to these quasi-independent modes acquiring a cooperative, coorelated character (intermolecule) \citep{bershteinGeneralMechanismTransition1985, matsuokaThermodynamicTheoryViscoelasticity1996}.
 As the extent of crystallinity decreases and amorphous domains large enough to allow configurational rearrangements of longer chain segments appear in semi-crystalline polymers, the motions responsible for these two transitions presumably gradually resemble those seen in the amorphous state in the transition zone of viscoelastic behavior \citep{ferryViscoelasticPropertiesPolymers1980}.
@@ -548,6 +573,23 @@ There is however sometimes a fourth relaxation, connected to the kinetic units i
 This transition appears to be visible in the results of Panowicz et al. \citep{panowiczPropertiesPolyethyleneTerephthalate2021} for PET.
 It seems, however, not to be noticeable in the other experimental results mentioned so far.
 Hoffman et al. \citep{hoffmanAnalysisRelaxationsPolychlorotrifluoroethylene2007} also mention the existence of a cryogenic transition, present in some polymers, such as isotactic propylene (iPP).
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/pet_dma}
+\caption{}
+\label{subfig:pet_dma}
+\end{subfigure} \hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+						\includegraphics[width=\textwidth]{figures/pe_dma}
+						\caption{}
+						\label{subfig:pe_dma}
+		\end{subfigure}
+	\caption{title}
+\end{figure}
 
 As an example of a semi-crystalline polymer that doesn't fit exactly into the classification scheme just provided see the results of McCrum \cite{mccrumStudyInternalFriction1959} for PTFE with crystallinities ranging from 48 to 92\%.
 The relaxation observed at the lower temperatures ($\approx$\SI{-100}{\celsius}) disappears with the increase in crystallinity.
@@ -652,4 +694,4 @@ Finally, \cite{blummCharacterizationPTFEUsing2010} also supplies the thermal dif
 In addition to the change in crystalline of the material already mentioned, the glass temperature is also detectable as a step.
 The authors combining the heat capacity, density and thermal diffusivity measurements are able to compute the thermal conductivity of the polymer which is approximately constant across the range of temperatures studied except for the moment when the aforementioned solid solid transition occurs.
 
-\colorbox{BrickRed}{Say something about variation of properties with temperature.}
+% \colorbox{BrickRed}{Say something about variation of properties with temperature.}

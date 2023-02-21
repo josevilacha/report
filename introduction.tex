@@ -2,21 +2,48 @@
 
 \section{Context}
 
-The development of enginnering application emplies the design
-from strcuture to material.
-Some how we must solve
-we look for important materials.
+Design permeates engineering.
+Ashby \citep{} identifies main features of mechanical design as being:
+\begin{itemize}
+    \item function;
+    \item material;
+    \item shape;
+    \item and process.
+\end{itemize}
+There is a profound interplay between all these facets of design when developing a mechanical component.
+Accordingly, the component must meet functional criteria in terms of its thermomechanical behavior.
+Additional specifications of its electric, magnetic, or mass transfer characteristics may also be prescribed.
+The capability of said component to fulfil these requeriments will depend on the material or materials it is made of, as well as, on its shape.
+However, some materials are unable to be manufactured into a given shape, or at all employing a specific manufacturing process.
+In the specification of the function required, there may also be included as a goal the reduction of weight, cost or environmental impact, and these are tighly connected to the material choice and process selected.
 
-what do we want to do?
+An even more intimate relationship between the final performance of the mechanical component and the process selected for its manufacturing may be uncovered taking into account the hierachical structure of engineering materials \citep{}.
+The author highlights the cause/effect relationship between the process, the structure of the material, across multiple scales from the nano scale to the macroscale, the properties of the material and its ultimate performance.
+A reverse goals/means standpoint can also be established where a given performance requirement drives the search for a material with a given set of properties.
+These in turn may only be realised if the appropriate multi-scale structure is obtained through a suitable process.
 
-why modeling is important?
-How to model?
+"Integrated Computational Materials Engineering" (ICME) is a systematic approach proposed by Horst \cite{} that includes these relationships within a computational framework.
+Its goal is the simulateneous design of a component, the materials that make them up and the manufacturing process employed, taking into account the material's structure at different scales.
+To realise this vision appropriate models and numerical tools must be availabele to simulate the processes at a given time and length scale, as well as, the experimental methods to probe their validity and obtain the material parameters in the model.
+At each scale and timeframe, the correct boundary conditions, initial conditions and material parameters must be establish to capture accurately the behavior of the material.
+An adequate way to transfer information between the different scales must also be devised.
+
+Taking into account the hierarchial nature of a material's structure, appropriate models must be established at the structural (meters, centimeters), macro (millimeters), meso (hundred to tenths of micrometers), micro (micrometers) and atomic/nanoscale (angston).
+Relevant to this work is the strcutrual scale, where solutions from FEM are used to model both the manufacturing and the product life.
+Full scale experiments are employed to gauge the accurateness of the predictions.
+At the macroscale an appropriate constitutive/rheological model must be devised.
+Its use on an appropriate FEM simulation and comparison with simple mechanical tests, e.g., unixial or torsion experiments, is used for validation.
+At the mesoscale, retaining the appropriate constitutive models and adding an accurate representation of a polymer blend may be enough to describe it.
 
 \section{Motivation}
 
-In the context of produc-material-life we focus on the multi-physics and semii-crystalline.
+The present work focuses on two points of the aforementioned paradigm: the solution of multi-physics problems, in particular, thermomechanical phenomena, with FEM in the structural response of a component and the macroscale constitutive description of semi-crystalline polymers.
 
 \subsection{Multi-physics simulations}
+
+Give examples of applications thermomechanics and thermomechanics electric and so on.
+
+Talk about how one may influence the other.
 
 Thermomechanics is widely acknowledged as a crucial physical phenomenon in engineering applications and a highly sought effect in computational models.
 Thermomechanical interaction is key to adequately describe a large variety of technological processes, including sintering and material removal procedures.
@@ -36,6 +63,20 @@ Each of these strategies has its benefits and drawbacks, with the particular cho
 
 Semi-crystalline polymers have a complex and hierarchial heterogeneous morphology.
 Both their microstructure and their mesostructure will depend on the processing history, as well as mechanical and thermal histories, in addition to the polymer chemistry and conformation \citep{khouryMorphologyCrystallineSynthetic1976,cangemiTwoPhaseModelMechanical2001,hoffmanAnalysisRelaxationsPolychlorotrifluoroethylene2007}.
+
+Why polymers good.
+
+\paragraph{Examples and applications}
+
+Employ all props for comparison with metals, ceramics and composites.
+
+stiff and yield vs densitiy. Polymer best if low weight is benefit.
+
+Polymer not as though
+
+Polymers best at strain failure.
+
+ Manufacturing.
 
 \paragraph{Microstructure}
 At the microscopic level, they consist of at least two different phases: a crystalline phase and an amorphous phase \citep{khouryMorphologyCrystallineSynthetic1976}.
@@ -143,8 +184,6 @@ In fact,  a majority of plastic products are manufactured by deforming the mater
 Common examples of these types of operations include film blowing, fiber spinning and injection molding.
 In many of these applications, the formation of a highly oriented crystalline phase has a beneficial impact on the mechanical behavior of the material \citep{dairaniehPhenomenologicalModelFlowInduced1999, raoStudyStraininducedCrystallization2001}.
 Most PET articles are manufactured in this way \citep{boyceConstitutiveModelFinite2000, raoStudyStraininducedCrystallization2001, makradiTwophaseSelfconsistentModel2005}.
-
-\paragraph{Examples and applications}
 
 
 \section{Computational Framework}

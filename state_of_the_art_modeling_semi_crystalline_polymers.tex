@@ -112,18 +112,18 @@ Figures~\ref{subfig:burgers_stress_relax} and \ref{subfig:burgers_creep_plus_rec
       \caption{}
       \label{subfig:burgers_creep_plus_recov}
     \end{subfigure}
-  \caption{Respnse of the Burgers material in \subref{subfig:burgers_cnst_strain_rate} constant strain rate experiment, \subref{subfig:burgers_stress_relax} a stress relaxation experiment and a \subref{subfig:burgers_creep_plus_recov} creep experiment with recovery.}
+  \caption{Schematic response of the Burgers material in \subref{subfig:burgers_cnst_strain_rate} constant strain rate experiment, \subref{subfig:burgers_stress_relax} a stress relaxation experiment and a \subref{subfig:burgers_creep_plus_recov} creep experiment with recovery.}
 \label{fig:burgers_mat_res}
 \end{figure}
 
-\begin{remark}[Choice of internal variables]
-  A state variable is one of the set of variables that are used to describe the mathematical "state" of a dynamical system. Intuitively, the state of a system describes enough about the system to determine its future behaviour in the absence of any external forces affecting the system.
-  In general, they can be identified with the rheological elements able to storage energy, i.e., with the springs.
-  To see may the strain in the viscous element, may not be an appropriate choice consider, in the case of the Burgers material (see Equation~\eqref{}), a relaxation experiment where the strain is unknown and the external force is the strain rate which is zero.
-  Knowing the strain on the springs the the stress can be easily found and from these the evolution of the elastic strain from the flow rule.
-  If it was the viscous strains knwon not much could be done.
-  \colorbox{BurntOrange}{Include also stuff about structure.}
-\end{remark}
+% \begin{remark}[Choice of internal variables]
+%   A state variable is one of the set of variables that are used to describe the mathematical "state" of a dynamical system. Intuitively, the state of a system describes enough about the system to determine its future behaviour in the absence of any external forces affecting the system.
+%   In general, they can be identified with the rheological elements able to storage energy, i.e., with the springs.
+%   To see may the strain in the viscous element, may not be an appropriate choice consider, in the case of the Burgers material (see Equation~\eqref{}), a relaxation experiment where the strain is unknown and the external force is the strain rate which is zero.
+%   Knowing the strain on the springs the the stress can be easily found and from these the evolution of the elastic strain from the flow rule.
+%   If it was the viscous strains knwon not much could be done.
+%   \colorbox{BurntOrange}{Include also stuff about structure.}
+% \end{remark}
 
 \paragraph{Linearity}
 It is worth noting that infinitesimal thermoviscoelasticity is linear, in the sense that the response to the sum of two inputs is the sum of the responses to each of the inputs (see Figure~\ref{fig:linearity}).
@@ -136,9 +136,20 @@ If the increases in strain considered are rendered infinitesimal, the constituti
 This is entimately connected to the fact that the rate equations for the state variables are ordinary differential equations (see Equation~\eqref{eq:state_var_desc_burgers} for the Burgers material) and that as a material property, the relaxation modulus is only a function of time and not of strain, strain rate or stress (see Equation~\eqref{eq:relaxation_modulus_burgers} for the Burgers material).
 The consequences of this linear behavior for the response of the material in relevant mechanical experiments are discussed shortly.
 \begin{figure}[hbtp]
-  \centering
-  \includegraphics[width=0.6\textwidth]{figures/linearity}
-  \caption{Linearity in the deformation of an elastic, a viscous, and a viscoelastic material. Adapted from \cite{wardIntroductionMechanicalProperties2004}.}
+\centering
+\begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/elastic_linearity}
+            \caption{}
+            \label{subfig:elastic_linearity}
+    \end{subfigure} \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/viscoelastic_linearity}
+            \caption{}
+            \label{subfig:viscoelastic_linearity}
+    \end{subfigure}
+  \caption{Stress driven linear response of \subref{subfig:elastic_linearity} an elastic, and \subref{subfig:viscoelastic_linearity} a viscoelastic material. Adapted from \cite{wardIntroductionMechanicalProperties2004}.}
 \label{fig:linearity}
 \end{figure}
 
@@ -159,34 +170,34 @@ For example, HDPE displays a marked strain hardening, as shown in the experiment
 Also, the stress corresponding to the steady state as a function of the strain rate often follows a power law (see e.g.,  \cite{gsellDeterminationPlasticBehaviour1979}) coinciding with so-called non-Newtonian viscosity (see Figure~\ref{subfig:constant_strain_rate_expected}).
 Besides this, Matsuoka \citep{matsuokaThermodynamicTheoryViscoelasticity1996} emphasizes that the steady state stress grows unbounded with the strain rate according to infinitesimal viscoelasticity, which makes no physical sense.
 Also, some semi-crystalline polymers exhibit more or less abrupt changes in flow behavior at a given stress, which is akin to plastic yield in rate-independent plasticity \citep{bergstromMechanicsSolidPolymers2015}.
-\begin{figure}
+\begin{figure}[hbtp]
 \centering
-  \begin{subfigure}[b]{0.45\textwidth}
+  \begin{subfigure}[b]{0.49\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figures/constant_strain_rate_expected}
             \caption{}
             \label{subfig:constant_strain_rate_expected}
     \end{subfigure} \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figures/constant_strain_rate_nonlinear}
             \caption{}
             \label{subfig:constant_strain_rate_nonlinear}
     \end{subfigure}
-  \caption{Stress-strain curve and Steady state stress-strain rate curve for a \subref{subfig:constant_strain_rate_expected} an infinitesimal viscoelastic material (linear) and a \subref{subfig:constant_strain_rate_nonlinear} nonlinear material.}
+  \caption{Stress-strain curve and steady state stress-strain rate curve for a \subref{subfig:constant_strain_rate_expected} an infinitesimal viscoelastic material (linear) and a \subref{subfig:constant_strain_rate_nonlinear} nonlinear material.}
 \label{fig:constant_strain_rate_results}
 \end{figure}
 
 Another nonlinear feature observed in semi-crystalline polymers is the dependence of the relaxation modulus and creep compliance on the strain and stress, in addition to time.
 The expected linear behavior in a stress relaxation experiment is to obtain the same stress response up to a multiplicative constant, which is the initial strain.
 Likewise, in a creep experiment the strain response divided by the stress is equal for experiments at different stress levels.
-See Figure~\ref{fig:relax_creep_expected} for a depiction of the expected linear and possible nonlinear behaviors.
+% See Figure~\ref{fig:relax_creep_expected} for a depiction of the expected linear and possible nonlinear behaviors.
 The recovery may also display nonlinear features, that is, the strain recovered $\varepsilon_r$ will also depend on the initial strain $\varepsilon_0$ and how long the sample was strained, $t_0$, yielding completly different $\varepsilon/\varepsilon_0$ versus $\log t/t_0$ curves \citep{ferryViscoelasticPropertiesPolymers1980}.
-\begin{figure}
-  \includegraphics[width=0.9\textwidth]{example-image-a}
-  \caption{Expected behavior of a infinitesimal viscoelastic material and nonlinear alternatives in a) stress relaxation experiment, b) in a creep experiment. }
-\label{fig:relax_creep_expected}
-\end{figure}
+% \begin{figure}
+%   \includegraphics[width=0.9\textwidth]{example-image-a}
+%   \caption{Expected behavior of a infinitesimal viscoelastic material and nonlinear alternatives in a) stress relaxation experiment, b) in a creep experiment. }
+% \label{fig:relax_creep_expected}
+% \end{figure}
 
 
 \section{Finite linear viscoelasticity}
@@ -269,7 +280,7 @@ On the other hand, the free enthalpy of the kinetic unit is always lower after c
 For more details see \cite{kocks1975thermodynamics}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{example-image-a}
+	\includegraphics{figures/site_model_theory}
 	\caption{Transition of a kinetic unit between two states. a) Free energy. b) Free enthalpy.}
 \label{fig:site_model_theory}
 \end{figure}
@@ -765,8 +776,8 @@ See Figure~\ref{fig:gradient_decomp} for reference, where $\mathbf F = \mathbf F
 Since, in general, the deformation gradients are not commutative the choice for the order is relevant.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{example-image-a}
-	\caption{Additive and multiplicative strain decomposition corresponding to small and large strains, respectively.}
+	\includegraphics{figures/gradient_decomp}
+	\caption{Additive and multiplicative strain decomposition corresponding to infinitesimal and finite deformations, respectively.}
 \label{fig:gradient_decomp}
 \end{figure}
 
@@ -891,7 +902,7 @@ The Maxwell model is given as
 corresponding to the rheological model in Figure~\ref{fig:rheo_model_maxwell}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{example-image-a}
+	\includegraphics{figures/rheo_model_maxwell}
 	\caption{Rheological model corresponding to the Maxwell model.}
 \label{fig:rheo_model_maxwell}
 \end{figure}
@@ -954,10 +965,21 @@ In the context of infinitesimal viscoelasticity it can be expressed in equivalen
 	\label{eq:sls_voigt_rep}
 \end{gather}
 where in both equations the terms containing the strain, $\varepsilon$, are the stress response in equilibrium.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\textwidth]{example-image-a}
-	\caption{Rheological model for the standard linear solid. a) Maxwell representation. b) Voigt representation.}
+\begin{figure}[hbtp]
+\centering
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/rheo_model_sls_maxwell}
+\caption{}
+\label{subfig:rheo_model_sls_maxwell}
+\end{subfigure} \hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+						\includegraphics[width=\textwidth]{figures/rheo_model_sls_voigt}
+						\caption{}
+						\label{subfig:rheo_model_sls_voigt}
+		\end{subfigure}
+	\caption{Rheological model for the standard linear solid. \subref{subfig:rheo_model_sls_maxwell} Maxwell representation. \subref{subfig:rheo_model_sls_voigt} Voigt representation.}
 \label{fig:rheo_model_sls}
 \end{figure}
 
@@ -1029,8 +1051,19 @@ It also accepts two equivalent descriptions as
 in the context of small strains.
 See Figure~\ref{fig:rheo_model_burgers} for the corresponding rheological models.
 \begin{figure}
-  \centering
-  \includegraphics[width=0.9\textwidth]{example-image-a}
+\centering
+\begin{subfigure}[b]{0.57\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/rheo_model_burgers_maxwell}
+\caption{}
+\label{subfig:rheo_model_burgers_maxwell}
+\end{subfigure} \hfill
+	\begin{subfigure}[b]{0.42\textwidth}
+		\centering
+						\includegraphics[width=\textwidth]{figures/rheo_model_burgers_voigt}
+						\caption{}
+						\label{subfig:rheo_model_burgers_voigt}
+		\end{subfigure}
   \caption{Rheological model for the Burgers material. a) Maxwell representation. b) Voigt representation.}
   \label{fig:rheo_model_burgers}
 \end{figure}
@@ -1081,7 +1114,7 @@ This framework includes both Maxwell representations for the standard linear sol
 Models with more than two arms are considered in the following section.
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=.9\textwidth]{example-image-a}
+	\includegraphics{figures/rheo_model_gen_maxwell}
 	\caption{Rheological model for the generalized Maxwell model.}
 \label{fig:rheo_model_gen_maxwell}
 \end{figure}
@@ -1176,8 +1209,9 @@ The spring E is linear following th Hencky model (Equation~\eqref{eq:hencky_mode
 This constant is treated in the model as an internal variable which evolves according to an equation similar to Equation~\eqref{eq:bodner_partom_rate_eq}.
 The rate of viscoplastic flow in the element $P$, $\dot\gamma^P$, is given by a power law (Equation~\eqref{eq:flow_rule_power_law}), as is the flow rate in the element $B$.
 \begin{figure}[hbtp]
-	\includegraphics[width=0.6\textwidth]{figures/hybrid_model}
-	\caption{Rheological representation of the Hybrid model.}
+  \centering
+	\includegraphics{figures/hybrid_model}
+	\caption{Rheological representation of the Hybrid model \citep{bergstromConstitutiveModelingUltrahigh2002, bergstromPredictionMultiaxialMechanical2003}.}
 \label{fig:hybrid_model}
 \end{figure}
 
@@ -1207,17 +1241,17 @@ If on the other hand, it is assumed that the stress is the same in all composite
 \end{equation}
 according to the so-called Reuss mixture rule.
 This choice corresponds to a lower bound for the stiffness of the composite material.
-\begin{figure}
+\begin{figure}[hbtp]
 \centering
-\begin{subfigure}[b]{0.45\textwidth}
+\begin{subfigure}[b]{0.35\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{example-image-a}
+            \includegraphics[width=\textwidth]{figures/voigt_mixture_rule}
             \caption{}
             \label{subfig:voigt_mixture_rule}
     \end{subfigure} \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{example-image-b}
+            \includegraphics[width=\textwidth]{figures/reuss_mixture_rule}
             \caption{}
             \label{subfig:reuss_mixture_rule}
     \end{subfigure}
@@ -1225,16 +1259,27 @@ This choice corresponds to a lower bound for the stiffness of the composite mate
 \label{fig:mixture_rules}
 \end{figure}
 
-The work of Takayanagi and coworkers \citep{ takayanagiApplicationEquivalentModel1964} was, perhaps, the first to consider such an approach to model semi-crystalline polymers.
+The work of Takayanagi and coworkers \citep{takayanagiApplicationEquivalentModel1964} was, perhaps, the first to consider such an approach to model semi-crystalline polymers.
 The mixture rule employed is neither the Voigt or the Reuss mixture rule, since the phases are not arranged in layers.
 Instead the amorphous phase is kept at the corner of the volume element considered, with dimensions $\varphi$ and $\lambda$, as depicted in Figure~\ref{fig:model_takayanagi}.
 The quantity $\varphi \lambda$ is equal to the volume fraction of amorphous polymer, supplying an extra degree of freedom that can be correlated to the distribution of one phase in the other.
 A more homegeneous distribution of the amorphous phase leads to similar values for $\varphi$ and $\lambda$, while inhomogeneities in either direction favor one or the other parameter.
 In \cite{takayanagiMechanicalPropertiesFine1967}, the authors consider employing similar techniques to model drawn samples of polyethylene (PE), isotactic propylene (iPP), among other crystalline polymers.
-\begin{figure}
-	\centering
-	\includegraphics[width=.9\textwidth]{example-image-a}
-	\caption{Mixture model of Takayanagi et al. \citep{takayanagiApplicationEquivalentModel1964} for semi-crystalline polymers.}
+\begin{figure}[hbtp]
+\centering
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/takaynagi_low}
+\caption{}
+\label{subfig:takaynagi_low}
+\end{subfigure} \hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+						\includegraphics[width=\textwidth]{figures/takaynagi_high}
+						\caption{}
+						\label{subfig:takaynagi_high}
+		\end{subfigure}
+	\caption{Mixture model of Takayanagi et al. \citep{takayanagiApplicationEquivalentModel1964} for semi-crystalline polymers with crystallinities of \subref{subfig:takaynagi_low} about 90\% and \subref{subfig:takaynagi_high} about 50\% an their equivalent models. Black area expresses the non-crystalline region. Adapted from \cite{takayanagiApplicationEquivalentModel1964}. }
 \label{fig:model_takayanagi}
 \end{figure}
 
@@ -1265,10 +1310,21 @@ These are combined according to the degree of crystallinity, $\chi$, in two ways
 		\mathbf D^p_A = \chi \mathbf D^{p,\ c}_A + (1 -\chi)\mathbf D^{p,\ a}_A.
 	\end{equation}
 \end{itemize}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\textwidth]{example-image-a}
-	\caption{Mixture models considered by Ahzi et al. \citep{ahziModelingDeformationBehavior2003}.}
+\begin{figure}[hbtp]
+\centering
+\begin{subfigure}[b]{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/ahzi_parallel}
+\caption{}
+\label{subfig:ahzi_parallel}
+\end{subfigure} \hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+						\includegraphics[width=\textwidth]{figures/ahzi_series}
+						\caption{}
+						\label{subfig:ahzi_series}
+		\end{subfigure}
+	\caption{Mixture models considered by Ahzi et al. \citep{ahziModelingDeformationBehavior2003}: \subref{subfig:ahzi_parallel} Parallel arrangement. \subref{subfig:ahzi_series} Series arrangement.}
 \label{fig:ahzi_combiniations}
 \end{figure}
 The crystallization rate is expressed following a non-isothermal phenomenological expression based on the modiﬁed Avrami equation
@@ -1285,16 +1341,16 @@ $K_\text{av}$ is the transformation rate function, which is defined in the case 
 with $\mathrm{Nu}$ the number density of nuclei initially present within the amorphous phase.
 
 Strobl and co-workers \citep{hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006} propose a somewhat similar description for polyethylene.
-They also consider essentially two arms in a rheological model (see Figure~\ref{fig:strobl_model}).
+They also consider essentially two arms in a rheological model.
 The first is a Maxwell arm with a linear spring and an Eyring dashpot in series.
 The second is found through a Voigt mixture rule between a rubber elastic element and an elasto-plastic element.
 These choices are supported by extensive experimental results on PEVA and PE.
-\begin{figure}
-	\centering
-	\includegraphics[width=.9\textwidth]{example-image-a}
-	\caption{Model proposed by Strobl and co-workers \citep{hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006} for semi-crystalline polymers.}
-\label{fig:strobl_model}
-\end{figure}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=.9\textwidth]{example-image-a}
+% 	\caption{Model proposed by Strobl and co-workers \citep{hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006} for semi-crystalline polymers.}
+% \label{fig:strobl_model}
+% \end{figure}
 
 Makradi et al. \citep{makradiTwophaseSelfconsistentModel2005} extend this model considering a self-consistent approach based on the Eshelby result, which amounts to the use of a Maxwell arms where the properties of the elastic and viscous elements are appropriate equivalent properties as the intermolecular resistance .
 The stress corresponding to the intermolecular resistance is thus given according to the Hencky model (see Equation~\eqref{eq:hencky_model}) with the isotropic elastic moduli $\bm{\mathsf D}$ is chosen following the self-consistent method proposed by Hill \citep{hillSelfconsistentMechanicsComposite1965}.

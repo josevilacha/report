@@ -3,7 +3,7 @@
 \section{Context}
 
 Design permeates engineering.
-Ashby \citep{} identifies main features of mechanical design as being:
+Ashby \citep{ashbyMaterialsSelectionMechanical1999} identifies the main features of mechanical design as being:
 \begin{itemize}
     \item function;
     \item material;
@@ -13,46 +13,44 @@ Ashby \citep{} identifies main features of mechanical design as being:
 There is a profound interplay between all these facets of design when developing a mechanical component.
 Accordingly, the component must meet functional criteria in terms of its thermomechanical behavior.
 Additional specifications of its electric, magnetic, or mass transfer characteristics may also be prescribed.
-The capability of said component to fulfil these requeriments will depend on the material or materials it is made of, as well as, on its shape.
-However, some materials are unable to be manufactured into a given shape, or at all employing a specific manufacturing process.
-In the specification of the function required, there may also be included as a goal the reduction of weight, cost or environmental impact, and these are tighly connected to the material choice and process selected.
+The aptitude of said component to satisfy these demands will be determined by the material or materials from which it is made, as well as its shape.
+Some materials, however, cannot be manufactured into a particular shape or at all using a specific manufacturing process.
+Weight, cost, and environmental impact reduction can all be included as goals, and their achievement is closely related to the material and method selected.
 
-An even more intimate relationship between the final performance of the mechanical component and the process selected for its manufacturing may be uncovered taking into account the hierachical structure of engineering materials \citep{}.
-The author highlights the cause/effect relationship between the process, the structure of the material, across multiple scales from the nano scale to the macroscale, the properties of the material and its ultimate performance.
-A reverse goals/means standpoint can also be established where a given performance requirement drives the search for a material with a given set of properties.
+An even more intimate relationship between the final performance of the mechanical component and the process selected for its manufacturing may be uncovered taking into account the hierachical structure of engineering materials.
+Accordingly, Olson \citep{olsonDesigningNewMaterial2000} emphasizes the cause/effect relationship between the process, the material's structure at multiple scales ranging from the nanoscale to the macroscale, the material's properties, and its final performance.
+The reverse goals/means perspective can also be adopted where a given performance requirement drives the search for a material with a given set of properties.
 These in turn may only be realised if the appropriate multi-scale structure is obtained through a suitable process.
-
-"Integrated Computational Materials Engineering" (ICME) is a systematic approach proposed by Horst \cite{} that includes these relationships within a computational framework.
+"Integrated Computational Materials Engineering" (ICME) is a systematic approach proposed by Horst \citep{horstemeyerCradletograveSimulationbasedDesign2003} that includes these relationships within a computational framework.
 Its goal is the simulateneous design of a component, the materials that make them up and the manufacturing process employed, taking into account the material's structure at different scales.
-To realise this vision appropriate models and numerical tools must be availabele to simulate the processes at a given time and length scale, as well as, the experimental methods to probe their validity and obtain the material parameters in the model.
-At each scale and timeframe, the correct boundary conditions, initial conditions and material parameters must be establish to capture accurately the behavior of the material.
+To realize this vision, suitable models and numerical tools for simulating processes at a given time and length scale, as well as experimental methods to probe their validity and acquire material parameters in the model, must be available.
+To accurately capture the behavior of the material, the correct boundary conditions, initial conditions, and material parameters must be established at each scale and time-frame.
 An adequate way to transfer information between the different scales must also be devised.
 
-Taking into account the hierarchial nature of a material's structure, appropriate models must be established at the structural (meters, centimeters), macro (millimeters), meso (hundred to tenths of micrometers), micro (micrometers) and atomic/nanoscale (angston).
+Taking into account the hierarchial nature of a material's structure, appropriate models must be set up at the structural (meters, centimeters), macro (millimeters), meso (hundred to tenths of micrometers), micro (micrometers) and atomic/nanoscale (angston).
 Relevant to this work is the strcutrual scale, where solutions from FEM are used to model both the manufacturing and the product life.
-Full scale experiments are employed to gauge the accurateness of the predictions.
+Full scale experiments are employed to gauge the accuracy of the predictions.
 At the macroscale an appropriate constitutive/rheological model must be devised.
-Its use on an appropriate FEM simulation and comparison with simple mechanical tests, e.g., unixial or torsion experiments, is used for validation.
-At the mesoscale, retaining the appropriate constitutive models and adding an accurate representation of a polymer blend may be enough to describe it.
+Its use in an appropriate FEM simulation and comparison with simple mechanical experiments, e.g., unixial or torsion experiments, is used for validation.
+Retaining the appropriate continuum constitutive models and including an accurate representation of a polymer blend at the mesoscale may allow its constitutive description.
 
 \section{Motivation}
 
-The present work focuses on two points of the aforementioned paradigm: the solution of multi-physics problems, in particular, thermomechanical phenomena, with FEM in the structural response of a component and the macroscale constitutive description of semi-crystalline polymers.
+The current work focuses on two aspects of the aforementioned paradigm: the use of FEM in the structural response of a component to solve multi-physics problems, particularly those involving thermomechanical phenomena, and the macroscale constitutive description of semi-crystalline polymers.
 
 \subsection{Multi-physics simulations}
 
-Give examples of applications thermomechanics and thermomechanics electric and so on.
-
-Talk about how one may influence the other.
-
-Thermomechanics is widely acknowledged as a crucial physical phenomenon in engineering applications and a highly sought effect in computational models.
-Thermomechanical interaction is key to adequately describe a large variety of technological processes, including sintering and material removal procedures.
-To include it in a numerical simulation toolbox, the problem has to be correctly formulated in a thermodynamically consistent way.
-Having achieved an appropriate formulation of the problem, the Finite Element Method can be used to solve it.
-
 It is generally understood that thermomechanics is a crucial physical phenomenon in engineering applications and a highly sought-after feature in computational models.
 These effects play a central role in mainstream and heavy-duty thermomechanical applications such as rocket nozzles \citep{kuhl2002ThermomechanicalAnalysisOptimization,danowski_monolithic_2013}, disk brakes and clutches \citep{yevtushenko2015NumericalAnalysisThermal}, heat-assisted incremental sheet forming \citep{liu2018HeatassistedIncrementalSheet} and thermal stresses due to machining \citep{elsheikh2021ComprehensiveReviewResidual}, for instance.
+There is a profound interplay between the mechanical and the thermal field:
+\begin{\itemize}
+  \item the thermal field influences the mechanical through temperature-dependent properties and the appearance
+\end{\itemize}
 
+Give examples of applications thermomechanics and thermomechanics electric and so on.
+
+To include a solver for the thermomechanical problem in a numerical simulation toolbox, the problem has to be correctly formulated in a thermodynamically consistent way.
+Having achieved an appropriate formulation of the problem, the Finite Element Method can be used to solve it.
 After the spatial discretization obtained by the FEM has been provided, the complete thermomechanical problem can still be solved by employing two different strategies: a monolithic approach or a partitioned approach.
 In the former, the discretized equations representing the momentum balance and energy conservation are solved simultaneously.
 In the latter, the problems are solved independently, solving the mechanical problem at a fixed temperature and then the thermal problem at a fixed configuration, taking the so-called isothermal split as an example.

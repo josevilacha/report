@@ -122,88 +122,7 @@ In the absence of further mention, the Generalised-$\alpha$ for first-order syst
 
 \section{Solution of the thermomechanical problem}
 
-After spatial and temporal discretization, the thermomechanical problem is reduced to a system of coupled nonlinear algebraic equations on the mechanical variables (displacement) and thermal variables (temperatures) (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}).
-Generally speaking, the strategies typically employed to solve this problem can be classified into two groups: monolithic and partitioned approaches.
-The latter can be further divided into explicit (loosely or weakly coupled) and implicit (strongly coupled) schemes, depending on the type of coupling enforcement.
-When comparing them, one should keep in mind that the most desirable properties of an algorithm for solving coupled problems are unconditional stability, high accuracy, ease of implementation, low memory requirements, high computational efficiency, and the potential for software reuse \citep{fellipa_partitioned_1988}.
-Although a significant fraction of scientific research on solution techniques for coupled multi-physics problems has not originated from the thermomechanics community, but rather from the Fluid-Structure Interaction field, the following sections present a review of these concepts linked with thermomechanics literature.
-
-\subsection{Monolithic schemes}
-\label{sec:monolithic-schemes}
-
-Monolithic algorithms solve the nonlinear multi-physics system of equations simultaneously, fulfilling the coupling conditions exactly.
-Together with implicit time-integration techniques, monolithic schemes can provide unconditional stability and are typically associated with good robustness.
-These methods are often typified by the direct application of Newton's method to the coupled equations, requiring the computation of the cross-derivative blocks between fields.
-To solve the potentially large system of equations arising from the application of Newton's method, iterative methods are preferable to direct methods, partly due to memory footprint considerations.
-Newton-Krylov methods with the generalized minimal residual method (GMRES) or the biconjugate gradient stabilized method (BiCGStab) as Krylov subspace solvers are among the most widely used in multi-physics problems  \citep{hron_monolithic_2006}.
-The effective solution of a large system of equations, including any potential nonlinearities, is particularly difficult for monolithic algorithms \citep{danowski_monolithic_2013}, as the algebraic properties of different blocks can be very distinct.
-In fact, a good preconditioning strategy is a key component of effective solvers for large-scale multi-physics problems and this has been the main development topic of monolithic schemes in the last decade \citep{tezduyar2006space, lin_parallel_2010, gee_truly_2011, danowski_monolithic_2013, verdugo_unified_2016, mayr_hybrid_2020}.
-In short, the great appeal of monolithic schemes is the robustness and stability of the solution method, which comes at the expense of poor flexibility and extensive development and maintenance costs.
-
-Monolithic schemes have been successfully  used in the literature to tackle thermomechanical problems considering a variety of constitutive behaviors.
-Carter and Booker \citep{carter_finite_1989} consider thermoelastic materials, Gawin and Schrefler \citep{gawinThermoHydroMechanical1996} deal with thermo-hydro-mechanical problems in partially saturated porous materials, while Ibrahimbegovic and Chorfi \citep{ibrahimbegovic_covariant_2002} present a thermoplasticity covariant formulation, including large viscoplastic strains, strain localization, and cyclic loading cases.
-Danowski \citep{danowski_computational_2014} deals with various temperature-dependent, isotropic, elastic, and elastoplastic material models for small and finite strains, incorporating the effect of high temperatures predominating in rocket nozzles.
-Both Netz \citep{netz_high-order_2013} and Rothe and coworkers \citep{rothe_monolithic_2015} present monolithic approaches, based on the multilevel Newton method, for the solution of the thermomechanical problem involving thermovisco-plastic materials.
-More recently, Felder and coworkers \citep{felder_thermomechanically_2021} proposed a finite strain thermomechanically coupled two-surface damage-plasticity theory.
-The authors obtain the solution for the three coupled fields, displacement, nonlocal damage variable, and temperature, employing an implicit and monolithic solution scheme.
-Relevant application of monolithic solution schemes to thermomechanical contact interaction can be found in \citet{zavarise1992RealContactMechanisms,wriggers1993ThermomechanicalContactRigorous,oancea1997FiniteElementFormulation,hueber2009ThermomechanicalContactProblems,dittmann2014IsogeometricAnalysisThermomechanical,seitz2018ComputationalApproachThermoelastoplastic}.
-
-\subsection{Partitioned schemes}
-\label{sec:partitioned-schemes}
-
-The earliest contributions regarding the partitioned treatment of coupled systems emerged in the mid-1970s, involving structure-structure interactions and fluid-structure interactions (see, e.g., \cite{belytschko_mesh_1976}, \cite{park_stabilization_1977}, \cite{belytschko_stability_1978}, \cite{hughes_implicit-explicit_1978} and \cite{belytschko_mixed_1979}).
-There are usually many ways of partitioning a complex system into subsystems or fields.
-Felippa and Park \citep{felippa_staggered_1980} provide a very pragmatic and helpful criterion for selecting the fields to be considered.
-According to their definition, a field is characterized by computational considerations.
-It is a segment of the overall problem for which a separable software module is either available or readily prepared if the interaction terms are suppressed.
-As such, a partitioned approach to the solution of multi-physics problems employs analyzers specific to each field separately integrated in time.
-The coupling between the fields is achieved through proper communication between the individual components using prediction, substitution, and synchronization techniques.
-This renders a flexible and easy-to-implement solution scheme, which suffers from some numerical issues, which will be mentioned soon.
-
-As previously stated, partitioned schemes can be either explicit or implicit.
-In explicit schemes, the solution is found by solving each field sequentially with a one-directional data transfer, using a suitable problem split.
-In one exemplary time step, an explicit coupling algorithm solves the mechanical problem first, then sends relevant data to the thermal solver, and finally solves the thermal problem without providing feedback on the thermal solution to the mechanical solver.
-It has been used in the context of thermoelasticity \citep{argyris_natural_1981, armero_new_1992, johansson_thermoelastic_1993, miehe_entropic_1995, miehe_theory_1995, holzapfel_entropy_1996}, thermoplasticity \citep{armero_new_1992, armero_priori_1993, simo_associative_1992, wriggers_coupled_1992, agelet_de_saracibar_numerical_1998, agelet_de_saracibar_formulation_1999,lee2015NumericalModelingAnalysis}, thermoviscoplasticity \citep{adam_numerical_2002,adam_thermomechanical_2005,miehe2011CoupledThermoviscoplasticityGlassy} and contact \citep{wriggers1994ContactConstraintsCoupled,agelet_de_saracibar_numerical_1998,xing_three_2002,bergman2004FiniteElementModel}.
-The isothermic and adiabatic splits are the most common operator splits in thermomechanical problems.
-The isothermal split is arguably the most straightforward and natural approach, as noted in \cite{argyris_natural_1981}, one of the earliest contributions on the topic.
-This scheme seeks to solve the thermomechanical problem by first solving the mechanical problem at a constant temperature and then solving a purely thermal phase at a fixed configuration---newly updated.
-As an alternative, Armero and Simo \citep{armero_new_1992} proposed the adiabatic split, which consists of a mechanical phase at constant entropy, followed by purely thermal conduction at fixed configuration.
-In terms of implementation complexity, the adiabatic split is comparable to the isothermal split and is unconditionally stable, a remarkable advantage in comparison with the conditionally stable isothermal split.
-It is, however, more challenging to extend to other material models as it requires the modification and creation of specific algorithmic components at the constitutive level, which might not be readily available.
-
-There are several techniques to improve the stability and accuracy characteristics of explicit partitioned approaches, e.g., algebraic augmentation \citep{park_stabilization_1977, park_stabilization_1983}, double-pass approach \citep{armero_new_1992, piperno_explicitimplicit_1997, farhat_provably_2006, farhat_robust_2010}, prediction techniques \citep{piperno_explicitimplicit_1997, piperno_partitioned_2001, michler_efficient_2005, farhat_provably_2006}, and subcycling \citep{piperno_partitioned_1995, farhat_high_1997, piperno_explicitimplicit_1997}.
-Irrespective of the theoretical temporal convergence order of the partitioned explicit scheme, the fully coupled discretized equations of the problem will never be exactly satisfied at each time instant.
-There is a lag between the solution of the different fields, e.g., the mechanical and thermal fields, in a thermomechanical problem, which can be interpreted as an additional discretization error \citep{michler_efficient_2005}.
-The convergence conditions of partitioned solution procedures are also discussed by Turska and Schrefler \citep{turskaConvergenceConditionsPartitioned1993a} in the context of consolidation problems.
-
-In implicit schemes, inter-field iterations are performed until a given tolerance for the different field's unknowns is reached---irrespective of the type of operator split employed.
-It converges to the solution of the monolithic scheme and thus can satisfy the discrete version of the coupled problem exactly.
-Regardless of the eventual conditional stability of the corresponding explicit scheme, the implicit alternative can be unconditionally stable---it has the same temporal stability properties as the monolithic scheme---but the convergence of the inter-field iterations is not guaranteed or may take an excessive number of iterations.
-This embodies a significant limitation and places a severe restriction on the use of these strategies.
-Nonetheless, several acceleration techniques are available in the literature to speed up convergence.
-Most of these are developed in the context of Fluid-Structure Interaction, but their application to thermomechanical problems is not widespread, which ultimately is the primary motivation of this work (see Section~\ref{sec:implicit_solution_coupl}).
-
-There are a few contributions regarding the use of implicit partitioned schemes in the context of thermomechanics.
-Erbts and Düster \citep{erbts_accelerated_2012} solve problems involving thermoelasticity at finite strains, Netz \citep{netz_high-order_2013} explores thermoviscoelastic problems, and Da\-now\-ski \citep{danowski_computational_2014} presents results on thermoelasticity and thermoelastoplasticity.
-Including more than two fields, Erbts and coworkers \citep{erbts_partitioned_2015} tackle electro-thermomechanical problems, as do Wendt and coworkers \citep{wendt_partitioned_2015}, which also consider radiative heat transfer.
-Successful applications to thermomechanical problems involving contact have been reported in \citet{johansson_thermoelastic_1993,rieger2004AdaptiveMethodsThermomechanical,temizer2011ThermomechanicalContactHomogenization,kruger2020PorousductileFractureThermoelastoplastic}, to name a few.
-
-Regarding computational efficiency, according to Michler \citep{michler_efficient_2005}, solving a fluid-structure interaction problem to the same accuracy using an explicit scheme is less efficient than employing an implicit approach.
-For the same total number of iterations, the difference in the accuracy reached ranges from one to three orders of magnitude---although the implicit coupling is more expensive for the same number of iterations, naturally.
-These findings contradict a claim made in \cite{felippa_partitioned_2001}, which is not supported by any numerical results.
-In the numerical examples presented in \cite{danowski_computational_2014}, the monolithic solver is, in most cases, faster than an implicit scheme employing Aitken relaxation for problems in thermomechanics.
-The differences range from 120\% to 140\% in favor of the monolithic scheme.
-Supporting evidence for these conclusions can also be found in \cite{novascone_evaluation_2015}.
-The authors report  CPU time ratios between the implicit partitioned and monolithic approaches, ranging from 0.635 to 3.75 on the coupling magnitude.
-This evidence suggests that implicit schemes can deliver competitive simulation times with the same accuracy as the monolithic if more sophisticated coupling techniques are used to accelerate the convergence and improve the robustness of the inter-field iterations, with the added benefit of more straightforward implementation and extension.
-
-Lastly, it is important to recall the recommendations given in \cite{felippa_partitioned_2001} regarding the choice between partitioned and monolithic approaches.
-According to the authors, the circumstances that favor the partitioned approach for tackling a coupled problem are a research environment with few delivery constraints, access to existing software, localized interaction effects, and widespread spatial/temporal component characteristics.
-The opposite circumstances, involving a commercial environment, a rigid deliverable timetable, massive software development resources, global interaction effects, and comparable length and time scales, favor a monolithic approach.
-Therefore, one can readily see a number of applications where partitioned strategies fit very well, involving small development times and preservation of pre-existing technology.
-
-\section{Implicit partitioned schemes for thermomechanics} \label{sec:implicit_solution_coupl}
-
+The present work strategy adopted for the solution of the thermomechanical problem is the use implicit partitoned schemes (see Section~\ref{sec:multi_physics_sims} for context).
 The cornerstone of partitioned solution schemes is to solve the thermal and mechanical problems separately, i.e., Equation~\eqref{eq:mech_problem} is solved considering a fixed temperature, and Equation~\eqref{eq:therm_problem} is solved assuming a fixed configuration.
 For convenience, consider the existence of two functions, \(\bm{\mathcal{U}}_{n+1}\)\nomenclature[V]{$\bm{\mathcal{U}}$}{Solution procedure for the mechanical problem at constant temperature} and \(\bm{\mathcal{T}}_{n+1}\)\nomenclature[V]{$\bm{\mathcal{T}}$}{Solution procedure for the thermal problem at a fixed configuration}, that represent these solution procedures at instant \(t_{n+1}\), such that
 \begin{align}
@@ -275,9 +194,343 @@ In the thermomechanical context, the following residual functions \nomenclature[
      \end{enumerate}
      Attending to the previous criteria, the most suitable methods should comply with the following desirable features: they must minimize the number of calls to \(\bm{\mathcal{R}}\), as it is expensive to compute; the amount of information saved from previous iterations must also be judiciously chosen as the problem's dimensionality is large; and, they cannot require the analytical derivative of \(\bm{\mathcal{R}}\), since it is not available.
 
-     In general, any implicit method for solving nonlinear systems of equations available in the literature can be used to solve the partitioned thermomechanical problem as long as it meets these criteria.
-     The approaches considered by the author in \cite{vila-chaNumericalAssessmentPartitioned2023a}: the fixed-point method, the constant underrelaxation method, the Aitken relaxation method, the Broyden-like methods, especially Broyden's method, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
+     % In general, any implicit method for solving nonlinear systems of equations available in the literature can be used to solve the partitioned thermomechanical problem as long as it meets these criteria.
+     % The approaches considered by the author in \cite{vila-chaNumericalAssessmentPartitioned2023a}: the fixed-point method, the constant underrelaxation method, the Aitken relaxation method, the Broyden-like methods, especially Broyden's method, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
+
+     % \smallskip
+     % \noindent \textit{Remark.} To make it clear to the reader, each time $\bm{\mathcal{R}}(\bullet)$ appears in the formulas; it represents a new execution to the solution sequence of the fields, which requires new calls to the mechanical solver, thermal solver and data communication.
+     % \smallskip
 
      \smallskip
-     \noindent \textit{Remark.} To make it clear to the reader, each time $\bm{\mathcal{R}}(\bullet)$ appears in the formulas; it represents a new execution to the solution sequence of the fields, which requires new calls to the mechanical solver, thermal solver and data communication.
-     \smallskip
+          \noindent \textit{Remark.} To make it clear to the reader, each time $\bm{\mathcal{R}}(\bullet)$ appears in the formulas; it represents a new execution to the solution sequence of the fields, which requires new calls to the mechanical solver, thermal solver and data communication.
+          \smallskip
+
+          \subsection{Fixed-point} \label{sec:fixed_point_approach}
+
+          The application of the fixed-point method to obtain the roots of \(\bm{\mathcal{R}}\) yields
+          \begin{equation}
+            \mathbf{x}^{k+1} = \bm{\mathcal{S}}(\mathbf{x}^k) = \mathbf{x}^k - \bm{\mathcal{R}}(\mathbf{x}^k).
+          \end{equation}
+          If the particular functions defined in Equations~\eqref{eq:def_res_jacobi} and \eqref{eq:def_res_gauss_seidel} are used, one finds the  two basic Schwarz procedures commonly employed in partitioned implicit solution procedures \citep{uekermann_parallel_2013, danowski_computational_2014, gatzhammer_efficient_2014}.
+          They are the additive or block Jacobi and the parallel Scharwz or Gauss-Seidel procedures.
+          The names originate from domain decomposition, and justify the subscripts employed in Equations~\eqref{eq:def_res_jacobi} and \eqref{eq:def_res_gauss_seidel}.
+
+          This approach necessitates only one residual evaluation per nonlinear iteration, with no previous iterations being required.
+          Its computational complexity scales linearly with the number of unknowns, and it is the simplest method to implement.
+
+          \subsection{Constant underrelaxation} \label{sec:underrelaxation}
+
+          One of the most straightforward ways to stabilize an iterative method is to use constant underrelaxation (see, .e.g, \cite{erbts_accelerated_2012} or \cite{gatzhammer_efficient_2014}).
+          The relaxation is performed as follows
+          \begin{equation} \label{eq:constant_relaxation}
+            \mathbf{x}^{k+1}=(1-\omega) \mathbf{x}^{k}+\omega\bm{\mathcal{S}}(\mathbf{x}^k)=\mathbf{x}^{k} -\omega \bm{\mathcal{R}}(\mathbf{x}^k),
+          \end{equation}
+          where \(\omega\) is the relaxation factor chosen in the range \(0<\omega<1\), which corresponds to an underrelaxation, to achieve a stabilizing effect.
+
+          Constant underrelaxation works well if \(\omega\) is close to 1 but leads to a slow convergence if \(\omega\) has to be chosen close to 0.
+          Thus, the constant underrelaxation method creates unmanageable computational costs for severe instabilities.
+          Overrelaxation can also be considered, keeping in mind that for \(\omega > 2\), convergence is lost.
+          The optimal \(\omega\) is not necessarily the largest stable one \citep{gatzhammer_efficient_2014} and has to be set empirically.
+          In what follows, alternative methods are discussed to decrease the number of iterations necessary while maintaining stability.
+
+          The number of residual evaluations, memory requirements, and computation complexity equals the ones displayed by the fixed-point approach.
+          Compared to the last approach, the increase in complexity is negligible.
+
+          \subsection{Aitken relaxation} \label{sec:aitken_relaxation}
+
+
+          The so-called Aitken \(\Delta^2\) relaxation method was introduced by Irons and Tuck \citep{irons_version_1969} as a modified Aitken \(\Delta^2\) that does not require the computation of the function twice per iteration as in the original method \footnote{The use of the Aitken-\(\Delta^2\) process to solve nonlinear equations leads to Steffenson's method. There are also generalizations of the Aitken-\(\Delta^2\) process to the vector case \citep{sidi_vector_2017}. Both lead, however, to schemes where the residual is evaluated twice per nonlinear iteration.}.
+          It has been widely used in the context of FSI \citep{irons_version_1969, kuttler_fixed-point_2008, joosten_analysis_2009, kuttler_vector_2009} and also in thermomechanics (see, e.g.,\cite{erbts_accelerated_2012, danowski_computational_2014, erbts_partitioned_2015, wendt_partitioned_2015}).
+
+          In the one-dimensional case, this method resembles the secant method applied to the fixed point problem, which can be used to solve nonlinear equations without differentiation.
+          This version of Aitken's \(\Delta^2\) method provides a dynamic relaxation parameter, which can be used to improve the convergence/stability properties of the coupling algorithm.
+
+          The solution to the current iteration from the outcome of the previous iteration $\mathbf{x}^{k}$ plus a new increment $\Delta \mathbf{x}^{k}$ is found from
+          \begin{equation}
+            \mathbf{x}^{k+1}=\mathbf{x}^{k}+\Delta \mathbf{x}^{k}.
+          \end{equation}
+          The increment reads
+          \begin{equation} \label{eq:aitken_update}
+            \Delta \mathbf{x}^{k}=\omega^{k}\left(\bm{\mathcal{S}}(\mathbf{x}^{(k)})-\mathbf{x}^{(k)}\right)=-\omega^{k} \bm{\mathcal{R}}(\mathbf{x}^k).
+          \end{equation}
+          with $\omega^{k}$ being the relaxation coefficient.
+          This coefficient is updated in every iteration cycle as a function of two previous residuals.
+
+          \begin{equation} \label{eq:aitken_relaxation_factor}
+            \omega^{k}=-\omega^{k-1} \frac{\left(\bm{\mathcal{R}}(\mathbf{x}^k)-\bm{\mathcal{R}}(\mathbf{x}^{k-1})\right)^{\mathrm{T}} \bm{\mathcal{R}}(\mathbf{x}^{k-1})}{\left(\bm{\mathcal{R}}(\mathbf{x}^k)-\bm{\mathcal{R}}(\mathbf{x}^{k-1})\right)^{2}}.
+          \end{equation}
+          The dynamical relaxation coefficient is restricted to the range \((0,2)\) because employing a relaxation coefficient outside this range leads to a loss of convergence \citep{erbts_accelerated_2012}.
+          For the first nonlinear iteration, an initial value for the relaxation coefficient must be specified.
+          If $\omega^{0}=1$ is chosen, the result will be a fixed-point iteration, then followed by dynamic relaxation.
+
+          This approach is also easy to implement, and the additional computational input is acceptable since only inner vector products must be performed.
+          It only requires a residual evaluation per iteration and the previous iteration.
+
+          \subsection{Newton-Krylov methods} \label{sec:newton_krylov}
+
+          The Newton-Raphson or Newton scheme is a very popular iterative solution procedure for nonlinear systems of equations, which converges quadratically, under appropriate conditions.
+          It can be applied to Equation~\eqref{eq:abstract_residue_equation}, yielding
+          \begin{gather}
+            \bm{\mathbf{J}}_{\bm{\mathcal{R}}(\mathbf{x}^k)}\Delta \mathbf{x}^k = - \bm{\mathcal{R}}(\mathbf{x}^k), \label{eq:newton_system}\\
+            \mathbf{x}^{k+1} = \mathbf{x}^k + \Delta \mathbf{x}^k. \label{eq:newton_iter}
+          \end{gather}
+          Every iteration of the Newton scheme involves at least one invocation of the thermal and mechanical solvers when computing $\bm{\mathcal{R}}\left(\mathbf{x}^{k}\right)$.
+          The critical point for black-box equation coupling is obtaining the derivative information in the Jacobian matrix, which is not readily available.
+
+          One possibility to bypass the need for $\bm{\mathbf{J}}_{\bm{\mathcal{R}}}$ is by employing Newton-Krylov methods, which seek the solution of the Newton system of equations in Equation~\eqref{eq:newton_system} using Krylov methods, such as the generalized minimal residual method (GMRES) or the biconjugate gradient stabilized method (BiCGSTAB).
+          The Krylov iterative methods approximate the solution of a linear system \(\mathbf{A} \mathbf{z} = \mathbf{b}\) using the Krylov subspace
+          \begin{equation}
+            \pazocal{K}_m = \operatorname{span}\{\mathbf{r}_0, \mathbf{A}\mathbf{r}_0, \mathbf{A}^2 \mathbf{r}_0, \dots, \mathbf{A}^{m-1}\mathbf{r}_0\},
+          \end{equation}
+          such that the \(m\)-th iterate  \(\mathbf{z}_m\in \pazocal{K}_m\), with \(\mathbf{r}_0 = \mathbf{b} - \mathbf{A} \mathbf{z}_0\).
+          The precise way the \(\mathbf{z}_m\) is built is what distinguishes the different methods.
+          To produce the appropriate Krylov subspace, one needs the product \(\bm{\mathbf{J}}_{\bm{\mathcal{R}}}(\mathbf{x}^k) \mathbf{y}\) in Equation~\eqref{eq:newton_system}, for some vector \(\mathbf{y}\).
+          It is assumed that the Jacobian is unavailable, so it must be approximated.
+          Also, it would be beneficial if the full Jacobian is neither computed in its entirety nor fully stored in memory, i.e., a matrix-free method is desirable.
+          Although the matrix of coefficient $\mathbf{A}=\bm{\mathbf{J}}_{\bm{\mathcal{R}}}$ is not known, it is possible to exploit the fact that $\mathbf{A}$ is a Jacobian matrix, such that the Jacobian-vector product can be approximated with a numerical forward difference directional derivative \citep{kelley_solving_2003}.
+
+          Since the present use case includes many unknowns, it leads to memory concerns if the Krylov subspace is allowed to grow indefinitely.
+          A restarted version where the maximum size of the Krylov space is restricted to \(p\) elements is preferred.
+          Once this number is reached, the procedure is restarted.
+          However, the convergence can be poor if \(p\) is small.
+          The so-called restarted GMRES is denoted as \(\text{GMRES}(p)\), with \(p\) being the maximum number of previous iterations in memory.
+          Further details on Newton-Krylov methods can be found in \cite{kelley_solving_2003}.
+
+          In each nonlinear iteration of the Newton-Krylov method, the number of iterations inside the Krylov subspace solver can be large, and each iteration requires an evaluation of the residual.
+          This number of residual evaluations can be a significant drawback when the intended use assumes that evaluating the function \(\bm{\mathcal{R}}\) is expensive.
+          This problem is, however, mitigated by the fact that the linear system in Newton's method is only solved until it satisfies
+          \begin{equation}
+            \|\bm{\mathbf{J}}_{\bm{\mathcal{R}}}(\mathbf{x}^k) \Delta \mathbf{x}^*_m+ \bm{\mathcal{R}}(\mathbf{x}^k)\| \leq \eta\|\bm{\mathcal{R}}(\mathbf{x}^k)\|,
+          \end{equation}
+          where \(\eta\) is called the forcing term, and it is chosen to avoid over-solving the Newton system (Equation~\eqref{eq:newton_system})---essentially, the linear system is solved to an error that does not influence the error in the nonlinear solution procedure.
+          As a simple approach, Kelley \citep{kelley_solving_2003} suggests using a fixed value for the forcing term, e.g., \(\eta=0.1\).
+          However, he describes more sophisticated ways to choose this parameter, such as the Eisenstat-Walker method.
+          The smaller the forcing term \(\eta\), the closer one gets to the standard Newton method.
+          However, especially in the first nonlinear iterations, choosing a \(\eta\) that is too small leads to unnecessarily long computational times since the error in the Newton iterations supersedes the error in the solution of the linear system.
+
+          \subsection{Broyden-like class} \label{sec:multisecant}
+
+          Both the generalized Broyden's family, including Broyden's method, and Anderson's mixing can be understood as methods in the Broyden-like class as described in \cite{fang_two_2009}.
+          They are multisecant quasi-Newton methods, which rely on the Newton update and build approximations to the Jacobian or directly to its inverse.
+
+          Suppose the latest \(m\) iterates of the nonlinear solution sequence is available, which are denoted by \(\mathbf{x}^{1}, \ldots, \mathbf{x}^{m}\).
+          Let \(\Delta \mathbf{x}^{i}=\mathbf{x}^{i+1}- \mathbf{x}^{i}\) for \(i=1, \ldots, m-1\).
+          The $m-1$ step vectors, \(\Delta \mathbf{x}^{1}, \ldots, \Delta \mathbf{x}^{m-1}\), are partitioned into \(p\) groups,
+          \begin{align}
+            \mathbf{X}^{1} & =\left[\Delta \mathbf{x}^{1}, \ldots, \Delta \mathbf{x}^{z_{1}}\right], \\
+            \mathbf{X}^{2} & =\left[\Delta \mathbf{x}^{z_{1}+1}, \ldots, \Delta \mathbf{x}^{z_{2}}\right],\\
+                           & \vdots \\
+            \mathbf{X}^{p} & =\left[\Delta \mathbf{x}^{z_{p-1}+1}, \ldots, \Delta \mathbf{x}^{z_{p}}\right],
+          \end{align}
+          where \(z_{i}\) is the index of the last entry in the \(i\)-th group for \(i=1, \ldots, p\), meaning that \(z_{0}=0\) and \(z_{p}=m-1\).
+          Also partition \(\Delta \bm{\mathcal{R}}^{1}, \ldots, \Delta \bm{\mathcal{R}}^{m-1}\) into \(\mathbf R^{1}, \ldots, \mathbf R^p\) accordingly, where \(\Delta \bm{\mathcal{R}}^{i}=\bm{\mathcal{R}}^{i+1}- \bm{\mathcal{R}}^{i}\) with \(\bm{\mathcal{R}}^{i}=\bm{\mathcal{R}}(\mathbf{x}^{i})\).
+          The sizes of the groups for \(i=1, \ldots, p\) are denoted by \(s_{i}\equiv z_{i}-z_{i-1}\).
+          For a generic iteration $k\in[z_{i-1}+1, z_{i}]$ inside group $i$, the inverse of the Jacobian, \(\mathbf{G}_{\bm{\mathcal{R}}}\equiv \bm{\mathbf{J}}_{\bm{\mathcal{R}}}^{-1}\), is approximated as
+          \begin{equation} \label{sec:broyden_like_class_g_update}
+            \mathbf{G}_{\bm{\mathcal{R}}}^{k} = \mathbf{G}_{\bm{\mathcal{R}}}^{z_{i-1}}+\left(\mathbf{X}^{i-1}-\mathbf{G}_{\bm{\mathcal{R}}}^{z_{i-1}} \mathbf R^{i-1}\right) {\mathbf{V}^{i-1}}^T,
+          \end{equation}
+          where \({\mathbf{V}^{j}}^T \mathbf{R}^{j}=\mathbf{I}\) for the multi-secant condition
+          \begin{equation}
+            \mathbf{G}_{\bm{\mathcal{R}}}^{z_j+1} \mathbf R^j = \mathbf X^j,
+          \end{equation}
+          to be satisfied.
+          The two optimal choices of \({\mathbf{V}^j}^T = {\mathbf{M}^j}^{-1}{\mathbf{N}^j}^T\) are
+          \begin{align}
+            \text{Type I: } \qquad & {\mathbf{M}^j} = {\mathbf X^j}^T \mathbf{G}_{\bm{\mathcal{R}}}^j \mathbf R^j, && \hspace{-2cm} {\mathbf{N}^j}^T = {\mathbf X^j}^T \mathbf{G}_{\bm{\mathcal{R}}}^j\;, \label{eq:broyden_type_i}\\
+            \text{Type II: } \qquad & {\mathbf{M}^j} = {\mathbf R^j}^T \mathbf R^j, && \hspace{-2cm} {\mathbf{N}^j}^T = {\mathbf R^j}^T\;. \label{eq:broyden_type_ii}
+          \end{align}
+          The next iterate is set as
+          \begin{equation} \label{eq:update_broyden_family}
+            \mathbf{x}^{k+1}=\mathbf{x}^{k}-\mathbf{G}_{\bm{\mathcal{R}}}^{k} \bm{\mathcal{R}}^k.
+          \end{equation}
+          One still needs the initial approximation to the inverse of the Jacobian, \(\mathbf{G}_{\bm{\mathcal{R}}}^1\), whose size is \(N\times N\).
+          In \cite{fang_two_2009}, the approach adopted was to follow the idea of Anderson's mixing and set
+          \begin{equation}
+            \mathbf{G}_{\bm{\mathcal{R}}}^0 = - \beta \mathbf{I}, \label{eq:initG}
+          \end{equation}
+          drastically improving the memory requirements, as only one scalar parameter, \(\beta\), needs to be saved.
+          Also, Kelley \citep{kelley_solving_2003} assumes, in his implementation of Broyden's method, an initial approximation to \(\mathbf{G}_{\bm{\mathcal{R}}}^0\) equal to the identity matrix.
+          Information about \(\mathbf{G}_{\bm{\mathcal{R}}}^0\) is applied in the preconditioning of the system instead.
+
+          To clarify the procedure behind the previous expressions, the whole process departs from the initial estimate of the inverse of the Jacobian, given by Equation~\eqref{eq:initG}.
+          The Newton-update (Equation~\eqref{eq:update_broyden_family}) is repeated $s_{1}=z_{1}-0$ times with a constant Jacobian (\(\mathbf{G}_{\bm{\mathcal{R}}}^0\)).
+          At the beginning of iteration $k=z_{1}+1$, when the first group ($i=1$) is finalised and the second group ($i=2$) starts, the inverse of the Jacobian is updated with the $s_{i}$ previous steps using Equation~\eqref{sec:broyden_like_class_g_update}.
+          Then, the Newton iterations are performed $s_{2}=z_{2}-z_{1}$ times with constant Jacobian \(\mathbf{G}_{\bm{\mathcal{R}}}^{z_{1}+1}\) and the process repeats over time until convergence is achieved.
+          It is also common for the sizes of the \(p\) groups to be equal, i.e., \(s_i=s\), for \(i=1,\dots,m\).
+
+          \paragraph{Broyden's method} Broyden's method \citep{broydenClassMethodsSolving1965a} with the identity matrix as the initial guess for the inverse of the Jacobian corresponds to using a group size equal to one, \(s=1\), \(\beta=-1\), and enforcing the secant condition according to Equation~\eqref{eq:broyden_type_i}, referring only to the previous two iterations.
+
+          Regarding memory availability, according to Kelley \citep{kelley_solving_2003}, as is often the case with GMRES, the iteration can be restarted if there is no more room to store the vectors.
+          A different approach, called limited memory in the optimization literature, replaces the oldest stored iterations with the most recent ones.
+
+          A set of practical considerations must be taken into account and can be found in \cite{fang_two_2009}.
+          These lead to a storage need of
+          \begin{enumerate}
+          \item  Two column vectors of size \(N\) for \(\mathbf{x}^{m}\) and \(\bm{\mathcal{R}}^{m}\).
+          \item An \(N \times(m-1)\) matrix for \(\mathbf{X}^{1}, \ldots, \mathbf{X}^{k}\).
+          \item An \(N \times(m-1)\) matrix for \(\mathbf{R}^{1}, \ldots, \mathbf{R}^{k}\) .
+          \item For Type-I update, the last group \(\mathbf N^{k}\) is also stored since its computation involves \(\mathbf{G}_{\bm{\mathcal{R}}}^{k}\).
+          \end{enumerate}
+          and for each update of the inverse of the Jacobian, the computational cost is \(\pazocal{O}(Nm^2)\), due to the \(QR\) decomposition of an \(N\times m\) matrix needed in the computation of \({\mathbf V^j}^T\) (see Equations~\eqref{eq:broyden_type_i} and \eqref{eq:broyden_type_ii}).
+          Kelley \citep{kelley_solving_2003} presents an implementation for Broyden's method, in particular, that halves the memory requirement relative to the one presented in \cite{fang_two_2009}.
+
+          Fang and Saad \citep{fang_two_2009} also employ a simple restarting procedure.\
+          If in two consecutive values of \(\bm{\mathcal{R}}\), \(\bm{\mathcal{R}}_\text{old}\) and \(\bm{\mathcal{R}}_\text{new}\), \(\|\bm{\mathcal{R}}_\text{new}\|\) is much larger than \(\|\bm{\mathcal{R}}_\text{old}\|\), the solution procedure is restarted, with the new initial trial values corresponding to \(\bm{\mathcal{R}}_\text{old}\).
+          They suggest \(r\) between 0.1 and 0.3, with \(\|\bm{\mathcal{R}}_\text{old}\| < r\|\bm{\mathcal{R}}_\text{new}\|\) leading to a restart.
+          This approach is not used here as there is evidence that these methods perform well without it in the thermomechanical problems studied.
+
+
+          \paragraph{In the context of FSI}
+
+          The multi-secant quasi-Newton methods have been used in the context of FSI, e.g., the interface block quasi-Newton method with least-squares approximation (IBQN-LS) \citep{vierendeels_implicit_2007} and the Interface Quasi-Newton technique with an approximation for the Inverse of the Jacobian from a Least-Squares model (IQN-ILS) \citep{degroote2009performance}, which fit into the framework presented above.
+          For more detailed treatments see, e.g., \cite{haelterman_quasi-newton_2009, gatzhammer_efficient_2014, uekermann_partitioned_2016, scheufele_coupling_2018}.
+
+          \subsection{Vector extrapolation techniques in cycling mode} \label{sec:vector_extrapolation}
+
+          There is vast literature on sequence acceleration/extrapolation methods (see  \cite{brezinski_extrapolation_2013} and \cite{sidi_vector_2017} for textbook treatments of this topic).
+          Perhaps the most well-known acceleration method is the Aitken \(\Delta^2\) process, which has been mentioned in Section~\ref{sec:aitken_relaxation}, due to its popularity and inherent simplicity.
+          They are based on the very natural idea of extrapolation.
+          According to \cite{brezinski_extrapolation_2013}, there is a strong connection between sequence transformations and fixed point methods for solving \(x= g( x)\), \(g\colon \mathbb R\to \mathbb R\).
+          The most well-known example of this connection is that between Aitken's \(\Delta^{2}\) process and Steffensen's method.
+
+          Turning to vector sequences and systems of nonlinear equations, let \(F\) be a vector extrapolation method which takes the last $q+2$ vectors of $(\mathbf{w}^{0},...,\mathbf{w}^{p+q+1})$ computed from the sequence $\{\mathbf{w}\}^{i}$ and computes the extrapolated value as
+          \begin{equation}
+            \mathbf{s}_{p,q} = F\left(\mathbf{w}^{p}, \ldots, \mathbf{w}^{p+q+1}\right),
+          \end{equation}
+          with \(p\geq 0\) and \(q\geq 1\).
+          For solving the fixed point problem \(\mathbf{x}=\bm{\mathcal{S}}(\mathbf{x})\), one can associate to it the iterative method \(F\) such that the $k$-th iteration of the nonlinear solution sequence is given by
+          \begin{equation}
+            \mathbf{x}^{k+1}=F\left(\bm{\mathcal{S}}^{p}(\mathbf{x}^{k}), \ldots, \bm{\mathcal{S}}^{p+q+1}(\mathbf{x}^{k})\right)
+          \end{equation}
+          where \(\bm{\mathcal{S}}^{i+1}(\mathbf{x})=\bm{\mathcal{S}} \circ \bm{\mathcal{S}}^{i}(\mathbf{x})\) and \(\bm{\mathcal{S}}^{0}(\mathbf{x})=\mathbf{x}\).
+          This approach is called full cycling or simply cycling.
+          Essentially, for each nonlinear iteration, the fixed-point is applied  $p$ times in a recursive manner, and the last $q+1$ of this sequence is used to perform the extrapolation.
+
+          Vector extrapolation methods are classified into two types: polynomial methods and methods based on the \(\epsilon\)-algorithm \citep{brezinski_extrapolation_2013, sidi_vector_2017}.
+          In this presentation, only the first category is considered since the second requires a relatively large number of function evaluations per iteration, making it unsuitable for the present use-case.
+          Sidi \citep{sidi_vector_2017} presents four different polynomial extrapolation methods.
+          They all attempt to express the limit of the vector sequence as a linear combination of \(q+1\) iterates, as follows
+          \begin{equation}
+            \mathbf{x}^{k+1} = \sum_{j=0}^{q} \gamma_{j} \bm{\mathcal{S}}^{p+j}(\mathbf{x}^{k})  = \sum_{j=0}^{q} \gamma_{j} \mathbf{w}^{p+j},
+          \end{equation}
+          where the notation shorthand $\mathbf{w}^{i} = \bm{\mathcal{S}}^{i}(\mathbf{x}^{k})$ has been introduced.
+          It should be remarked that although the linear combination is performed over $q+1$ vectors, the previously mentioned $q+2$ vectors are still used in the computation of the coefficients $\gamma_{j}$, as will be soon discussed.
+          The methods considered in the present paper are minimal polynomial extrapolation (MPE) and reduced rank extrapolation (RRE).
+
+          \paragraph{MPE}
+
+          Solve the overdetermined linear system \(\mathscr W^{q-1} \mathbf{c}^{\prime}=-\Delta \mathbf{w}^{p+q}\) in the least-squares sense for \(\mathbf{c}^{\prime}=\left[c_{0}, c_{1}, \ldots, c_{q-1}\right]^{T}\), where \(\mathbf{W}^{q-1} = [\Delta \mathbf{w}^{p}, \dots, \Delta \mathbf{w}^{p+q-1}]\) and \(\Delta \mathbf{w}^i = \mathbf{w}^{i+1} - \mathbf{w}^i\).
+          With \(c_{0}, c_{1}, \ldots, c_{q-1}\) available, set \(c_{q}=1\) and compute \(\gamma_{j}=c_{j} / \sum_{i=0}^{q} c_{i}, j=0,1, \ldots, q\), provided \(\sum_{j=0}^{q} c_{j} \neq 0\).
+
+          \paragraph{RRE}
+
+          Solve the overdetermined linear system \(\mathbf{W}^{q} \boldsymbol\gamma=0\) in the least-squares sense, subject to the constraint \(\sum_{j=0}^{q} \gamma_{j}=1\), where \(\boldsymbol\gamma = [\gamma_0, \dots, \gamma_q]\).
+
+          \bigskip
+
+          For a combination \((p,q)\), the required number of residual evaluations per nonlinear iteration is \(p+q+1\).
+          In making sensible management of memory, only a constant \(q+2\) vectors must be stored in memory.
+          To solve the least-squares problems defining the MPE and the RRE can be achieved by employing a QR decomposition, whose computational cost is \(\mathcal O(Nq^2)\) \citep{sidi_vector_2017}.
+
+          % \paragraph{Connection to Krylov subspace methods}
+          %
+          % According to Sidi \citep{sidi_vector_2017}, the so-called Krylov subspace methods are closely related to the vector extrapolation methods presented above.
+          % When the latter is applied to vector sequences obtained using fixed-point iterative methods to nonsingular linear systems of equations, they are mathematically equivalent.
+          % More precisely, the MPE and the RRE methods are mathematically equivalent to the methods of Arnoldi and the GMRES.
+          %
+          % However, Krylov subspace methods and extrapolation methods differ in their algorithmic aspects entirely:
+          % The only input of the former is a procedure that performs the matrix-vector multiplication without explicitly knowing the matrix coefficient matrix.
+          % The latter takes as their only input a vector sequence that results from a fixed-point iterative scheme without knowing the matrix coefficient.
+          %
+          % In \cite{michler_interface_2005}, a Krylov-subspace method is proposed in the context of FSI.
+          % However, as pointed out by Küttler and Wall \citep{kuttler_vector_2009}, the correct term for this approach should be a "Krylov-based vector extrapolation" method.
+          % The method proposed can be obtained by applying the RRE to the sequence of residuals computed as
+          % \(\Delta \mathbf{r}^*_i = \mathbf{x}^*_i - \mathbf{x}^k\), where the subscript \(i\) concerns the internal loop of the vector extrapolation method, and whose limit is \(\mathbf{0}\).
+          % Küttler and Wall \cite{kuttler_vector_2009} argue that these residual differences have unfavorable numerical properties and should be avoided.
+
+          % \subsection{Summary}
+          % \label{sec:summary}
+          %
+          % Table~\ref{tab:mem_nr_func_eval_obs} provides information on the memory requirements up to a constant number of vectors, the number of function evaluations per nonlinear iteration, and some pertinent observations for each technique under consideration.
+          %
+          % \begin{landscape}
+          %   \begin{table}[htbp]
+          %     \caption{Comparison between several methods to the solution of nonlinear systems of equations. \(N\) denotes the number of unknowns, \(m\) denotes the number of previous iterations considered, \((p,q)\) is the ordered pair characterizing the vector extrapolation methods, and \(p\) is the size of the Krylov subspace.}
+          %     \label{tab:mem_nr_func_eval_obs}
+          %     % \setlength{\tabcolsep}{1pt}
+          %     \centering
+          %     \begin{tabular}{l cc p{10.5cm}}
+          %       Method & \makecell[c]{Memory\\requirements} & \makecell[c]{No. function\\evaluations\\per iteration} & Observations\\
+          %       \hline  \hline
+          %       \multirow{3}{*}{\vphantom{\Big|}Fixed-point iteration} & \multirow{3}{*}{2 \(N\) vectors} & \multirow{3}{*}{1} &  Often diverges for strong coupling\\
+          %              & & & Simplest method\\
+          %              & & & Memory efficient\\
+          %       \hline
+          %       \multirow{3}{*}{Underrelaxation} & \multirow{3}{*}{2 \(N\) vectors} & \multirow{3}{*}{1} &  Simple\\
+          %              & & & Improved stability over fixed-point\\
+          %              & & & Need to choose a relaxation parameter manually\\
+          %       \hline
+          %       \multirow{3}{*}{Aitken relaxation} & \multirow{3}{*}{3 \(N\) vectors} & \multirow{3}{*}{1} &  Very popular in FSI\\
+          %              & & &  Dynamic relaxation\\
+          %              & & &  Improved stability over fixed-point\\
+          %       \hline
+          %       \multirow{2}{*}{\makecell[l]{Broyden-like family\\\citep{fang_two_2009}}} & \multirow{2}{*}{\makecell[c]{2 \(N\) vectors\\2 \((N\times (m-1))\) matrices}} & \multirow{2}{*}{1} &  \(\pazocal{O}(Nm^2)\) computation complexity (\(QR\) decomposition). \\
+          %              & & &  Low number of function evaluations\\
+          %       \hline
+          %       \multirow{3}{*}{\makecell[l]{Broyden's method\\\citep{kelley_solving_2003}}} & \multirow{3}{*}{\makecell[c]{\((m+2)\) \(N\) vectors}} & \multirow{3}{*}{1} &  \(\pazocal{O}(N)\) computation complexity\\
+          %              & & &  Low storage\\
+          %              & & &  Superlinear convergence\\
+          %       \hline
+          %       \multirow{3}{*}{Newton-Krylov} & \multirow{3}{*}{\makecell[c]{Up to\\\((p+1)\) \(N\) vectors}} & \multirow{3}{*}{\(p+1^*\)} &  Large number of iterations possible\\
+          %              & & &  Popular for the solution of systems of nonlinear equations\\
+          %              & & &  Quadratic convergence under appropriate conditions\\
+          %       \hline
+          %       \multirow{2}{*}{\makecell[l]{Vector extrapolation\\ in cycling mode}} & \multirow{2}{*}{\((q+2)\) \(N\) vectors} & \multirow{2}{*}{\(n+q+1\)} &  Large number of function evaluations\\
+          %              & & &  \(\pazocal{O}(Nq^2)\) computational complexity (\(QR\) decomposition)\\
+          %       \hline\hline
+          %       \multicolumn{4}{l}{\vphantom{\Huge |}\parbox{\textwidth}{\footnotesize{  \(^*\) The number of function evaluations in the Newton-Krylov methods depends on the number of iterations required for the convergence of the inner loop. There is a function evaluation per iteration of the inner loop.}}}
+          %     \end{tabular}
+          %   \end{table}
+          % \end{landscape}
+
+
+          \subsection{Additional computational aspects}
+          \label{sec:addit-comp-aspects}
+
+          % The following sections address some additional computational aspects that can complement the previous techniques.
+          % In particular, the focus is placed on the prediction of the initial guess and the convergence criteria employed.
+
+          % \subsubsection{Predictor} \label{sec:predictor}
+          %
+          % Iterative procedures are considered to solve the thermomechanical problem at a given time step \(n+1\).
+          % As the first value approximating \(\mathbf{x}_{n+1}\), one can employ the converged value of the previous time step, \(\mathbf{x}_n\).
+          % However, a very efficient way to increase the chances of stability and reduce computation time is to predict the optimal initial values at the beginning of every time step \citep{erbts_accelerated_2012, erbts_partitioned_2015, wendt_partitioned_2015}.
+          % The prediction of the new solution by polynomial extrapolation is based on the converged solution of the last two or three time steps.
+          % This method is based on polynomial vector extrapolation, which is relatively easy to implement, and the extra computational input is negligible.
+          %
+          % The maximum polynomial under consideration is of order two, i.e., the new solution is extrapolated from the results from the last three time steps.
+          % The predictors $\mathbf{x}^{*}$ for the order $p=1$ and $p=2$ polynomials read
+          % \begin{gather}
+          %   p=1:\quad \mathbf{x}_{n+1}^{*}=2 \mathbf{x}_{n}-\mathbf{x}_{n-1}, \\
+          %   p=2:\quad \mathbf{x}_{n+1}^{*}=3 \mathbf{x}_{n}-3 \mathbf{x}_{n-1}+\mathbf{x}_{n-2}.
+          % \end{gather}
+          % Slight adaptations must be considered if the time step is not constant throughout the simulation.
+
+          \subsubsection{Convergence criteria}
+
+          For an iterative method to be useful, there must be reasonable criteria to determine its convergence.
+          The iteration residual is defined as
+          \begin{equation}
+            \mathbf{r}^{k} = \bm{\mathcal{R}}(\mathbf{x}^{k}),
+          \end{equation}
+          and if it is equal to zero, then $\mathbf{x}$ is the solution to the system of nonlinear equations, hence, a reasonable convergence measure for the iteration procedure.
+
+          The $l^{2}$-norm is used to obtain a scalar representative of the vectorial residual \(\mathbf{r}^{k}=\left(r^{k,1}, \ldots, r^{k,N}\right)^{T}\)
+          \begin{equation}
+            \left\|\mathbf{r} ^{k}\right\|_{l^{2}}=\sqrt{\sum_{i}\left(r^{k, i}\right)^{2}},
+          \end{equation}
+          with the relative convergence criteria employed defined as
+          \begin{equation} \label{eq:def_res_used}
+            \frac{\left\|\mathbf{r}^{k}\right\|_{l^{2}}}{\left\|\mathbf{x}^{k}\right\|_{l^{2}}}<\epsilon_\mathrm{rel} = \num{1e-10},
+          \end{equation}
+          setting the residual in relation to the current coupling iterate values.

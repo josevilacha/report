@@ -1,24 +1,12 @@
 \chapter{Thermomechanical behavior of semi-crystalline polymers} \label{ch:thermomechanical_behavior_semi_crystalline_polymer}
 
 
-% order of magnitude difference
-
-% Why polymers good design.
-%
-%   Employ all props for comparison with metals, ceramics and composites.
-%
-%   stiff and yield vs densitiy. Polymer best if low weight is benefit.
-%
-%   Polymer not as though
-%
-%   Polymers best at strain failure.
-%
-%   comparison amorphous vs semi-crystalline
-%
+% amorhpous semi iso melting
 %    Manufacturing.
-%    Thermoplastics dominate the market due to their reduced production costs, energy efficiency, ability to , and ability to be produced in extremely high volumes with high precision and at a cheap cost.
-%    They possess a clear melting point where the material transitions to a viscous melt, in contrast to amorphous polymers which soften continously after the glass transition temperature until they reach a similar state.
-%
+
+%   Polymer not as though
+
+%   comparison amorphous vs semi-crystalline
 
 % Nylon 101 is a standard all-purpose extruded grade of nylon type 66 (polyamide). Also, among all of the unmodiﬁed nylons, it is the strongest, hardest nylon, and has one of the highest melting temperatures (260 C or 500 F)
 
@@ -26,13 +14,6 @@
 
 % continuous use.
 
-% Polyethylene is a semi-crystalline polymer which can be manufactured with degrees of crystallinity ranging from 15\% to 70\% \citep{ayoubEffectsCrystalContent2011}, e.g., by controlling the amount of branching in the polyethylene macromolecules \citep{schrauwenIntrinsicDeformationBehavior2004}.
-
-% density arround \SI{1}{\killo\gram\per\centi\meter^3}
-% young modulus ranging from \SIrange{0.1}{10}{\giga\pascal}
-% strength from below \SIrange{10}{100}{\mega\pascal} above.
-% Large failure strains max energy storage per unit volume \SIrange{0.01}{0.1}{} 10 times larger than metals
-% good combination specific strength and young modulus, better only composite and ceramic compressive , semi-crystalline
 % Intrinsic damping
 % Low thermal conductivity of the order of \SI{0.1}{\watt\per\meter\per\kelvin} and low diffusivity \SI{10e-7}{\meter^2\per\second}.
 % Bad thermal distortion as $\alpha$ \SIrange{3e-5}{4e-4}{\per\kelving} is large 10 metal 100 ceramics
@@ -205,13 +186,40 @@ The initiation of plastic strain is mainly controlled by kinetic processes and a
 \label{rmrk:yield_polymer}
 \end{remark}
 
-\paragraph{Pre-yield behavior}
+\paragraph{Pre-yield and yield behavior}
+
+Based on the description already given for the behavior of a plastic polymer, it makes sense to discuss the stiffness and strength of polymers, particularly semi-crystalline polymers, relative to other materials.
+The Young modulus of polymers, in general, ranges from \SI{0.1}{\giga\pascal} to \SI{10}{\giga\pascal}.
+The upper bound is the domain of resins, with thermoplastics, glassy and semi-crystalline, rarely going over \SIrange{1}{2}{\giga\pascal}, which is relatively low compared with ceramics and metals which boast Young moduli around approximately 50 and 500 times larger, respectively.
+Regarding, their strength it goes from below \SI{10}{\mega\pascal} to around \SI{100}{\mega\pascal} (see Table~\ref{tab:scp_mech_props}).
+In turn, some alloys reach tensile strengths above \SI{1000}{\mega\pascal}, and some ceramics display compressive strengths as large as \SI{10000}{\mega\pascal}.
+That said, polymers possess densities around \SI{1000}{\killo\gram\per\meter\cubed}, making their specific stiffness and strength competitive with metals and well-suited for applications where weight reduction is paramount.
+Polymers also distinguish themselves by the relatively large failure strain, i.e., the strain at which the materials cease to be linearly elastic, around 0.01 to 0.1, signaling excellent capacity to store energy per unit weight \citep{ashbyMaterialsSelectionMechanical1999}.
+
+Table~\ref{tab:scp_mech_props} presents the Young moduli and tensile strengths, determined according to ASTM standards, of semi-crystalline polymer ranging from suitable for commodity applications (HDPE and PP), engineering grade (PA66 and PET), high performance (PPA) and ultra performance (PEEK), as supplied by the manufacturer \cite{rtpcompanyProductGuideRTP2021}.
+Glassy polymers of comparable stiffness and strength can be found, with PVC being suitable for commodity applications, ABS and PC being engineering grade, PSU being a high performance glassy polymer, and PAI being an ultra-performance glassy polymer.
+\begin{table}[hbpt]
+	\centering
+	\caption{Young moduli and tensile strength of semi-crystalline polymers \citep{rtpcompanyProductGuideRTP2021}.}
+	\label{tab:matpropsnecking}
+	\begin{tabular}{lcccccc}
+		\hline\hline
+		& \vphantom{\Big |}{HDPE} &{PP} &{PA66} &{PET} & {PPA}  &{PEEK} \\
+		\hline
+		\vphantom{\Big |}Young moduluc (\si{\mega\pascal}) & 1241 & 1724 & 1793 & 1379 & 4137 & 3792  \\
+		\vphantom{\Big |}Yield strength (\si{\mega\pascal}) & 20 & 32 & 45 & 43 & 76  & 93 \\
+		\hline\hline
+	\end{tabular}
+\end{table}
+%HDPE, PTFE, PA66, PP, PEEK, ABS, PC
+
 Regarding the response of a semi-crystalline polymer pre-yield, an increase in temperature will lead to a more compliant response and a lower yield strength, as shown, in Figure~\ref{fig:scheme_effect_temperature} for nylon 101 \citep{khanThermomechanicalResponseNylon2006}, and in the results reported in \cite{brownInfluenceMolecularConformation2007} and \cite{hobeikaTemperatureStrainRate2000} for PEs.
 In fact, the temperature is possibly the single most influential parameter dictating a polymer's mechanical response.
 Some polymers may exhibit brittle fracture to necking or even homogeneous rupture during a uniaxial traction test depending on the temperature \citep{wardIntroductionMechanicalProperties2004}.
 Moreover, whether the polymer is below or above its glass transition temperature results in markedly different behaviors in the case of amorphous polymers (see Figure~\ref{fig:scheme_effect_temperature} adapted from \cite{vanloockDeformationFailureMaps2018}).
 An amorphous polymer in its glassy state behaves as a plastic polymer, whereas in its rubbery state, it has a much more compliant response, coinciding with very large deformations and a lack of a clear yield point.
 On the other hand, even if the temperature of semi-crystalline polymer is much higher than its glass transition temperature, the crystalline phase causes the polymer's response to be qualitatively similar to that of a plastic polymer, although less stiff than it would be at a lower temperature (see Figure~\ref{fig:scheme_effect_temperature}).
+They possess a clear melting point where the material transitions to a viscous melt, in contrast to amorphous polymers which soften quickly after the glass transition temperature until they reach a similar state.
 \begin{figure}[hbtp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/scheme_effect_temperature}
@@ -219,12 +227,14 @@ On the other hand, even if the temperature of semi-crystalline polymer is much h
 \label{fig:scheme_effect_temperature}
 \end{figure}
 
+% CUT
+
 The strain rate and the hydrostatic pressure, have the opposite effect, such that their increase will lead to a stiffer response and higher yield stresses, as gathered from the results in \cite{popelarViscoelasticMaterialCharacterization1990} (uniaxial traction) and \cite{trussEffectHydrostaticPressure1981} (torsion).
 More specifically regarding the effect of the strain rate on the stress response, Walley and Field \citep{walleyStrainRateSensitivity1994} present experimental results for uniaxial compressive tests on a wide selection of polymers, including semi-crystalline polymers.
 The HDPE samples display a linear relationship between the stress at different strain levels and the logarithm of the strain rate, while the PTFE's response shows a non-monotic relationship between the same quantities, which is however broadly increasing.
 A linear relationhip between the maximum stress and the logarithm of the strain rate is found for PEEK, until a critical strain rate is reached, followed by a decrease in the stress response.
 El-Qoubaa and Othman \citep{el-qoubaaStrainRateSensitivity2016} also provide an extensive set of results regarding the relationship between the strain rate, the temperature the yield strength of PEEK.
-They find, however, that the yield stress of the polymer alway increases with the strain rate as shown in Figure~\ref{fig:el_qoubaa_peek}.
+They find, however, that the yield stress of the polymer alway increases with the strain rate as shown in Figure~\ref{fig:yield_el_qoubaa_peek}.
 \begin{figure}[hbtp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/yield_el_qoubaa_peek}
@@ -313,7 +323,7 @@ These experimental results make clear that such complex yielding processes are n
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/double_yield}
-	\caption{Stress-strain curve for polyethylenes exhibiting double yield. Adapted from \cite{khanThermomechanicalResponseNylon2006}.}
+	\caption{Stress-strain curve for nylon 101 exhibiting double yield. Adapted from \cite{khanThermomechanicalResponseNylon2006}.}
 \label{fig:double_yield}
 \end{figure}
 

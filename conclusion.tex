@@ -1,127 +1,64 @@
 \chapter{Conclusion and Future Works} \label{ch:conclusions}
 
-The current work focuses on computational techniques for the numerical simulation of thermomechanical problems.
-It presents a comprehensive dissertation on the thermodynamically consistent description of continuum of thermomechanics.
-It follows with the strictly mechanical problem, the strictly thermal problem, and the complete thermomechanical problem.
-The corresponding initial value problems for the constitutive problem are introduced, as is the weak formulation of the relevant conservation principles and their spatial and temporal discretization.
+The focus of this work is twofold: firstly, it focuses on computational techniques for the numerical simulation of thermomechanical problems, and more generally, multi-physics problems, secondly, it attempts to provide an overview on the state-of-the-art regarding the constitutive modeling of semi-crystalline polymers.
+They are both of paramount importance to the development of a robust computational toolbox for the engineering applications design employing semi-crystalline polymers.
 
-It follows the validation of the thermal solver.
-The mechanical solver is not validated as it is part of the LINKS code used as the basis for the current developments.
-Appropriate references are used in \cite{DINEN1991_1_2} and the \cite{NAFEMSbenchmarks}.
-There is a good agreement between the numerical results and the references.
+The first task demands a thermodynamically consistent description of continuum thermodynamics, as well, as a clear formulation of the thermomechanical problem.
+A thorough investigation of the available approaches to solving coupled problems, with a particular focus on thermomechanical problems is provided.
+Given that the strongly coupled or implicit partitioned schemes can take advantage of existing software, provide accurate results that agree with a monolithic approach, are not memory intensive, are easy to implement, and are competitive from a computational efficiency standpoint through the use convergence acceleration techniques, they are selected as the most promising approach.
 
-It follows a thorough investigation of the available approaches to solving coupled problems, with a particular focus on thermomechanical problems.
-A large sweep of the literature is performed, with the main classes of solution procedures being monolithic and partitioned approaches.
-The partitioned approaches can be further divided into loosely coupled or explicit and strongly coupled or implicit.
-Given the requirements, the most promising solution is determined to be a strongly coupled or implicit partitioned scheme.
-They can take advantage of existing software, provide accurate results that agree with a monolithic approach, are not memory intensive, are easy to implement, and use convergence acceleration techniques. They are competitive from a computational efficiency standpoint.
-
-Having performed this choice, the following step is understanding the implicit methods available.
-Recasting the problem as a system of nonlinear equations, where the residual is the difference between the initial input and its output after applying the fixed-point corresponding to the isothermal split.
-This approach leads to the consideration of a large family of methods for the solution of nonlinear equations.
-These are presented in detail for the solution of coupled multi-physics systems.
+Recasting the problem as a system of nonlinear equations, where the residual is the difference between the initial input and its output after applying the fixed-point corresponding to the isothermal split, allows the straightforward use of a wide selection methods for the solution of systems of nonlinear equations.
+This approach is applied here in specific to the thermomechanical problem, however, it applies with little modification to other multi-physics phenomena.
 These are the fixed-point method, the underrelaxation method, the Aitken relaxation, the Broyden-like family of methods, the Newton-Krylov methods, and the polynomial vector extrapolation methods MPE and RRE in cycling mode.
-It is also demonstrated that a global technique, like line search, may be used.
-Predictor usage is discussed too as a simple strategy for enhancing the effectiveness of implicit approaches.
 
-The validation of the thermomechanical solver and the implicit solution methods, as well as their comparison, is performed using examples with reference results in the literature: the expansion of an infinitely long, thick-walled thermoelastic cylinder and the necking of a circular thermoelastoplastic bar.
+The validation of the thermomechanical solver and the implicit solution methods, as well as their comparison, is performed using an example with reference results in the literature: the necking of a circular thermoelastoplastic bar.
 The numerical results agree with the references providing confidence in the solution developed.
 Regarding the comparison of the different implicit techniques, the best performing are the Broyden-like methods with \(\beta=-1\), Type I update, and \(s=1\), corresponding to the good Broyden method, and \(s=2\).
 These are both computationally efficient with few calls to the residual function and not very memory intensive.
-The Aitken relaxation, the simplest and the least memory intensive, also performs well.
+The Aitken relaxation, the simplest and the least memory intensive, also performs wSell.
 The other methods considered, including the Newton-GMRES and the MPE in cycling mode, display a worse performance.
 There is, however, a caveat regarding the Newton-Krylov methods regarding the possible use of global strategies such as line search given the accurate estimate for the Jacobian of the residual.
 Moreover, it has been determined that the most computationally demanding portion of the implicit partitioned schemes is the solution of the mechanical and thermal problems, with the manipulation concerning solely the coupling solver taking a very minute part of the total computational time.
+
+Regarding the second theme in focus in this work, a thorough description of the thermomechanical behavior of semi-crystalline polymer is provided.
+It is mainly based on the response of this class of material to various mechanical experiments, ranging from constant strain rate experiments, to stress relaxation, creep, and dynamical mechanical analysis.
+Regardin temperature, stiffness is based on constant and dma, regarding yield stress, constant.
+Strain rate and pressure.
+Same but base on crustallinity.
+Doubly yield.
+Temperature softening.
+Nonlinear steady state.
+Hardening.
+Thermo behavior and miscellaneous.
+
+Given these goals for the thermomechanical modeling, an extensive overview of the state-of-the-art in semi-crystalline polymer modeling is provided.
+Due to nonlinearity, viscoelasticity is not suitable.
+Finite viscoeleastictiy, finite strain but nonlinear.
+Single integral, integral not cool.
+The most common approach is the use of rheological models with appropriate nonlinear viscous an elastic elements.
+The most commoon and effective viscous element regarding the intermoleccular resitnace is eyring, with rate equation athermal with most suffisticaed hao capable of double yield.
+When viscous in rubber bb model best.
+elastic for intermolecular hencky good enough.
+rubber eithgt chain most popular, but wan combination and edward vilgis good.
+bulk crystallinity modified voigt is the heigth.
+rate of crystalli cundiff
+hammed intermoelcuar and network.
+
+chosen are
+conclusions aobut model
+aonclusion about my implementation.
+
+MOre conclusive!!!!
+
 
 \section{Future research and challenges}
 
 The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
 \begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
-\end{itemize}
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
-\begin{itemize}
-  \item The use of global strategies creating a more robust procedure;
-  \item Experimentation with solving the monolithic scheme using the implicit methods presented, Jacobian free.
+  \item More fields, exmples;
+  \item Crystallinity generalization;
+  \item Better exploration of thermomechanical in plastics;
+  \item Homogenization of polymer blends contain semi-crystaline see rtp
+  \item design of materials using bessa
+  \item see proposal.
 \end{itemize}

@@ -8,17 +8,6 @@
 
 %   comparison amorphous vs semi-crystalline
 
-% Nylon 101 is a standard all-purpose extruded grade of nylon type 66 (polyamide). Also, among all of the unmodiﬁed nylons, it is the strongest, hardest nylon, and has one of the highest melting temperatures (260 C or 500 F)
-
-% applications of semi-crystalline
-
-% continuous use.
-
-% Intrinsic damping
-% Low thermal conductivity of the order of \SI{0.1}{\watt\per\meter\per\kelvin} and low diffusivity \SI{10e-7}{\meter^2\per\second}.
-% Bad thermal distortion as $\alpha$ \SIrange{3e-5}{4e-4}{\per\kelving} is large 10 metal 100 ceramics
-% Relatively low thermal stresses.
-% high temperature not incredible
 % PTFE the best on friction and uhwpe  ldfpe anylon hovering around 0.1
 % goog wear rate PTFE HDPE
 % salt water, strong acids, strong alkalis, organic solvents, uv radiation, aerate water.
@@ -211,7 +200,6 @@ Glassy polymers of comparable stiffness and strength can be found, with PVC bein
 		\hline\hline
 	\end{tabular}
 \end{table}
-%HDPE, PTFE, PA66, PP, PEEK, ABS, PC
 
 Regarding the response of a semi-crystalline polymer pre-yield, an increase in temperature will lead to a more compliant response and a lower yield strength, as shown, in Figure~\ref{fig:scheme_effect_temperature} for nylon 101 \citep{khanThermomechanicalResponseNylon2006}, and in the results reported in \cite{brownInfluenceMolecularConformation2007} and \cite{hobeikaTemperatureStrainRate2000} for PEs.
 In fact, the temperature is possibly the single most influential parameter dictating a polymer's mechanical response.
@@ -532,6 +520,7 @@ When $\omega\ t_c \approx 1$, i.e., $\mathrm{De} \approx 1$, for some deformatio
 
 The storage modulus and compliance are approximately mirror images of the stress relaxation modulus and creep compliance, since a dynamic measurement at frequency $\omega$ is qualitatively equivalent to a transient one at $t=1/\omega$.
 The glassy and crystalline polymers have values in the general neighborhood of 0.1 for the tangent loss, and may present several maxima associated with various deformation mechanisms \citep{ferryViscoelasticPropertiesPolymers1980}.
+Most metallic alloys employed in engineering applications possess tangent losses one to two order of magnitude smaller \citep{ashbyMaterialsSelectionMechanical1999}
 See Figure~\ref{fig:dma_scp} for the loss and storage modulus of highly and lightly crystalline polymers.
 \begin{figure}[hbtp]
 \centering
@@ -723,13 +712,17 @@ The dilatometry experiment consists in tracking the change in volume in a range 
 In principle, the glass transition can be observed in these experiments as a change in the slope of the thermal expansion versus temperature curve.
 This is not, however, the case for the results of \cite{blummCharacterizationPTFEUsing2010} concerning PTFE.
 What is readily apparent in the results of the same author is the transition in the crystal structure of the polymer, visible a step in the curve.
-The evolution of the thermal expansion in the remainder of the temperature range is approximately linear.
+The evolution of the linear thermal expansion in the remainder of the temperature range is approximately linear, ranging from \SI{500e-6}{\per\kelvin} at \SI{-100}{\celsius} to \SI{2000e-6}{\per\kelvin} at \SI{100}{\celsius}.
 
 The thermal expansion coefficient can also be found through pressure volume temperature (PVT) experiments, as shown in \cite{olaszViscoelasticModelCrossLinked2005} for cross-linked polyethylene (XLPE).
 The sample is immersed in mercury and enclosed in a piezometer cell for the experiment.
 The cell is contained within a pressure vessel in which hydrostatic pressure can be applied.
 After reaching equilibrium at any constant temperature and pressure, the change in specific volume relative to a reference state is recorded.
 Measurements were performed from \SI{10}{\mega\pascal} to \SI{200}{\mega\pascal} at \SI{10}{\mega\pascal} increments at temperatures ranging from \SI{25}{\celsius} to \SI{250}{\celsius} at approximately \SI{10}{\celsius} increments, allowing for the determination of the linear expansion coefficient and the bulk modulus as a function of the temperature.
+The values found range from  around\SI{300e-6}{\per\kelvin} at \SI{50\celsius} to \SI{1300e-6}{\per\kelvin} at \SI{130}{\celsius}.
+These values, as those reported above for PTFE, are a order of magnitude larger than those reported elsewhere for thermoplastics, in general, from \SIrange{50e-6}{250e-6}{\per\kelvin} \citep{ashbyMaterialsSelectionMechanical1999}.
+Either way, it is at least an order of magnitude larger than metals and ceramics.
+That said, in general, it does not often lead to thermal stresses, $\Delta \sigma$, as large as in metals, since for polymers $\Delta \sigma = \alpha E \approx 0.1$, while for metals $\Delta \sigma = \alpha E \approx 1$ \citep{ashbyMaterialsSelectionMechanical1999}.
 
 Differential scanning calorimetry is an experimental method of thermal analysis that is widely used to study thermal transitions, i.e., solid-solid transitions as well as solid-liquid and various other transitions and reactions.
 The experiment is performed supplying the necessary heat to a test sample as well as a calibrated sample so that a given temperature rate of change is achieved for both.
@@ -742,10 +735,13 @@ polyethylene is also examined with data obtained by differential scanning calori
 The data provided by Blumm et al. \citep{blummCharacterizationPTFEUsing2010} for PTFE makes apparent the solid-solid transition at \SI{23.5}{\celsius} connected to change in crystalline structure of the polymer and the melting of the crystalline phase at \SI{337.3}{\celsius} both as peaks in the results.
 In experimental results provided by Panowicz et al. \citep{panowiczPropertiesPolyethyleneTerephthalate2021} for PET in the form of exothermic heat flow the glass transition is apparent as a step around \SI{90}{\celsius} and the melting of crystallites formed during secondary and primary crystallization as dips, the latter much larger than the former.
 
+Regarding the experimental determination of the specific heat capacity of semi-crystalline polymers employing DSC, Blumm et al. \citep{blummCharacterizationPTFEUsing2010} report an almost constant value, which ranges from arround \SI{1000}{\joule\per\killo\gram\per\kelvin} at \SI{0}{\celsius} to \SI{1500}{\joule\per\killo\gram\per\kelvin} at \SI{300}{\celsius}. 
+This agrees with the value of $\rho C_p \approx \SI{3e6}{\joule\per\meter\cubed\per\kelvin}$, which accoding to Ashby \citep{ashbyMaterialsSelectionMechanical1999} is true for all solids, employing considerations from statistical mechanics.
+
 Finally, \cite{blummCharacterizationPTFEUsing2010} also supplies the thermal diffusivity of PTFE found employing laser flash techniques.
 In addition to the change in crystalline of the material already mentioned, the glass temperature is also detectable as a step.
-The authors combining the heat capacity, density and thermal diffusivity measurements are able to compute the thermal conductivity of the polymer which is approximately constant across the range of temperatures studied except for the moment when the aforementioned solid solid transition occurs.
-
-\colorbox{BrickRed}{Say something about missing properties: density, toughness, damping capacity, thermal cond, thermal diff, specific heat, melting temp, glass temp, thermal exp, corrosion rate.}
-
-% \colorbox{BrickRed}{Say something about variation of properties with temperature.}
+The values of of the thermal diffusitivity observed range from \SI{0.24}{0.13}{\milli\meter\squared\per\second} between \SI{-110}{140}{\celsius}.
+The authors combine the heat capacity, density and thermal diffusivity measurements to compute the thermal conductivity of the polymer which is approximately constant across the range of temperatures studied, \SI{0.31}{\watt\per\meter\per\kelvin}, except for the moment when the aforementioned solid solid transition occurs.
+Both values for the thermal diffusivity and conductivity of PTFE are in line with values reported in \cite{ashbyMaterialsSelectionMechanical1999} for other polymers, and markedly lower than for ceramics and metals.
+Taking into account the relatively large values of the linear thermal expansion and the low thermal conductivity, polymers are more subject to heat distortion.
+This is because they combine a longer time to arrive at an uniform temperature with larger changes in size due to temperature differences, when compared for example with metals.

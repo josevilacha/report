@@ -1,64 +1,92 @@
 \chapter{Conclusion and Future Works} \label{ch:conclusions}
 
-The focus of this work is twofold: firstly, it focuses on computational techniques for the numerical simulation of thermomechanical problems, and more generally, multi-physics problems, secondly, it attempts to provide an overview on the state-of-the-art regarding the constitutive modeling of semi-crystalline polymers.
-They are both of paramount importance to the development of a robust computational toolbox for the engineering applications design employing semi-crystalline polymers.
+This work has two goals: first, it focuses on computational techniques for numerical simulation of thermomechanical problems and, more broadly, multi-physics problems; second, it attempts to provide an overview of the state-of-the-art in semi-crystalline polymer constitutive modeling.
+They are both critical to the creation of a robust computational toolbox for the design of engineering applications based on semi-crystalline polymers.
 
-The first task demands a thermodynamically consistent description of continuum thermodynamics, as well, as a clear formulation of the thermomechanical problem.
-A thorough investigation of the available approaches to solving coupled problems, with a particular focus on thermomechanical problems is provided.
-Given that the strongly coupled or implicit partitioned schemes can take advantage of existing software, provide accurate results that agree with a monolithic approach, are not memory intensive, are easy to implement, and are competitive from a computational efficiency standpoint through the use convergence acceleration techniques, they are selected as the most promising approach.
-
-Recasting the problem as a system of nonlinear equations, where the residual is the difference between the initial input and its output after applying the fixed-point corresponding to the isothermal split, allows the straightforward use of a wide selection methods for the solution of systems of nonlinear equations.
-This approach is applied here in specific to the thermomechanical problem, however, it applies with little modification to other multi-physics phenomena.
+The first task necessitates both a thermodynamically consistent description of continuum thermodynamics and a precise formulation of the thermomechanical problem.
+A thorough investigation of the available approaches to solving coupled problems is provided, with a particular focus on thermomechanical problems.
+The strongly coupled or implicit partitioned schemes are chosen as the most promising approach because they can take advantage of existing software, provide accurate results that agree with a monolithic approach, are not memory intensive, are easy to implement, and are competitive in terms of computational efficiency through the use of convergence acceleration techniques.
+Recasting the problem as a system of nonlinear equations, where the residual is the difference between the initial input and its output after applying the fixed-point corresponding to the isothermal split, allows the straightforward use of a wide selection of methods for the solution of systems of nonlinear equations.
+This approach is applied specifically to the thermomechanical problem here, but it applies to other multi-physics phenomena with little modification.
 These are the fixed-point method, the underrelaxation method, the Aitken relaxation, the Broyden-like family of methods, the Newton-Krylov methods, and the polynomial vector extrapolation methods MPE and RRE in cycling mode.
 
 The validation of the thermomechanical solver and the implicit solution methods, as well as their comparison, is performed using an example with reference results in the literature: the necking of a circular thermoelastoplastic bar.
-The numerical results agree with the references providing confidence in the solution developed.
+The numerical results agree with the references, providing confidence in the solution developed.
 Regarding the comparison of the different implicit techniques, the best performing are the Broyden-like methods with \(\beta=-1\), Type I update, and \(s=1\), corresponding to the good Broyden method, and \(s=2\).
-These are both computationally efficient with few calls to the residual function and not very memory intensive.
-The Aitken relaxation, the simplest and the least memory intensive, also performs wSell.
-The other methods considered, including the Newton-GMRES and the MPE in cycling mode, display a worse performance.
-There is, however, a caveat regarding the Newton-Krylov methods regarding the possible use of global strategies such as line search given the accurate estimate for the Jacobian of the residual.
-Moreover, it has been determined that the most computationally demanding portion of the implicit partitioned schemes is the solution of the mechanical and thermal problems, with the manipulation concerning solely the coupling solver taking a very minute part of the total computational time.
+These are both computationally efficient (few calls to the residual function) and memory efficient.
+The Aitken relaxation, the simplest and least memory-intensive, also performs well.
+The other methods considered, including the Newton-GMRES and the MPE in cycling mode, display worse performance.
+However, there is a caveat to the Newton-Krylov methods in terms of the potential use of global strategies such as line search given an accurate estimate for the Jacobian of the residual.
+Moreover, it has been determined that the most computationally demanding portion of the implicit partitioned schemes is the solution of the mechanical and thermal problems, with the manipulation concerning solely the coupling solver taking a very small part of the total computational time.
 
-Regarding the second theme in focus in this work, a thorough description of the thermomechanical behavior of semi-crystalline polymer is provided.
-It is mainly based on the response of this class of material to various mechanical experiments, ranging from constant strain rate experiments, to stress relaxation, creep, and dynamical mechanical analysis.
-Regardin temperature, stiffness is based on constant and dma, regarding yield stress, constant.
-Strain rate and pressure.
-Same but base on crustallinity.
-Doubly yield.
-Temperature softening.
-Nonlinear steady state.
-Hardening.
-Thermo behavior and miscellaneous.
+The second theme addressed in this work is the constitutive description of semi-crystalline polymers.
+To accomplish this, a detailed description of the thermomechanical behavior of semi-crystalline polymers is provided so that appropriate modeling goals can be established.
+It is primarily based on this class of material's response to various mechanical experiments, ranging from constant strain rate experiments to stress relaxation, creep, and dynamical mechanical analysis.
+Semi-crystalline polymers, in constant strain-rate experiments, typically exhibit a response that consists of a linear stress-strain relationship followed by yield.
+A steady state is sometimes observed, followed by intense strain hardening at large strains.
+Regarding the influence of temperature on the behavior of this class of polymers, its increase leads to lower stiffness and yield strength.
+However, unlike glassy polymers, they retain usable structural properties even after the glass transition temperature is crossed.
+Common semi-crystalline polymers employed in commodity uses are HDPE and PP, while PA, PET, PPA, and PEEK satisfy the requirements of increasingly demanding engineering applications.
+The strain rate and the pressure exert the opposite effect on the stiffness and strength of semi-crystalline polymers.
+Furthermore, the yield phenomenon in semi-crystalline polymers is neither rate-independent nor linear with the strain rate, requiring appropriate nonlinear modeling.
 
-Given these goals for the thermomechanical modeling, an extensive overview of the state-of-the-art in semi-crystalline polymer modeling is provided.
-Due to nonlinearity, viscoelasticity is not suitable.
-Finite viscoeleastictiy, finite strain but nonlinear.
-Single integral, integral not cool.
-The most common approach is the use of rheological models with appropriate nonlinear viscous an elastic elements.
-The most commoon and effective viscous element regarding the intermoleccular resitnace is eyring, with rate equation athermal with most suffisticaed hao capable of double yield.
-When viscous in rubber bb model best.
-elastic for intermolecular hencky good enough.
-rubber eithgt chain most popular, but wan combination and edward vilgis good.
-bulk crystallinity modified voigt is the heigth.
-rate of crystalli cundiff
-hammed intermoelcuar and network.
+Concerning the influence of bulk crystallinity and lamellar thickness, an increase in the former implies a nonlinear increase in stiffness and strength, whereas an increase in the latter results in a linear increase in strength for moderate thicknesses, but stagnates for thicker lamella.
+Semi-crystalline polymers also have a double yield, which means that as the strain increases, there are two distinct yield stresses.
+This phenomenon is also linked to the temperature softening phenomenon, in which higher strain rates result in significant heat production and temperature increases, causing the material to soften.
+Furthermore, cold drawing is common, as when a neck develops in a tensile unixial test, the specimen thins in that region until the natural draw ratio is achieved.
+After that, the material in the neck has hardened sufficiently so that the thinned region travels across the specimen rather than decreasing until failure as it does in many ductile materials.
+Semi-crystalline strain hardening behavior is also similar to rubber elasticity.
 
-chosen are
-conclusions aobut model
-aonclusion about my implementation.
+In terms of the semi-crystalline polymer response to dynamical mechanical analysis, polymers with high crystallinity do not show a significant drop in storage modulus as frequency decreases in isothermal results.
+When the crystallinity is lower, a clear viscoelastic transition from glassy to leathery is observed.
+In isochronal results, one can observe the various relaxations present in semi-crystalline polymers.
+Relaxation I is visible at all crystallinity levels at lower temperatures, while relaxation II and III are more easily detectable at lower and higher crystallinities, respectively.
 
-MOre conclusive!!!!
+Finally, the thermal properties of semi-crystalline polymers are similar to those of other polymers in that they have a relatively large linear expansion coefficient and low thermal conductivity and diffusivity.
+This raises concerns about heat distortion when using semi-crystalline polymers in engineering applications and manufacturing processes.
+On the other hand, they display a desirable behavior when it comes to thermal shocks, despite the large linear thermal expansion coefficient, due to the relatively low Young modulus.
+\enlargethispage{\baselineskip}
 
+Given these goals for thermomechanical modeling, an extensive overview of the state-of-the-art in semi-crystalline polymer modeling is provided.
+Thermoviscoelasticity is taken as the starting point.
+It is, however, not suitable due to nonlinear features in the behavior of semi-crystalline polymers and its description employing infinitesimal strains.
+Finite linear viscoelasticity is a generalization of linear viscoelasticity to large strain, which however cannot provide a nonlinear description of semi-crystalline polymers.
+Single integral models are yet another approach that attempts to generalize the convolution integral description obtained from infinitesimal viscoelasticity.
+It is, however, not adequate for the computation framework based on the FEM method adopted here.
 
+The most common approach is the use of rheological models with appropriate nonlinear viscous and elastic elements.
+Within the many possible arrangements of elastic and viscous elements, the generalization of the standard linear solid appears to be the most popular, as employed in the early model of Haward and Thackray \citep{hawardUseMathematicalModel1968} and its generalization by Boyce, Park, and Ahzi \citep{boyceLargeInelasticDeformation1988}.
+The viscous element employed in both is based on Eyring's model for thermally activated processes.
+Within that model, an athermal strength controls the yield stress of the polymer, and it can in more sophisticated models be taken as an internal variable in order to capture strain softening behavior \citep{boyceLargeInelasticDeformation1988}, or even the double yield phenomenon as in \citep{haoUnifiedAmorphousCrystalline2022}.
+These two elements, when combined with an Hencky model for the elastic element, are responsible for modeling the pre-yield and yield behavior, which contribute to what is commonly referred to as the intermolecular resistance.
+The strain hardening is captured most often through the use of a rubber-elasticity model, such as the Arruda-Bouce eight-chain model \citep{arrudaEffectsStrainRate1995} or the Edward-Vilgis model \citep{edwardsEffectEntanglementsRubber1986} in the so-called network resistance.
+Sometimes, the viscous element proposed by Bergstrom-Boyce based on reptation \citep{bergstromConstitutiveModelingLarge1998, bergstromConstitutiveModelingTimedependent2001} is also included in this resistance.
+That said, the numerical results presented here support the conclusion that the most recent models for thermoplastics such the in \cite{haoUnifiedAmorphousCrystalline2022} are able to effectively capture the behavior of semi-crystalline polymers.
+
+In order to include the bulk crystallinity in the description of semi-crystalline polymers, the most common approach is to model the resistance due to each phase using a thermoplastic model, such as those already mentioned.
+Their contributions are then weighted using a mixture rule, such as the Reuss or Voig mixture rules.
+This set of models is especially compelling because it allows for the description of a polymer at various degrees of crystallinity using a single set of material parameters.
+An interesting suggestion that models well the pre-yield and yield behavior of a semicrystalline polymer is the nonlinear Voigt mixture rule proposed in \cite{ayoubEffectsCrystalContent2011}.
+The authors, however, only use this strategy for intermolecular resistance, using different material parameters at each crystallinity level for network resistance.
+In \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, the network resistnace is also modeled including a crystalline and an amorphous phase, and employing the same modified Voigt rule.
+Models such as those in \cite{ahziModelingDeformationBehavior2003, makradiTwophaseSelfconsistentModel2005} and \cite{cundiffModelingViscoplasticBehavior2022} also try to model the increase in cyrstallinity with strain in polymers such as PET.
+Nevertheless, scrutinizing the numerical results provided here for the model in \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} the ability of said model to achieve this goal is limited when it comes to the description of the strain hardening behavior of semi-crystalline polymers that succeds yield.
+\enlargethispage{\baselineskip}
 \section{Future research and challenges}
 
-The main challenges and directions for future research in the context of the solution of the thermomechanical problem are:
+Building on the research efforts already made in this work to establish a robuts computational toolbox for the design of multi-functional semi-crystalline polymers in engineering applications, the author's PhD thesis will address the following challenges:
+
 \begin{itemize}
-  \item More fields, exmples;
-  \item Crystallinity generalization;
-  \item Better exploration of thermomechanical in plastics;
-  \item Homogenization of polymer blends contain semi-crystaline see rtp
-  \item design of materials using bessa
-  \item see proposal.
+  \item More physical phenomena will be incorporated into the description of semi-crystalline polymers.
+  Electrical, magnetic, and hygromechanical phenomena are examples of such phenomena, which are critical in simulating some manufacturing processes and life service conditions.
+  \item Another avenue of research to be explored, is the development of new macroscopic constitutive laws capable of accurately capturing the homogenized response of semi-crystalline polymers.
+  In particular, models similar to those of \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and \cite{ayoubEffectsCrystalContent2011}, where bulk crystallinity is introduced and the material is characterized by the same material parameters with varying degrees of crystallintiy.
+  The main challenge is to make an appropriate generalization with the degree of crystallinity of the strain hardening response as understood from the numerical results reviewed in this work.
+  In tandem, a thorough investigation of the thermomechanical behavior of the various models available, as well as a detailed validation using various mechanical loading and thermal regimes.
+  \item Design of semi-crystalline polymer blends, such as nylon 6/PTFE blends, to provide optimal structural efficiency, manufacturability, and multi-functionality.
+  Multi-scale approaches, which transfer information between scales, can provide a more detailed physical understanding of their behavior and the ability to tailor new materials by manipulating their microstructure.
+  \item  The modeling and design multi-functional semicrystalline polymeric materials by combining multi-scale strategies with machine learning is to be pursued.
+  The work will initially focus on the mechanical response by finding optimal solutions for strength and toughness.
+  Later on, the coupling between the mechanical, electro, and transport fields will be addressed enabling the design of advanced multi-functional semicrystalline polymeric materials.
+
 \end{itemize}

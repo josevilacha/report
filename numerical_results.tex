@@ -1,8 +1,8 @@
 \chapter{Numerical results} \label{ch:numerical_results}
 
 This chapter presents two sets of results concerning the subject of thermomechanical modeling of semi-crystalline polymers.
-The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of the thermomechanical model employing a elasto-plastic description for the material.
-The second pertains to the implementation and validation of state of the art constitutive models for semi-crystalline polymers.
+The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of the thermomechanical model employing an elasto-plastic description for the material.
+The second pertains to the implementation and validation of state-of-the art constitutive models for semi-crystalline polymers.
 
 \section{Necking of a thermoelastoplastic circular bar}
      \label{sec:mech-driv-probl}
@@ -199,24 +199,27 @@ The second pertains to the implementation and validation of state of the art con
 
 \section{State of the art in semi-crystalline polymer modeling}
 
-This section analyses two state-of-the-art constitutive models for semi-crystalline polymers.
+This section analyzes two state-of-the-art constitutive models for semi-crystalline polymers.
 The first model is described in \cite{haoUnifiedAmorphousCrystalline2022} aand is applicable to polymer plastics in general, without explicitly considering the polymer's bulk crystallinity.
-Alternatively, the second model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and considers the crystallinity of the polymer explicitly, attempting to describe the polymer at different cyrstallinities with only one set of material parameters.
+Alternatively, the second model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} and considers the crystallinity of the polymer explicitly, attempting to describe the polymer at different crystallinities with only one set of material parameters.
+A more recent model proposed by Cundiff et al. \citep{cundiffModelingViscoplasticBehavior2022} shares some of the same ideas regarding the inclusion of bulk crystallinity into the constitutive description of semi-crystalline polymers, allowing even strain-induced crystallinity.
+Despite being more recent, it is not explored here for two reasons: the effect of crystallinity is not extended to the network resistance responsible for strain hardening, and the authors do not validate the model at different degrees of crystallinity.
+The work in \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} includes these aspects in its formulation.
 The main features of each model are described throughout Chatper~\ref{ch:modeling_semi_crystalline_polymer}.
 
 \paragraph{Computational framework}
-The solution of the thermomechanical problem is achieved employing an approach described thorougly in \cite{bergstromMechanicsSolidPolymers2015} and \cite{alvesFastOptimizationbasedParameter2022}, whose \verb|Python| implementation is available in-house.
-It is restrcited to displacement-driven uniaxial loading, traction or compression, and it achieves the solution of the mechanical problem through a minimization procedure.
-In each time step the axial stretch is prescribed and the transversal stretches are obtained as those leading to a minimum in the transversal stresses.
-This minimum should be zero as the boundary condition on the laterial surfaces corresponds to a free surface.
+The solution of the thermomechanical problem is achieved by employing an approach described thoroughly in \cite{bergstromMechanicsSolidPolymers2015} and \cite{alvesFastOptimizationbasedParameter2022}, whose \verb|Python| implementation is available in-house.
+It is restricted to displacement-driven uniaxial loading, traction, or compression, and it achieves the solution of the mechanical problem through a minimization procedure.
+In each time step, the axial stretch is prescribed, and the transversal stretches are obtained as those leading to a minimum in the transversal stresses.
+This minimum should be zero as the boundary condition on the lateral surfaces corresponds to a free surface.
 Accordingly, it is implicitly assumed that the response is homogeneous, which allows for comparisons solely with experimental results where the intrinsic response of the material is shown.
 
 \paragraph{Inclusion of the thermal}
 Regarding the thermal field, its inclusion is restricted to the isothermic and adiabatic cases.
 The former coincides with a strain rate sufficiently slow so that the heat generated from the deformation is easily offloaded to the environment, keeping the temperature constant.
-The latter corresponds to a strain rate so fast that no energy is exchanged with the environment during loading, approaching an adiabatic condition.
+The latter corresponds to a strain rate so high that no energy is exchanged with the environment during loading, approaching an adiabatic condition.
 Arruda et al. \citep{arrudaEffectsStrainRate1995} employ the dimensionless number defined as $\tau_\text{therm} = t_\text{test}/t_d$ to probe how appropriate either of these assumptions is.
-$t_\text{test}$ is defined as the test time to reach the true strain of $-1.0$ (in compression), and $t_d$ is thermal diffusion time of the speciment, which may be approximated as
+$t_\text{test}$ is defined as the test time to reach the true strain of $-1.0$ (in compression), and $t_d$ is the thermal diffusion time of the specimen, which may be approximated as
 \begin{equation}
   t_d \approx \frac{L^2}{2(k/\rho C_\mathbf{F})},
 \end{equation}
@@ -224,14 +227,15 @@ where $L$ is a characteristic dimension of the specimen from the center of the d
 If $\tau_\text{therm} \ll 1$, it is safe to assume an adiabatic evolution, however if $\tau_\text{therm}\gg 1$, the experiment progresses isothermically.
 $\tau_\text{therm}\approx 1$ points to  a coupled problem, in the sense that some heat is removed from the specimen as the experiment progresses, without however preventing an increase in temperature.
 
-In the present work, an adiabatic evolution is achieved through the inclusion of the temperature as an internal variable of the model, whose rate equation is the heat conduction equation (see Equation~\eqref{eq:heat_conduction}), discarding the heat conduction term and setting the internal dissipation according to the constitutive model prescribed.
-On the other hand, to ensure an isothermic evolution, the temperature is treated as a model parameter and remains constant throughout the simulation.
+In the present work, an adiabatic evolution is achieved through the inclusion of temperature as an internal variable of the model, whose rate equation is the heat conduction equation (see Equation~\eqref{eq:heat_conduction}), discarding the heat conduction term, and setting the internal dissipation according to the constitutive model prescribed.
+On the other hand, to ensure an isothermal evolution, the temperature is treated as a model parameter and remains constant throughout the simulation.
 
 \subsection{Hao et al. (2022a)}
 
-% Nylon 101 is a standard all-purpose extruded grade of nylon type 66 (polyamide). Also, among all of the unmodiﬁed nylons, it is the strongest, hardest nylon, and has one of the highest melting temperatures (260 C or 500 F)
 
 Following the description in \cite{haoUnifiedAmorphousCrystalline2022}, the experimental results employed for validation are those of Khan and Farrokh \citep{khanThermomechanicalResponseNylon2006} obtained during the uniaxial compression of nylon 101 at a constant strain rate.
+Nylon 101 is a standard all-purpose extruded grade of nylon type 66 (polyamide).
+Also, among all of the unmodified nylons, it is the strongest and hardest nylon and has one of the highest melting temperatures (\SI{260}{\celsius}) \citep{khanThermomechanicalResponseNylon2006}.
 The material is modeled by the constitutive model proposed by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, and the material properties are given in Table~\ref{tab:mat_prop_hao}.
 They are taken from \cite{haoUnifiedAmorphousCrystalline2022}, with the exception of the parameter $m$ whose value is taken as \num{0.66}, following \cite{haoRatedependentConstitutiveModel2022}, as the supplied value in the first contribution, \num{0.8}, did not produce the expected results.
 %
@@ -286,7 +290,7 @@ They are taken from \cite{haoUnifiedAmorphousCrystalline2022}, with the exceptio
 
 The strain rates considered are \SIlist{1e-5;1e-2;1e0}{\per\second}.
 The first corresponds to an adiabatic process and the last to and isothermic process, as evaluated by the dimensionless parameter $\tau_\text{therm}$ \citep{haoUnifiedAmorphousCrystalline2022}.
-A strain rate of \SI{1e-2}{\per\second} coincides, however, with a coupled evolution, which is neither adiabatic nor isothermic.
+A strain rate of \SI{1e-2}{\per\second} coincides, however, with a coupled evolution that is neither adiabatic nor isothermic.
 Despite this, due to the constraints on the computational tool available, it is simulated here using an adabatic condition.
 The stress-strain and temperature-strain curves obtained are compared in Figure~\ref{fig:stress_temp_strain_hao_results} to the experimental results in \cite{khanThermomechanicalResponseNylon2006} and the numerical results obtained by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}.
 \begin{figure}[htbp]
@@ -307,23 +311,23 @@ As seen from the experimental results, nylon 101 displays double yield, which be
 To the point, in Figure~\ref{fig:stress_temp_strain_hao_results}, only the strain rates of \SIlist{1e-2;1e0}{\per\second} show a prominent double yield.
 This phenomenon is also correctly described by the model, with a slight underestimation of the stress response for the higher strain rates.
 This is achieved through the dependence of the athermal strength on the temperature through the elastic modulus, similar to what is shown in Equation~\eqref{eq:athermal_strength_elasticity_rel}.
-Conversely, regarding the second yield stress, the model overestimates the stress slightly.
+Conversely, regarding the second yield stress, the model slightly overestimates the stress.
 In fact, the experimental value found for the second yield stress is \SI{129.8}{\mega\pascal}, with the model predicting a value of \SI{134.5}{\mega\pascal}, amounting to a relative error of \num{3.6}\%.
 
 When the numerical results obtained in this work and in \cite{haoUnifiedAmorphousCrystalline2022} are compared, there is perfect agreement for the lowest strain rate considered (\SI{1e-5}{\per\second}).
 The same cannot be said for the other two strain rates.
-Nonetheless, until the first yield and subsequent softening, there is good agreement between the two sets of numerical results.
+Nevertheless, until the first yield and subsequent softening, there is good agreement between the two sets of numerical results.
 As the strain increases, the difference between the two grows larger.
 There are a few reasons for this.
 The first concerns mainly the experiment corresponding to a strain rate of \SI{1e-2}{\per\second}, which in the present work is simulated as an adiabatic process.
-This is not strictly true and contributes to differences relative to the reference results, which were obtained employing a fully thermomechanical description of the problem including conduction inside the cylinder and converction at its borders.
-A further contributing factor, that also affects the response obtained in the present work at \SI{1}{\per\second} is the heterogeneity of the response in \cite{haoUnifiedAmorphousCrystalline2022}.
+This is not strictly true and contributes to differences relative to the reference results, which were obtained employing a fully thermomechanical description of the problem, including conduction inside the cylinder and convection at its borders.
+A further contributing factor that also affects the response obtained in the present work at \SI{1}{\per\second} is the heterogeneity of the response in \cite{haoUnifiedAmorphousCrystalline2022}.
 Despite a homogeneous temperature distribution, the plastic deformation is heterogeneous, breaking the assumptions of the numerical tool employed in this work and further motivating differences in the results obtained.
 Finally, concerning the temperature evolution with the strain in the adiabatic cases, it remains constant during the elastic portion of the stress-strain response, and begins to increase after this.
 The final value obtained for the \SI{1e0}{\per\second} strain rate is \SI{73.4}{\celsius}, which is close to the value obtained in \cite{haoUnifiedAmorphousCrystalline2022} equal to \SI{71.5}{\celsius}, corresponding to a relative error equal to 2.7\%.
 However, the same authors find a heterogeneous temperature distribution for the \SI{1e-2}{\per\second} case, rendering a comparison impossible.
 
-In general, the implementation developed in this work compares favourably with the one found in \cite{haoUnifiedAmorphousCrystalline2022}.
+In general, the implementation developed in this work compares favorably with the one found in \cite{haoUnifiedAmorphousCrystalline2022}.
 
 \subsection{Abdul-Hameed et al. (2014)}
 
@@ -336,19 +340,19 @@ The stress-strain curves obtained for polyethylenes with crystallinities equal t
 
 To begin, Abdul-Hameed et al.'s model \citep{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014} must be assessed for its ability to describe the experimental data in \cite{ayoubEffectsCrystalContent2011}.
 It can capture accurately the yield stress for all the crystallinities considered, however without accounting for the smooth transient between the elastic range and the "steady state" plastic flow.
-This is because in the thermally activated flow rule (see Equation~\eqref{eq:flow_rule_thermally_activated}) employed for both the crystalline and amorphous contributions to the intermolecular resistance an appropriate internal variable, such as the athermal strength, and corresponding rate equation is not included.
+This is because in the thermally activated flow rule (see Equation~\eqref{eq:flow_rule_thermally_activated}) employed for both the crystalline and amorphous contributions to the intermolecular resistance, an appropriate internal variable, such as the athermal strength, and corresponding rate equation are not included.
 Regarding the hardening it is not captured so well, specially in the case of LDPE.
-This is less so for the ULDPE, and it is only true at large strain ($\varepsilon_{xx}>1$) for HDPE.
-Thus, the attempt of this model to describe the behavior of polyethylene at different crystallinities employing just one set of material parameters is only moderately successful.
+This is less so for the ULDPE, and it is only true for at large strains ($\varepsilon_{xx}>1$) for HDPE.
+Thus, the attempt of this model to describe the behavior of polyethylene at different crystallinities using just one set of material parameters is only moderately successful.
 
 Turning to the comparison between the numerical results obtained in this work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
 Despite the limitations of the numerical tool available, a good agreement is expected.
-That said, employing the parameters supplied in contribution just mentioned the results obtained are not those expected.
+That said, employing the parameters supplied in the contribution just mentioned, the results obtained are not those expected.
 A better agreement is found taking the shear modulus $C_c$ multiplied by 2/3.
-Still some minor descrepancies in the hardening behavior simulated can be found in the results concerning the HDPE and the LDPE.
-These are somewhat exacerbated, especially for the three larger strain rates considered in the case of ULDPE.
-On the other hand, there is full accord in the elastic response and subsequent yielding between the two sets of numerical results at all crystallinities considered.
-This points to some differences in the network branch of the model wher the parameters already mentioned contribute to.
+Still, some minor discrepancies in the hardening behavior simulated can be found in the results concerning the HDPE and the LDPE.
+These are somewhat exacerbated, especially for the larger strain rates considered in the case of ULDPE.
+On the other hand, there is full accord in the elastic response and subsequent yielding between the two sets of numerical results for all crystallinities considered.
+This points to some differences in the network branch of the model, to which the parameters already mentioned contribute.
 That said, there is an acceptable agreement between the numerical results obtained in the present work and in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}.
 
 \begin{table}[hbtp]

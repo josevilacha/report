@@ -500,8 +500,8 @@ In the thermomechanical context, the following residual functions \nomenclature[
           % \end{landscape}
 
 
-          \subsection{Additional computational aspects}
-          \label{sec:addit-comp-aspects}
+          % \subsection{Additional computational aspects}
+          % \label{sec:addit-comp-aspects}
 
           % The following sections address some additional computational aspects that can complement the previous techniques.
           % In particular, the focus is placed on the prediction of the initial guess and the convergence criteria employed.
@@ -522,21 +522,21 @@ In the thermomechanical context, the following residual functions \nomenclature[
           % \end{gather}
           % Slight adaptations must be considered if the time step is not constant throughout the simulation.
 
-          \subsubsection{Convergence criteria}
-
-          For an iterative method to be useful, there must be reasonable criteria to determine its convergence.
-          The iteration residual is defined as
-          \begin{equation}
-            \mathbf{r}^{k} = \bm{\mathcal{R}}(\mathbf{x}^{k}),
-          \end{equation}
-          and if it is equal to zero, then $\mathbf{x}$ is the solution to the system of nonlinear equations, hence, a reasonable convergence measure for the iteration procedure.
-
-          The $l^{2}$-norm is used to obtain a scalar representative of the vectorial residual \(\mathbf{r}^{k}=\left(r^{k,1}, \ldots, r^{k,N}\right)^{T}\)
-          \begin{equation}
-            \left\|\mathbf{r} ^{k}\right\|_{l^{2}}=\sqrt{\sum_{i}\left(r^{k, i}\right)^{2}},
-          \end{equation}
-          with the relative convergence criteria employed defined as
-          \begin{equation} \label{eq:def_res_used}
-            \frac{\left\|\mathbf{r}^{k}\right\|_{l^{2}}}{\left\|\mathbf{x}^{k}\right\|_{l^{2}}}<\epsilon_\mathrm{rel} = \num{1e-10},
-          \end{equation}
-          setting the residual in relation to the current coupling iterate values.
+          % \subsubsection{Convergence criteria}
+          %
+          % For an iterative method to be useful, there must be reasonable criteria to determine its convergence.
+          % The iteration residual is defined as
+          % \begin{equation}
+          %   \mathbf{r}^{k} = \bm{\mathcal{R}}(\mathbf{x}^{k}),
+          % \end{equation}
+          % and if it is equal to zero, then $\mathbf{x}$ is the solution to the system of nonlinear equations, hence, a reasonable convergence measure for the iteration procedure.
+          %
+          % The $l^{2}$-norm is used to obtain a scalar representative of the vectorial residual \(\mathbf{r}^{k}=\left(r^{k,1}, \ldots, r^{k,N}\right)^{T}\)
+          % \begin{equation}
+          %   \left\|\mathbf{r} ^{k}\right\|_{l^{2}}=\sqrt{\sum_{i}\left(r^{k, i}\right)^{2}},
+          % \end{equation}
+          % with the relative convergence criteria employed defined as
+          % \begin{equation} \label{eq:def_res_used}
+          %   \frac{\left\|\mathbf{r}^{k}\right\|_{l^{2}}}{\left\|\mathbf{x}^{k}\right\|_{l^{2}}}<\epsilon_\mathrm{rel} = \num{1e-10},
+          % \end{equation}
+          % setting the residual in relation to the current coupling iterate values.

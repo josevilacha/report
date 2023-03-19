@@ -5,8 +5,8 @@ The departure point is infinitesimal thermoviscoelasticity, as it is one of the 
 A thorough exposition of its inadequacies in describing semi-crystalline polymers is supplied, motivating the introduction of more complex models.
 Nonlinear generalizations are considered by specifying nonlinear laws for the elastic and viscous elements in rheological models originating from infinitesimal viscoelasticity.
 Only properties of a homogenized single phase are taken into account in these models, employed chiefly in the description of plastic polymers.
-The caveats regarding the generalization to three dimensions and large deformation are explained, as well as how to introduce the thermo field into that description.
 These are the most commonly available models in the literature, and a detailed overview is provided in this chapter.
+The caveats regarding the generalization to three dimensions and large deformations are explained, as well as how to introduce temperature into that description.
 
 Following that is a description of models that distinguish between the crystalline and amorphous phases while only considering bulk crystallinity and no additional geometrical information.
 Finally, multiscale models with micro and mesostructure considerations are described.
@@ -14,10 +14,10 @@ Finally, multiscale models with micro and mesostructure considerations are descr
 \section{Infinitesimal thermo-viscoelasticity}
 \label{sec:infinitesimal_thermo_viscoelasticity}
 Given the modeling objectives specified in Chapter~\ref{ch:thermomechanical_behavior_semi_crystalline_polymer}, infinitesimal viscoelasticity presents itself as a satisfactory starting point.
-Depending on the model, it can capture strain recovery, creep, stress relaxation, and a transient under monotonic loading, all essential features of semi-crystalline polymer mechanical behavior.
+Depending on the model, it can capture strain recovery, creep, stress relaxation, and the transient behavior under monotonic loading--these are essential features to describe the mechanical behavior of a semi-crystalline polymer.
 
 Infinitesimal thermo-viscoelasticity, as presented in \cite{christensen2013theory}, fits into the framework of materials with fading memory framework (see Section~\ref{sec:constitutive_modeling}).
-It is assumed that strains, $\bm \varepsilon$, are small as well as the temperature difference with respect to some reference temperature, $\Delta T=T-T_0$.
+It is assumed that strains, $\bm \varepsilon$, are small, as well as the temperature difference with respect to some reference temperature, $\Delta T=T-T_0$.
 Employing the Stone-Weierstrass and Riesz representation theorem, the expression found for the free energy, discarding third-order effects, is
 \begin{multline}
   \rho\psi(t) = \int_{-\infty}^t \bm D(t-\tau):\frac{\partial \bm\varepsilon(\tau)}{\partial \tau}d\tau + \int_{-\infty}^t \beta(t-\tau)\frac{\partial \Delta T(\tau)}{\partial \tau}d\tau\\ + \frac{1}{2}\int_{-\infty}^t\int_{-\infty}^t \frac{\partial \bm\varepsilon(\eta)}{\partial \eta}:\bm G(t-\tau, t-\eta):\frac{\partial \bm \varepsilon(\tau)}{\partial \tau}d\tau d\eta  \\
@@ -53,8 +53,8 @@ In general, the relaxation modulus can also be written as \citep{malkinRheologyC
 \label{eq:relax_mod_decomp}
 	G(t) = G_\infty + \varphi(t),
 \end{equation}
-where $G_\infty$ is the equilibrium modulus and $\varphi$ is the relaxtion function.
-From its physical meaning, the latter is a decreasing function of time tending to zero as $t\to\infty$.
+where $G_\infty$ is the equilibrium modulus and $\varphi$ is the relaxation function.
+Taking into account its physical meaning, the latter must be a decreasing function of time tending to zero as $t\to\infty$.
 The functions of such type can always be presented by the following integral
 \begin{equation}
   \label{eq:relax_time_spectrum}
@@ -72,7 +72,7 @@ where $\theta_i$ is the $i$th relaxation time so that the constitutive relation 
   \sigma + \left(\frac{\eta_1}{G_1} + \frac{\eta_2}{G_2}\right) \dot \sigma + \frac{\eta_1\eta_2}{G_1G_2}\ddot \sigma = (\eta_1 + \eta_2)\dot\varepsilon + \frac{\eta_1\eta_2(G_1 + G_2)}{G_1G_2}\ddot\varepsilon,
 \end{equation}
 where $\eta_i$ is the viscosity of the $i$th dashpot, $G_i$ is the stiffness of the $i$th spring, and $\dot{\bullet}$ denotes the derivative with respect to time.
-Given the definition in Equation~\eqref{eq:relax_time_spectrum}, the relaxation time spectrum for the Burgers material isc
+Given the definition in Equation~\eqref{eq:relax_time_spectrum}, the relaxation time spectrum for the Burgers material is
 \begin{equation}
   H(\theta) = G_1 \delta(\theta - \theta_1) + G_2 \delta(\theta - \theta_2),
 \end{equation}
@@ -80,7 +80,7 @@ where $\delta$ is the $\delta$-Dirac function.
 See Figure~\ref{fig:rheo_model_burgers} for the corresponding rheological model.
 
 Furthermore, the ordinary differential equations describing these models can be transformed into a state space representation, where the system's state is described through state variables.
-Also, for Burgers material, an equivalent description can be found as
+Also, for a Burgers material, an equivalent description can be established as
 \begin{align}
 \label{eq:state_var_desc_burgers}
 	\sigma &= G_1\varepsilon_{e,1} + G_2\varepsilon_{e,2},\\
@@ -88,8 +88,8 @@ Also, for Burgers material, an equivalent description can be found as
 	\dot \varepsilon_{e,2} &= -\frac{\eta_2}{G_2}\varepsilon_{e,2} + \dot \varepsilon,\\
 \end{align}
 where $\varepsilon_{e, i}$, $i=1,2$, is the strain in the $i$th spring and an internal variable of the constitutive model.
-Their evolution can be tied to transient effects, such as the ones observed at the beginning of monotonic loading at a constant strain rate in the case of a Burger material (see Figure~\ref{subfig:burgers_cnst_strain_rate}).
-Figures~\ref{subfig:burgers_stress_relax} and \ref{subfig:burgers_creep_plus_recov} illustrate the response of the Burgers material to a constant strain and a constant stress followed by release, respectively, illustrating the ability of the model to capture the phenomena of strain recovery, creep, and recovery.
+Their evolution can be tied to transient effects, such as the ones observed at the beginning of the monotonic loading at a constant strain rate in the case of a Burger material (see Figure~\ref{subfig:burgers_cnst_strain_rate}).
+Figures~\ref{subfig:burgers_stress_relax} and \ref{subfig:burgers_creep_plus_recov} illustrate the response of the Burgers material to a constant strain and a constant stress, respectively, followed by release illustrating the ability of the model to capture the phenomena of strain recovery, creep, and recovery.
 \begin{figure}
 \centering
 \begin{subfigure}[b]{0.30\textwidth}
@@ -111,7 +111,7 @@ Figures~\ref{subfig:burgers_stress_relax} and \ref{subfig:burgers_creep_plus_rec
       \caption{}
       \label{subfig:burgers_creep_plus_recov}
     \end{subfigure}
-  \caption{Schematic response of the Burgers material in \subref{subfig:burgers_cnst_strain_rate} constant strain rate experiment, \subref{subfig:burgers_stress_relax} a stress relaxation experiment and a \subref{subfig:burgers_creep_plus_recov} creep experiment with recovery.}
+  \caption{Schematic response of the Burgers material in \subref{subfig:burgers_cnst_strain_rate} a constant strain rate experiment, \subref{subfig:burgers_stress_relax} a stress relaxation experiment and a \subref{subfig:burgers_creep_plus_recov} creep experiment with recovery.}
 \label{fig:burgers_mat_res}
 \end{figure}
 
@@ -131,8 +131,8 @@ Thus, in the one-dimensional case, for discrete increases in strain $\Delta \var
 \begin{equation}
 	\sigma (t) = \Delta \varepsilon_1 G(t - \tau_1) + \Delta \varepsilon_2 G(t - \tau_2) + \Delta \varepsilon_3 G(t - \tau_3) + \cdots
 \end{equation}
-If the increases in strain considered are rendered infinitesimal, the constitutive law found for the stress is the convolution integral in Equation~\eqref{eq:stress_constitutive_infinitesimal_viscoelasticity}.
-This is intimately connected to the fact that the rate equations for the state variables are ordinary differential equations (see Equation~\eqref{eq:state_var_desc_burgers} for the Burgers material) and that as a material property, the relaxation modulus is only a function of time and not of strain, strain rate or stress (see Equation~\eqref{eq:relaxation_modulus_burgers} for the Burgers material).
+If the increases in strain are assumed infinitesimal, the constitutive law found for the stress is the convolution integral in Equation~\eqref{eq:stress_constitutive_infinitesimal_viscoelasticity}.
+This is intrinsically connected to the fact that the rate equations for the state variables are ordinary differential equations (see Equation~\eqref{eq:state_var_desc_burgers} for the Burgers material) and that as a material property, the relaxation modulus is only a function of time and not of strain, strain rate or stress (see Equation~\eqref{eq:relaxation_modulus_burgers} for the Burgers material).
 The consequences of this linear behavior for the material's response in relevant mechanical experiments are discussed shortly.
 \begin{figure}[hbtp]
 \centering
@@ -153,15 +153,16 @@ The consequences of this linear behavior for the material's response in relevant
 \end{figure}
 
 \paragraph{Limitations of infinitesimal viscoelasticity}
-Infinitesimal viscoelasticity has, however, some significant limitations, first among them the use of infinitesimal strains in the constitutive description of the material.
+Infinitesimal viscoelasticity has, however, some significant limitations.
+The first among them is the use of infinitesimal strains in the constitutive description of the material.
 Semi-crystalline polymers, such as HDPE, can frequently achieve true strains in axial tests that exceed 1.5, far surpassing what could be considered small deformations \citep{gsellYieldTransientEffects1981}.
 
 Furthermore, the Boltzmann superposition principle is frequently violated, and there is an energy exchange between the different relaxation modes, implying that the relaxation modulus depends on the strain, strain rate, and stress \citep{malkinRheologyConceptsMethods2017}.
-Semi-crystalline polymers exhibit nonlinear behavior that can be detected in a variety of mechanical experiments.
+Semi-crystalline polymers exhibit a nonlinear behavior that can be detected in a variety of mechanical experiments.
 References to experimental results depicting this behavior can be found in Section~\ref{sec:relax_creep_dma}.
 A comparison between a linear response and possible nonlinear responses to the most common mechanical experiments is provided to understand the deficits of infinitesimal viscoelasticity.
 
-Firstly, consider constant strain rate experiments ran at different strain rates.
+Firstly, consider a set of constant strain rate experiments at different strain rates.
 At some point (see Equation~\eqref{eq:relax_mod_decomp}), a steady state will be reached, meaning $\dot {\bm\alpha} = 0,$ and the corresponding response in an infinitesimal viscoelastic model is either constant (liquid) or linear (solid) in the strain.
 At any rate, for a given strain, the stress varies linearly with the strain rate and is proportional to the relaxation time, corresponding to so-called Newtonian viscosity \citep{matsuokaThermodynamicTheoryViscoelasticity1996} (see Figure~\ref{subfig:constant_strain_rate_expected}).
 Both of these facts are not always observed in practice.
@@ -183,7 +184,7 @@ Also, some semi-crystalline polymers exhibit more or less abrupt changes in flow
             \caption{}
             \label{subfig:constant_strain_rate_nonlinear}
     \end{subfigure}
-  \caption{Stress-strain curve and steady state stress-strain rate curve for a \subref{subfig:constant_strain_rate_expected} an infinitesimal viscoelastic material (linear) and a \subref{subfig:constant_strain_rate_nonlinear} nonlinear material.}
+  \caption{Stress-strain curve and steady state stress-strain rate curve for \subref{subfig:constant_strain_rate_expected} an infinitesimal viscoelastic material (linear) and a \subref{subfig:constant_strain_rate_nonlinear} a nonlinear material.}
 \label{fig:constant_strain_rate_results}
 \end{figure}
 
@@ -191,7 +192,7 @@ The expected linear behavior in a stress relaxation experiment is to obtain the 
 Likewise, in a creep experiment, the strain response divided by the stress is equal for experiments at different stress levels.
 Another nonlinear feature observed in semi-crystalline polymers is the dependence of the relaxation modulus and creep compliance on the strain and stress, in addition to time.
 % See Figure~\ref{fig:relax_creep_expected} for a depiction of the expected linear and possible nonlinear behaviors.
-The recovery may also display nonlinear features, that is, the strain recovered $\varepsilon_r$ will also depend on the initial strain $\varepsilon_0$ and how long the sample was strained, $t_0$, yielding completely different $\varepsilon/\varepsilon_0$ versus $\log t/t_0$ curves \citep{ferryViscoelasticPropertiesPolymers1980}.
+The recovery may also display nonlinear features, that is, the strain recovered $\varepsilon_r$ will also depend on the initial strain $\varepsilon_0$ and on how long the sample was strained, $t_0$, yielding completely different $\varepsilon/\varepsilon_0$ versus $\log t/t_0$ curves \citep{ferryViscoelasticPropertiesPolymers1980}.
 % \begin{figure}
 %   \includegraphics[width=0.9\textwidth]{example-image-a}
 %   \caption{Expected behavior of an infinitesimal viscoelastic material and nonlinear alternatives in a) stress relaxation experiment, b) in a creep experiment. }
@@ -203,11 +204,11 @@ The recovery may also display nonlinear features, that is, the strain recovered 
 The infinitesimal viscoelastic model can be derived assuming that the stress depends only on the "magnitude" of the deformation history to the first order (see \cite{colemanFoundationsLinearViscoelasticity1961} or \cite{christensen2013theory}).
 This is automatically satisfied if only small strains are considered.
 However, Coleman and Noll \citep{colemanFoundationsLinearViscoelasticity1961} point out that finite deformations can also be considered, as long as the motion is slow enough when compared with the material's rate of "forgetting."
-The stress-strain constitutive relation is still described as a convolution integral (see Equation~\eqref{eq:stress_constitutive_infinitesimal_viscoelasticity}) and may be frequently described by ordinary differential equations, where instead of the infinitesimal strain tensor, a strain measure compatible with finite strains, e.g., the Green-Lagrange strain tensor, can be employed.
+The stress-strain constitutive relation is still described as a convolution integral (see Equation~\eqref{eq:stress_constitutive_infinitesimal_viscoelasticity}) and may be frequently described by ordinary differential equations, where instead of the infinitesimal strain tensor, a strain measure compatible with finite strains, e.g., the Green-Lagrange strain tensor, is employed.
 This approach to viscoelasticity allows for finite strains.
-However, it is still linear with respect to the strain measure,--not the displacement, since the former are nonlinear functions of the latter--, thus, respecting the Boltzmann superposition principle and keeping the relaxation spectrum depending only on time.
-As such, this model will not display most of the required nonlinear effects observed in semi-crystalline polymers described in the previous chapter.
-In addition, since the dissipation is a second-order effect, the state of the material remains close to thermodynamical equilibrium, so the dissipation will not contribute as a source in the heat conduction equation (Equation~\eqref{eq:heat_conduction}).
+However, it is still linear with respect to the strain measure, not the displacement, since the former are nonlinear functions of the latter, thus, respecting the Boltzmann superposition principle and keeping the relaxation spectrum depending only on time.
+As such, this model does display most of the required nonlinear effects observed in semi-crystalline polymers described in the previous chapter.
+In addition, since the dissipation is a second-order effect, the state of the material remains close to thermodynamical equilibrium, so the dissipation does not contribute as a source in the heat conduction equation (Equation~\eqref{eq:heat_conduction}).
 
 \section{Single integral models}
 Another approach that seeks to generalize the results of infinitesimal viscoelasticity is based on the integral constitutive equation for the stress as a function of the strain in Equation~\eqref{eq:stress_constitutive_infinitesimal_viscoelasticity}.
@@ -219,21 +220,21 @@ For example, the model of Pipkin and Rogers is given by \citep{wardIntroductionM
 where $R$ is a nonlinear stress relaxation modulus depending on time and strain, incorporating nonlinear effects into the material's infinitesimal viscoelastic constitutive description.
 
 A list of models of this type, including the models of Leaderman, Pipkin and Rogers; Schapery; and Bernstein, Kearsley and Zapas (BKZ), can be found in \cite{wardIntroductionMechanicalProperties2004} and \cite{malkinRheologyConceptsMethods2017}.
-According to Ward and Sweeney \citep{wardIntroductionMechanicalProperties2004}, Smart and Williams \citep{smartComparisonSingleintegralNonlinear1972} assessed the three models' performance when applied to tensile stretching of polypropylene and poly(vinyl chloride) fibers, but only up to modest strains (4\%).
+According to Ward and Sweeney \citep{wardIntroductionMechanicalProperties2004}, Smart and Williams \citep{smartComparisonSingleintegralNonlinear1972} assessed the three models' performance when applied to the tensile stretching of polypropylene and poly(vinyl chloride) fibers, but only up to modest strains (4\%).
 At these strains, the BKZ model proved to be of limited interest, while the Pipkin and Rogers model, albeit simpler than Schapery's theory, yielded a somewhat inferior result.
 Moreover, Turner \citep{turnerStrainResponsePlastics1966} concludes about single integral models that viscoelastic behavior, in general, cannot be discussed simply in terms of a stress-strain-time relationship and a modified superposition integral.
 
 With particular relevance to modeling semi-crystalline polymers, Popelar \citep{popelarViscoelasticMaterialCharacterization1990} modeled MDPE and HDPE employing Schapery's nonlinear viscoelasticity with good results.
-The experimental tests used for validation included constant strain rate uniaxial traction tests with strain rates ranging from \SIrange{1e-5}{1e-1}{\per\second} and temperatures from \SIrange{23}{77}{\celsius} and a maximum strain of 0.25.
+The experimental tests used for validation included constant strain rate uniaxial traction tests with strain rates ranging from \SIrange{1e-5}{1e-1}{\per\second}, temperatures ranging from \SIrange{23}{77}{\celsius}, and a maximum strain of 0.25.
 
 Regarding the free energies corresponding to these stress-strain constitutive relationships, Gurtin and Hrusa \citep{gurtinEnergiesNonlinearViscoelastic1988} present a discussion on the topic.
-This class of models will not be discussed further in the text since, due to their formulation in terms of convolution integrals, they are not particularly appropriate for application in computational mechanics based on the FEM.
+This class of models will not be discussed further in this text since, due to their formulation in terms of convolution integrals, they are not particularly appropriate for application in computational mechanics based on the FEM.
 
-\section{Descriptions based on rheological models with nonlinear elements}
+\section{Descriptions based on rheological models with\\ nonlinear elements}
 
 A viscoelastic constitutive model fit for large strains and capable of capturing the required nonlinear behaviors can often be achieved by specifying nonlinear laws for the behavior of the viscous and elastic elements in a rheological model.
-It is by far the most common approach, and to introduce it, the laws available for viscous elements are presented first, followed by the corresponding laws for elastic elements.
-The kinematic decomposition required to generate a large strain three-dimensional model and the changes needed to introduce the thermal field are discussed.
+In what follows, well-established laws for both viscous and elastic elements are presented.
+The kinematic decomposition required to generate a large strain three-dimensional model and the introduction of the temperature field are discussed.
 Finally, the most relevant models from the literature following this approach are presented.
 
 % \begin{remark}[Phenomenological vs. First principles]
@@ -254,35 +255,35 @@ This observation runs counter to the valuable concept of yield strength, below w
 According to the same authors, this would only be strictly true at absolute zero.
 The corresponding theoretical flow stress is often called the mechanical threshold or athermal strength.
 Furthermore, flow below that mechanical threshold is due to thermally activated kinetic processes, i.e., their rate depends on the thermal fluctuations of the kinetic units.
-For the sake of completeness, it should be mentioned that there are kinetic processes that become relevant when the loading exceeds the mechanical threshold, coinciding with very high strain rates, and which do not necessitate thermal activation to occur \citep{kocks1975thermodynamics}\footnote{In the context of polycrystalline materials, where slip is the primary deformation mechanism the former correspond to so-called jerky glide and the latter to continuous glide \citep{kocks1975thermodynamics}.}.
+For the sake of completeness, it should be mentioned that there are kinetic processes that become relevant when the loading exceeds the mechanical threshold, coinciding with very high strain rates, and which do not necessitate thermal activation to occur \citep{kocks1975thermodynamics}\footnote{In the context of polycrystalline materials, where slip is the primary deformation mechanism thermally activated deformation below the mechanical threshold corresponds to so-called jerky glide and deformation above the mechanical threshold to continuous glide \citep{kocks1975thermodynamics}.}.
 These are beyond the scope of the present work.
 
-To better understand how thermal fluctuations allow for flow, consider that at a given temperature in a solid, the kinetic units perform thermally driven oscillations of random magnitude near an equilibrium position.
-If the motion of the kinetic units coincides with their permanence near that equilibrium state, the behavior of the solid will be elastic.
-On the other hand, flow happens when the energetic barrier $H_0$ bounding the equilibrium state is cleared.
-This energy is the energy of activation at \SI{0}{\kelvin} when no force is acting on the material \citep{kocks1975thermodynamics}.
+To better understand how thermal fluctuations allow for flow, consider that, at a given temperature, the kinetic units of a solid material perform thermally driven oscillations of random magnitude near an equilibrium position.
+If the motion of the kinetic units coincides with their permanence near that equilibrium state, the behavior of the solid is elastic.
+On the other hand, flow happens when the , $H_0$, bounding the equilibrium state is cleared.
+This energy is the energy of activation at \SI{0}{\kelvin}, when no force is acting on the material \citep{kocks1975thermodynamics}.
 Employing the Boltzmann distribution from statistical mechanics to calculate the probability of a thermal fluctuation providing enough energy to overcome the energy barrier, the rate of transition between states is given in the form of the Arrhenius equation, written in this context as
 \begin{equation}
 	k = A\exp\left(-\frac{H_0}{k_BT}\right),
 \end{equation}
 where $k_B$ is Boltzmann's constant, $A$ is the pre-exponential factor, $H_0$ is the height of the energy barrier.
 The pre-exponential term can be interpreted as the rate of attempts to move over the transition state \citep{atkins2010atkins}.
-According to Kocks et al. \citep{kocks1975thermodynamics}, it is related to one of two extreme frequencies: either the "atomic" frequency, i.e., the frequency of uncorrelated atomic motions, or the kinetic unit ground frequency, correlated with the overcoming of many of obstacles at the same time.
+According to Kocks and coworkers \citep{kocks1975thermodynamics}, it is related to one of two extreme frequencies: either the "atomic" frequency, i.e., the frequency of uncorrelated atomic motions, or the kinetic unit ground frequency, correlated with the overcoming of many obstacles at the same time.
 The inverse of this rate, i.e.,
 \begin{equation}
 	\theta = \frac{1}{A}\exp\left(\frac{H_0}{k_B T}\right),
 \end{equation}
 is the relaxation time of the process.
 
-To consider the effect of applying a stress, $\tau$, to the material, consider firstly that it leads to a new equilibrium position for the kinetic unit.
-Taking into account that work provided by the stress before flow happens, the total free energy necessary to overcome the obstacle, $H_0$, is now smaller and equal to $\Delta H$.
+To include the effect of applying a stress, $\tau$, to the material, consider firstly that it leads to a new equilibrium position for the kinetic unit (see Figure~\ref{fig:site_model_theory}).
+Taking into account the work provided by the stress before flow happens, the total free energy necessary to overcome the obstacle, $H_0$, is now smaller and equal to $\Delta H$.
 The free Gibbs energy, also known as free enthalpy, $\Delta G$, is the missing portion of energy that a thermal oscillation must supply for flow to happen.
-It is, however, not equal to $\Delta H$, since during flow the stress will supply furhter work, $\Delta W$, which
+It is, however, not equal to $\Delta H$, since during flow the stress will supply further work, $\Delta W$, which
 must be discounted from the total energy required to overcome the kinetic unit's obstacle to motion.
 Thus, $\Delta G = \Delta H - \Delta W$.
 Without factoring in the thermal fluctuations, the motion would occur only if the work supplied by the stress was larger than the energy barrier.
 Moreover, if the free energy of the kinetic unit is greater after crossing the barrier, the plastic work is not entirely dissipated, and some energy remains latent in the material, $H_\text{stor}$.
-On the other hand, the free enthalpy of the kinetic unit is always lower after crossing the barrier; otherwise, there would be a no greater probability of crossing in one direction than the other (see Figure~\ref{fig:site_model_theory}).
+On the other hand, the free enthalpy of the kinetic unit is always lower after crossing the barrier; otherwise, there would be no greater probability of crossing in one direction than the other (see Figure~\ref{fig:site_model_theory}).
 For more details, see \cite{kocks1975thermodynamics}.
 \begin{figure}
 	\centering
@@ -292,27 +293,27 @@ For more details, see \cite{kocks1975thermodynamics}.
 \end{figure}
 
 Following the procedure outlined by Eyring \citep{eyringViscosityPlasticityDiffusion1936}, the shearing force acting on the system and its effect on the flow of the kinetic units can be considered.
-Its presence will lead to a different rate of jumps in the forward and backward directions, which in energetic terms, means lowering the energy of the final state and increasing the energy of the initial state.
+Its presence will lead to a different rate of jumps in the forward and backward directions, which in energetic terms means lowering the energy of the final state and increasing the energy of the initial state.
 Assuming similar activation volumes, and subtracting the rate of kinetic units moving against the shearing force from those moving along with the shearing force, $\tau$, the strain rate obtained is
 \begin{equation}
 	\label{eq:eyring_model}
 	\dot \gamma = \dot\gamma_0 \exp\left(-\frac{\Delta H}{k_BT}\right)\sinh\left(\frac{v\tau}{k_BT}\right),
 \end{equation}
-where $v$ is the so-called activation volume, and it can be identified with the product of the area swept out by the mobile unit in moving from one local free energy minimum to the next and the resolved component in the direction of the applied stress of the distance moved by the kinetic unit.
+where $v$ is the so-called activation volume, and it can be identified with the product of the area swept out by the mobile unit in moving from one local free energy minimum to the next, and the resolved component of the distance moved by the kinetic unit in the direction of the applied stress.
 
-According to the same author, $v\tau$ is much smaller for ordinary flow than $k_B T$.
+According to the same author, $v\tau$ is much smaller for an ordinary flow than $k_B T$.
 Thus, the expression for Newtonian viscous flow is recovered as
 \begin{equation}
   \label{eq:newton_fluid_flow_rule_scalar}
 	\dot \gamma = \frac{\dot \gamma_0 v}{k_B T}\exp\left(-\frac{\Delta H}{k_BT}\right)\tau=\frac{1}{\eta}\tau,
 \end{equation}
 where $\eta$ is the viscosity.
-On the other hand, for plastic flow, when $\tau$ is large, the flow rule comes out to be
+On the other hand, for plastic flow, where $\tau$ is large, the flow rule is
 \begin{equation}
 \label{eq:flow_rule_thermally_activated}
 	\dot\gamma = \dot \gamma_0 \exp\left(-\frac{\Delta H - v \tau}{k_B T}\right)=\dot \gamma_0 \exp\left(-\frac{\Delta G(\tau)}{k_B T}\right),
 \end{equation}
-which coincides with a negligible rate in the backward direction, and where $v\tau$ is identified with the activation work such that $\Delta G = \Delta H - v\tau$
+which coincides with a negligible rate in the backward direction, and where $v\tau$ is identified with the activation work such that $\Delta G = \Delta H - v\tau$.
 The contribution of hydrostatic pressure can also be accounted for in this framework in a similar way to the shearing force, i.e.,
 \begin{equation}
   \label{eq:eyring_w_pressure}
@@ -324,10 +325,10 @@ A suitable expression for the effective stress on the kinetic units is a linear 
 The expressions show that higher shear stresses lead to higher flow rates, with the hydrostatic pressure having the reverse effect.
 
 According to Fotheringham and Cherry \citep{fotheringhamRoleRecoveryForces1978}, the activation volumes in the forward and backward directions are not necessarily the same.
-However, note that when the expression is employed to describe plasticity, this is irrelevant, as only one activation volume must be considered.
+However, note that this is irrelevant when describing plasticity, as only one activation volume must be considered.
 In fact, more general rate equations for thermally activated flow can be found in \cite{brinkmanMechanicalThermodynamicalTheory1957} or \cite{kocks1975thermodynamics}.
 
-The experimental determination of the parameters in these models is discussed, e.g., in \cite{evansThermallyActivatedDeformation1969}, \cite{conradAthermalComponentFlow1970} and \cite{kocks1975thermodynamics}, through the use of differential tests, changes of strain-rate in a constant strain-rate test, or stress level steps in a creep experiment.
+The experimental determination of the parameters in these models is discussed, e.g., in \cite{evansThermallyActivatedDeformation1969}, \cite{conradAthermalComponentFlow1970} and \cite{kocks1975thermodynamics}, through the use of differential tests, changes of strain rate in a constant strain rate test, or stress level steps in a creep experiment.
 
 % \colorbox{BrickRed}{Zhurkov \citep{s.n.zhurkovKineticConceptStrength1965} found good results employing the Eyring model to predict the time to failure for uniaxial tensile specimens of some 50 materials, measured in some cases over ten decades of time, has suggested a universal rate relation between lifetime, stress, and temperature of said form.
 % The constant 'r 0 is essentially the reciprocal of the natural oscillation frequency of atoms in the solid, Uo is the binding energy on the atomic scale, and y is proportional to the disorientation of the molecular structure.
@@ -335,9 +336,9 @@ The experimental determination of the parameters in these models is discussed, e
 
 Roberston \citep{robertsonTheoryPlasticityGlassy1966} presents an alternative to the Eyring model applicable to glassy polymers.
 The author considers a molecular model in which the shear-stress field is introduced as a bias on the rotational conformation of backbone bonds.
-The temperature at which the maximum fraction of flexed bonds is observed is estimated and plugged into the WLF equation to compute the corresponding viscosity, and hence the equation for the strain rate.
+The temperature at which the maximum fraction of flexed bonds is observed is estimated and inserted into the WLF equation to compute the corresponding viscosity, and hence the equation for the strain rate.
 Comparisons with results for PS and PMMA are provided.
-Duckett et al. \citep{duckettStrainrateTemperaturePressure1970} also employ this model to fit the responses of PMMA and PET.
+Duckett and coworkers \citep{duckettStrainrateTemperaturePressure1970} also employ this model to fit the responses of PMMA and PET.
 
 El-Qoubaa and Othman \citep{el-qoubaaStrainRateSensitivity2016} provide an implicit flow rule while seeking to model the yield stress of PEEK as a function of the strain rate and the temperature.
 The equation proposed is
@@ -366,7 +367,7 @@ The expression found for the free enthalpy is
 	\label{eq:argon_model_free_enthalpy}
 	\Delta G(\tau)=\frac{3 \pi \mu \omega^2 a^3}{16(1-\nu)}\left[1-\left(\frac{\tau}{\hat \tau}\right)^{5 / 6}\right],
 \end{equation}
-where $\mu$ and $\nu$ are the shear modulus and Poisson coefficient, $\hat \tau$ is the athermal strength defined as
+where $\mu$ and $\nu$ are the shear modulus and Poisson coefficient, respectively, $\hat \tau$ is the athermal strength defined as
 \begin{equation}
   \label{eq:athermal_strength_elasticity_rel}
 	\hat \tau = \frac{0.077 \mu}{1-\nu},
@@ -377,12 +378,12 @@ In the case of amorphous polymers, however, Ward and Sweeney \citep{wardIntroduc
 
 Turning to semi-crystalline polymers, the picture changes in the sense that, as reviewed in the previous chapter (Chapter~\ref{ch:thermomechanical_behavior_semi_crystalline_polymer}), the plastic behavior of the material is tightly linked to deformation mechanisms in the crystalline phase.
 There is extensive modeling of plastic behavior in polycrystalline solids with direct identification of the kinetic units as dislocations in the crystal\footnote{A dislocation loop can be defined as the demarcation line, in one slip plane, between an area that has slipped and a surrounding area that has not \citep{kocks1975thermodynamics}.}.
-Their motion can be modeled, according to Kocks et al. \citep{kocks1975thermodynamics}, as in Equation~\eqref{eq:flow_rule_thermally_activated} where
+According to Kocks and coworkers \citep{kocks1975thermodynamics}, their motion can be modeled as in Equation~\eqref{eq:flow_rule_thermally_activated}, where
 \begin{equation}
 	\label{eq:pre_exponential_def}
 	\dot \gamma_0 = b\rho_m L \nu_G,
 \end{equation}
-where $b$ is the Burgers vector\footnote{The Burgers vector is a vector that represents the magnitude and direction of the lattice distortion resulting from a dislocation in a crystal lattice.} with dimensions of length, $\rho_m$ is the mobile dislocation density with dimensions of dislocation length per volume, $L$ the mean path of a mobile dislocation between inception and arrest at an obstacle and $\nu_G$ the frequency factor associated with the attempt rate of the nucleation process.
+where $b$ is the Burgers vector\footnote{The Burgers vector is a vector that represents the magnitude and direction of the lattice distortion resulting from a dislocation in a crystal lattice.} with dimensions of length, $\rho_m$ is the mobile dislocation density with dimensions of dislocation length per unit volume, $L$ the mean path of a mobile dislocation between inception and arrest at an obstacle and $\nu_G$ the frequency factor associated with the attempt rate of the nucleation process.
 At still moderate stresses, the average velocity is mainly controlled by thermally activated processes where the dislocations wait until a thermal fluctuation allows them to clear the obstacle.
 
 Argon \citep{argonPhysicsDeformationFracture2013a} presents the three relevant modes of dislocation nucleation in polymer lamellae as the nucleation of a monolithic straight screw-dislocation line from the edge of a lamella (mode A), nucleation of a screw-dislocation half loop from the narrow edge of a lamella (mode B), and nucleation of an edge-dislocation half loop from the wide face of a lamella (mode C).
@@ -400,7 +401,7 @@ where $\lambda$ is the length of the dislocation produced, $p$ the probability o
 The mobile dislocation density, $\rho_m$, or the ideal shear force, $\hat\tau$, can also be taken as an internal variable and made to evolve according to a rate equation.
 See \cite{klahn1970strain} and \cite{kocks1975thermodynamics} for thorough discussions on modeling the deformation mechanisms in crystalline solids.
 
-For an amorphous or semi-crystalline polymer,  Equations~\eqref{eq:flow_rule_thermally_activated} and \eqref{eq:pre_exponential_def} can still be employed, with a slightly different interpretation for the quantities involved and keeping in mind that the kinetic units are not as precisely defined as the in case of crystalline solids.
+For an amorphous or semi-crystalline polymer,  Equations~\eqref{eq:flow_rule_thermally_activated} and \eqref{eq:pre_exponential_def} can still be employed, with a slightly different interpretation for the quantities involved and keeping in mind that the kinetic units are not as precisely defined as in the case of crystalline solids.
 Thus, the strain rate is still given by
 \begin{equation}
   \label{eq:plaston_formula}
@@ -411,27 +412,27 @@ This velocity is approximately given by
 \begin{equation}
   \bar v_m = L \nu_G \exp\left(-\frac{\Delta G(\tau)}{k_B T}\right),
 \end{equation}
-where $L$ is the mean free path of the kinetic unit, $\nu_G$ is the rate of attempts to move over the obstacle impeding its motion, and the Arrhenius term is the probability that the thermal fluctuations will supply the energy necessary to overcome said obstacle \citep{gsellYieldTransientEffects1981, gilmanPLASTICWAVEMYTH1992}.
+where $L$ is the mean free path of the kinetic unit, $\nu_G$ is the rate of attempts to move over the obstacle impeding its motion, and the Arrhenius term is the probability that the thermal fluctuations will supply the energy necessary to overcome the obstacle \citep{gsellYieldTransientEffects1981, gilmanPLASTICWAVEMYTH1992}.
 
-Finally, one must remember that both the nucleation and velocity-controlled models produce similar expressions, but their interpretations differ \citep{fotheringhamRoleRecoveryForces1978}.
+Finally, one must keep in mind that both the nucleation and velocity-controlled models produce similar expressions, but their interpretations differ \citep{fotheringhamRoleRecoveryForces1978}.
 
 The deformation mechanism discussed so far concern the motion of kinetic units by themselves.
 However, some kinetic processes are cooperative, occurring only when several kinetic units act in unison.
 In fact, Cherry and Holmes \citep{cherryYieldAdhesiveJoints1969} mention that the fitted values to the activation volume in Eyring's model are too large to agree with their corresponding physical interpretation (see Equation~\eqref{eq:eyring_model}.)
-To model this situation, Fotheringham and Cherry \citep{fotheringhamCommentCompressionYield1976, fotheringhamRoleRecoveryForces1978} assume that $n$ kinetic units all following the Eyring model are needed to substantiate a deformation mechanism.
+To model this situation, Fotheringham and Cherry \citep{fotheringhamCommentCompressionYield1976, fotheringhamRoleRecoveryForces1978} assume that $n$ kinetic units, all following the Eyring model, are needed to substantiate a deformation mechanism.
 The expression found for the flow rate is
 \begin{equation}
   \label{eq:cooperative_flow_rule}
 	\dot{\gamma}=\dot \gamma_0 \sinh ^n\left(\frac{v \tau}{2 k T}\right) \exp \left(-\frac{n \Delta H}{k T}\right),
 \end{equation}
-where the notation employed retains its meaning from previous paragraphs, and a temperature below the glass transition temperature is assumed.
-Richeton et al. \citep{richetonFormulationCooperativeModel2005} look to model the yield stress of amorphous polymers, extending the cooperative model to temperatures above the glass transition temperature.
+where the notation employed retains its meaning from the previous paragraphs, and a temperature below the glass transition temperature is assumed.
+Richeton and coworkers \citep{richetonFormulationCooperativeModel2005} seek to model the yield stress of amorphous polymers, extending the cooperative model to temperatures above the glass transition temperature.
 They achieve this by proposing
 \begin{equation}
 		\dot{\gamma}=\dot \gamma_0 \exp\left(\frac{\ln 10\cdot c_1^g(T - T_g)}{c_2^g + T - T_g}\right) \sinh ^n\left(\frac{v \tau}{2 k T}\right) \exp \left(-\frac{\Delta H}{k T_g}\right),
 \end{equation}
 for temperatures above $T_g$, where $c_1^g$ and $c_2^g$ are the WLF parameters \citep{wardIntroductionMechanicalProperties2004}.
-Some of the same authors \citep{richetonThermodynamicInvestigationYieldstress2007} compare the models of Eyring (see Equation~\eqref{eq:eyring_model}), Argon (see Equation~\eqref{eq:argon_model_free_enthalpy}) and their cooperative model in the prediction of PMMA's and PC's yield stress.
+These authors \citep{richetonThermodynamicInvestigationYieldstress2007} also compare the models of Eyring (see Equation~\eqref{eq:eyring_model}), Argon (see Equation~\eqref{eq:argon_model_free_enthalpy}) and their cooperative model in the prediction of PMMA's and PC's yield stress.
 
 Other models, however, do not fit neatly into the scheme outlined above.
 % \colorbox{BrickRed}{See \cite{kellyInfluenceLimitingDislocation1974} and gen with $n$ for the exponential law.}
@@ -447,15 +448,14 @@ Perzyna \citep{perzynaConstitutiveEquationsRate1963}, e.g., proposes
 \label{eq:flow_rule_perzyna}
   \dot \gamma = \frac{1}{\mu}\left(\frac{\langle\tau - \hat\tau\rangle}{\hat\tau}\right)^{1/\varepsilon},
 \end{equation}
-to describe the rate sensitivity of plastic materials.
-$\langle\bullet\rangle$ denotes the ramp function, defined as $\langle x\rangle = (|x| + x) /2$, and $\mu$ and $\epsilon$ are material parameters.
+to describe the rate sensitivity of plastic materials, where $\langle\bullet\rangle$ denotes the ramp function, defined as $\langle x\rangle = (|x| + x) /2$, and $\mu$ and $\epsilon$ are material parameters.
 Another law available for the strain rate is \citep{kellyInfluenceLimitingDislocation1974, bodnerLargeDeformationElasticViscoplastic1972}
 \begin{equation}
   \label{eq:exp_flow_law}
 	\dot \gamma = \dot \gamma_0 \exp\left(-\left(\frac{\hat \tau}{\tau}\right)^n\right),
 \end{equation}
 where $n$ is a material parameter.
-According to Bodner and Partom \citep{bodnerLargeDeformationElasticViscoplastic1972}, they are suggested by both direct measurements and theoretical considerations of the average velocity of mobile dislocations as a function of the applied stress in polycrystalline solids (see Equation~\eqref{eq:pre_exponential_def}).
+According to Bodner and Partom \citep{bodnerLargeDeformationElasticViscoplastic1972}, this last set of laws are suggested by both direct measurements and theoretical considerations of the average velocity of mobile dislocations as a function of the applied stress in polycrystalline solids (see Equation~\eqref{eq:pre_exponential_def}).
 
 Yet another model available in the literature, based on reptation \citep{doiDynamicsConcentratedPolymer1978a}, is described by Bergström and Boyce \citep{bergstromConstitutiveModelingLarge1998, bergstromConstitutiveModelingTimedependent2001}.
 The flow is due in part to the Brownian motion of the polymer chains, in addition to thermally activated events, yielding the following flow rule
@@ -466,7 +466,7 @@ The flow is due in part to the Brownian motion of the polymer chains, in additio
 where $\lambda_\text{chain}$ is the chain stretch and $C_1$, $C_2$, $m$ and $\hat \tau$ are material parameters.
 The constant $\xi\approx 0.01$ is introduced to eliminate the singularity at $\lambda_\text{chain}=1$.
 
-According to de Souza Neto et al. \citep{desouzanetoComputationalMethodsPlasticity2008}, more flow rules can be generated by multiplying several simpler laws, including those already provided.
+According to de Souza Neto and coworkers \citep{desouzanetoComputationalMethodsPlasticity2008}, more flow rules can be generated by multiplying several simpler laws, including those already provided.
 For example, assuming that $\dot \gamma$ is a function of the stress, time, and temperature, one can write
 \begin{equation}
 	\dot \gamma = \dot \gamma(\tau, t, T) = f_\sigma (\tau) f_t(t) f_T(T),
@@ -493,8 +493,8 @@ where $f_\tau$, $f_t$ and $f_T$ are possibly experimentally defined functions.
 % \end{landscape}
 
 \paragraph{Structure variables}
-So far, all the constitutive descriptions provided for the strain rate neglect to consider the material's thermomechanical history.
-As already discussed in Section~\ref{sec:constitutive_modeling}, a set of appropriate internal variables, in this context also called structure variables (see \cite{kocks1975thermodynamics} and \cite{frostDeformationmechanismMapsPlasticity1982}), is employed to capture the contribution of said history to the thermomechanical response of the material.
+So far, all the constitutive descriptions provided for the strain rate neglect the material's thermomechanical history.
+As already discussed in Section~\ref{sec:constitutive_modeling}, a set of appropriate internal variables, in this context, also called structure variables (see \cite{kocks1975thermodynamics} and \cite{frostDeformationmechanismMapsPlasticity1982}), is employed to capture the contribution of the material's history to its thermomechanical response.
 Thus, the implicit assumption so far is either that the structure remains constant during flow, i.e.,
 \begin{equation}
   \bm \alpha = \bm \alpha_0,
@@ -513,10 +513,10 @@ Thus, by the chain rule, one finds
 \begin{equation}
   \dot{\hat \tau} = h \dot\gamma - r,
 \end{equation}
-where $h\equiv \partial \hat \tau/\partial \gamma |_t$ corresponds to a hardening rate and $r\equiv - \partial \hat \tau/\partial t|_\gamma$ denotes a recovery or, in the case of polymers, also aging rate.
+where $h\equiv \partial \hat \tau/\partial \gamma |_t$ corresponds to a hardening rate and $r\equiv - \partial \hat \tau/\partial t|_\gamma$ denotes a recovery or, in the case of polymers, also an aging rate.
 Hardening is expected if there is an increase in the number of obstacles to the motion of the kinetic unit \citep{kocks1975thermodynamics, hasanConstitutiveModelNonlinear1995}.
 The minus sign in the recovery/aging rate definition is introduced to enforce a decrease in the athermal strength connected to either recovery or aging.
-That said, Boyce et al. \citep{boyceLargeInelasticDeformation1988} conclude that aging in PVC may increase its strength.
+That said, Boyce and coworkers \citep{boyceLargeInelasticDeformation1988} conclude that aging in PVC may increase its strength.
 
 Bodner and Partom \citep{bodnerConstitutiveEquationsElasticViscoplastic1975} propose
 \begin{equation}
@@ -531,7 +531,7 @@ The corresponding rate equation can be written as \citep{zairiElastoviscoplastic
   \dot{\hat \tau} = m\left(\frac{{\hat \tau}_1 - {\hat \tau}}{{\hat \tau}_0}\right)\dot w^p.
 \end{equation}
 
-Zaïri et al. \citep{zairiElastoviscoplasticConstitutiveEquations2007} propose similar rate equations for partial contributions, $\hat \tau^{(1)}$ and $\hat \tau^{(2)}$, to the athermal strength, $\hat \tau$, when modeling glassy polymers.
+Zaïri and coworkers \citep{zairiElastoviscoplasticConstitutiveEquations2007} propose similar rate equations for partial contributions, $\hat \tau^{(1)}$ and $\hat \tau^{(2)}$, to the athermal strength, $\hat \tau$, when modeling glassy polymers.
 The former concerns the hardening effect of the network alignment, such that the corresponding rate equation is defined as
 \begin{equation}
   \dot{\hat\tau}^{(1)} = m\left(\frac{\hat\tau^{(1)} - (1 - \alpha)\hat\tau^{(1)}_0}{\hat\tau^{(1)}_0}\right)\dot w^p,
@@ -539,7 +539,7 @@ The former concerns the hardening effect of the network alignment, such that the
 where $m$ is material parameter, $\hat\tau^{(1)}_0$ is the initial athermal strength and $\alpha$ a hardening parameter.
 In turn, the latter accounts for the effect of strain softening, with the corresponding rate equation given as
 \begin{equation}
-  \dot{\hat\tau}^{(2)} = p\left(\frac{\hat\tau^{(2)}_1 - \hat\tau^{(2)}}{\hat\tau^{(2)}_1}\right)\dot w^p.
+  \dot{\hat\tau}^{(2)} = p\left(\frac{\hat\tau^{(2)}_1 - \hat\tau^{(2)}}{\hat\tau^{(2)}_1}\right)\dot w^p,
 \end{equation}
 where $p$ is a material parameter and $\hat\tau^{(2)}_1$ is a final partial athermal strength, such that
 \begin{equation}
@@ -552,24 +552,24 @@ Note that the use of plastic work instead of the plastic strain in the definitio
 This is because the mapping between the two can be made one-to-one such that $\hat \tau(\gamma)=\tilde{\hat \tau}(w^p)\equiv \hat\tau(w^p(\gamma))$.
 See \cite{desouzanetoComputationalMethodsPlasticity2008} for the complete derivation.
 
-Boyce et al. \citep{boyceLargeInelasticDeformation1988} propose an entirely similar rate equation for the athermal strength in a glassy polymer.
+Boyce and coworkers \citep{boyceLargeInelasticDeformation1988} propose an entirely similar rate equation for the athermal strength in a glassy polymer.
 The corresponding strain softening is described as
 \begin{equation}
   \label{eq:rate_equation_bpa}
-	\dot{\hat \tau}=h \left(1-\frac{\hat \tau}{\hat \tau_{1} \left(T, \dot{\gamma}\right)}\right)\dot{\gamma}
+	\dot{\hat \tau}=h \left(1-\frac{\hat \tau}{\hat \tau_{1} \left(T, \dot{\gamma}\right)}\right)\dot{\gamma},
 \end{equation}
 employing, however, the strain rate as the "driving force" behind its change.
-The initial structure is represented by the value of $\hat \tau$ at the upper yield point, $\hat \tau_0$, $h$ is the slope of the yield drop with respect to the strain, $\hat \tau_1$ is the value $\hat \tau$ reaches at the steady state, i.e., the "preferred" structure, and, as indicated, $\hat \tau_1$ may depend on temperature and strain rate.
+The initial structure is represented by the value of $\hat \tau$ at the upper yield point, $\hat \tau_0$, $h$ is the slope of the yield drop with respect to the strain, $\hat \tau_1$ is the value of $\hat \tau$ reached at the steady state, i.e., the "preferred" structure, and, as indicated, $\hat \tau_1$ may depend on temperature and strain rate.
 This choice for the rate equation of the athermal strength enables modeling the distinctive glassy polymer strain softening.
 
-In their attempt to model semi-crystalline polymers, Ahzi et al. \citep{ahziModelingDeformationBehavior2003} propose
+In their attempt to model semi-crystalline polymers, Ahzi and coworkers \citep{ahziModelingDeformationBehavior2003} propose
 \begin{equation}
   \label{eq:rate_equation_power}
   \dot{\hat \tau} =  \frac{\hat \tau}{n}\left(\frac{\hat\tau_0}{\hat\tau}\right)^n\dot \gamma,
 \end{equation}
 as the rate equation for the athermal strength $\hat\tau$, where $\hat\tau_0$ is the corresponding initial value and $n$ is a hardening coefficient.
 
-Seeking to model the effect of manufacturing-induced voids in polymer-based composites, Chowdhury et al. \citep{chowdhuryEffectsManufacturingInducedVoids2008} present an extension of Equation~\eqref{eq:rate_equation_bpa}.
+Seeking to model the effect of manufacturing-induced voids in polymer-based composites, Chowdhury and coworkers \citep{chowdhuryEffectsManufacturingInducedVoids2008} present an extension of Equation~\eqref{eq:rate_equation_bpa}.
 It describes the transition from a pre-defined initial yield stress, $\hat\tau_0$, to a peak yield stress, $\hat\tau_1$, followed by strain softening to a saturated state, $\hat\tau_2$.
 The corresponding rate equation is
 \begin{equation}
@@ -581,7 +581,7 @@ with the smooth Heaviside-like functions $H_i$, $i=1,2$ given by
 	H_1(\gamma)=-h_1\left\{\tanh \left(\frac{\gamma-\gamma^p}{f \gamma^p}\right)-1\right\} ; \quad H_2(\gamma)=h_2\left\{\tanh \left(\frac{\gamma-\gamma^p}{f \gamma^p}\right)+1\right\},
 \end{equation}
 where $h_1$ and $h_2$ are the hardening (softening) parameters, $f$ the smoothing factor and $\gamma^p$ the plastic strain at the peak yielding point.
-This approach is also pursued by Hao et al. \citep{haoUnifiedAmorphousCrystalline2022}, where a fourth athermal shear stress $\hat \tau_3$ is considered, connected to the yield of the crystalline phase in a semi-crystalline polymer.
+This approach is also pursued by Hao and coworkers \citep{haoUnifiedAmorphousCrystalline2022}, where a fourth athermal shear stress $\hat \tau_3$ is considered, connected to the yield of the crystalline phase in a semi-crystalline polymer.
 According to the authors, this property can depend on temperature, strain rate, crystallinity, and humidity.
 The rate equation for the athermal strength $\hat\tau$ is given similarly to Equation~\eqref{eq:two_athermal_strength_evo} as
 \begin{equation}
@@ -594,7 +594,7 @@ The corresponding smooth functions, $H_i$, $i=1,2,3$, are given by
 	H_2(\gamma)&=h_2\left\{-\tanh \left(\frac{\gamma-\gamma^{p,1}}{f \gamma^{p,1}}\right) \tanh \left(\frac{\gamma-\gamma^{p,2}}{f \gamma^{p,2}}\right)+1\right\}, \\
 	H_3(\gamma)&=h_3\left\{\tanh \left(\frac{\gamma-\gamma^{p,2}}{f \gamma^{p,2}}\right)+1\right\},
 \end{align}
-where $h_1, h_2$ and $h_3$ are the hardening (softening) parameters, $f$ is the smoothing factor, as before, and it is chosen as $0.3$, $\gamma^{p,1}$ is the plastic strains at the peak yielding point and $\gamma^{p,2}$ is the low yield point just before the yielding of the crystal structure takes place.
+where $h_1, h_2$ and $h_3$ are the hardening (softening) parameters, $f$ is the smoothing factor, (chosen as $0.3$), $\gamma^{p,1}$ is the plastic strains at the peak yielding point, and $\gamma^{p,2}$ is the low yield point just before the yielding of the crystal structure takes place.
 This last parameter may depend on both the strain rate and the temperature according to the authors.
 
 % Figure~\ref{fig:rate_equations_for_athermal_strength} collects some of the different evolutions of the athermal strength.
@@ -620,15 +620,15 @@ The author suggests a connection between the $\alpha$ and $\beta$ relaxation tra
 Other authors have successfully captured the strain rate and temperature dependence of the yield strength of glassy polymers using the Ree-Eyring model and variations thereof \citep{bauwensTensileYieldstressBehavior1969, bauwensRelationCompressionYield1972, bauwens-crowetCompressionYieldBehaviour1973, haussyThermodynamicAnalysisPlastic1980}.
 % Bauwens-Crowet considers the relaxation spectra of the beta.
 
-This approach of Ree and Eyring allows for the inclusion of different deformation mechanics in the model.
+This approach of Ree and Eyring allows for the inclusion of different deformation mechanisms in the model.
 It can be interpreted as a rheological model where dashpots arranged in parallel materialize different deformation mechanisms, coinciding with rheological models such as those discussed in Section~\ref{sec:rheo_models}.
-Furthermore, using the fraction of area swept by each kinetic unit to weigh their contribution to the total stress is similar to popular approaches in semi-crystalline polymer modeling, where crystallinity is incorporated similarly (see Section~\ref{sec:models_bulk_crystal}).
+Furthermore, using the fraction of area swept by each kinetic unit to weigh their contribution to the total stress is analagous to popular approaches in semi-crystalline polymer modeling, where crystallinity is incorporated similarly (see Section~\ref{sec:models_bulk_crystal}).
 
 \paragraph{Generalization to three-dimensions}
 The models discussed so far concern one-dimensional flow, i.e., laws for the scalar strain rate $\dot \gamma$.
 For three-dimensional models apt to describe large deformations, it is necessary to provide a macroscopic flow rule, i.e., a law prescribing the spatial velocity gradient $\bm L$.
 
-Consider the flow rule for the Newtonian fluid without the pressure term to see how this might be accomplished in the isotropic situation
+Consider the flow rule for the Newtonian fluid without the pressure term to see how this might be accomplished in the isotropic situation,
 \begin{equation}
 	\label{eq:newton_fluid_flow_rule}
 	\bm D = \bm{\mathsf S}: \bm \sigma,\quad \bm W = \bm 0,
@@ -659,7 +659,7 @@ where
 	\bm N_\text{dev} = \frac{\bm s}{\|\bm s\|},\quad \bm N_\text{vol} = \bm I,
 \end{equation}
 and $\dot \gamma_\text{dev}$ is found from the laws described in previous paragraphs, with $\tau=\|\bm s\|$ and $p = \operatorname{tr}(\bm \sigma)/3$.
-So far, no laws were hinted at for the volumetric strain rate, $\dot \gamma_\text{vol}$.
+So far, no laws were suggested for the volumetric strain rate, $\dot \gamma_\text{vol}$.
 When included, it is often chosen to coincide with the Newtonian fluid (see Equation~\eqref{eq:newton_fluid_flow_rule_norm}).
 Most often, the factors $1/2$ and $1/3$ in Equation~\eqref{eq:newton_fluid_flow_rule} are neglected, perhaps because the flow rule contains a leading term that absorbs the missing elements during calibration.
 
@@ -669,7 +669,7 @@ Most often, the factors $1/2$ and $1/3$ in Equation~\eqref{eq:newton_fluid_flow_
 \label{sec:yield_criteria}
 
 The yield stress is not as clearly defined for polymers as for metals far below their melting point.
-This difficulty in the definition of yield stress is because, for many polymers, flow is detected at all stress levels and does not start at some characteristic yield stress.
+This difficulty in the definition of yield stress occurs because, for many polymers, flow is detected at all stress levels and does not start at some characteristic yield stress.
 See Remark~\ref{rmrk:yield_polymer} for a more detailed clarification.
 
 Notwithstanding, a yield criterion, $\Phi$, can still be used to set the flow rule, defining the flow potential $\Psi$ appropriately.
@@ -680,9 +680,9 @@ Choosing the flow potential equal to the yield surface, $\Psi = \Phi$, the flow 
 being perpendicular to the yield surface in the stress domain.
 The choice of $\dot \gamma$ in rate-independent plasticity is made to satisfy the loading-unloading conditions
 \begin{equation}
-	\dot\gamma \geq 0,\quad \Phi(\bm \sigma, \bm A) \leq 0,\quad \Phi(\bm \sigma, \bm A) \dot \gamma = 0,
+	\dot\gamma \geq 0,\quad \Phi(\bm \sigma, \bm A) \leq 0,\quad \Phi(\bm \sigma, \bm A) \dot \gamma = 0.
 \end{equation}
-however, in the present context, an explicit expression for $\dot \gamma$ like the ones presented in Section~\ref{sec:viscous_elements} should be used.
+However, in the present context, an explicit expression for $\dot \gamma$ like the ones presented in Section~\ref{sec:viscous_elements} should be used.
 
 Ghorbel \citep{ghorbelViscoplasticConstitutiveModel2008} provides a detailed description of the yield criteria employed to describe polymers.
 The most common criteria are the von Mises, Mohr-Coloumb, Drucker, and Raghava yield \citep{balieuNonassociatedViscoplasticityCoupled2014} criteria.
@@ -707,16 +707,16 @@ The former are based on the equation for isotropic linear elasticity in small de
 \begin{equation}
 	\bm \sigma=\bm{\mathsf D}:\bm \varepsilon,
 \end{equation}
-where $\bm{\mathsf D}$ is the isotropic elastic moduli defined as
+where $\bm{\mathsf D}$ is the isotropic elastic modulus defined as
 \begin{equation}
 \bm{\mathsf D}\equiv 2 G \bm{\mathsf I}_S+\left(K-\frac{2}{3} G\right) \bm I \otimes \bm I ,
 \end{equation}
-where $G$ is the shear modulus, $K$ is the bulk modulus, $\bm I$ is the second order identity tensor and $\bm{\mathsf I}_S$ is the symmetric identity\footnote{The symmetric identity $\bm{\mathsf I}_S$ is defined as $(\bm{\mathsf I}_S)_{ijkl} =\frac{1}{2}(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})$ where $\delta_ij$ is the Kronecker symbol, such that $\bm{\mathsf I}_S: \bm A = \bm A: \bm{\mathsf I}_S = \operatorname{sym} (\bm A)$, with $\bm A$ a second order tensor.}.
-A possible way to extend this model to large deformations is to use, for example, the Hencky strain tensor, $\bm E^{(0)}\equiv \ln \bm U$, where $\bm U$ is the right stretch tensor, instead of the infinitesimal strain tensor.
+where $G$ is the shear modulus, $K$ is the bulk modulus, $\bm I$ is the second order identity tensor and $\bm{\mathsf I}_S$ is the symmetric identity\footnote{The symmetric identity $\bm{\mathsf I}_S$ is defined as $(\bm{\mathsf I}_S)_{ijkl} =\frac{1}{2}(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk})$ where $\delta_{ij}$ is the Kronecker delta, such that $\bm{\mathsf I}_S: \bm A = \bm A: \bm{\mathsf I}_S = \operatorname{sym} (\bm A)$, with $\bm A$ being a second order tensor.}.
+A possible way to extend this model to large deformations is to use, for example, the Hencky strain tensor, $\bm \varepsilon^{(0)}\equiv \ln \bm V$, where $\bm V$ is the left stretch tensor, instead of the infinitesimal strain tensor.
 Taking into account that the respective conjugate is the Kirchhoff stress tensor, $\bm \tau$, the so-called Hencky model defines the following stress-strain constitutive relation
 \begin{equation}
 	\label{eq:hencky_model}
-	\pmb \tau=\bm{\mathsf D}:\bm E^{(0)}.
+	\pmb \tau=\bm{\mathsf D}:\bm \varepsilon^{(0)}.
 \end{equation}
 This can also be achieved by employing as the strain measure the Green-Lagrange strain tensor, $\bm E^{(2)}\equiv (\bm U^2 - \bm I)/2$, the so-called Saint-Venant-Kirchhoff model
 \begin{equation}
@@ -734,19 +734,19 @@ Even so, for reference, the Neo-Hookean model's expression of stress is
 where $\lambda_0$ and $\mu_0$ are material properties and $\bm b$ is the left Cauchy-Green strain tensor.
 
 The most widely used model is the eight-chain model of Arruda and Boyce \citep{arrudaEvolutionPlasticAnisotropy1993, arrudaEffectsStrainRate1995}, which takes into account the deformation behavior of elastomer microstructures.
-It is assumed that the macromolecules, or chain molecules, on average, are located along the diagonals of a unit cell in principal stretch space.
+It is assumed that the macromolecules, or chain molecules are, on average, located along the diagonals of a unit cell in the principal stretch space.
 The expression found for the stress is
 \begin{equation}
 	\label{eq:eigth_chain_model}
 	\bm \sigma = \frac{Nk_BT}{3J} \frac{\lambda^\text{lock}}{\overline{\lambda^*}}\mathcal L^{-1}\left(\frac{\overline{\lambda^*}}{\lambda^\text{lock}}\right)\operatorname{dev} [\bm b^*] + K [J-1]\bm I,
 \end{equation}
-where $N$, $\lambda^\text{lock}$ and $K$ are material parameters, $\bm b^*\equiv (J)^{-2/3}\bm b$, $\overline{\lambda^*}\equiv [\operatorname{tr}(\bm b^*)/3]^{1/2}$ and the Langevin function is defined by
+where $N$, $\lambda^\text{lock}$ and $K$ are material parameters, $\bm b^*\equiv (J)^{-2/3}\bm b$, $\overline{\lambda^*}\equiv [\operatorname{tr}(\bm b^*)/3]^{1/2}$, and the Langevin function is defined by
 \begin{equation}
 	\mathcal L(\beta) = \coth \beta - \frac{1}{\beta}.
 \end{equation}
-As the chain stretch hits its limiting value, this choice for functional dependency will cause asymptotically increasing stress.
+As the chain stretch hits its limiting value, this choice for functional dependency results in an asymptotically increasing stress.
 
-A three-chain model can also be formulated as presented by Wang and Guth \citep{wangStatisticalTheoryNetworks1952}.
+A three-chain model can also be adopted as proposed by Wang and Guth \citep{wangStatisticalTheoryNetworks1952}.
 The expression for the principal components of the stress is
 \begin{equation}
 	\label{eq:three_chain_model}
@@ -767,9 +767,9 @@ The stress is found from the constitutive relation in Equation~\eqref{eq:constit
 \subsection{Caveats regarding the generalization to three-dimensions and large deformations}
 \label{sec:generalization_large_strains_3d}
 
-Before proceeding, a word about developing a fully three-dimensional large strain model based on a one-dimensional rheological model is in order.
+Before proceeding, some comments about developing a fully three-dimensional large strain model based on a one-dimensional rheological model are in order.
 When considering only infinitesimal strains, the strain applied to elements in series is added together, whereas elements in parallel are subjected to the same strain.
-For example, for the model in Figure~\ref{fig:gradient_decomp}, the strain across the elements on the first arm is decomposed additively, $\bm \varepsilon = \bm \varepsilon^e + \bm \varepsilon^p$, being the same across both arms.
+For example, for the model in Figure~\ref{fig:gradient_decomp}, the strain across the elements on the first branch is decomposed additively, $\bm \varepsilon = \bm \varepsilon^e + \bm \varepsilon^p$, being the same across both branches.
 A suitable kinematic decomposition must be chosen to achieve an appropriate generalization to three dimensions and large deformations.
 The basis for this choice is the multiplicative elastoplastic decomposition of the deformation gradient \citep{desouzanetoComputationalMethodsPlasticity2008}
 \begin{equation}
@@ -787,7 +787,7 @@ Since, in general, the deformation gradients are not commutative, the choice for
 \label{fig:gradient_decomp}
 \end{figure}
 
-Focusing on a decomposition between an elastic, denoted here by $e$, and a viscous element, denoted here by $p$, the application of the decomposition in Equation~\eqref{eq:mult_gradient_decomp} to the definition of the spatial velocity gradient yields
+Focusing on a decomposition between an elastic, denoted here by $e$, and a viscous element, denoted here by $p$, the application of the decomposition in Equation~\eqref{eq:mult_gradient_decomp} to the definition of the spatial velocity gradient (see Section~\ref{sec:kinematics_of_deformation}) yields
 \begin{equation}
 	\bm L = \bm L^e + \bm F^e \bm L^p (\bm F^e)^{-1},
 \end{equation}
@@ -811,7 +811,7 @@ This yields the plastic spatial velocity gradient
 \begin{equation}
 	\bm L^p = {\bm R^e}^T(\dot\gamma_\text{dev} \bm N_\text{dev} + \dot\gamma_\text{vol} \bm N_\text{vol})\bm R^e,
 \end{equation}
-and for elastic spatial velocity gradient
+and the elastic spatial velocity gradient
 \begin{equation}
 	\bm L^e = \bm L - (\dot\gamma_\text{dev} \bm N_\text{dev} + \dot\gamma_\text{vol} \bm N_\text{vol}).
 \end{equation}
@@ -822,7 +822,7 @@ An alternative description can be given as
 \end{equation}
 where $£_v \bm b^e$ is the Lie derivative of $\bm b^e$ with respect to the velocity field $\bm v$.
 
-One can also and prescribe $\bm D^p$, directly, \citep{boyceLargeInelasticDeformation1988},
+One can also and prescribe a law for $\bm D^p$ directly \citep{boyceLargeInelasticDeformation1988},
 \begin{align}
 \label{eq:d_w_directly}
 	\bm D^p & = \dot\gamma_\text{dev} \bm N_\text{dev} + \dot\gamma_\text{vol} \bm N_\text{vol},\\
@@ -834,7 +834,7 @@ or follow Bergström \citep{bergstromMechanicsSolidPolymers2015}
 	\tilde{\bm D}^p &\equiv \operatorname{sym}((\bm F^e)^{-1}\bm L^p \bm F^e) = \dot\gamma_\text{dev} \bm N_\text{dev} + \dot\gamma_\text{vol} \bm N_\text{vol},\\
 	\tilde{\bm W}^p &\equiv \operatorname{skew}( (\bm F^e)^{-1}\bm L^p \bm F^e) = \bm 0,
 \end{align}
-which is equivalent to Equation~\eqref{eq:rate_plasticity_de_souza} assuming elastoplastic isotropy \citep{desouzanetoComputationalMethodsPlasticity2008}.
+which is equivalent to Equation~\eqref{eq:rate_plasticity_de_souza} elastoplastic isotropy \citep{desouzanetoComputationalMethodsPlasticity2008} is assumed.
 
 \subsection{Inclusion of the thermal field}
 \label{sec:inclusion_thermal_field}
@@ -842,14 +842,14 @@ which is equivalent to Equation~\eqref{eq:rate_plasticity_de_souza} assuming ela
 Including temperature-dependent material parameters is insufficient to consider the thermal field when employing constitutive descriptions based on rheological models.
 The first missing feature of such a model would be that a change in temperature, with null stress, would not lead to a contraction or dilation.
 Similarly, a temperature change while preventing expansion/contraction would lead to zero stress.
-To fix this omission, an additional thermal configuration can be considered.
-For example,
+To fix this omission, an additional thermal configuration can be considered, e.g.,
 \begin{equation}
-	\bm F = \bm F^\text{mech}\bm F^\text{th}.
+	\bm F = \bm F^\text{mech}\bm F^\text{th},
 \end{equation}
+where $\bm F^\text{mech}$ and $\bm F^\text{th}$ are the deformation gradients concerning only the mechanical and temperature fields, respectively.
 Note that the reverse order for the deformation gradients can be considered, as well as decompositions where the thermal deformation gradient is applied between elastic and plastic deformation gradients \citep{arrudaEffectsStrainRate1995}.
 
-Reasoning about the models described so far, in a situation where the temperature increases, there is no stress response from the "mechanical part," thus its corresponding deformation gradient will be unitary, making the total deformation gradient equal to the thermal deformation gradient, $\bm F = \bm F^\text{th}$.
+When employing the models described so far, consider that an increase in the temperature with no mechanical loading applied leads to a null stress response from the "mechanical part," thus, its corresponding deformation gradient will be unitary, making the total deformation gradient equal to the thermal deformation gradient, $\bm F = \bm F^\text{th}$.
 Taking inspiration from infinitesimal thermoelastic theory, one can write
 \begin{equation}
 	\label{eq:thermal_expansion_simple}
@@ -865,7 +865,7 @@ where $\upsilon$ is a scalar-valued function of temperature, reflecting intrinsi
 	\upsilon(T) = \exp\left[\int_{T_0}^T \alpha(T^*)\ dT^*\right],
 \end{equation}
 where $\alpha$ is the coefficient of linear thermal expansion, allowed to depend on the temperature.
-In particular, if $\alpha$ is independent of temperature, Equation~\ref{eq:expansion_function} reduces to
+In particular, if $\alpha$ is independent of temperature, Equation~\eqref{eq:expansion_function} reduces to
 \begin{equation}
 	\upsilon(\Delta T) = \exp(\alpha \Delta T).
 \end{equation}
@@ -876,8 +876,8 @@ In the one-dimensional rheological model, the dissipation is due to the linear d
 \begin{equation}
 	\mathcal D^i_\text{int} = \sigma^i {\dot\gamma}^i,
 \end{equation}
-where ${\dot \gamma}^i$ is the strain rate the dashpot $i$ is subject to and $\sigma^i$ is the stress across the same element.
-In three dimensions, this is rational yields
+where ${\dot \gamma}^i$ and $\sigma^i$ are the strain rate and stress in the dashpot $i$.
+In three dimensions, this rational yields
 \begin{equation}
 	\mathcal D_\text{int}^i = \chi_\text{d}\bm \sigma_i : \bm D^i,
 \end{equation}
@@ -889,7 +889,7 @@ The thermoelastic Gough-Joule effect can be written as
 \begin{equation}
 	\mathcal H^\text{e} = -\rho_0T\frac{\partial \bm P}{\partial T}:\dot{\bm F},
 \end{equation}
-discarding the contribution from the dissipation, following Simo and Mihe \citep{simoAssociativeCoupledThermoplasticity1992}--compare with the full equation for the elastoplastic Gough-Joule effect (Equation~\eqref{eq:def_gough_joule_effect}).
+discarding the contribution from the dissipation, following Simo and Mihe \citep{simoAssociativeCoupledThermoplasticity1992} -- compare with the full equation for the elastoplastic Gough-Joule effect (Equation~\eqref{eq:def_gough_joule_effect}).
 
 The considerations given in this section are rendered useless if the model is formulated employing a free energy which depends also on the temperature, e.g., those models described in  \cite{anandThermomechanicallyCoupledTheory2009, amesThermomechanicallyCoupledTheory2009}.
 
@@ -899,7 +899,7 @@ The considerations given in this section are rendered useless if the model is fo
 
 % \colorbox{BrickRed}{Mention the work of Kauzmann an Eyring \citep{kauzmannViscousFlowLarge1940} and discussed constant structure.}
 
-The next set of models corresponds to generalizations of various infinitesimal viscoelastic models using the previously described nonlinear elements instead of the linear ones in the corresponding rheological models.
+The next set of models corresponds to generalizations of various infinitesimal viscoelastic models that use the previously described nonlinear elements in the corresponding rheological models.
 
 \paragraph{Generalization of the Maxwell model}
 The Maxwell model is given as
@@ -916,7 +916,7 @@ corresponding to the rheological model in Figure~\ref{fig:rheo_model_maxwell}.
 An early improvement to describe the large-strain behavior of elastomers is presented by Smith \citep{smithNonlinearViscoelasticResponse1962}.
 The Bodner-Partom material model \citep{bodnerConstitutiveEquationsElasticViscoplastic1975} is another generalization of the same constitutive description.
 It can simulate the behavior of a visco-elastoplastic material under small strains and arbitrary loading history.
-The elastic element obeys Hooke's law, and the flow rule is given according to Equations~\eqref{eq:d_w_directly} and \eqref{eq:exp_flow_law} with the athermal strength evolving according to Equation~\eqref{eq:bodner_partom_rate_eq}.
+The elastic element obeys Hooke's law, and the flow rule is given by Equations~\eqref{eq:d_w_directly} and \eqref{eq:exp_flow_law}, with the athermal strength evolving according to Equation~\eqref{eq:bodner_partom_rate_eq}.
 % \begin{align}
 % 	\dot\gamma_\text{dev} &= \sqrt{2} D_0 \exp\left(-\frac{1}{2}\left(\sqrt{2}\frac{\hat \tau}{\|\bm s\|}\right)^n\right),\\
 % 	\dot\gamma_\text{vol} &= 0
@@ -941,7 +941,7 @@ The elastic element obeys Hooke's law, and the flow rule is given according to E
 % See Figure~\ref{fig:internal_var_exp} for the plot.
 The model can describe a rate-sensitive response and hardening.
 However, it cannot display strain recovery.
-Based on this work, the rate equations in Equation~\eqref{eq:rate_eq_zairi} for $\hat \tau$ in conjunction with a power law (see Equation~\eqref{eq:flow_rule_power_law}) have been used in models describing poly(methyl methacrylate) (PMMA), a glassy polymer, by Zaïri and coworkers \citep{zairiPhenomenologicalNonlinearModelling2005, zairiElastoviscoplasticConstitutiveEquations2007,zairiModellingElastoviscoplasticDamage2008}, to describe HDPE by Zhang and Moore \citep{zhangNonlinearMechanicalResponse1997}, and to describe PC by Frank and Brockman \citep{frankViscoelasticViscoplasticConstitutive2001}.
+Based on this work, the rate equations in Equation~\eqref{eq:rate_eq_zairi} for $\hat \tau$, in conjunction with a power law (see Equation~\eqref{eq:flow_rule_power_law}) have been used in models describing poly(methyl methacrylate) (PMMA), a glassy polymer, by Zaïri and coworkers \citep{zairiPhenomenologicalNonlinearModelling2005, zairiElastoviscoplasticConstitutiveEquations2007,zairiModellingElastoviscoplasticDamage2008}, to describe HDPE by Zhang and Moore \citep{zhangNonlinearMechanicalResponse1997}, and to describe PC by Frank and Brockman \citep{frankViscoelasticViscoplasticConstitutive2001}.
 It has also been used to model the behavior of metallic alloys at high temperatures \citep{desouzanetoComputationalMethodsPlasticity2008}.
 % \begin{figure}
 % 	\centering
@@ -949,7 +949,7 @@ It has also been used to model the behavior of metallic alloys at high temperatu
 % 	\caption{Evolu}
 % \end{figure}
 
-In the same vein, Ben Hadj Hamouda et al. \citep{benhadjhamoudaViscoplasticBehaviourMedium2007} employ a Double Inelastic Deformation (DID) model---whose background is described in detail by Cailletaud and Saï \citep{cailletaudStudyPlasticViscoplastic1995}.
+In the same vein, Ben Hadj Hamouda and coworkers \citep{benhadjhamoudaViscoplasticBehaviourMedium2007} employ a Double Inelastic Deformation (DID) model---whose background is described in detail by Cailletaud and Saï \citep{cailletaudStudyPlasticViscoplastic1995}.
 Formulated in small strains, an additive split is assumed between a linear strain and two viscoplastic strains, corresponding to the deformation mechanism in the amorphous and crystalline phases.
 Each viscoplastic strain follows a power law (see Equation~\eqref{eq:flow_rule_power_law}) with a von Mises yield criterion, accounting also for nonlinear kinematic hardening.
 %  according to
@@ -958,9 +958,9 @@ Each viscoplastic strain follows a power law (see Equation~\eqref{eq:flow_rule_p
 % 	\dot{\alpha}_i &= \bm \varepsilon_{vp,i} + \bm \beta_i\dot\gamma_{\text{dev},i},
 % \end{align}
 % where $\bm \beta$ is a backstress tensor, a $\bm \varepsilon_{vp}$ is a viscoplastic infinitesimal strain, and the subscript $i=1,2$ corresponds to the different viscoplastic strain identified with each of the phases.
-The authors use it to model the response of MDPE to constant strain rate uniaxial traction experiments, as well as stress relaxation and dip tests.
-Balieu et al. \citep{balieuNonassociatedViscoplasticityCoupled2014} also present a model that can be interpreted as a nonlinear Maxwell model.
-It is formulated employing hypoelasticity, with the plastic flow rule deduced from Raghava's criterion modified to include an isotropic damage variable representing the micro-voids and micro-cracks that develop in the material.
+The authors use it to model the response of MDPE subject to constant strain rate uniaxial tension experiments, as well as stress relaxation and dip tests.
+Balieu and coworkers \citep{balieuNonassociatedViscoplasticityCoupled2014} also present a model that can be interpreted as a nonlinear Maxwell model.
+It is formulated employing hypoelasticity, with the plastic flow rule deduced from Raghava's criterion modified to include an isotropic damage variable representing the micro-voids and micro-cracks developed in the material.
 The law for the strain rate is a power law (see Equation~\eqref{eq:flow_rule_power_law}), and the authors employ an integral-type nonlocal damage model to describe mineral-filled semi-crystalline polymers.
 
 \paragraph{Standard Linear Solid}
@@ -987,21 +987,20 @@ where in both equations, the terms containing the strain, $\varepsilon$, are the
 						\caption{}
 						\label{subfig:rheo_model_sls_voigt}
 		\end{subfigure}
-	\caption{Rheological model for the standard linear solid. \subref{subfig:rheo_model_sls_maxwell} Maxwell representation. \subref{subfig:rheo_model_sls_voigt} Voigt representation.}
+	\caption{Rheological model for the standard linear solid: \subref{subfig:rheo_model_sls_maxwell} Maxwell representation; \subref{subfig:rheo_model_sls_voigt} Voigt representation.}
 \label{fig:rheo_model_sls}
 \end{figure}
 
-The viscoplasticity theory based on overstress (VBO) was introduced by Cernocky and Krempl \citep{cernockyTheoryViscoplasticityBased1980} and is based on the standard linear-solid.
+The viscoplasticity theory based on overstress (VBO) was introduced by Cernocky and Krempl \citep{cernockyTheoryViscoplasticityBased1980} and is based on the standard linear solid.
 The so-called overstress is the difference between the full stress and the equilibrium part, which is allowed to be a nonlinear function of the strain.
 Thus, Equation~\eqref{eq:sls_maxwell_rep} and \eqref{eq:sls_voigt_rep} can be written as
 \begin{equation}
 	\sigma - f(\varepsilon) = M\dot\varepsilon - K\dot \sigma,
 \end{equation}
 where $f$ may be a nonlinear function of the strain, and $M$ and $K$ are general functions of the stress, the strain, and their derivatives.
-It has been used to successfully model metals \citep{liuUniaxialViscoplasticModel1979, yaoViscoplasticityTheoryBased1985}, as well as, polymers, such as polypropylene \citep{kitagawaRatedependentNonlinearConstitutive1989}, polyethylene \citep{kitagawaNonlinearConstitutiveEquation1990}, nylon 66, polyetherimide, poly(ether ether ketone) \citep{krempl2000overstress}, or polyphenylene oxide (PPO) \citep{colakModelingDeformationBehavior2005}.
+It has been used to successfully model metals \citep{liuUniaxialViscoplasticModel1979, yaoViscoplasticityTheoryBased1985} as well as polymers, such as polypropylene \citep{kitagawaRatedependentNonlinearConstitutive1989}, polyethylene \citep{kitagawaNonlinearConstitutiveEquation1990}, nylon 66, polyetherimide, poly(ether ether ketone) \citep{krempl2000overstress}, and polyphenylene oxide (PPO) \citep{colakModelingDeformationBehavior2005}.
 More advanced versions of this approach include kinematic and isotropic hardening and strain softening through appropriate internal variables \citep{krempl2000overstress, hoExtensionViscoplasticityTheory2002}.
 
-The predicted behavior may differ between the generalization to large strains and three dimensions of the Maxwell or the Voigt-Kelvin representation of the standard linear solid.
 Concerning the generalization of the Maxwell representation, Simo \citep{simoFullyThreedimensionalFinitestrain1987} and Reese and Govindjee \citep{reeseTheoryFiniteViscoelasticity1998} consider nonlinear elastic elements in the rheological model.
 The first author employs the analytical solution for the ordinary differential equations describing the standard linear solid model, yielding a representation for the isochoric part of the stress as a convolution integral, i.e.,
 \begin{align}
@@ -1018,36 +1017,36 @@ Accordingly, the second Piola-Kirchhoff stress tensor is given as
 where $\bm S_\text{EQ}$ and $\bm S_\text{NEQ}$ are the stresses corresponding to equilibrium and non-equilibrium, respectively.
 Appropriate choices for the free energy $\Psi$ yield different nonlinear elastic elements.
 
-Polanco-Loria et al. \citep{polanco-loriaConstitutiveModelThermoplastics2010} present their generalization, which allows for hyperelastic-viscoplastic response due to intermolecular resistance and entropic hyperelastic response due to re-orientation of molecular chains.
-The stress in the Maxwell arm is given according to the isotropic compressible Neo-Hookean material (see Equation~\eqref{eq:neo_hookean_model}).
+Polanco-Loria and coworkers \citep{polanco-loriaConstitutiveModelThermoplastics2010} present their generalization, which allows for hyperelastic-viscoplastic response due to intermolecular resistance and entropic hyperelastic response due to the re-orientation of molecular chains.
+The stress in the Maxwell branch is determined from an isotropic compressible Neo-Hookean material (see Equation~\eqref{eq:neo_hookean_model}).
 At the same time, the flow in the dashpot is controlled by Raghava's yield criterion, which is pressure sensitive (see Section~\ref{sec:yield_criteria}).
 A non-associative viscoplastic flow potential is employed, allowing for volumetric plastic strain.
-Finally, the eight-chain model gives the deviatoric part of the stress on the other arms, including a volumetric part similar to the one shown in Equation~\eqref{eq:neo_hookean_model} for the Neo-Hookean model.
+Finally, the eight-chain model gives the deviatoric part of the stress on the other branches, including a volumetric part similar to the one shown in Equation~\eqref{eq:neo_hookean_model} for the Neo-Hookean model.
 The authors validated their models against experimental results obtained for polypropylene samples.
 
 That said, the most popular thermoplastic models are generalizations of the Voigt version of the standard solid.
-Halsey et al. \citep{halseyMechanicalPropertiesTextiles1945} present one of the earliest contributions considering an Eyring dashpot as the viscous element in an attempt to model the behavior of fibers.
+Halsey and coworkers \citep{halseyMechanicalPropertiesTextiles1945} present one of the earliest contributions considering an Eyring dashpot as the viscous element in an attempt to model the behavior of fibers.
 Likewise, Haward and Thackray \citep{hawardUseMathematicalModel1968} proposed one of the first models for thermoplastic polymers below the glass transition temperature.
-The elastic element in the Maxwell arm is still a linear spring.
-However, the elastic element parallel to it is a Langevin spring, while the viscous element it is an Eyring dashpot.
+The elastic element in the Maxwell branch is still a linear spring.
+However, the elastic element parallel to it is a Langevin spring, while the viscous element is an Eyring dashpot.
 The model is formulated assuming small strains and is restricted to one-dimensional loading.
 
-Later, Boyce et al. \citep{boyceLargeInelasticDeformation1988} generalized this model to three dimensions, among other additions.
+Later, Boyce and coworkers \citep{boyceLargeInelasticDeformation1988} generalized this model to three dimensions, among other additions.
 A multiplicative kinematic split between the elastic and inelastic deformation is enforced, as described in Section~\ref{sec:generalization_large_strains_3d}.
-The linear spring is generalized to three dimensions and large deformation employing the Hencky model (see Equation~\eqref{eq:hencky_model}), with shear and bulk modulus being temperature dependent.
-The thermally activated process is now nucleation controlled employing the model mentioned above by Argon \citep{argonTheoryLowtemperaturePlastic1973} (see Equation~\eqref{eq:argon_model_free_enthalpy}) with the addition that the athermal strength $\hat \tau_0$ is replaced by an internal variable, $\tilde \tau$, which is given by $\tilde{\tau}=\hat \tau+\alpha p,$ where $p=-\sigma_m$ and $\alpha$ is a material property.
+The linear spring is generalized to three dimensions and large deformation employing the Hencky model (see Equation~\eqref{eq:hencky_model}), with shear and bulk moduli being temperature dependent.
+The thermally activated process is now nucleation controlled by employing the model proposed by Argon \citep{argonTheoryLowtemperaturePlastic1973} (see Equation~\eqref{eq:argon_model_free_enthalpy}) with the addition that the athermal strength $\hat \tau_0$ is replaced by an internal variable, $\tilde \tau$, which is given by $\tilde{\tau}=\hat \tau+\alpha p,$ where $p=-\sigma_m$ and $\alpha$ is a material property.
 The rate equation for the athermal strength, $\hat \tau$, is chosen according to Equation~\eqref{eq:rate_equation_bpa}, such that the distinctive strain softening of glassy polymers is captured.
 The model does not account for volumetric flow.
 Lastly, the three-chain model gives the stress in the other elastic element (see Equation~\eqref{eq:three_chain_model}), responsible for the strain hardening.
 For other contributions exploring this model while employing different rubber-like elasticity models see, e.g., \cite{arrudaEvolutionPlasticAnisotropy1993, arrudaEffectsStrainRate1995, wuImprovedNetworkModels1993, buckleyGlassrubberConstitutiveModel1995, sweeneyRateDependentNetwork1995}.
 In fact, the most widely used model of this type is the so-called Arruda-Boyce model \citep{arrudaEvolutionPlasticAnisotropy1993, arrudaEffectsStrainRate1995}, which employs an eight-chain model for the rubber-elastic element.
 
-Also expanding on the model of Boyce, Parks, and Ahzi \citep{boyceLargeInelasticDeformation1988} (BPA model), Chowdhury et al. \citep{chowdhuryEffectsManufacturingInducedVoids2008} propose in the context of manufacturing-induced voids in polymer-based composites a very similar model, formulated however hypoelastically.
-The model was later validated on epoxy resins by Poulain et al. \citep{poulainFinitestrainElastoviscoplasticBehavior2014}.
-As in the BPA model, the athermal strength (Equation~\eqref{eq:argon_model_free_enthalpy}) is taken as an internal variable following, however, a different rate equation (Equation~\eqref{eq:two_athermal_strength_evo}).
+Also expanding on the model of Boyce, Parks, and Ahzi \citep{boyceLargeInelasticDeformation1988} (BPA model), Chowdhury and coworkers \citep{chowdhuryEffectsManufacturingInducedVoids2008} propose a very similar model in the context of manufacturing-induced voids in polymer-based composites, formulated, however hypoelastically.
+The model was later validated on epoxy resins by Poulain and coworkers \citep{poulainFinitestrainElastoviscoplasticBehavior2014}.
+As in the BPA model, the athermal strength (Equation~\eqref{eq:argon_model_free_enthalpy}) is taken as an internal variable following a different rate equation (Equation~\eqref{eq:two_athermal_strength_evo}).
 This choice allows a smoother strain softening.
 Also, the response of the rubber-elastic element is now a linear combination of the response obtained from a three-chain model (Equation~\eqref{eq:three_chain_model}) and an eight-chain model (Equation~\eqref{eq:eigth_chain_model}).
-Hao et al. \citep{haoUnifiedAmorphousCrystalline2022} propose a very similar model, where, however, the rate equation for the athermal strength is given by Equation~\eqref{eq:rate_equation_hao}, rendering a model able to capture the double yield phenomenon in semi-crystalline polymers.
+Hao and coworkers \citep{haoUnifiedAmorphousCrystalline2022} propose a very similar model, where the rate equation for the athermal strength is given by Equation~\eqref{eq:rate_equation_hao}, rendering a model able to capture the double yield phenomenon in semi-crystalline polymers.
 The last authors also take into account the thermomechanical aspects of polymer modeling, accounting for the self-heating, thermal softening, and temperature-dependent properties.
 They validate their model against experimental results obtained on epoxy, nylon101, and PA6.
 
@@ -1078,34 +1077,34 @@ See Figure~\ref{fig:rheo_model_burgers} for the corresponding rheological models
   \label{fig:rheo_model_burgers}
 \end{figure}
 
-Bardenhagen et al. \citep{bardenhagenThreedimensionalFiniteDeformation1997} propose a three-dimensional viscoplastic model for polymeric materials, which is a generalization of the Maxwell representation of the Burgers material.
-One of the arms is a three-dimensional large strain hypoelastic generalization of the Maxwell model.
-The other arm employs an associative hypoelastic elastoplastic model with the von Mises criterion as the yield criterion, including an isotropic hardening function.
+Bardenhagen and coworkers \citep{bardenhagenThreedimensionalFiniteDeformation1997} propose a three-dimensional viscoplastic model for polymeric materials, which is a generalization of the Maxwell representation of the Burgers material.
+One of the branches is a three-dimensional large strain hypoelastic generalization of the Maxwell model.
+The other branch employs an associative hypoelastic elastoplastic model with the von Mises criterion as the yield criterion, including an isotropic hardening function.
 The authors provide a comparison with experimental results.
 
-Boyce et al. \citep{boyceConstitutiveModelFinite2000} also present a model generalizing the Maxwell representation of the Burgers material.
-One of the arms contains an elastic element following Hencky's model (see Equation~\eqref{eq:hencky_model}) and an Eyring dashpot in the same way as the model already described found in \citep{boyceLargeInelasticDeformation1988}.
-In the other arm, the elastic element follows the eight-chain model (see Equation~\eqref{eq:eigth_chain_model}), while the dashpot is similar to the Bergström-Boyce model (see Equation~\eqref{eq:bb_reptation_model}).
+Boyce and coworkers \citep{boyceConstitutiveModelFinite2000} also present a model generalizing the Maxwell representation of the Burgers material.
+One of the branches contains an elastic element following Hencky's model (see Equation~\eqref{eq:hencky_model}) and an Eyring dashpot, in the same way as the model already described in \cite{boyceLargeInelasticDeformation1988}.
+In the other branch, the elastic element follows the eight-chain model (see Equation~\eqref{eq:eigth_chain_model}), while the dashpot is similar to the Bergström-Boyce model (see Equation~\eqref{eq:bb_reptation_model}).
 It is used by the authors to model poly(ethylene terephthalate) above the glass transition temperature, accounting for strain-induced crystallization.
-This is achieved neglecting the last dashpot if the stretch is larger than a given value, which depends on the plastic strain rate and the temperature.
+This is achieved by neglecting the last dashpot if the stretch is larger than a given value, which depends on the plastic strain rate and the temperature.
 
-Kletschkowski et al. \citep{kletschkowskiEndochronicViscoplasticMaterial2002} present another description fitting into this class of material models.
-One of the Maxwell arms is made of a linear elastic spring and its viscous element follows the cooperative model (see Equation~\eqref{eq:cooperative_flow_rule}) for the strain rate.
-The other arm employs the endochronic viscoplasticity theory \citep{valanisTheoryViscoplasticityYield1970}.
+Kletschkowski and coworkers \citep{kletschkowskiEndochronicViscoplasticMaterial2002} present another description fitting into this class of material models.
+One of the Maxwell branches is made of a linear elastic spring and its viscous element follows the cooperative model (see Equation~\eqref{eq:cooperative_flow_rule}) for the strain rate.
+The other branch employs the endochronic viscoplasticity theory \citep{valanisTheoryViscoplasticityYield1970}.
 It resembles viscoelasticity with the caveat that time is replaced by an "inner" time, a function of the strain, hence the name endochronic.
 The authors employ this model in the description of filled PTFE.
 
-Pouriayevali et al. \citep{pouriayevaliConstitutiveDescriptionRatesensitive2013} present a constitutive model to describe the quasi-static and high strain rate, large deformation response of semi-crystalline polymers, which can be seen as a generalization of the Kelvin-Voigt representation of the Burgers material.
-The elastic elements are hyperelastic, and their stress response is obtained from Equation~\eqref{eq:constitutive_equation_stress_thermoelasticity} given a suitable free energy potential.
-Regarding the viscous elements, element one obeys von Mises yield criterion with the strain rate also given by Equation~\eqref{eq:flow_rule_perzyna} and the other obeys Newton's viscosity law (see Equation~\eqref{eq:newton_fluid_flow_rule}) neglecting the volumetric contribution.
+Pouriayevali and coworkers \citep{pouriayevaliConstitutiveDescriptionRatesensitive2013} present a constitutive model to describe the quasi-static and high strain rate, large deformation response of semi-crystalline polymers, which can be seen as a generalization of the Kelvin-Voigt representation of the Burgers material.
+The elastic elements are hyperelastic, and their stress response is obtained from Equation~\eqref{eq:constitutive_equation_stress_thermoelasticity}, given a suitable free energy potential.
+Regarding the viscous elements, element one obeys von Mises yield criterion with the strain rate also given by Equation~\eqref{eq:flow_rule_perzyna}, and the other obeys Newton's viscosity law (see Equation~\eqref{eq:newton_fluid_flow_rule}) neglecting the volumetric contribution.
 The corresponding free energy, including the dependency on the temperature, is also supplied.
 The authors validate their model through comparisons with Nylon 6.
 
-The dual network fluoropolymer model is presented in \cite{bergstromConstitutiveModelPredicting2005} as an extension of the Bergström and Boyce \citep{bergstromConstitutiveModelingLarge1998} and Arruda and Boyce model \citep{arrudaEffectsStrainRate1995}, generalizing the Kelvin-Voigt representation of the Burgers material.
+The dual network fluoropolymer model is presented in \cite{bergstromConstitutiveModelPredicting2005} as an extension of the Bergström and Boyce \citep{bergstromConstitutiveModelingLarge1998} and Arruda and Boyce \citep{arrudaEffectsStrainRate1995} models, generalizing the Kelvin-Voigt representation of the Burgers material.
 The Arruda-Boyce eight-chain model gives the response of both springs (see Equation~\eqref{eq:eigth_chain_model}), with the response of the second element taken as a scalar factor $s^{(2)}$, a specified material parameter, times the expression employed to describe the response of the first evaluated according to the deformation gradient across element 2.
 The kinematic decomposition is as expected from the discussion in Sections~\ref{sec:generalization_large_strains_3d} and \ref{sec:inclusion_thermal_field}, including a thermal deformation gradient.
-The rate equations for $\dot\gamma^{(1)}_\text{dev}$ and $\dot\gamma^{(1)}_\text{vol}$ in Equation~\eqref{eq:d_w_bergstrom} for the viscous element 1 are given similarly to the Bergström-Boyce model (see Equation~\eqref{eq:bb_reptation_model}) multiplied by a power laws function of the stress and the temperature.
-The volumetric strain rate is given according to Equation~\eqref{eq:newton_fluid_flow_rule_norm}.
+The rate equations for $\dot\gamma^{(1)}_\text{dev}$ and $\dot\gamma^{(1)}_\text{vol}$ in Equation~\eqref{eq:d_w_bergstrom} in the viscous element 1 are given similarly to the Bergström-Boyce model (see Equation~\eqref{eq:bb_reptation_model}) multiplied by a power law, function of the stress and the temperature.
+The volumetric strain rate is given by Equation~\eqref{eq:newton_fluid_flow_rule_norm}.
 The strain rate for the viscous element $2$, $\dot \gamma^{(2)}_\text{dev}$, is given by
 \begin{equation}
 	\dot{\gamma}_\text{dev}^{(2)}=\begin{cases}
@@ -1117,11 +1116,11 @@ where $\varepsilon = \|\bm E^{(0)}\|$, $a >0$, $b>0$ and $\sigma>0$ are material
 % \colorbox{BrickRed}{Consider also the contribution of \cite{khanFiniteDeformationPolymer2001}}
 
 \paragraph{Generalized Maxwell model}
-A generalized Maxwell model is one that contains $n$ Maxwell arms in parallel.
-In addition, a single arm with only an elastic element may also be considered.
+A generalized Maxwell model is one that contains $n$ Maxwell branches in parallel.
+In addition, a single branch with only an elastic element may also be considered.
 See Figure~\ref{fig:rheo_model_gen_maxwell} for the corresponding rheological model.
 This framework includes Maxwell representations for the standard linear solid model and the Burgers material.
-Models with more than two arms are considered in the following section.
+Models with more than two branches are considered in the following section.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics{figures/rheo_model_gen_maxwell}
@@ -1129,18 +1128,18 @@ Models with more than two arms are considered in the following section.
 \label{fig:rheo_model_gen_maxwell}
 \end{figure}
 
-Holmes et al. \citep{holmesConstitutiveModelLarge2006} present a large strain deformation elasto-viscoplastic material model for modeling semi-crystalline polymers.
-According to the authors, each of the arms in the model coincides with a mode of deformation, elastic, viscoelastic, and viscoplastic.
+Holmes and coworkers \citep{holmesConstitutiveModelLarge2006} present a large strain deformation elasto-viscoplastic material model for modeling semi-crystalline polymers.
+According to the authors, each of the branches in the model coincides with a mode of deformation, elastic, viscoelastic, and viscoplastic.
 Each of the elastic elements' response follows from the free energy potential chosen and the constitutive relation in Equation~\eqref{eq:constitutive_equation_stress_thermoelasticity}.
-The authors suggest employing an Ogden potential for the elastic and viscoelastic arms and a Saint Venant-Kirchhoff potential (see Equation~\eqref{eq:saint_venant_kirchhoff}) for the viscoplastic contribution.
+The authors suggest employing an Ogden potential for the elastic and viscoelastic branches and a Saint Venant-Kirchhoff potential (see Equation~\eqref{eq:saint_venant_kirchhoff}) for the viscoplastic contribution.
 The flow rule adopted follows the work of
-% for viscoelastic arm of the model is given according to Equation~\eqref{eq:} with $\eta_\text{vol}=0$ and
+% for viscoelastic branch of the model is given according to Equation~\eqref{eq:} with $\eta_\text{vol}=0$ and
 % \begin{equation}
 % 	\eta_\text{dev}=\frac{h_0-h_1 \exp \left\{h_2 \frac{\left|\vec{\varepsilon}^e\right|+3 \times 10^{-5}}{\left|\tilde{\varepsilon}^i\right|}\right\}-h_3 \exp \left\{h_4 \frac{\left|\dot{\varepsilon}^e\right|+3 \times 10^{-5}}{\left|\dot{\varepsilon}^i\right|}\right\}}{\left(\left|\dot{\varepsilon}^e\right|+3 \times 10^{-5}\right)^{n e}},
 % \end{equation}
 % where $h_{0,1,\dots,4}$ and $ne$ are material constants.
-Brussele-Dupend et al. \citep{brusselle_dupendMechanical2001, brusselle_dupendMechanical2003} for semi-crystalline polypropylene, accounting for the inadequacies of the Eyring equation (see Equation~\eqref{eq:eyring_model}).
-Regarding the viscoplastic arm of the model, the strain rate is given according to Equation~\eqref{eq:flow_rule_directions} and \eqref{eq:flow_rule_perzyna}.
+Brussele-Dupend and coworkers \citep{brusselle_dupendMechanical2001, brusselle_dupendMechanical2003} for semi-crystalline polypropylene, accounting for the inadequacies of the Eyring equation (see Equation~\eqref{eq:eyring_model}).
+Regarding the viscoplastic branch of the model, the strain rate is given by Equations~\eqref{eq:flow_rule_directions} and \eqref{eq:flow_rule_perzyna}.
 
 % according to an associative description employing the von Mises criterion and strain rate given by
 % \begin{equation}
@@ -1153,22 +1152,22 @@ Regarding the viscoplastic arm of the model, the strain rate is given according 
 % \colorbox{BrickRed}{Include a brief mention of the work of \cite{zerilliConstitutiveEquationDynamic2007}}
 
 
-Zeng et al. \citep{zengConstitutiveModelSemicrystalline2010} developed an elastoplastic constitutive model for semi-crystalline polymers under isothermal conditions between the glass transition temperature and the melting temperature under low-level strain rates, neglecting viscous effects.
-Each of the arms in the rheological model is based on physical considerations concerning the mesoscopic semi-crystalline structure.
+Zeng and coworkers \citep{zengConstitutiveModelSemicrystalline2010} developed an elastoplastic constitutive model for semi-crystalline polymers under isothermal conditions between the glass transition temperature and the melting temperature under low-level strain rates, neglecting viscous effects.
+Each of the branches in the rheological model is based on physical considerations concerning the mesoscopic semi-crystalline structure.
 The foundational idea is a three-phase morphology depending on the average distance between crystalline blocks.
 The interaction is modeled as elastoplastic with linear hardening when the distance is small.
-For medium distances, the behavior is elastoplastic with perfect plasticity, and for large distances, the material is modeled as following the eight-chain model (see Equation~\eqref{eq:eigth_chain_model}).
-The authors validated the model against the results of uniaxial and biaxial experiments on polyamide 6 and polyethylene at different strain rates.
+For medium distances, the behavior is elastoplastic with perfect plasticity, and for large distances the material is modeled as following the eight-chain model (see Equation~\eqref{eq:eigth_chain_model}).
+The authors validate the model against the results of uniaxial and biaxial experiments on polyamide 6 and polyethylene at different strain rates.
 The model parameters are easily calibrated using these uniaxial stress–strain experimental curves.
 
 % \colorbox{BrickRed}{See also \cite{buckleyGlassrubberConstitutiveModel1995}}
 Okereke and Akpoyomare \citep{okerekeTwoprocessConstitutiveModel2019} propose a model based on an elastic-viscoelastic-viscoplastic framework to predict the temperature and rate-dependent response of an incompressible semi-crystalline polymer.
-Three arms materialize it in a rheological model, two containing a viscous and an elastic element corresponding to the contribution of the mobile amorphous fraction; and the crystalline and rigid amorphous fractions, and another arm containing only an elastic element, representing the contribution of the entangled molecular network.
+Three branches materialize it in a rheological model, two containing a viscous and an elastic element corresponding to the contribution of the mobile amorphous fraction, and the crystalline and rigid amorphous fractions, and another branch containing only an elastic element, representing the contribution of the entangled molecular network.
 The basis of this model is a one-process glass-rubber model for amorphous polymers \citep{buckleyGlassrubberConstitutiveModel1995}, adapted to the description of semi-crystalline polymers considering the $\alpha$- and the $\beta$-processes, making it a two-process model.
 The authors connect these processes to the glass transition of the rigid amorphous and the mobile amorphous phases, respectively.
-The flow rule for both arms containing the viscous elements is given according to Equation~\eqref{eq:flow_rule_directions}, where the volumetric contribution is neglected, and the deviatoric strain rate is given by
+The flow rule for both branches containing the viscous elements is given according to Equation~\eqref{eq:flow_rule_directions}, where the volumetric contribution is neglected, and the deviatoric strain rate is given by
 \begin{equation}
-	\dot \gamma_\text{dev, i} = \dot \gamma_{T,j}\dot\gamma_{S,j}\dot\gamma_{\sigma,j}\dot\gamma_{0,j},\quad j=\alpha, \beta
+	\dot \gamma_\text{dev, i} = \dot \gamma_{T,j}\dot\gamma_{S,j}\dot\gamma_{\sigma,j}\dot\gamma_{0,j},\quad j=\alpha, \beta,
 \end{equation}
 where $\dot \gamma_{T,j}$ captures the influence of the temperature as
 \begin{equation}
@@ -1179,7 +1178,7 @@ and $\dot \gamma_{\sigma,j}$ captures the influence of the stress as
 	\dot\gamma_{\sigma,j} = \exp\left(\frac{\Omega\sigma_m}{k_B T}\right)\sinh\left(\frac{v\|\bm s\|}{2\sqrt{3}k_BT}\right),
 \end{equation}
 according to Eyring's theory (see Equations~\eqref{eq:eyring_model} and \eqref{eq:eyring_w_pressure}).
-The influence of the structure is taken into account through a fictive temperature $T_f$ for each arm $j$ as
+The influence of the structure is taken into account through a fictive temperature, $T_f$, for each branch $j$ as
 \begin{equation}
 	\dot\gamma_{S,j} = \exp\left(\frac{C}{T_{f,j}-T_\infty}\right),
 \end{equation}
@@ -1198,24 +1197,24 @@ where $\kappa$ is a material parameter and
 	\dot \gamma'_{0,j} = \frac{1}{\tau^*_{0,j}} \exp\left(\left[\frac{\Delta H}{R\Delta T}\right]\left[\frac{C}{\Delta T_{f,j} - T_\infty}\right]\right).
 \end{equation}
 According to the authors, this choice of the rate equation for the fictive temperature incorporates into the model significant post-yield strain-softening observed in high-rate compression of propylene.
-The elastic elements in the arms contain viscous elements according to the Saint-Venant-Kirchhoff model (see Equation~\eqref{eq:saint_venant_kirchhoff}), while the other elastic element follows the Edwards-Vilgis model (see Equation~\eqref{eq:edward_vilgis_model}).
+The elastic elements in the branches contain viscous elements according to the Saint-Venant-Kirchhoff model (see Equation~\eqref{eq:saint_venant_kirchhoff}), while the other elastic element follows the Edwards-Vilgis model (see Equation~\eqref{eq:edward_vilgis_model}).
 
-The three network model is presented in \citep{bergstromMechanicsSolidPolymers2015}, being very similar to the models already presented based on a generalized Maxwell model.
+The three network model is presented in \cite{bergstromMechanicsSolidPolymers2015}, being very similar to the models already presented based on a generalized Maxwell model.
 The springs follow the Arruda-Boyce eight-chain model (see Equation~\eqref{eq:eigth_chain_model}) and the dashpots power laws (similar to Equation~\eqref{eq:flow_rule_power_law}).
 The effective shear stress is taken as an internal variable with a corresponding rate equation.
 A linear dependence on the temperature for the stress response of the elastic elements is also included.
-The same author also explores a parallel network model which consists in adding more Maxwell arms to the model following similar constitutive equations.
+The same author also explores a parallel network model which consists in adding more Maxwell branches to the model following similar constitutive equations.
 
-Hao et al. \citep{haoRatedependentConstitutiveModel2022} propose a model containing three arms to study the double yield phenomenon as well as the rate- and temperature-dependent thermomechanical response below the glass transition temperature of semi-crystalline polymers.
-The first arm contains an elastic element whose stress response follows Hencky's model (see Equation~\eqref{eq:hencky_model}).
-The corresponding viscous element obeys Equations~\eqref{eq:eyring_model} and \eqref{eq:argon_model_free_enthalpy} following the work of Boyce et al. \citep{boyceLargeInelasticDeformation1988}.
-The athermal strength is taken as an internal variable, and its rate equation is shown in Equation~\eqref{eq:two_athermal_strength_evo}, following Chowdhury et al. \citep{chowdhuryEffectsManufacturingInducedVoids2008}.
-The behavior of the elastoplastic arm coincides with rate-independent plasticity, and it is made up of an elastic element also following Hencky's model (see Equation~\eqref{eq:hencky_model}) and a viscous element respecting a paraboloidal yield criterion.
-The yield criterion describing the yield in the crystalline region is similar to the Drucker-Prager yield criteria with strain rate/plastic multiplier $\dot \gamma$ found taking into account the Kuhn-Tucker's loading-unloading consistency conditions.
-The same law as Chowdhury et al. is adopted for the rubber-like elastic responsible for the hardening response, combining a  four-chain model (see Equation~\eqref{eq:three_chain_model}) and an eight-chain model (see Equation~\eqref{eq:eigth_chain_model}).
+Hao and coworkers \citep{haoRatedependentConstitutiveModel2022} propose a model containing three branches to study the double yield phenomenon as well as the rate- and temperature-dependent thermomechanical response below the glass transition temperature of semi-crystalline polymers.
+The first branch contains an elastic element whose stress response follows Hencky's model (see Equation~\eqref{eq:hencky_model}).
+The corresponding viscous element obeys Equations~\eqref{eq:eyring_model} and \eqref{eq:argon_model_free_enthalpy} following the work of Boyce and coworkers \citep{boyceLargeInelasticDeformation1988}.
+The athermal strength is taken as an internal variable, and its rate equation is shown in Equation~\eqref{eq:two_athermal_strength_evo}, following Chowdhury and coworkers \citep{chowdhuryEffectsManufacturingInducedVoids2008}.
+The behavior of the elastoplastic branch coincides with rate-independent plasticity, and it is made up of an elastic element, also following Hencky's model (see Equation~\eqref{eq:hencky_model}), and a viscous element respecting a paraboloidal yield criterion.
+The yield criterion describing the yielding in the crystalline region is similar to the Drucker-Prager yield criterion with the strain rate/plastic multiplier $\dot \gamma$ found by taking into account the Kuhn-Tucker's loading-unloading consistency conditions.
+The same law as Chowdhury and coworkers \citep{chowdhuryEffectsManufacturingInducedVoids2008} is adopted for the rubber-like elastic responsible for the hardening response, combining a  four-chain model (see Equation~\eqref{eq:three_chain_model}) and an eight-chain model (see Equation~\eqref{eq:eigth_chain_model}).
 
 The hybrid model has been developed to model UHWPE \citep{bergstromConstitutiveModelingUltrahigh2002, bergstromPredictionMultiaxialMechanical2003} and employs the rheological model shown in Figure~\ref{fig:hybrid_model}.
-The spring E is linear following the Hencky model (Equation~\eqref{eq:hencky_model}), springs A and B follow the Arruda-Boyce eight-chain model (Equation~\eqref{eq:eigth_chain_model}), employing the same expression except for a multiplicative constant $s_B$.
+The spring E is linear, following the Hencky model (Equation~\eqref{eq:hencky_model}), springs A and B follow the Arruda-Boyce eight-chain model (Equation~\eqref{eq:eigth_chain_model}), employing the same expression except for a multiplicative constant $s_B$.
 This constant is treated in the model as an internal variable that evolves according to an equation similar to Equation~\eqref{eq:bodner_partom_rate_eq}.
 The rate of viscoplastic flow in the element $P$, $\dot\gamma^P$, is given by a power law (Equation~\eqref{eq:flow_rule_power_law}), as is the flow rate in the element $B$.
 \begin{figure}[hbtp]
@@ -1225,25 +1224,25 @@ The rate of viscoplastic flow in the element $P$, $\dot\gamma^P$, is given by a 
 \label{fig:hybrid_model}
 \end{figure}
 
-\section{Based on free energy}
+\section{Models based on free energy}
 
 Yet another approach is to postulate a free energy that depends on the deformation gradient and the temperature, in addition to appropriate internal variables.
 Providing suitable rate equations for these variables, one can fully specify the constitutive description of a polymer.
-However, as described in the previous section, most of these models can be reinterpreted as generalizations of rheological modes, employing much of the same laws already described.
+However, as described in the previous section, most of these models can be reinterpreted as generalizations of rheological models, employing much of the same laws already described.
 For some examples see \cite{anandTheoryAmorphousSolids2003, ghorbelViscoplasticConstitutiveModel2008,anandThermomechanicallyCoupledTheory2009, amesThermomechanicallyCoupledTheory2009, pouriayevaliConstitutiveDescriptionRatesensitive2013}.
 
 \section{Models considering bulk crystallinity}
 \label{sec:models_bulk_crystal}
 
 The following set of models considers different phases in semi-crystalline polymers, a crystalline phase, and an amorphous phase.
-They do so through simple geometric considerations, which mostly only include bulk crystallinity.
+These adopt simple geometric considerations, which mostly only include bulk crystallinity.
 The simplest results of this kind are the Voigt and Reuss mixture rules \citep{wardIntroductionMechanicalProperties2004}.
 It is assumed that the two phases, $A$ and $B$, are laid out as layers (see Figure~\ref{subfig:voigt_mixture_rule}), with the Voigt rule obtained assuming that the strain is the same in all composite layers, yielding
 \begin{equation}
 	\label{eq:voigt_mixture_rule}
 	E_\text{mix, Voigt} = E_A \chi + E_B (1 - \chi),
 \end{equation}
-for the modulus of the mixture, $E_\text{mix}$, with $E_A$ and $E_B$ the modulus of each phase, and $\chi$ the volume fraction of the phase $A$.
+for the modulus of the mixture, $E_\text{mix}$, with $E_A$ and $E_B$ denoting the modulus of each phase, and $\chi$ being the volume fraction of the phase $A$.
 This rule sets an upper limit to the stiffness of the composite material.
 If, on the other hand, it is assumed that the stress is the same in all composite layers (see Figure~\ref{subfig:reuss_mixture_rule}), the modulus found for the mixture is
 \begin{equation}
@@ -1271,10 +1270,10 @@ This choice corresponds to a lower bound for the stiffness of the composite mate
 
 The work of Takayanagi and coworkers \citep{takayanagiApplicationEquivalentModel1964} was the first to consider such an approach to model semi-crystalline polymers.
 The mixture rule employed is neither the Voigt nor the Reuss mixture rule since the phases are not arranged in layers.
-Instead, the amorphous phase is kept at the corner of the volume element considered, with dimensions $\varphi$ and $\lambda$, as depicted in Figure~\ref{fig:model_takayanagi}.
+Instead, the amorphous phase is kept at the corner of the volume element, with dimensions $\varphi$ and $\lambda$, as depicted in Figure~\ref{fig:model_takayanagi}.
 The quantity $\varphi \lambda$ is equal to the volume fraction of amorphous polymer, supplying an extra degree of freedom that can be correlated to the distribution of one phase in the other.
-A more homegeneous distribution of the amorphous phase leads to similar values for $\varphi$ and $\lambda$, while inhomogeneities in either direction favor one or the other parameter.
-In \cite{takayanagiMechanicalPropertiesFine1967}, the authors consider employing similar techniques to model drawn samples of polyethylene (PE), and isotactic propylene (iPP), among other crystalline polymers.
+A more homogeneous distribution of the amorphous phase leads to similar values for $\varphi$ and $\lambda$, while inhomogeneities in either direction favor one or the other parameter.
+In \cite{takayanagiMechanicalPropertiesFine1967}, the authors employ similar techniques to model drawn samples of polyethylene (PE) and isotactic propylene (iPP), among other crystalline polymers.
 \begin{figure}[hbtp]
 \centering
 \begin{subfigure}[b]{0.45\textwidth}
@@ -1289,32 +1288,32 @@ In \cite{takayanagiMechanicalPropertiesFine1967}, the authors consider employing
 						\caption{}
 						\label{subfig:takaynagi_high}
 		\end{subfigure}
-	\caption{Mixture model of Takayanagi et al. \citep{takayanagiApplicationEquivalentModel1964} for semi-crystalline polymers with crystallinities of \subref{subfig:takaynagi_low} about 90\% and \subref{subfig:takaynagi_high} about 50\% an their equivalent models. The black area expresses the non-crystalline region. Adapted from \cite{takayanagiApplicationEquivalentModel1964}. }
+	\caption{Mixture model of Takayanagi and coworkers \citep{takayanagiApplicationEquivalentModel1964} for semi-crystalline polymers with crystallinities of about \subref{subfig:takaynagi_low} 90\% and \subref{subfig:takaynagi_high} 50\%, and their equivalent models. The black area denotes the non-crystalline region. Adapted from \cite{takayanagiApplicationEquivalentModel1964}. }
 \label{fig:model_takayanagi}
 \end{figure}
 
 G'sell, Dahoun, and coworkers \citep{gsellEvolutionMicrostructureSemicrystalline1994, dahounPlasticBehaviorDeformation1995} employ a mixture model using the Voigt composite model to combine the contributions from the amorphous (rubber-like) and the crystalline (viscoplastic) portions of the polymer.
-They assume a temperature above the glass transition temperature and attempt to describe HDPE and PEEK subject to uniaxial traction and pure shear.
+They assume a temperature above the glass transition temperature and attempt to describe HDPE and PEEK subject to uniaxial tension and pure shear.
 The response of the amorphous portion of the polymer is given according to the elastic rubber model in \cite{wuImprovedNetworkModels1993}.
  In contrast, the behavior of the crystalline phase is modeled following Parks and Ahzi \citep{parksPolycrystallinePlasticDeformation1990}.
 It is based on a local-global interaction model established for polycrystalline metal \citep{molinariSelfConsistentApproach1987}, considering the kinematically indeterminate component of the stress in a rigid-viscoplastic crystal due to the locally inextensible direction.
-They consider a fully crystalline HDPE and make predictions regarding the large deformation texture developed and the macroscopic stress-strain response.
+They consider a fully crystalline HDPE and make predictions regarding the large deformation texture and the macroscopic stress-strain response.
 
 % See about \cite{raoStudyStraininducedCrystallization2001}
-% The model by Rao et al. \citep{raoStudyStraininducedCrystallization2001}, where the Helmholtz free energy is divided according to the crystallinity, is considered an internal variable.
+% The model by Rao and coworkers \citep{raoStudyStraininducedCrystallization2001}, where the Helmholtz free energy is divided according to the crystallinity, is considered an internal variable.
 
-Ahzi et al. \citep{ahziModelingDeformationBehavior2003} model PET at large strains, including strain-induced polymer crystallization above the glass transition temperature.
-The model is based on \citep{boyceConstitutiveModelFinite2000}, considering two distinct resistances, an intermolecular ($A$) and network resistance ($B$).
+Ahzi and coworkers \citep{ahziModelingDeformationBehavior2003} model PET at large strains, including strain-induced polymer crystallization above the glass transition temperature.
+The model is based on \cite{boyceConstitutiveModelFinite2000}, considering two distinct resistances, an intermolecular ($A$) and network resistance ($B$).
 As in the base model, the network stress is captured by the Arruda-Boyce eight-chain model (see Equation~\eqref{eq:eigth_chain_model}), and the viscous element follows the Bergström-Boyce model (see Equation~\eqref{eq:bb_reptation_model}).
-The intermolecular resistance, however, is treated in a composite framework where the crystalline and amorphous phases are considered as two separate resistances coupled through either a Voigt or a Reuss-like mixture rule, which yields an upper bound and lower bound for the stiffness, respectively.
-The elastic elements corresponding to the crystalline and amorphous phases follow the Hencky model (see Equation~\eqref{eq:hencky_model}), and the viscous elements a model similar to the one proposed by Argon (see Equation~\eqref{eq:argon_model_free_enthalpy}), where the athermal strength $s_i$ in each phase evolves according to Equation~\eqref{eq:rate_equation_power}.
+The intermolecular resistance, however, is treated in a composite framework where the crystalline and amorphous phases are considered as two separate resistances coupled through either a Voigt or a Reuss-like mixture rule, which yield upper and lower bounds for the stiffness, respectively.
+The elastic elements corresponding to the crystalline and amorphous phases follow the Hencky model (see Equation~\eqref{eq:hencky_model}), and the viscous elements follow a model similar to the one proposed by Argon (see Equation~\eqref{eq:argon_model_free_enthalpy}), where the athermal strength $s_i$ in each phase evolves according to Equation~\eqref{eq:rate_equation_power}.
 
-Regarding applying the mixture rules in intermolecular resistance, contributions come from the crystalline part, denoted by $c$, and the amorphous part, $a$, of the semi-crystalline polymer.
+Regarding applying the mixture rules to the intermolecular resistance, contributions come from the crystalline part, denoted by $c$, and the amorphous part, $a$, of the semi-crystalline polymer.
 These are combined according to the degree of crystallinity, $\chi$, in two ways (see Figure~\ref{fig:ahzi_combiniations}):
 \begin{itemize}
 	\item in parallel, such that the gradient acting in each element is equal and the Cauchy stress is supplied by
 	\begin{equation}
-		\bm\sigma_A = \chi\bm\sigma_A^c + (1 -\chi)\bm\sigma_A^a.
+		\bm\sigma_A = \chi\bm\sigma_A^c + (1 -\chi)\bm\sigma_A^a;
 	\end{equation}
 	\item in series, such that the stress acting on both elements is the same and the plastic rate of deformation is given by
 	\begin{equation}
@@ -1335,7 +1334,7 @@ These are combined according to the degree of crystallinity, $\chi$, in two ways
 						\caption{}
 						\label{subfig:ahzi_series}
 		\end{subfigure}
-	\caption{Mixture models considered by Ahzi et al. \citep{ahziModelingDeformationBehavior2003}: \subref{subfig:ahzi_parallel} Parallel arrangement. \subref{subfig:ahzi_series} Series arrangement.}
+	\caption{Mixture models considered by Ahzi and coworkers \citep{ahziModelingDeformationBehavior2003}: \subref{subfig:ahzi_parallel} Parallel arrangement; \subref{subfig:ahzi_series} Series arrangement.}
 \label{fig:ahzi_combiniations}
 \end{figure}
 The crystallization rate is expressed following a non-isothermal phenomenological expression based on the modiﬁed Avrami equation
@@ -1347,27 +1346,27 @@ where $\chi_\infty$ is the maximum degree of crystallinity, $m$ is the Avrami, $
 % See how the strain rate is defined
 $K_\text{av}$ is the transformation rate function, which is defined in the case of PET as
 \begin{equation}
-	K_\text{av}(T) = 1.47\times 10^{-3} \left[\frac{4\pi \mathrm{Nu}}{3\chi_\infty}\right]^{1/3} \exp\left[-\left(\frac{T - 141}{47.33}\right)\right], \quad \text{(\si{\per\second}, $T$ in \si{\celsius})},
+	K_\text{av}(T) = 1.47\times 10^{-3} \left[\frac{4\pi \mathrm{Nu}}{3\chi_\infty}\right]^{1/3} \exp\left[-\left(\frac{T - 141}{47.33}\right)\right] \quad \text{(\si{\per\second}, $T$ in \si{\celsius})},
 \end{equation}
 with $\mathrm{Nu}$ the number density of nuclei initially present within the amorphous phase.
 
 Strobl and coworkers \citep{hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006} propose a somewhat similar description for polyethylene.
-They also consider two arms in a rheological model.
-The first is a Maxwell arm with a linear spring and an Eyring dashpot in series.
+They also consider two branches in a rheological model.
+The first is a Maxwell branch with a linear spring and an Eyring dashpot in series.
 The second is found through a Voigt mixture rule between rubber elastic and elastoplastic elements.
 Extensive experimental results on PEVA and PE support these choices.
 % \begin{figure}
 % 	\centering
 % 	\includegraphics[width=.9\textwidth]{example-image-a}
-% 	\caption{Model proposed by Strobl and co-workers \citep{hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006} for semi-crystalline polymers.}
+% 	\caption{Model proposed by Strobl and coworkers \citep{hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006} for semi-crystalline polymers.}
 % \label{fig:strobl_model}
 % \end{figure}
 
-Makradi et al. \citep{makradiTwophaseSelfconsistentModel2005} extend this model considering a self-consistent approach based on the Eshelby result.
-It amounts to the use of a Maxwell arm as the intermolecular resistance where the properties of the elastic and viscous elements are appropriate equivalent properties.
-The stress corresponding to the intermolecular resistance is thus given according to the Hencky model (see Equation~\eqref{eq:hencky_model}) with the isotropic elastic moduli $\bm{\mathsf D}$ is chosen following the self-consistent method proposed by Hill \citep{hillSelfconsistentMechanicsComposite1965}.
+Makradi and coworkers \citep{makradiTwophaseSelfconsistentModel2005} extend this model considering a self-consistent approach based on the Eshelby result.
+It amounts to the use of a Maxwell branch as the intermolecular resistance, where the properties of the elastic and viscous elements are appropriate equivalent properties.
+The stress corresponding to the intermolecular resistance is thus given according to the Hencky model (see Equation~\eqref{eq:hencky_model}), with the isotropic elastic moduli $\bm{\mathsf D}$ following the self-consistent method proposed by Hill \citep{hillSelfconsistentMechanicsComposite1965}.
 The flow rule for the viscous element is given by Equation~\eqref{eq:flow_rule_directions}, neglecting the volumetric part.
-The strain rate, $\dot \gamma_\text{dev}$ is defined as an average strain rate, $\dot{\bar\gamma}$, according to
+The strain rate, $\dot \gamma_\text{dev}$, is defined as an average strain rate, $\dot{\bar\gamma}$, according to
 \begin{equation}
 	\label{eq:def_avg_strain_rate}
 	\dot{\bar\gamma} = \frac{1}{V}\int_V \dot \gamma\ dV = \frac{1}{V}\sum_i V_i \dot{\gamma}_i,
@@ -1376,7 +1375,7 @@ where
 \begin{equation}
 	\dot \gamma_i = \frac{1}{V_i}\int_{V_i} \dot \gamma\ dV_i,
 \end{equation}
-with $V_i$ the volume of the $i$th phase and $V$ representing the total volume.
+with $V_i$ denoting the volume of the $i$th phase and $V$ representing the total volume.
 For each phase, the flow rule is also given by Equation~\eqref{eq:flow_rule_directions}, neglecting the volumetric part, with the strain rate in each phase following a power law (see Equation~\eqref{eq:flow_rule_power_law}).
 Thus, the average strain rate is also described by a power law, with an average strength $\bar s$.
 It can be shown, taking into account Eshelby's results for an ellipsoidal inclusion, that
@@ -1385,15 +1384,15 @@ It can be shown, taking into account Eshelby's results for an ellipsoidal inclus
 \end{equation}
 which, combined with Equation~\eqref{eq:def_avg_strain_rate} and the corresponding power law, yields the average strain rate.
 The authors employ the same description for the evolution of the crystallinity as \cite{ahziModelingDeformationBehavior2003}, in addition to Flory's theory to predict the onset of crystallization as a function of the processing temperature and the extension of the polymer molecules.
-Later Regrain et al. \citep{regrainMultimechanismModelsSemicrystalline2009} extend the DID models to semi-crystalline models, employing a self-consistent scheme to consider the contribution of both phases.
+Later Regrain and coworkers \citep{regrainMultimechanismModelsSemicrystalline2009} extend the DID models to semi-crystalline models, employing a self-consistent scheme to consider the contribution of both phases.
 
 Dusunceli and Colak \citep{dusunceliModellingEffectsDegree2008} extend the viscoplasticity theory based on overstress (VBO) to include crystallinity.
 This is achieved by describing both phases employing the VBO model and considering their contributions using a Voigt or a Reuss mixture rule.
 The authors validate their model using polyethylenes (UHWPE and XLPE) and PTFE.
 
-Ayoub et al. \citep{ayoubModellingLargeDeformation2010, ayoubEffectsCrystalContent2011} present a model very similar to \cite{ahziModelingDeformationBehavior2003} and \cite{boyceConstitutiveModelFinite2000} to describe the mechanical behavior of HDPE.
+Ayoub and coworkers \citep{ayoubModellingLargeDeformation2010, ayoubEffectsCrystalContent2011} present a model very similar to \cite{ahziModelingDeformationBehavior2003} and \cite{boyceConstitutiveModelFinite2000} to describe the mechanical behavior of HDPE.
 The inelastic mechanisms involve two parallel elements: a visco-hyperelastic network resistance acting in parallel with a viscoelastic–viscoplastic intermolecular resistance where the amorphous and crystalline phases are explicitly taken into consideration.
-The semi-crystalline polymer is considered a two-phase composite similar to what has already been described.
+The semi-crystalline polymer is considered as a two-phase composite similar to what has already been described.
 In the first contribution, both the crystalline and amorphous resistances are modeled employing the VBO model.
 Their contributions to the intermolecular resistance are incorporated through a Voigt mixture rule (see Equation~\eqref{eq:voigt_mixture_rule}).
 In the second contribution, the elastic and viscous elements in crystalline and amorphous resistances are modeled employing Hencky's model (see Eqaution~\eqref{eq:hencky_model}) and a simplified version of Argon's model (see Equation~\eqref{eq:argon_model_free_enthalpy}).
@@ -1403,14 +1402,14 @@ They employ a modified Voigt mixture rule, where the contribution to the intermo
   \bm \sigma_A = \chi^\beta \bm \sigma_c + (1-\chi)^\beta \bm \sigma_a,
 \end{equation}
 where $\beta$ is an appropriate exponent.
-It is found from a fit of the Young modulus as a function of the degree of crystallinity, as shown in Figure~\ref{fig:deg_cryst_stiff}.
-Compared with experimental results obtained for polyethylene samples containing degrees of crystallinity between 15 and 72\%, the model can accurately capture the change in response with crystallinity before the strain hardening becomes evident.
+Such an exponent is found from a fit of the Young modulus as a function of the degree of crystallinity, as shown in Figure~\ref{fig:deg_cryst_stiff}.
+When compared with the experimental results obtained for polyethylene samples containing degrees of crystallinity between 15 and 72\%, the model can accurately capture the change in response with crystallinity before the strain hardening becomes evident.
 Different material parameters for each crystallinity are needed to capture the strain hardening at large strains (> 1).
-A similar model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, where the major difference is the substitution of the Maxwell arm in the network resistance for two arms, one corresponding to the amorphous contribution and the other to the crystalline contribution.
+A similar model can be found in \cite{abdul-hameedTwophaseHyperelasticviscoplasticConstitutive2014}, where the major difference is the substitution of the Maxwell branch in the network resistance for two branches, one corresponding to the amorphous contribution and the other to the crystalline contribution.
 They are combined as shown in Equation~\eqref{eq:mod_voigt_mixture_rule}.
-This approach allows for a better fit across different degrees of crystallinity when strain hardening becomes evident employing the same material parameters.
-Very recently, Cundiff et al. \citep{cundiffModelingViscoplasticBehavior2022} propose another model where the inclusion of the crystallinity is achieved through the modified Voigt mixture rule (see Equation~\eqref{eq:mod_voigt_mixture_rule}).
-Regarding the constitutive description of each phase, it employs much of the same laws found in \cite{ahziModelingDeformationBehavior2003} and \cite{chowdhuryEffectsManufacturingInducedVoids2008}, already described.
+This approach allows for a better fit across different degrees of crystallinity when strain hardening becomes evident and by employing the same material parameters.
+Very recently, Cundiff and coworkers \citep{cundiffModelingViscoplasticBehavior2022} propose another model where the inclusion of the crystallinity is achieved through the modified Voigt mixture rule (see Equation~\eqref{eq:mod_voigt_mixture_rule}).
+Regarding the constitutive description of each phase, it employs much of the same laws found in \cite{ahziModelingDeformationBehavior2003} and \cite{chowdhuryEffectsManufacturingInducedVoids2008}.
 It describes strain rate crystallization through a rate equation similar to Equation~\eqref{eq:rate_eq_cryst}.
 
 Lastly, the two-phase model of Cangemi and Meimon for semi-crystalline polymers \citep{cangemiTwoPhaseModelMechanical2001} achieves the inclusion of the bulk crystallinity into the description of a semi-crystalline polymer in a different way.
@@ -1419,24 +1418,24 @@ It is based on the continuum mixture theory such that according to the microstru
 \section{Micromechanical models}
 
 In addition to bulk crystallinity, the final set of models includes some geometric considerations at the micro-scale.
-Accordingly, micromechanical modeling based on the laminar composite approach was proposed by Lee et al. \citep{leeMicromechanicalModelingLarge1993, leeSimulationLargeStrain1993}.
-Using an eight-chain model, this model added a rigid-viscoplastic amorphous phase (see Equation~\eqref{eq:eigth_chain_model}), and Sachs/Taylor hybrid interaction law was used to relate the mechanical properties of microscopic two-phase inclusion and aggregation of the inclusions.
+Accordingly, micromechanical modeling based on the laminar composite approach was proposed by Lee and coworkers \citep{leeMicromechanicalModelingLarge1993, leeSimulationLargeStrain1993}.
+Using an eight-chain model, this model added a rigid-viscoplastic amorphous phase (see Equation~\eqref{eq:eigth_chain_model}), and Sachs/Taylor hybrid interaction law was used to relate the mechanical properties of microscopic two-phase inclusion.
 In these models, a crystalline polymer is regarded as a polycrystalline aggregate of randomly distributed crystallites that plastically deform cooperatively.
 It does not consider the mesoscopic structure of the polymer.
 
-According to Uchida et al. \citep{uchidaMicroMesoMacroscopic2013}, these models were then improved to more realistic elasto-viscoplastic models by Nikolov et al. \citep{nikolovMicroMacroConstitutive2000, nikolovMultiscaleConstitutiveModeling2002} and van Dommelene et al. \citep{vandommelenMicromechanicalModelingElastoviscoplastic2003}
-Similarly, Guan et al. \citep{guanMicromechanicalModelElastic2004} present a micromechanical analysis of the elastic properties of semi-crystalline thermoplastic materials.
+According to Uchida and coworkers \citep{uchidaMicroMesoMacroscopic2013}, these models were then improved to more realistic elasto-viscoplastic models by Nikolov and coworkers \citep{nikolovMicroMacroConstitutive2000, nikolovMultiscaleConstitutiveModeling2002} and van Dommelene and coworkers \citep{vandommelenMicromechanicalModelingElastoviscoplastic2003}
+Similarly, Guan and coworkers \citep{guanMicromechanicalModelElastic2004} present a micromechanical analysis of the elastic properties of semi-crystalline thermoplastic materials.
 
-Bedoui et al. \citep{bedouiMicromechanicalModelingIsotropic2006} consider a micromechanical model applied to infinitesimal strain, concluding that the spherulitic mesostructure does not affect the response of the material at that level of strain.
+Bedoui and coworkers \citep{bedouiMicromechanicalModelingIsotropic2006} consider a micromechanical model applied to infinitesimal strains, concluding that the spherulitic mesostructure does not affect the response of the material at that level of strain.
 The phase of the amorphous part of the semi-crystalline polymers has a noticeable impact on the stiffness of the polymer.
 There is moderate agreement between the predictions and the experimental results.
 
 Alternatively, Uchida and coworkers \citep{uchidaMicroMesoMacroscopic2013} developed a large deformation finite element homogenization model of spherulitic HDPE.
-This contrasts the previously described models because the interaction laws applied in these models have no geometric information, compatibility, and equilibrium in the spherulite cannot be considered.
+This contrasts with the previously described models because the interaction laws applied in these models have no geometric information, and equilibrium in the spherulite cannot be considered.
 Since Uchida and coworkers' model directly solves both the microscopic and mesoscopic displacement fields using an FE-based homogenization scheme, compatibility and equilibrium between adjacent microstructure in the spherulite are automatically satisfied.
-According to the authors, the former micromechanical-based model is suitable when macroscopic response and texture evolution are required.
-Meanwhile, the homogenization-based model is proper when strain and stress distributions in the spherulite are required.
-Regarding the size of the representative domain, Teixeira-Pinto et al. \citep{teixeira-pintoSizeEstimationRepresentative2016} claim that it significantly exceeds the size of a single spherulite.
+According to the authors, the former micromechanical-based model is suitable when the macroscopic response and texture evolution are required.
+Meanwhile, the homogenization-based model appropriate when strain and stress distributions in the spherulite are required.
+Regarding the size of the representative domain, Teixeira-Pinto and coworkers \citep{teixeira-pintoSizeEstimationRepresentative2016} claim that it significantly exceeds the size of a single spherulite.
 
   \newpage\null\thispagestyle{blank}\newpage
 % \colorbox{BrickRed}{Consider saying something about deformation maps \cite{frostDeformationmechanismMapsPlasticity1982}, \cite{odonnellComputerProgramGenerating1991} \cite{kawasakiManyFacetsDeformation2013, vanloockDeformationFailureMaps2018, richardPredictingPlasticityDisordered2020}}

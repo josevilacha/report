@@ -1,7 +1,7 @@
-\chapter{Thermo-mechanical problem}
+\chapter{Thermomechanical problem}
 \label{ch:thermo_mechanical_problem}
 
-The full thermo-mechanical analysis is conducted in the subsequent chapter using the overall framework discussed in Chapter~\ref{ch:continuum_mechanics}.
+The full thermomechanical analysis is conducted in the subsequent chapter using the overall framework discussed in Chapter~\ref{ch:continuum_mechanics}.
 The independent mechanical and thermal problems discussed in the Chapters~\ref{ch:mechanical_problem} and \ref{ch:thermal_problem} serve as a roadmap for the developments that come next.
 Since the two fields are related at every point of the domain, this coupling is referred to as a volume coupling.
 In contrast, surface-coupled issues, such as those involving fluid-structure interactions, encompass situations where coupling only occurs at the boundary between the fluid and the structural domain.
@@ -9,9 +9,9 @@ The thermomechanical potential is the typical methodology for finite deformation
 
 
 
-\section{Thermo-mechanical constitutive initial value problem}
+\section{Thermomechanical constitutive initial value problem}
 
-The following set of equations in the material configuration set up a constitutive model based on internal variables in the complete thermo-mechanical scenario, taking into account all quantities relevant to both the mechanical and the thermal domain
+The following set of equations in the material configuration set up a constitutive model based on internal variables in the complete thermomechanical scenario, taking into account all quantities relevant to both the mechanical and the thermal domain
     \begin{gather}
         \mat P = \rho_0 \frac{\partial \psi}{\partial \mat F},\\
         s = - \frac{\partial \psi}{\partial \theta},\\
@@ -74,7 +74,7 @@ Applying the Piola transformation yields for the material description of the hea
   \end{equation}
 \end{highlight}
 
-Thus, the material thermo-mechanical constitutive initial value problem can be stated as
+Thus, the material thermomechanical constitutive initial value problem can be stated as
     \begin{problem}[Material thermomechanical constitutive initial value problem.]
     GGiven the initial values of the internal variables, $\bm \alpha(t_0)$, the history of the deformation gradient
     \begin{equation}
@@ -122,7 +122,7 @@ IIn a material description, the body is in mechanical equilibrium and energetic 
 
 \section{Mechanical constitutive initial boundary value problem}
 
-It is now possible to pose the thermo-mechanical constitutive initial value problem in its weak form.
+It is now possible to pose the thermomechanical constitutive initial value problem in its weak form.
 Assume that a body $\mathscr{B}$ is made from a generic material, characterized by a given constitutive model, whose internal variables are known at the initial time.
 In addition, it is assumed that the interior of the body was subjected to a prescribed history of body forces, $\bm b(\bm X, t)$, and a prescribed history of heat sources, $r(\bm X,t)$, $t\in[t_0, t_\text{end}]$, and to the following boundary conditions:
 \begin{itemize}
@@ -171,9 +171,9 @@ Accounting also for the constitutive law chosen for the heat flux, i.e., Fourier
   \rho_0 C_V \dot \theta = \rho_0 r + k\operatorname{div} \bm g_0 + \pazocal D_\text{int} + \pazocal H^\text{ep}.
 \end{equation}
 
-So the weak form of the thermo-mechanical constitutive initial boundary value problem can be stated in a spatial description as follows
+So the weak form of the thermomechanical constitutive initial boundary value problem can be stated in a spatial description as follows
 and in the material description as
-\begin{problem}[Material thermo-mechanical initial BVP.]
+\begin{problem}[Material thermomechanical initial BVP.]
     FFind a kinematically admissible displacement function, $\bm u\in \mathscr{K}_u$, and an admissible temperature distribution, \(\theta \in \mathscr K_\theta\), such that for every $t\in [t_0,t_\text{end}]$, the body $\mathscr{B}$ is in mechanical and energetic equilibrium
         \begin{equation}
         \int_{\Omega_0} [\mat P(t):\nabla_0 \bm \eta - (\bm b_0(t)-\rho_0\ddot{\bm u}(t))\cdot \bm \eta]\ud v - \int_{\partial\Omega_0} \bm t_0(t)\cdot \bm \eta\ud a = 0,\quad \forall \bm \eta \in \mathscr{V}_{u,0},
@@ -194,11 +194,11 @@ and in the material description as
 
 \section{Time discretization for the constitutive equations} \label{sec:time_discretization}
 
-In the context of thermo-mechanical problems, a general path-dependent model is one that considers both the instantaneous deformation and temperature states as well as their history.
+In the context of thermomechanical problems, a general path-dependent model is one that considers both the instantaneous deformation and temperature states as well as their history.
 Under these circumstances, for complex strain, $\bm F(t)$, or temperature paths, $\theta(t)$, the solution of the constitutive initial value problem for a given set of initial conditions is typically unknown.
 Therefore, it is necessary to employ a suitable numerical approach to integrate the rate constitutive equations, just as it would be in the case of a strictly mechanical problem.
 
-Attending to the thermo-mechanical constitutive initial boundary value problem and considering the time increment $[t_n, t_{n+1}]$, this approach is comprised by the following requirements:
+Attending to the thermomechanical constitutive initial boundary value problem and considering the time increment $[t_n, t_{n+1}]$, this approach is comprised by the following requirements:
 \begin{itemize}
     \item \textbf{First Piola-Kirchhoff stress tensors.} Considering a time increment $[t_n, t_{n+1}]$ and given the set $\bm \alpha_n$ of internal variables at $t_n$, the deformation gradient $\mat F_{n+1}$ and the temperature distribution \(\theta_{n+1}\) at time $t_{n+1}$ determines the First Piola-Kirchhoff stress tensor $\mat P_{n+1}$ uniquely as
     \begin{highlight}
@@ -234,7 +234,7 @@ Attending to the thermo-mechanical constitutive initial boundary value problem a
 Generally, the numerical constitutive laws are nonlinear and path-independent within one increment.
 
 Making use of the aforementioned time discretization, one can state the weak form of the mechanical constitutive initial boundary value problem in the material description as
-\begin{problem}[Material incremental thermo-mechanical initial BVP.]
+\begin{problem}[Material incremental thermomechanical initial BVP.]
     GGiven the set of internal variables $\bm \alpha_n$ at $t_n$, the prescribed body and traction force fields $\bm b_{0,n+1}$ and $\bm t_{0,n+1}$, as well as, the prescribed heat sources, \(\bm r_{n+1}\) and heat fluxes, \(h_{0,n+1}\), at $t_{n+1}$, and the prescribed deformation gradient $\mat F_{n+1}$ and temperature distribution \(\theta_{n+1}\) at $t_{n+1}$, find the kinematically admissible displacement field $\bm u_{n+1}\in\mathscr{K}_{u,n+1}$ and the admissible temperature distribution \(\theta_{n+1}\in\mathscr K_{\theta,n+1}\) such that the body $\mathscr{B}$ is in mechanical and energetic equilibrium
             \begin{multline}
         \int_{\Omega_0} [\hat{\mat P}(\mat F(\bm u_{n+1}), \theta_{n+1}, \bm \alpha_n):\nabla_0 \bm \eta - (\bm b_{0,n+1}-\rho_0\ddot{\bm u}_{n+1})\cdot \bm \eta]\ud v\\ - \int_{\partial\Omega_0} \bm t_{0,n+1}\cdot \bm \eta\ud a = 0,\quad \forall \bm \eta \in \mathscr{V}_{u,n+1},
@@ -252,7 +252,7 @@ Making use of the aforementioned time discretization, one can state the weak for
 
 \section{Finite Element Method} \label{sec:fem_mech}
 
-It is now possible to apply the finite element method to discretize spatial the incremental thermo-mechanical initial boundary value problem.
+It is now possible to apply the finite element method to discretize spatial the incremental thermomechanical initial boundary value problem.
 The approach is entirely similar to the one present in the context of the strictly mechanical (see Section~\ref{sec:fem_mech}) and strictly thermal (see Section~\ref{sec:fem_therm}) problems.
 As such, some details are omitted.
 
@@ -275,8 +275,8 @@ The global shape functions used to interpolate between the nodal values of the d
 
 \subsection{Spatial discretization} \label{sec:spatial_discretization}
 
-The application of finite element discretization to the mechanical part of the incremental thermo-mechanical constitutive initial boundary value problem is exactly the same as the one presented in Section~\ref{sec:spatial_discretization_mech} for the strictly mechanical problem, as the the equation to be discretized is the same
-On the other hand, applying the discretization to the thermal part of the incremental thermo-mechanical constitutive initial boundary value problem, yields
+The application of finite element discretization to the mechanical part of the incremental thermomechanical constitutive initial boundary value problem is exactly the same as the one presented in Section~\ref{sec:spatial_discretization_mech} for the strictly mechanical problem, as the the equation to be discretized is the same
+On the other hand, applying the discretization to the thermal part of the incremental thermomechanical constitutive initial boundary value problem, yields
 \begin{highlight}[innertopmargin=-5pt]
     \begin{multline}
     \int_{^h\Omega_0}   \left[\left(\rho_0C_\mathrm{V}\mathbf N^{g,\theta} \dot{\bm\uptheta}_{n+1} -\hat{\pazocal D}_\text{int} - \hat{\pazocal H}^\text{ep}- \rho_0 r_{n+1} \right) \cdot \mathbf N^{g,\theta}\bm{\upxi} - \mathbf H^{g,\theta} {\bm\uptheta}_{n+1} \cdot \mathbf H^{g,\theta} \bm{\upxi}\right]\ud v \\- \int_{^h\partial\Omega_0} h_{0,n+1} \mathbf N^{g,\theta}\bm{\upxi}\ud a = 0,\quad \forall \bm{\upxi} \in {}^h\mathscr{V}_{\theta}, \label{eq:thermo_mech_thermo_fem_disc}
@@ -288,8 +288,8 @@ Equation \eqref{eq:thermo_mech_thermo_fem_disc} can be rewritten as
 \begin{multline}
   \left\{\int_{^h\Omega_0}   \left[{\mathbf N^{g,\theta}}^T \left(\rho_0C_\mathrm{V}\mathbf N^{g,\theta}\dot{\bm \uptheta}_{n+1} -\hat{\pazocal D}_\text{int} - \hat{\pazocal H}^\text{ep}- \rho_0 r_{n+1} \right) - {\mathbf H^{g,\theta}}^T\mathbf H^{g,\theta} {\bm\uptheta}_{n+1} \right]\ud v\right. \\ \left.- \int_{\partial{}^h\Omega_0} {\mathbf N^{g,\theta}}^T h_{0,n+1}\ud a\right\}^T \bm \upxi= 0,\quad \forall \bm{\upxi} \in {}^h\mathscr{V}_{\theta}, \label{eq:thermo_mech_thermo_fem_disc}
 \end{multline}
-and, since it must be satisfied for any $\bm \upxi \in {}^h \mathscr{V}_\theta$, the incremental discretized thermo-mechanical constitutive initial boundary value problem can thus be stated in the material description as
-\begin{problem}[Material incremental discretized thermo-mechanical initial BVP.]
+and, since it must be satisfied for any $\bm \upxi \in {}^h \mathscr{V}_\theta$, the incremental discretized thermomechanical constitutive initial boundary value problem can thus be stated in the material description as
+\begin{problem}[Material incremental discretized thermomechanical initial BVP.]
 GGiven the set of internal variables $\bm \alpha_n$ at $t_n$, the prescribed body and traction force fields $\bm b_{0,n+1}$ and $\bm t_{0,n+1}$, as well as, the prescribed heat sources and heat flux fields \(\bm r_{0,n+1}\) and \(h_{0,n+1}\), and both the prescribed deformation gradient $\mat F_{n+1}$ and the prescribed temperature \(\theta_{n+1}\) at $t_{n+1}$, find the kinematically admissible nodal displacement field $\bm u_{n+1}\in {^h\mathscr{K}_{u,n+1}}$ and the admissible nodal temperature field \(\theta_{n+1}\in{^h\mathscr{K}_{\theta,n+1}}\) such that the body $\mathscr{B}$ is in mechanical and energetic equilibrium
 \begin{gather}
     \mathbf M \ddot{\mathbf u}_{n+1} +\mathbf f_u^\text{\;int}(\bm \uptheta_{n+1}, \mathbf u_{n+1})-\mathbf f^\text{\;ext}_{u,n+1}=\mathbf 0, \\

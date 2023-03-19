@@ -7,52 +7,53 @@ According to Ashby \citep{ashbyMaterialsSelectionMechanical1999}, the main featu
 There is a profound interplay between all these facets of design when developing a mechanical component.
 Accordingly, the component must meet functional criteria in terms of its thermomechanical behavior.
 Additional specifications of its electric, magnetic, or mass transfer characteristics may also be prescribed.
-The aptitude of said component to satisfy these demands will be determined by the material or materials from which it is made, as well as its shape.
-Some materials, however, cannot be manufactured into a particular shape or at all using a specific manufacturing process.
+The aptitude of a component to satisfy these demands is determined by the material or materials from which it is made, as well as its shape.
+Some materials, however, cannot be manufactured into a particular shape or by using a specific manufacturing process.
 Weight, cost, and environmental impact reduction can all be included as goals, and their achievement is closely related to the material and method selected.
 
-An even more intimate relationship between the final performance of the mechanical component and the process selected for its manufacturing may be uncovered taking into account the hierachical structure of engineering materials.
+An even more intimate relationship between the final performance of the mechanical component and the process selected for its manufacturing may be uncovered by taking into account the hierachical structure of engineering materials.
 Olson \citep{olsonDesigningNewMaterial2000} emphasizes the cause/effect relationship between the process, the material's structure at multiple scales ranging from the nanoscale to the macroscale, the material's properties, and its final performance.
 The reverse goals/means perspective can also be adopted where a given performance requirement drives the search for a material with a particular set of properties.
 These in turn may only be realised if the appropriate multi-scale structure is obtained through a suitable process.
-That said, Ashby \citep{ashbyMaterialsSelectionMechanical1999} highlights that first-order differences between the properties of materials, e.g., polymers and metals, are due to the mass of the atoms, the nature of the inter-atomic forces and the geometry of packing.
-The magnitude of the effect due to the microstructure is generally an order of magnitude less than that of bonding and structure.
+Ashby \citep{ashbyMaterialsSelectionMechanical1999} highlights that first-order differences between the properties of materials, e.g., polymers and metals, are due to the mass of the atoms, the nature of the inter-atomic forces and the geometry of the atomic packing.
+The magnitude of the effect due to the microstructure on the properties of a material is generally an order of magnitude less than that of bonding and structure.
 
 "Integrated Computational Materials Engineering" (ICME) is a systematic approach proposed by Horst and Wang \citep{horstemeyerCradletograveSimulationbasedDesign2003} that includes the process-structure-property-performance relationships within a computational framework.
-Its goal is the simulateneous design of a component, the materials that make it up and the manufacturing process employed to produce it, taking into account the material's structure at different scales.
+Its goal is the simultaneous design of a component, the materials that it is composed of and the manufacturing process employed to produce it, taking into account the material's structure at different scales.
 To realize this vision, suitable models and numerical tools for simulating manufacturing processes and component life at a given time and length scale must be available.
 Experimental methods to probe the model's validity and acquire the corresponding material parameters are also crucial.
 To accurately capture the behavior of the material, the correct boundary conditions, initial conditions, and material parameters must be established at each scale and time-frame.
 An adequate way to transfer information between the different scales must also be devised.
 
-Taking into account the hierarchial nature of a material's structure, appropriate models must be set up at the structural (meters, centimeters), macro (millimeters), meso (hundred to tenths of micrometers), micro (micrometers) and atomic/nanoscale (angstrom).
-Relevant to this work is the strcutrual scale, where solutions from FEM are used to model both the manufacturing and the product life.
-Full scale experiments are employed to gauge the accuracy of the predictions.
-At the macroscale an appropriate constitutive/rheological model must be devised.
-Its use in an suitable FEM simulation and comparison with simple mechanical experiments, e.g., unixial or torsion experiments, is used for validation.
-Retaining the appropriate continuum constitutive models and including an accurate representation of a polymer blend at the mesoscale may allow its constitutive description, employing, e.g., computational homegenization.
+Taking into account the hierarchical nature of a material's structure, appropriate models must be set up at the structural (meters, centimeters), macro (millimeters), meso (hundreds to tenths of micrometers), micro (micrometers), and atomic/nanoscale (angstrom).
+Directly relevant to this work are both the structural and the macroscale scales.
+Concerning the first, solutions from FEM are used to model the thermomechanical behavior both during manufacturing and the service life of a component or machine, with full-scale experiments being needed to gauge the accuracy of the predictions.
+To achieve such a description, an appropriate constitutive/rheological model must be devised at the macroscale.
+Its validation is performed through its use in suitable FEM simulations and comparison with simple mechanical experiments, e.g., uniaxial or torsion experiments.
+An even more faithful description of a polymer blend, for example, may be achieved by retaining the appropriate continuum constitutive models and including an accurate mesoscale representation employing, for example, computational homegenization.
+However, this is outside the scope of the present work.
 
 \section{Motivation}
 
-The current work focuses on two aspects of the paradigm mentioned above: the use of FEM in the structural response of a component to solve multi-physics problems, particularly those involving thermomechanical phenomena, and the macroscale constitutive description of semi-crystalline polymers.
+The current work focuses on two aspects of the paradigm mentioned above: the use of FEM to predict the structural response of a component under multi-physics constraints, particularly those involving thermomechanical phenomena, and the macroscale constitutive description of semi-crystalline polymers.
 As such, the following sections provide two brief introductions to each topic.
 
-\subsection{Multi-physics simulations\protect\footnote{Adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a}}}\label{sec:multi_physics_sims}
+ \subsection[Multi-physics simulations]{Multi-physics simulations \except{}{\protect\footnote{Adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a}.}}}\label{sec:multi_physics_sims}
 
-It is generally understood that thermomechanics is a crucial physical phenomenon in engineering applications and a highly sought-after feature in computational models.
-These effects play a central role in mainstream and heavy-duty thermomechanical applications such as rocket nozzles \citep{kuhl2002ThermomechanicalAnalysisOptimization,danowski_monolithic_2013}, disk brakes and clutches \citep{yevtushenko2015NumericalAnalysisThermal}, heat-assisted incremental sheet forming \citep{liu2018HeatassistedIncrementalSheet} and thermal stresses due to machining \citep{elsheikh2021ComprehensiveReviewResidual}, for instance.
-There is a profound interplay between the mechanical and the thermal field since:
+It is generally understood that thermomechanics is crucial in the description of many  engineering applications and a highly sought-after feature in computational models.
+Thermomechanical effects play a central role in mainstream and heavy-duty applications such as rocket nozzles \citep{kuhl2002ThermomechanicalAnalysisOptimization,danowski_monolithic_2013}, disk brakes and clutches \citep{yevtushenko2015NumericalAnalysisThermal}, heat-assisted incremental sheet forming \citep{liu2018HeatassistedIncrementalSheet} and thermal stresses due to machining \citep{elsheikh2021ComprehensiveReviewResidual}, to name a few examples.
+There is a profound interplay between the mechanical and the thermal field:
 \begin{itemize}
-  \item the thermal field influences the mechanical field through additional thermal stresses and potentially temperature-dependent material properties.
-  \item  the mechanical field affects the thermal field through coupling terms which can be interpreted as heat sources (dissipation and thermomechanical structure heating); geometric coupling due to the deformation of the domain, which affects boundary conditions and the heat conduction law.
+  \item the thermal field influences the mechanical field through additional thermal stresses and potentially temperature-dependent material properties;
+  \item  the mechanical field affects the thermal field through coupling terms, which can be interpreted as heat sources (dissipation and thermomechanical structure heating), as well as through geometric coupling due to the deformation of the domain, which affects boundary conditions and the heat conduction law.
 \end{itemize}
 
-More sophisticated applications such as the sintering process inspired by a Hybrid FAST process described in \cite{rotheAnalyticalNumericalTreatment2014} also exist, where a direct current and an external heat source using convection are used to control the temperature in the die/punch/powder system.
-As a result, an appropriate description of the electric, thermal, and mechanical fields, as well as their interaction, must be provided.
+More sophisticated applications, such as the sintering process inspired by a Hybrid FAST process described in \cite{rotheAnalyticalNumericalTreatment2014}, also exist, where a direct current and an external heat source using convection are used to control the temperature in the die/punch/powder system.
+As a result, an appropriate description of the electric, thermal, and mechanical fields, as well as their interaction, must be taken into account.
 
-Returning to the thermomechanical problem, the problem has to be correctly formulated in a thermodynamically consistent way to include a solver for it in a numerical simulation toolbox.
+Returning to the thermomechanical problem, its thermodynamically consistent formulation is necessary for the development of an appropriate solver.
 Having achieved an appropriate formulation of the problem, the Finite Element Method can be used to solve it.
-After spatial and temporal discretization, the thermomechanical problem is reduced to a system of coupled nonlinear algebraic equations on the mechanical variables (displacement) and thermal variables (temperatures) (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}).
+After spatial and temporal discretization, the thermomechanical problem is reduced to a system of coupled nonlinear algebraic equations on the mechanical variables (displacement) and thermal variables (temperatures).
 Generally speaking, the strategies typically employed to solve this problem can be classified into monolithic and partitioned approaches.
 The latter can be further divided into explicit (loosely or weakly coupled) and implicit (strongly coupled) schemes, depending on the type of coupling enforcement.
 When comparing them, one should keep in mind that the most desirable properties of an algorithm for solving coupled problems are unconditional stability, high accuracy, ease of implementation, low memory requirements, high computational efficiency, and the potential for software reuse \citep{fellipa_partitioned_1988}.
@@ -69,7 +70,7 @@ To solve the potentially large system of equations arising from the application 
 Newton-Krylov methods with the generalized minimal residual method (GMRES) or the biconjugate gradient stabilized method (BiCGStab) as Krylov subspace solvers are among the most widely used in multi-physics problems  \citep{hron_monolithic_2006}.
 The effective solution of a large system of equations, including any potential nonlinearities, is particularly difficult for monolithic algorithms \citep{danowski_monolithic_2013}, as the algebraic properties of different blocks can be very distinct.
 In fact, a good preconditioning strategy is a key component of effective solvers for large-scale multi-physics problems and this has been the main development topic of monolithic schemes in the last decade \citep{tezduyar2006space, lin_parallel_2010, gee_truly_2011, danowski_monolithic_2013, verdugo_unified_2016, mayr_hybrid_2020}.
-In short, the great appeal of monolithic schemes is the robustness and stability of the solution method, which comes at the expense of poor flexibility and extensive development and maintenance costs.
+In short, the great appeal of monolithic schemes is the robustness and stability of the solution method, which comes at the expense of poor flexibility as well as extensive development and maintenance costs.
 
 Monolithic schemes have been successfully  used in the literature to tackle thermomechanical problems considering a variety of constitutive behaviors.
 Carter and Booker \citep{carter_finite_1989} consider thermoelastic materials, Gawin and Schrefler \citep{gawinThermoHydroMechanical1996} deal with thermo-hydro-mechanical problems in partially saturated porous materials, while Ibrahimbegovic and Chorfi \citep{ibrahimbegovic_covariant_2002} present a thermoplasticity covariant formulation, including large viscoplastic strains, strain localization, and cyclic loading cases.
@@ -89,7 +90,7 @@ According to their definition, a field is characterized by computational conside
 It is a segment of the overall problem for which a separable software module is either available or readily prepared if the interaction terms are suppressed.
 As such, a partitioned approach to the solution of multi-physics problems employs analyzers specific to each field separately integrated in time.
 The coupling between the fields is achieved through proper communication between the individual components using prediction, substitution, and synchronization techniques.
-This renders a flexible and easy-to-implement solution scheme, which suffers from some numerical issues, which will be mentioned soon.
+Although this renders a flexible and easy-to-implement solution scheme, it suffers from some numerical issues, as discussed shortly.
 
 As previously stated, partitioned schemes can be either explicit or implicit.
 In explicit schemes, the solution is found by solving each field sequentially with a one-directional data transfer, using a suitable problem split.
@@ -100,7 +101,7 @@ The isothermal split is arguably the most straightforward and natural approach, 
 This scheme seeks to solve the thermomechanical problem by first solving the mechanical problem at a constant temperature and then solving a purely thermal phase at a fixed configuration---newly updated.
 As an alternative, Armero and Simo \citep{armero_new_1992} proposed the adiabatic split, which consists of a mechanical phase at constant entropy, followed by purely thermal conduction at fixed configuration.
 In terms of implementation complexity, the adiabatic split is comparable to the isothermal split and is unconditionally stable, a remarkable advantage in comparison with the conditionally stable isothermal split.
-It is, however, more challenging to extend to other material models as it requires the modification and creation of specific algorithmic components at the constitutive level, which might not be readily available.
+It is, however, more challenging to extend to other material models as it requires the modification and creation of specific algorithmic components at the constitutive level which might not be readily available.
 
 There are several techniques to improve the stability and accuracy characteristics of explicit partitioned approaches, e.g., algebraic augmentation \citep{park_stabilization_1977, park_stabilization_1983}, double-pass approach \citep{armero_new_1992, piperno_explicitimplicit_1997, farhat_provably_2006, farhat_robust_2010}, prediction techniques \citep{piperno_explicitimplicit_1997, piperno_partitioned_2001, michler_efficient_2005, farhat_provably_2006}, and subcycling \citep{piperno_partitioned_1995, farhat_high_1997, piperno_explicitimplicit_1997}.
 Irrespective of the theoretical temporal convergence order of the partitioned explicit scheme, the fully coupled discretized equations of the problem will never be exactly satisfied at each time instant.
@@ -112,7 +113,7 @@ It converges to the solution of the monolithic scheme and thus can satisfy the d
 Regardless of the eventual conditional stability of the corresponding explicit scheme, the implicit alternative can be unconditionally stable---it has the same temporal stability properties as the monolithic scheme---but the convergence of the inter-field iterations is not guaranteed or may take an excessive number of iterations.
 This embodies a significant limitation and places a severe restriction on the use of these strategies.
 Nonetheless, several acceleration techniques are available in the literature to speed up convergence.
-Most of these are developed in the context of Fluid-Structure Interaction, but their application to thermomechanical problems is not widespread.
+Most of these are developed in the context of Fluid-Structure Interaction and their application to thermomechanical problems is not widespread.
 
 There are a few contributions regarding the use of implicit partitioned schemes in the context of thermomechanics.
 Erbts and Düster \citep{erbts_accelerated_2012} solve problems involving thermoelasticity at finite strains, Netz \citep{netz_high-order_2013} explores thermoviscoelastic problems, and Da\-now\-ski \citep{danowski_computational_2014} presents results on thermoelasticity and thermoelastoplasticity.
@@ -140,7 +141,7 @@ These macromolecules comprise repeat units, which are smaller structural element
 In turn, the polymer structure can range from a completely amorphous polymer, where the macromolecules are arranged randomly, to a highly crystalline polymer, where most polymer chains are tightly packed into a crystalline structure.
 In between, one finds semi-crystalline polymers where crystalline and amorphous zones coexist in a variety of structural arrangements \citep{wardIntroductionMechanicalProperties2004}.
 
-\subsubsection{Properites and applications}
+\subsubsection{Properties and applications}
 
 According to a market study by Precedence Research \citep{precedenceresearchPolymersMarketProduct2022}, the polymer market size in 2021 was 713 billion dollars, and it is projected to reach 1078.5 billion by 2030.
 By type, the thermoplastics segment accounted for 43\% market share in 2021.
@@ -187,8 +188,8 @@ The thickness of the lamellae in semi-crystalline polymers is of the order of na
 % \label{fig:types_of_crystall}
 % \end{figure}
 
-Regarding the crystalline structure, it will depend on the polymer in question.
-PE often possesses orthorhombic symmetry, where the chain direction forms an angle with the normal vector to the crystalline lamella ranging between 17 and $40^\circ$ \citep{nikolovMicroMacroConstitutive2000}.
+The crystalline structure depends on the particular polymer.
+PE often possesses orthorhombic symmetry, where the chain direction forms an angle with the normal vector to the crystalline lamella ranging between $17^\circ$ and $40^\circ$ \citep{nikolovMicroMacroConstitutive2000}.
 On the other hand, the crystal structure found in polytetrafluoroethylene (PTFE) at temperatures above \SI{19}{\celsius} is hexagonal, with individual molecules arranged in helical conformations \citep{bergstromMechanicsSolidPolymers2015}.
 % See Figure~\ref{fig:crystalline_structure_PE_PTFE} for a depiction of both crystalline structures.
 % \begin{figure}[hbtp]
@@ -201,42 +202,38 @@ The crystallinity of a semi-crystalline polymer can be specified by the degree o
 It may range from completely amorphous to almost entirely crystalline.
 Ward and Sweeney \citep{wardIntroductionMechanicalProperties2004} mention values between $90\%$ for polyethylene (PE) to about $30\%$ for oriented poly(ethylene terephthalate) (PET).
 Commercially available semi-crystalline polymers range from $10\%$ to $90\%$ in the degree of crystallinity \citep{vandommelenMicromechanicalModelingElastoviscoplastic2003}.
-
 The degree of crystallinity by weight may be determined from accurate density measurements according to
 \begin{equation}
 	\chi = \% \text { crystallinity }=\frac{\left(\rho_{s}-\rho_{a}\right)/\rho_{s}}{\left(\rho_{c}-\rho_{a}\right)/\rho_{c}} \times 100
 \end{equation}
 where $\rho_{s}$ is the density of a specimen for which the percent crystallinity is to be determined, $\rho_{a}$ is the density of the completely amorphous polymer, and $\rho_{c}$ is the density of the perfect polymer crystallite.
-The values of $\rho_{a}$ and $\rho_{c}$ must be measured by other experimental means.
-Other experimental methods employed to determine the crystallinity along with the lamellar thickness of the polymer crystallites include wide (WAXS) and small (SAXS) angle X-ray scattering \citep{schrauwenIntrinsicDeformationBehavior2004, hobeikaTemperatureStrainRate2000}, differential scanning calorimetery (DSC) \citep{ayoubEffectsCrystalContent2011}, as well as, electron microscopic, e.g., transmission electron microscopy (TEM) \citep{bartczakEvolutionCrystallineTexture1992}.
+In addition to this method based on density, other experimental methods employed to determine the crystallinity along with the lamellar thickness of the polymer crystallites include wide (WAXS) and small (SAXS) angle X-ray scattering \citep{schrauwenIntrinsicDeformationBehavior2004, hobeikaTemperatureStrainRate2000}, differential scanning calorimetery (DSC) \citep{ayoubEffectsCrystalContent2011}, and, electron microscopy, e.g., transmission electron microscopy (TEM) \citep{bartczakEvolutionCrystallineTexture1992}.
 
-The parameters influencing the degree of crystallinity attained are mainly the molecular structure, the molecular weight, the presence of plasticizers, and especially the thermo-mechanical history of the polymer \citep{khouryMorphologyCrystallineSynthetic1976, cangemiTwoPhaseModelMechanical2001}.
-Given the way that polymer crystals form, polymer chains must possess a linear structure.
-The more branches/pendant side groups, the lesser the degree of crystallinity.
+The main parameters influencing the degree of crystallinity are the molecular structure, the molecular weight, the presence of plasticizers, and especially the thermomechanical history of the polymer \citep{khouryMorphologyCrystallineSynthetic1976, cangemiTwoPhaseModelMechanical2001}.
+Because of the way polymer crystals form, polymer chains must have a linear structure; the more branches/dependent side groups, the lower the degree of crystallinity.
 However, even linear polymers must have sufficient regularity to crystallize \citep{khouryMorphologyCrystallineSynthetic1976}.
-A high molecular weight tends to suppress a high degree of crystallinity \citep{hoffmanAnalysisRelaxationsPolychlorotrifluoroethylene2007}, as seen comparing high-density polyethylene (HDPE) and ultra-high weight polyethylene (UHWPE) \citep{brownInfluenceMolecularConformation2007}.
+A high molecular weight tends to suppress a high degree of crystallinity \citep{hoffmanAnalysisRelaxationsPolychlorotrifluoroethylene2007}, as seen when comparing high-density polyethylene (HDPE) and ultra-high weight polyethylene (UHWPE) \citep{brownInfluenceMolecularConformation2007}.
 Since crystallization is a kinetic process, the crystallization rate in polymers depends on the temperature, with larger temperatures leading to lower rates \citep{callister2014materials}.
-As detailed later in this chapter, the mechanical loading of a polymer may also lead to changes in its crystallinity, e.g., through the phenomenon of strain-induced crystallization \citep{raoStudyStraininducedCrystallization2001}.
+As detailed later in this chapter, the mechanical loading of a polymer may also induce changes in crystallinity, e.g., through the phenomenon of strain-induced crystallization \citep{raoStudyStraininducedCrystallization2001}.
 
 Accordingly, the most frequent approach to achieve different degrees of crystallinity is through the control of crystallization temperatures and crystallization times, be it when crystallizing from the melt or through annealing treatments \citep{fakirovGlassTransitionTemperature2000, schrauwenIntrinsicDeformationBehavior2004}.
 However, preparing samples with different degrees of crystallinity is challenging for polymers such as HDPE since its crystallization rate is very high.
 It is possible to control the degree of crystallinity by taking PE samples differing in the degree of branching and introducing various amounts of defects in the main chain \citep{fakirovGlassTransitionTemperature2000}.
 
-In what pertains to the amorphous portion of a semi-crystalline polymer, results reported by Zia et al. \citep{ziaRigidAmorphousFraction2008} on isotactic polypropylene (iPP), for example, point to the existence of two different amorphous phases, a mobile amorphous phase, and rigid amorphous phase, based on different glass transition temperatures.
-The results of Jolly \citep{jollyAnalyseMicrostructurePolyamide2000} concerning polyamide 11 (PA11) found employing WASX, carried out at different axial deformation rates, also support the existence of a phase that is neither wholly amorphous nor wholly crystalline.
+In what pertains to the amorphous portion of a semi-crystalline polymer, results reported by Zia and coworkers \citep{ziaRigidAmorphousFraction2008} on isotactic polypropylene (iPP) point to the existence of two different amorphous phases, a mobile amorphous phase, and a rigid amorphous phase, based on different glass transition temperatures.
+The results of Jolly \citep{jollyAnalyseMicrostructurePolyamide2000} concerning polyamide 11 (PA11), which were found employing WASX at different axial deformation rates, also support the existence of a phase that is neither wholly amorphous nor wholly crystalline.
 According to Mandelkern \citep{mandelkernCrystallinePolymerReminiscences2006}, the existence of a rigid amorphous phase is supported by experimental results obtained from density measurements, wide and small-angle X-ray diffraction, thermal analyses, Raman spectroscopy, small-angle neutron scattering, dielectric relaxation and nuclear magnetic resonance involving different nuclei and techniques.
 
 The reason for the increased rigidity in this part of the amorphous phase is the presence of polymer crystallites, which hinder the molecular mobility of the amorphous phase \citep{ziaRigidAmorphousFraction2008, peacockHandbookPolyethyleneStructures2014}.
 However, an increase in the degree of crystallinity will decrease the rigid amorphous fraction and the ratio between the rigid and mobile amorphous phases.
 This behavior is due to reduced covalent coupling between the polymer crystals and the amorphous phase in highly crystalline preparations \citep{ziaRigidAmorphousFraction2008}.
-Furthermore, the presence of the crystallites also affects the properties of the mobile amorphous fraction, which is detected by a distinct decrease in its glass transition temperature, as shown for semi-crystalline iPP by Zia et al. \citep{ziaRigidAmorphousFraction2008}.
+Furthermore, the presence of the crystallites also affects the properties of the mobile amorphous fraction, which is detected by a distinct decrease in its glass transition temperature, as shown for semi-crystalline iPP by Zia and coworkers \citep{ziaRigidAmorphousFraction2008}.
 
 \paragraph{Mesostructure}
 According to the processing, thermal and mechanical history, as well as its degree of crystallinity, molecular weight, and polydispersity, a semi-crystalline polymer can display different mesoscopic structures \citep{cangemiTwoPhaseModelMechanical2001, mandelkernCrystallinePolymerReminiscences2006}.
-When the polymer crystallizes from a dilute solution, the structure achieved is often lamellar and composed of multiple layers if the solution is quiescent, and of the shish-kebab variety\footnote{The so-called shish-kebab structure consists of long central fiber core (shish) surrounded by lamellar crystalline structure (kebab) periodically attached along the shish.
-\citep{naViscousForceDominatedTensileDeformation2006, peacockHandbookPolyethyleneStructures2014}.}, if the solution is subject to high shear \citep{khouryMorphologyCrystallineSynthetic1976, callister2014materials, peacockHandbookPolyethyleneStructures2014}.
-When the polymer crystallizes from the melt, the two most commonly reported types of mesoscopic structures for semi-crystalline polymers are the spherulitic structure \citep{zengConstitutiveModelSemicrystalline2010}, obtained from quiescent crystallization and the shish-kebab structure, obtained from crystallization under shear stress \citep{peacockHandbookPolyethyleneStructures2014}.
-For a schematic depiction of a spherulitic and a shish-kebab structure, see Figure~\ref{fig:mesostructure_scp}.
+When the polymer crystallizes from a dilute solution, the structure is often lamellar and composed of multiple layers if the solution is quiescent, and of the shish-kebab variety\footnote{The so-called shish-kebab structure consists of a long central fiber core (shish) surrounded by a lamellar crystalline structure (kebab) periodically attached along the shish.
+\citep{naViscousForceDominatedTensileDeformation2006, peacockHandbookPolyethyleneStructures2014}.} if the solution is subject to high shear \citep{khouryMorphologyCrystallineSynthetic1976, callister2014materials, peacockHandbookPolyethyleneStructures2014}.
+When the polymer crystallizes from the melt, the two most commonly reported types of mesoscopic structures for semi-crystalline polymers are the spherulitic structure \citep{zengConstitutiveModelSemicrystalline2010} (see Figure~\ref{subfig:spherulitic_mesostructure_scp}), obtained from quiescent crystallization and the shish-kebab structure, obtained from crystallization under shear stress \citep{peacockHandbookPolyethyleneStructures2014} (see Figure~\ref{subfig:shish_kebab_mesostructure_scp}).
 \begin{figure}[hbtp]
 \centering
 \begin{subfigure}[c]{0.45\textwidth}
@@ -255,7 +252,7 @@ For a schematic depiction of a spherulitic and a shish-kebab structure, see Figu
 \label{fig:mesostructure_scp}
 \end{figure}
 
-The spherulitic structure is composed of spherulites, an aggregate of ribbon-like chain-folded crystallites approximately 10 to \SI{20}{\nano\meter} thick for PE and 2 to \SI{6}{\nano\meter} for polyether ether ketone (PEEK), e.g., that radiate outward from a single nucleation site in the center, their diameter approximately \SI{10}{\micro\meter}.
+The spherulitic structure is composed of spherulites, an aggregate of ribbon-like chain-folded crystallites that radiate outward from a single nucleation site in the center, their diameter approximately \SI{10}{\micro\meter} and their lammela approximately 10 to \SI{20}{\nano\meter} thick for PE, and 2 to \SI{6}{\nano\meter} for polyether ether ketone (PEEK), for example.
 Between them, there are amorphous regions, crossed by tie-chain molecules that act as connecting links between adjacent lamellae \citep{callister2014materials, khouryMorphologyCrystallineSynthetic1976, pouriayevaliConstitutiveDescriptionRatesensitive2013, gsellEvolutionMicrostructureSemicrystalline1994}.
 The lamellae are generally twisted about their long axis \citep{patlazhanStructuralMechanicsSemicrystalline2012}.
 A sheave-like structure is also possible under suitable conditions \citep{peacockHandbookPolyethyleneStructures2014}.
@@ -271,21 +268,21 @@ A nearly perfect alignment of the crystallized chains along the fiber axis and t
 Moreover, plastically deforming HDPE develops three important types of texture, resembling that of a large quasi-single crystal \citep{argonPhysicsDeformationFracture2013a}:
 \begin{enumerate}
 	\item crystallographic texture due to preferential orientation of crystallographic axes in the crystalline lamellae;
-	\item morphological texture due to preferential orientation of the normals to the broad faces of the crystalline lamellae faces; and
-	\item macromolecular texture in the amorphous component, which is promoted by the alignment of molecules with the direction of maximum stretch.
+	\item morphological texture due to preferential orientation of the normals to the broad faces of the crystalline lamellae faces;
+	\item macromolecular texture in the amorphous component, which is promoted by the alignment of molecules in the direction of maximum stretch.
 \end{enumerate}
 
-At the other extreme, for materials such as PET, in which the crystalline and amorphous components are intermixed, the most noticeable effect may be strain-induced crystallization due to macromolecular texture, as described above \citep{wardIntroductionMechanicalProperties2004}.
+For materials such as PET, in which the crystalline and amorphous components are intermixed, the most noticeable effect may be strain-induced crystallization due to macromolecular texture, as described above \citep{wardIntroductionMechanicalProperties2004}.
 More specifically, temperatures above the glass transition temperature, a linear structure, and large deformations increase the crystallinity of the material \citep{ahziModelingDeformationBehavior2003}.
 The crystalline structures produced in this way are oriented, which results in an anisotropic mechanical response.
 Experiments on polymer film also point to crystallization at lower strain when the strain rate is higher \citep{raoStudyStraininducedCrystallization2001}.
 Most plastic products are manufactured by deforming the material at elevated temperatures to get it into the desired shape.
 Examples of these operations include film blowing, fiber spinning, and injection molding.
 In many of these applications, the formation of a highly oriented crystalline phase has a beneficial impact on the mechanical behavior of the material \citep{dairaniehPhenomenologicalModelFlowInduced1999, raoStudyStraininducedCrystallization2001}.
-Most PET articles are manufactured in this way \citep{boyceConstitutiveModelFinite2000, raoStudyStraininducedCrystallization2001, makradiTwophaseSelfconsistentModel2005}.
+Hence, most PET articles are manufactured in this way \citep{boyceConstitutiveModelFinite2000, raoStudyStraininducedCrystallization2001, makradiTwophaseSelfconsistentModel2005}.
 
 
-\section{Computational Framework}
+\section{Computational framework}
 
 All the numerical simulations based on the Finite Element Method (FEM) are held in the in-house Fortran (IBM Mathematical Formula Translation System) program LINKS (Large Strain Implicit Nonlinear Analysis of Solids Linking Scales), a multi-scale finite element code for implicit infinitesimal and finite strain analyses of hyperelastic and elastoplastic solids, that is continuously developed by the CM2S research group (Computational Multi-Scale Modeling of Solids and Structures) at the Faculty of Engineering of University of Porto.
 
@@ -294,18 +291,18 @@ Appropriate nonlinear solvers are also added as implicit solution strategies for
 
 The numerical simulations concerning the solution of uniaxial traction and compression problems for validating constitutive models are run in an in-house Python program based on the implementation described in \cite{bergstromMechanicsSolidPolymers2015}.
 
-Presently, the author contributes to two constitutive models that describe semi-crystalline polymers.
+The author contributes with two constitutive models to describe the behavior of semi-crystalline polymers.
 
 \section{Objectives}
 
 The main goals of this work are:
 \begin{itemize}
-    \item To describe in a thermodynamically consistent way the thermomechanical problem;
+    \item To formulate the thermomechanical problem in a thermodynamically consistent way;
     \item To provide a thorough overview of the available methods for the solution of coupled problems, in particular, the thermomechanical problem;
-    \item To validate the thermomechanical solver and compare the strongly coupled partitioned strategies available in the literature.
-    \item To thoroughly describe the thermomechanical behavior of semi-crystalline polymers.
-    \item To describe the state-of-the-art in semi-crystalline polymer modeling.
-    \item To validate some of the available constitutive models for semi-crystalline polymers.
+    \item To validate the thermomechanical solver and compare the strongly coupled partitioned strategies available in the literature;
+    \item To thoroughly describe the thermomechanical behavior of semi-crystalline polymers;
+    \item To review the state-of-the-art of semi-crystalline polymer constitutive modeling;
+    \item To implement some of the state-of-the-art constitutive models for semi-crystalline polymers.
 \end{itemize}
 
 \section{Document structure}
@@ -313,17 +310,17 @@ The main goals of this work are:
 The remainder of this document is structured as follows:
 
 \paragraph{Chapter \ref{ch:thermomechanical_problem} - Thermomechanical problem}\mbox{}\\
-This chapter covers the notions required to explain how a solid responds to thermal and mechanical loads under large deformations, including the conservation laws that guarantee mechanical equilibrium and energy conservation.
-Additionally, the application of thermodynamics with internal variables is discussed, along with the resulting inferences about the constitutive behavior of the material that makes up the solid.
+This chapter covers the concepts required to describe how a solid responds to thermal and mechanical loads under large deformations, including the conservation laws that guarantee mechanical equilibrium and energy conservation.
+Additionally, the application of thermodynamics with internal variables is discussed, along with the resulting inferences about the constitutive behavior of the solid material.
 The implicit partitioned methods to solve the thermomechanical problem are also described.
 
 \paragraph{Chapter \ref{ch:thermomechanical_behavior_semi_crystalline_polymer} - Thermomechanical behavior of semi-crystalline polymers}\mbox{}\\
 This chapter attempts to outline the thermomechanical response of semi-crystalline polymers.
 An account of their deformation mechanisms, experimental results of various mechanical experiments, and an appropriate discussion regarding their dependency on factors such as temperature, strain rate, or pressure is included.
-The chapter also contains the results of thermal analysis techniques, such as differential scanning calorimetry.
+This chapter also contains the results of thermal analysis techniques, such as differential scanning calorimetry.
 An effort is made to provide relevant literature references where the experimental results can be found.
 
-\paragraph{Chapter \ref{ch:modeling_semi_crystalline_polymer} - State of the art in thermomechanical semi-crystalline polymer modeling}\mbox{}
+\paragraph{Chapter \ref{ch:modeling_semi_crystalline_polymer} - State of the art in thermomechanical semi-crystalline polymer\\ constitutive modeling}\mbox{}\\
 The main goal of this chapter is to report on the semi-crystalline polymer modeling state of the art.
 The departure point is infinitesimal thermoviscoelasticity.
 Nonlinear generalizations are considered by specifying nonlinear laws for the elastic and viscous elements in rheological models originating from infinitesimal viscoelasticity.
@@ -333,8 +330,8 @@ Finally, multi-scale models with micro and mesostructure considerations are desc
 
 \paragraph{Chapter \ref{ch:numerical_results} - Numerical results}\mbox{}\\
 This chapter presents two sets of results concerning the thermomechanical modeling of semi-crystalline polymers.
-The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of the thermomechanical model employing an elastoplastic description for the material.
-The second pertains to implementing and validating state-of-the-art constitutive models for semi-crystalline polymers.
+The first is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and pertains to the implicit partitioned solution of a thermomechanical problem involving nonlinear elastoplastic material behavior.
+The second pertains to the implementation and validation of two state-of-the-art constitutive models for semi-crystalline polymers.
 
 \paragraph{Chapter \ref{ch:conclusions} - Conclusion and Future Works}\mbox{} \\
-This chapter presents the conclusions reached in this work and suggests future research directions.
+This chapter presents the conclusions reached in this work and discusses future research directions.

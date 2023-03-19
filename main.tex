@@ -13,6 +13,8 @@
 % Packages
 \usepackage{import}
 
+\interfootnotelinepenalty=10000
+
 % Math
 \newcommand\hmmax{0}
 \newcommand\bmmax{0}
@@ -338,7 +340,7 @@
 
         \vspace{3.5cm}
         \huge
-       \textbf{Thermomechanical modeling of semi-crystalline polymers}
+       \textbf{Thermomechanical modeling of}\\ \textbf{semi-crystalline polymers}
 
        \vspace{1.5cm}
         \small
@@ -380,20 +382,19 @@
 \smallskip
 
 Semi-crystalline polymeric materials are increasingly used in structural, medical, and electronic applications.
-Polymers such as high-density polyethylene (HDPE) and polypropylene (PP) are widely used in commodity applications such as packaging, while polyamides (PA) and polyether ether ketones (PEEK), for example, are stiff and strong enough to be chosen for more demanding engineering applications.
+Polymers such as high-density polyethylene (HDPE) and polypropylene (PP) are widely used in commodity applications such as packaging, while polyamides (PA) and polyether ether ketones (PEEK) are stiffer and therefore chosen for more demanding engineering applications.
 The microstructure of semicrystalline polymers is particularly complex, consisting of closely packed crystalline lamellae separated by layers of an amorphous polymer.
 The addition of fillers and particles to create new polymeric blends with enhanced behavior, a standard practice in engineering and industrial environments, significantly increases the overall complexity.
-Hence, this work seeks to provide a thorough description of the thermomechanical behavior of semi-crystalline polymers with the goal of obtaining an accurate description through macroscopic constitutive modeling.
-Their behavior is strongly nonlinear, exhibiting phenomena such as double yield, nonlinear dependence of the yield stress on the strain rate, thermal softening, and rubber-like strain hardening.
-A detailed overview of the available models in the literature is provided, with those based on rheological models with nonlinear elastic and viscous elements being the most widely used.
-Regarding, the use of these models to describe semi-crystalline polymers, bulk crystallinity is often included through a mixture rule, such as the Voigt or Reuss mixture rule.
+Hence, this work seeks to provide a thorough review of the thermomechanical behavior of semi-crystalline polymers with the goal of developing an accurate description through macroscopic constitutive modeling.
+Their behavior is strongly nonlinear, exhibiting phenomena such as double yielding, nonlinear dependence of the yield stress on the strain rate, thermal softening, and rubber-like strain hardening.
+A detailed overview of the available models in the literature is provided, with particular focus on those based on rheological models with nonlinear elastic and viscous elements.
+Regarding the use of these models to describe semi-crystalline polymers, bulk crystallinity is often included through a mixture rule, such as the Voigt or Reuss mixture rule.
 
-Self-heating is widely observed when semi-crystalline polymers are loaded at moderate strain rates, such that substantial heat is produced with a corresponding change in temperature.
-Thus, an appropriate description of this class of materials requires the solution of the thermomechanical problem.
-To achieve it, the implicit partitioned methods are identified as the most appropriate given their ability to take advantage of existing software, provide accurate results that agree with a monolithic approach, are not memory intensive, are easy to implement, and are competitive in terms of computational efficiency through the use of convergence acceleration techniques.
-The strategies discussed and explored in the present work are applied specifically to the thermomechanical problem, but they apply to other multi-physics phenomena with little modification.
-The methods considered are the fixed-point method, the underrelaxation method, the Aitken relaxation, the Broyden-like family of methods, the Newton-Krylov methods, and the polynomial vector extrapolation methods MPE and RRE in cycling mode.
-These are compared and analyzed when applied to an elastoplastic constitutive model.
+Moreover, self-heating is widely observed when semi-crystalline polymers are loaded at moderate strain rates, such that substantial heat is produced with a corresponding change in temperature.
+Thus, an appropriate description of this class of materials requires the solution of a thermomechanical problem.
+Implicit partitioned methods are identified as the most suitable solution methods due to several attractive features, namely taking advantage of existing software, providing accurate results that agree with a monolithic approach, being easy to implement, and being competitive in terms of computational efficiency, both in terms of speed, through the use of convergence acceleration techniques, as in terms of memory.
+The strategies discussed and explored in the present work are applied specifically to the thermomechanical problem, but they can be readily applied to other multi-physics phenomena.
+In particular, the fixed-point method, the underrelaxation method, the Aitken relaxation, the Broyden-like family of methods, the Newton-Krylov methods, and the polynomial vector extrapolation methods MPE and RRE in cycling mode are compared when applied to an elastoplastic constitutive model.
 
 \newpage\null\thispagestyle{blank}\newpage
 

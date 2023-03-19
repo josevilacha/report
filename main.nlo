@@ -16,13 +16,13 @@
 \nomenclatureentry{V$\bm g$@[{$\bm g$}]\begingroup Temperature gradient\nomeqref {2.4}|nompageref}{14}
 \nomenclatureentry{V$\bm \alpha$@[{$\bm \alpha$}]\begingroup Set of internal variables\nomeqref {2.4}|nompageref}{14}
 \nomenclatureentry{V$\psi$@[{$\psi$}]\begingroup Specific Helmholtz free energy\nomeqref {2.9}|nompageref}{14}
-\nomenclatureentry{V$k$@[{$k$}]\begingroup Thermal conductivity\nomeqref {2.10}|nompageref}{15}
-\nomenclatureentry{V$\bm C$@[{$\bm C$}]\begingroup Right Cauchy-Green strain tensor\nomeqref {2.10}|nompageref}{15}
+\nomenclatureentry{V$k$@[{$k$}]\begingroup Thermal conductivity\nomeqref {2.10}|nompageref}{14}
+\nomenclatureentry{V$\bm C$@[{$\bm C$}]\begingroup Right Cauchy-Green strain tensor\nomeqref {2.10}|nompageref}{14}
 \nomenclatureentry{V$C_{\bm F}$@[{$C_{\bm F}$}]\begingroup Specific heat at constant deformation\nomeqref {2.10}|nompageref}{15}
 \nomenclatureentry{V$\mathcal H^\text{ep}$@[{$\mathcal H^\text{ep}$}]\begingroup Gough-Joule heating/cooling effect\nomeqref {2.11}|nompageref}{15}
 \nomenclatureentry{V$\mathcal D_\text{int}$@[{$\mathcal D_\text{int}$}]\begingroup Internal dissipation\nomeqref {2.12}|nompageref}{15}
-\nomenclatureentry{V$\bm \eta$@[{$\bm \eta$}]\begingroup Virtual displacements\nomeqref {2.16}|nompageref}{16}
-\nomenclatureentry{V$\xi$@[{$\xi$}]\begingroup Virtual temperatures\nomeqref {2.16}|nompageref}{16}
+\nomenclatureentry{V$\bm \eta$@[{$\bm \eta$}]\begingroup Virtual displacements\nomeqref {2.16}|nompageref}{15}
+\nomenclatureentry{V$\xi$@[{$\xi$}]\begingroup Virtual temperatures\nomeqref {2.16}|nompageref}{15}
 \nomenclatureentry{V$\mathbf u$@[{$\mathbf u$}]\begingroup Global vector of nodal displacements\nomeqref {2.16}|nompageref}{16}
 \nomenclatureentry{V$\bm\uptheta$@[{$\bm\uptheta$}]\begingroup Global vector of nodal temperatures\nomeqref {2.16}|nompageref}{16}
 \nomenclatureentry{V$n_\text{dim}$@[{$n_\text{dim}$}]\begingroup Number of spatial dimensions\nomeqref {2.18}|nompageref}{16}
@@ -31,11 +31,10 @@
 \nomenclatureentry{V$\mathbf f^\text{ext}$@[{$\mathbf f^\text{ext}$}]\begingroup External nodal force\nomeqref {2.20}|nompageref}{16}
 \nomenclatureentry{V$\mathbf M$@[{$\mathbf M$}]\begingroup FEM mass matrix\nomeqref {2.20}|nompageref}{16}
 \nomenclatureentry{V$\mathbf C$@[{$\mathbf C$}]\begingroup FEM thermal capacitance matrix\nomeqref {2.20}|nompageref}{16}
-\nomenclatureentry{V$\mathbf r$@[{$\mathbf r$}]\begingroup Nodal residue\nomeqref {2.20}|nompageref}{17}
+\nomenclatureentry{V$\mathbf r$@[{$\mathbf r$}]\begingroup Nodal residue\nomeqref {2.20}|nompageref}{16}
 \nomenclatureentry{V$\bm{\mathcal{U}}$@[{$\bm{\mathcal{U}}$}]\begingroup Solution procedure for the mechanical problem at constant temperature\nomeqref {2.22}|nompageref}{17}
 \nomenclatureentry{V$\bm{\mathcal{T}}$@[{$\bm{\mathcal{T}}$}]\begingroup Solution procedure for the thermal problem at a fixed configuration\nomeqref {2.22}|nompageref}{17}
-\nomenclatureentry{V$\bm{\mathcal R}$@[{$\bm{\mathcal R}$}]\begingroup Thermomechanical residual\nomeqref {2.26}|nompageref}{18}
+\nomenclatureentry{V$\bm{\mathcal R}$@[{$\bm{\mathcal R}$}]\begingroup Thermomechanical residual\nomeqref {2.26}|nompageref}{17}
 \nomenclatureentry{V$\mathbf x$@[{$\mathbf x$}]\begingroup Abstract nodal quantity\nomeqref {2.29}|nompageref}{18}
-\nomenclatureentry{V$\bm{\mathcal S}$@[{$\bm{\mathcal S}$}]\begingroup Fixed-point function for the partitioned thermomechanical problem\nomeqref {2.30}|nompageref}{18}
 \nomenclatureentry{APCTFE@[{PCTFE}]\begingroup \textbf{P}oly\textbf{c}holoro\textbf{t}ri\textbf{f}luoro\textbf{e}thylene\nomeqref {3.0}|nompageref}{26}
 \nomenclatureentry{APE@[{PE}]\begingroup \textbf{P}oly\textbf{e}thylene\nomeqref {3.0}|nompageref}{26}

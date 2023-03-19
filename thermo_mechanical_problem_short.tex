@@ -1,21 +1,22 @@
 \chapter{Thermomechanical problem} \label{ch:thermomechanical_problem}
 
-This section provides a fundamental description of the response of a solid material to mechanical and thermal loads in a finite strain setting.
-It covers the use of thermodynamics with internal variables and the corresponding restrictions on the constitutive description of the material, as well as, a discussion on the methods available for solving the thermomechanical problem.
-It is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a}.
+This chapter is adapted from \cite{vila-chaNumericalAssessmentPartitioned2023a} and provides a fundamental description of a solid material's response to mechanical and thermal loads in a finite strain setting.
+It covers the use of thermodynamics with internal variables and the corresponding restrictions on the constitutive description of the material.
+It also includes a discussion on the methods available in the literature for solving the thermomechanical problem.
 
-\section{Kinematics of deformation}
+\section{Kinematics of deformation} \label{sec:kinematics_of_deformation}
 
 Let a deformable body $\mathscr{B}$\nomenclature[V]{$\mathscr B$}{Deformable body} occupy an open region $\Omega_0$ of the tridimensional Euclidean space $\mathscr{E}$ with a regular boundary $\partial \Omega_0$ in its reference configuration.
 A smooth one-to-one function defines its motion \(\bm{\varphi}\colon \Omega\times \mathbb{R}\to \mathscr{E}\)\nomenclature[V]{$\bm \varphi$}{Motion}, mapping each material particle of coordinates $\bm{X}$\nomenclature[V]{$\bm{X}$}{Material point coordinates} in the reference configuration to its position $\bm{x}$\nomenclature[V]{$\bm x$}{Spatial point coordinates} in the deformed configuration.
 Accordingly, the displacement is defined as \(\bm{u}\equiv \bm{x} - \bm{X}\)\nomenclature[V]{$\bm u$}{Displacement}.
 In this work, the finite deformation of the body is described with respect to the initial configuration, following the so-called Lagrangian or material description.
-Accordingly, the well-known deformation gradient second-order tensor is defined as \(\bm{F}(\bm{X},t)\equiv \nabla_0\bm\varphi(\bm{X},t)\)\nomenclature[V]{$\bm F$}{Deformation gradient}, and its determinant, denoted as \(J\equiv \text{det}\;\bm{F} \geq 0\)\nomenclature[V]{$J$}{Determinant of the deformation gradient} represents the local unit volume change.
-Also relevant to the present work is the spatial velocity gradient $\bm L\equiv \dot{\bm F}{\bm F}^{-1}$, where $\dot\bullet$ denotes the time derivative and the dependence of the spatial coordinates and time is omitted.
+The well-known deformation gradient second-order tensor is defined as \(\bm{F}(\bm{X},t)\equiv \nabla_0\bm\varphi(\bm{X},t)\)\nomenclature[V]{$\bm F$}{Deformation gradient}, and its determinant, denoted as \(J\equiv \text{det}\;\bm{F} \geq 0\)\nomenclature[V]{$J$}{Determinant of the deformation gradient} represents the local unit volume change.
+Also relevant to the present work is the spatial velocity gradient $\bm L\equiv \dot{\bm F}{\bm F}^{-1}$, where $\dot{\bm F}$ denotes the time derivative of the deformation gradient and the dependence of the spatial coordinates and time is omitted.
 
 \section{Fundamental conservation principles} \label{sec:fundamental_conservation_princ}
 
 In continuum thermomechanics, there is a set of conservation principles and thermodynamic laws that, irrespective of the quantities used to describe the mechanical behavior of a body undergoing large deformations, must always be satisfied, namely,
+\enlargethispage{\baselineskip}
 \begin{align}
   \text{div}_0\;\bm{P} + \bm{b}_0 = \rho_0 \ddot{\bm{u}},\quad & \text{(balance of momentum)};
                                                                  \label{eq:material_equilibrium}\\
@@ -28,10 +29,10 @@ The second order tensor $\dot{\bm{F}}$ is the appropriate strain rate measure, s
 
 \section{Thermodynamically consistent constitutive modeling} \label{sec:constitutive_modeling}
 The stresses and heat fluxes in the governing equations need to be associated with the deformations and temperatures via constitutive laws that represent the physical behavior of the material.
-For a simple material, the thermodynamic state is assumed to be completely defined by the instantaneous values of a finite number of state variables, i.e., \(\{\bm{F}, T, \bm{g}_0, \bm{\alpha}\}\), where $\bm g \equiv \nabla_0 T$\nomenclature[V]{$\bm g$}{Temperature gradient} is the material gradient of the temperature and \(\bm{\alpha} \equiv \{\alpha_k\}\)\nomenclature[V]{$\bm \alpha$}{Set of internal variables} is a set of internal variables, scalar or tensorial, associated with dissipative mechanisms.
-This approach is included within so-called rational thermodynamics as developed by Truesdell, Noll, Coleman and others \citep{nollMathematicalTheoryMechanical1958, colemanFoundationsLinearViscoelasticity1961, colemanExistenceCaloricEquations1964}.
-It is a framework broad enough to describe thermodynamically irreversible processes, i.e., processes involving dissipation, thus, allowing for the modeling of physical phenomena relevant to engineering practice.
-A thorough review of the different approaches to the thermodynamics of irreversible processes and criticism of the strategy adopted here can be found in \cite{lavenda1978thermodynamics}.
+For a simple material, the thermodynamic state is assumed to be completely defined by the instantaneous values of a finite number of state variables, i.e., \(\{\bm{F}, T, \bm{g}_0, \bm{\alpha}\}\), where $\bm g_0 \equiv \nabla_0 T$\nomenclature[V]{$\bm g$}{Temperature gradient} is the material gradient of the temperature and \(\bm{\alpha} \equiv \{\alpha_k\}\)\nomenclature[V]{$\bm \alpha$}{Set of internal variables} is a set of internal variables, scalar or tensorial, associated with dissipative mechanisms.
+This approach is included within the so-called rational thermodynamics as developed by Truesdell, Noll, Coleman and others \citep{nollMathematicalTheoryMechanical1958, colemanFoundationsLinearViscoelasticity1961, colemanExistenceCaloricEquations1964}.
+It is a framework broad enough to describe thermodynamically irreversible processes, i.e., processes involving dissipation, thus allowing the modeling of physical phenomena relevant in terms of engineering practice.
+A thorough review of the different approaches to the thermodynamics of irreversible processes can be found in \cite{lavenda1978thermodynamics}.
 
 The constitutive description of the material must be consistent with the principles established by Equations~\eqref{eq:material_equilibrium}-\eqref{eq:entropy_production}, yielding the following constitutive relations
 \begin{gather}
@@ -44,7 +45,7 @@ The constitutive description of the material must be consistent with the princip
 where \(\psi \equiv e - T s\)\nomenclature[V]{$\psi$}{Specific Helmholtz free energy} denotes the Helmholtz free energy.
 These still need to comply with the second law of thermodynamics, which places constraints on the evolution equations for the internal variables and the constitutive equation for the heat flux.
 
-The development of concrete models that are framed within constitutive theory can be achieved by postulating suitable functions for the  Helmholtz free energy and other required components, such as dissipation potentials and yield surfaces (see Chapter~\ref{ch:modeling_semi_crystalline_polymer} for more details).
+The development of concrete models that are framed within such a constitutive theory can be achieved by postulating suitable functions for the  Helmholtz free energy and other ingredients, such as dissipation potentials and yield surfaces (see Chapter~\ref{ch:modeling_semi_crystalline_polymer} for more details).
 Regarding the constitutive model for the heat flux, the second law of thermodynamics essentially requires the heat flow to occur in the opposite direction of the temperature gradient.
 The Fourier heat conduction law for isotropic conduction in the deformed volume is one of the simplest and most popular alternatives, defining the heat flux as
 \begin{equation}
@@ -61,7 +62,7 @@ Let \(C_{\bm F}\)\nomenclature[V]{$C_{\bm F}$}{Specific heat at constant deforma
 \begin{equation} \label{eq:def_cv_partial}
   C_{\bm F}\equiv \left.\frac{\partial e}{\partial T}\right|_{\bm F}=-\frac{\partial^{2} \psi}{\partial T^{2}} T=\frac{\partial s}{\partial T} T.
 \end{equation}
-Applying Equation~\eqref{eq:def_cv_partial}, introducing the so-called Gough-Joule effect or thermoelastoplastic heating (or cooling) effect, denoted by \(\mathcal H^\text{ep}\)\nomenclature[V]{$\mathcal H^\text{ep}$}{Gough-Joule heating/cooling effect}, as
+Taking Equation~\eqref{eq:def_cv_partial}, introducing the so-called Gough-Joule effect or thermoelastoplastic heating (or cooling) effect, \(\mathcal H^\text{ep}\)\nomenclature[V]{$\mathcal H^\text{ep}$}{Gough-Joule heating/cooling effect}, as
 \begin{equation}
   \label{eq:def_gough_joule_effect}
   \mathcal H^\text{ep} = - \rho_0T\left(\frac{\partial^2 \psi}{\partial \bm{F}\partial T}: \dot{\bm{F}} + \frac{\partial^2 \psi}{\partial \bm{\alpha} \partial T}*\dot{\bm{\alpha}} \right),
@@ -86,11 +87,11 @@ The weak form of the linear momentum and energy balance equations can be formula
 \begin{multline} \label{eq:weak_energy_balance}
   \int_{\Omega_0}   \left[-\bm{q}_{0}(\bm{F},T)\cdot \nabla_0 \xi - \left(\mathcal D_\text{int}(\bm{F},T)+\mathcal H^\text{ep}(\bm{F},T)+ \rho_0 r(t)-\rho_0 C_{\bm F}\dot T(t)\right) \xi\right]d v\\ + \int_{\partial\Omega_0} \bm{q}_{0}\cdot \bm{n}_{0} \xi \ \mathrm{d} a = 0,
 \end{multline}
-where at each point of $\mathscr{B}$, the First Piola-Kirchhoff stress tensor is the solution to the material thermomechanical constitutive initial value problem and the virtual displacements \(\bm{\eta}\)\nomenclature[V]{$\bm \eta$}{Virtual displacements} and virtual temperatures \(\xi\)\nomenclature[V]{$\xi$}{Virtual temperatures} satisfy the essential boundary conditions of the problem in a homogeneous sense.
+where, at each point of $\mathscr{B}$, the first Piola-Kirchhoff stress tensor is the solution to the material thermomechanical constitutive initial value problem and the virtual displacements \(\bm{\eta}\)\nomenclature[V]{$\bm \eta$}{Virtual displacements} and virtual temperatures \(\xi\)\nomenclature[V]{$\xi$}{Virtual temperatures} satisfy the essential boundary conditions of the problem in a homogeneous sense.
 The coupling between the mechanical and thermal fields can be understood from a physical point of view as follows:
 \begin{itemize}
-\item the temperature influences the mechanical field through additional thermal stresses and potentially temperature-dependent material properties.
-\item  the mechanical field affects the thermal field through coupling terms which can be interpreted as heat sources (dissipation and thermomechanical structure heating); geometric coupling due to the deformation of the domain, which affects boundary conditions and the heat conduction law.
+\item the temperature influences the mechanical field through additional thermal stresses and potentially temperature-dependent material properties;
+\item  the mechanical field affects the thermal field through coupling terms which can be interpreted as heat sources (dissipation and thermomechanical structure heating) and through geometric coupling due to the deformation of the domain, which affects boundary conditions and the heat conduction law.
 \end{itemize}
 
 \section{Finite Element Method} \label{sec:fem_mech}
@@ -101,34 +102,34 @@ Defining the global vector of nodal displacements \(\mathbf{u}\)\nomenclature[V]
   \mathbf{u}(t) = \Big[ u_1^1(t),\dots,u^1_{n_\text{dim}}(t),\dots, u_1^{n_\text{nod}}(t),\dots,u^{n_\text{nod}}_{n_\text{dim}}(t)\Big]^T,\\
   \bm{\uptheta}(t) = \left[ T^1(t), T^2(t), \dots, T^{n_\text{nod}}(t)\right]^T,
 \end{gather}
-where \(n_\text{dim}\)\nomenclature[V]{$n_\text{dim}$}{Number of spatial dimensions} denotes the number of spatial dimensions considered and \(n_\text{nod}\)\nomenclature[V]{$n_\text{nod}$}{Number of nodes in the mesh} the total number of nodes in the mesh, the displacement, $\bm{u}(\bm{X}, t)$, and temperature, \(T(\bm{X}, t)\), fields defined over the global domain $\Omega_0$, can be approximated at any point $\bm{X}$ by appropriate interpolation functions.
-Doing so yields the discretized versions of the momentum and energy balance equations, i.e.,
+where \(n_\text{dim}\)\nomenclature[V]{$n_\text{dim}$}{Number of spatial dimensions} denotes the number of spatial dimensions and \(n_\text{nod}\)\nomenclature[V]{$n_\text{nod}$}{Number of nodes in the mesh} the total number of nodes in the mesh, the displacement, $\bm{u}(\bm{X}, t)$, and temperature, \(T(\bm{X}, t)\), fields defined over the global domain $\Omega_0$ can be approximated at any point $\bm{X}$ by appropriate interpolation functions.
+This yields the discretized versions of the momentum and energy balance equations
 \begin{gather}
   \mathbf{r}_{u}(\mathbf{u}, \bm{\uptheta}, t)\equiv\mathbf{M} \ddot{\mathbf{u}}(t) +\mathbf{f}_u^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{u}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_momentum_balance} \\
   \mathbf{r}_{T}(\mathbf{u}, \bm{\uptheta}, t)\equiv \mathbf{C} \dot{\bm{\uptheta}}(t)  + \mathbf{f}_T^\text{\;int}(\bm{\uptheta}(t), \mathbf{u}(t))-\mathbf{f}^\text{\;ext}_{T}(\bm{\uptheta}(t), \mathbf{u}(t), t)=\mathbf{0}, \label{eq:disc_energy_balance}
 \end{gather}
-where $\mathbf{f}_u^\text{\;int}$\nomenclature[V]{$\mathbf f^\text{int}$}{Internal nodal force} and $\mathbf{f}^\text{\;ext}_{u}$\nomenclature[V]{$\mathbf f^\text{ext}$}{External nodal force} are the mechanical global vectors of internal and external forces, $\mathbf{f}_T^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{T}$ are the thermal global vectors of internal and external forces, $\mathbf{M}$\nomenclature[V]{$\mathbf M$}{FEM mass matrix} is the mass matrix, \(\mathbf{C}\)\nomenclature[V]{$\mathbf C$}{FEM thermal capacitance matrix} is the thermal capacitance matrix.
-The previous matricial entities are usually obtained by the appropriate assemblage of their elemental counterparts, defined by the appropriate integral quantities.
+which are written in residual form, with $\mathbf r_u$ the mechanical residual and $\mathbf r_T$ the thermal residual, where $\mathbf{f}_u^\text{\;int}$\nomenclature[V]{$\mathbf f^\text{int}$}{Internal nodal force} and $\mathbf{f}^\text{\;ext}_{u}$\nomenclature[V]{$\mathbf f^\text{ext}$}{External nodal force} are the mechanical global vectors of internal and external forces, $\mathbf{f}_T^\text{\;int}$ and $\mathbf{f}^\text{\;ext}_{T}$ are the thermal global vectors of internal and external forces, $\mathbf{M}$\nomenclature[V]{$\mathbf M$}{FEM mass matrix} is the mass matrix, and \(\mathbf{C}\)\nomenclature[V]{$\mathbf C$}{FEM thermal capacitance matrix} is the thermal capacitance matrix.
+The previous matricial entities are usually obtained by the appropriate assemblage of their elemental counterparts, defined by the corresponding integral quantities.
 
 \section{Time discretization}
 
-In the context of thermomechanical problems, a general path-dependent model depends on both the instantaneous deformation and temperature states as well as their history.
+In the context of thermomechanical problems, a general path-dependent constitutive model depends on both the instantaneous deformation and temperature states as well as their history.
 Under these circumstances, for complex deformation, $\bm{F}(t)$, or temperature paths, $T(t)$, the solution of the constitutive initial value problem for a given set of initial conditions is typically unknown.
 Therefore, a suitable numerical approach is necessary to integrate the rate constitutive equations, being an implicit backward-Euler scheme adopted in the present contribution.
 
 The space-discrete time-continuous equilibrium equations (Equations~\eqref{eq:disc_momentum_balance} and \eqref{eq:disc_energy_balance}) can be integrated by employing an adequate and robust time discretization scheme.
-The fully discrete problem can be written in an abstract notation as \nomenclature[V]{$\mathbf r$}{Nodal residue}
+The fully discrete problem can be written as \nomenclature[V]{$\mathbf r$}{Nodal residue}
 \begin{gather}
   \mathbf{r}_{u}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1})=\bm{0}\,\label{eq:mech_problem}\\
   \mathbf{r}_{T}^{n+1}(\mathbf{u}_{n+1}, \bm{\uptheta}_{n+1}, t_{n+1}) = \bm{0}. \label{eq:therm_problem}
 \end{gather}
 For quasi-static structural problems and steady-state heat flow problems, the temporal integration is fully restrained at the constitutive level, as previously addressed.
 For transient problems, the Generalised-$\alpha$ method is a popular alternative, which establishes finite-difference approximations of the temporal derivatives and evaluates the equilibrium at generalised midpoints, providing enough freedom to have second-order accuracy, unconditional stability in linear problems and optimal numerical dissipation in terms of a sole parameter $\rho_{\infty}$.
-In the absence of further mention, the Generalised-$\alpha$ for first-order systems is employed to integrate the transient thermal response \citep{jansen2000GeneralizedaMethodIntegrating}.
+Unless otherwise stated, the Generalised-$\alpha$ for first-order systems is employed to integrate the transient thermal response \citep{jansen2000GeneralizedaMethodIntegrating}.
 
 \section{Solution of the thermomechanical problem}
 
-The present work strategy adopted for the solution of the thermomechanical problem is the use implicit partitoned schemes (see Section~\ref{sec:multi_physics_sims} for context).
+In the present work, implicit partitioned schemes are adopted to solve the thermomechanical problem.
 The cornerstone of partitioned solution schemes is to solve the thermal and mechanical problems separately, i.e., Equation~\eqref{eq:mech_problem} is solved considering a fixed temperature, and Equation~\eqref{eq:therm_problem} is solved assuming a fixed configuration.
 For convenience, consider the existence of two functions, \(\bm{\mathcal{U}}_{n+1}\)\nomenclature[V]{$\bm{\mathcal{U}}$}{Solution procedure for the mechanical problem at constant temperature} and \(\bm{\mathcal{T}}_{n+1}\)\nomenclature[V]{$\bm{\mathcal{T}}$}{Solution procedure for the thermal problem at a fixed configuration}, that represent these solution procedures at instant \(t_{n+1}\), such that
 \begin{align}
@@ -146,11 +147,11 @@ The solution found from the fixed-point scheme, \(\bm{\uptheta}^{k}_*\) or \(\ma
 \begin{equation}
   \bm{\uptheta}^{k+1} = \bm{\mathcal{A}}(\bm{\uptheta}^{k}_*) \quad \text{or} \quad \mathbf{u}^{k+1} = \bm{\mathcal{A}}(\mathbf{u}^{k}_*),
 \end{equation}
-with \(\pazocal{A}\) denoting an appropriate acceleration scheme, which can also use previous iterations.
+with \(\pazocal{A}\) denoting an appropriate acceleration scheme, which may also use previous iterations.
 The superscript \(k\) denotes the nonlinear iterations performed within each time step.
 
 A slightly different conceptualization of the thermomechanical coupled problem is pursued here.
-Generally, a fixed-point procedure can be transformed into a root-finding problem.
+In general, a fixed-point procedure can be transformed into a root-finding problem.
 In this case, the goal is to define suitable functions, built from \(\bm{\mathcal{U}}\) and \(\bm{\mathcal{T}}\), whose roots are also the solutions to the thermomechanical problem (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}).
 In the thermomechanical context, the following residual functions \nomenclature[V]{$\bm{\mathcal R}$}{Thermomechanical residual} are employed
 \begin{equation} \label{eq:def_res_jacobi}
@@ -168,37 +169,35 @@ In the thermomechanical context, the following residual functions \nomenclature[
      \end{equation}
      where the subscript 'J' stands for Jacobi and the subscript 'GS' for Gauss-Seidel.
      It should be noted that the residuals, as given here, are the symmetric counterparts of the definitions commonly employed in FSI.
+    The residual \(\bm{\mathcal{R}}_\text{GS}\) (Equation~\eqref{eq:def_res_gauss_seidel}) coinciding with the isothermic split, where the mechanical problem is solved first at a fixed temperature, followed by the solution of the thermal problem at a fixed configuration is employed in the numerical results provided in the present work.
+    Keep in mind that which of the fields is solved first may be critical for the approach's stability and convergence rate.  \citep{joosten_analysis_2009}.
 
      Since the methods described below for the solution of nonlinear systems of equations apply to both functions \(\bm{\mathcal{R}}_\mathrm{J}\) and \(\bm{\mathcal{R}}_\mathrm{GS}\), a general function denoted as \(\bm{\mathcal{R}}\), whose variable is \(\mathbf{x}\), is conveniently adopted in the following discussion.
-     However, for practical purposes, the residual adopted in this work is \(\bm{\mathcal{R}}_\text{GS}\) (Equation~\eqref{eq:def_res_gauss_seidel}).
-     Moreover, one of the fields must be chosen as the first, which may be crucial for the stability and convergence rate of the approach \citep{joosten_analysis_2009}.
-     Here, the focus is on the sequence coinciding with the isothermic split, where the mechanical problem is solved first at a fixed temperature, followed by the solution of the thermal problem at a fixed configuration.
-     Then the thermal problem is solved at a fixed configuration.
 
      As previously stated, the solution to the thermomechanical problem (Equations~\eqref{eq:mech_problem} and \eqref{eq:therm_problem}) can be conceptually posed as the solution of
      \begin{equation} \label{eq:abstract_residue_equation}
        \bm{\mathcal{R}}(\mathbf{x}) = 0,
      \end{equation}
-     where $\mathbf x$\nomenclature[V]{$\mathbf x$}{Abstract nodal quantity} stands for the appropriate unknowns based on the residual chosen, e.g., the temperature at all nodes in the mesh in the case of selecting the residual found in the first expression of Equation~\eqref{eq:def_res_gauss_seidel}.
+     where $\mathbf x$\nomenclature[V]{$\mathbf x$}{Abstract nodal quantity} stands for the appropriate unknowns based on the particular residual ($\bm \uptheta$ or $\mathbf u$, see Equation~\eqref{eq:def_res_gauss_seidel}).
      It should be mentioned that unknowns in all mesh nodes must be considered for a volumetric coupling, such as in a thermomechanical problem.
      This is in contrast with fluid-structure interaction, where just the degrees of freedom at the interface must be taken into account.
      For completeness, also consider the function
      \begin{equation}
        \bm{\mathcal{S}}(\mathbf{x}) = \mathbf{x} - \bm{\mathcal{R}}(\mathbf{x}),
-     \end{equation}\nomenclature[V]{$\bm{\mathcal S}$}{Fixed-point function for the partitioned thermomechanical problem}
+     \end{equation}
      whose fixed-point is the solution to the nonlinear equation system in Equation~\eqref{eq:abstract_residue_equation}.
      Therefore, a broad class of standard implicit methods available in the literature can be applied to solve the problem at hand, allowing the use of appropriate libraries when available.
-     The accelerated fixed-point counterparts can be properly identified, as shown in the remainder of this section.
+     The accelerated fixed-point counterparts can also be properly identified, as shown in the remainder of this section.
 
-     In the present work, the criteria used for the choice of the implicit methods most suitable are similar to the ones provided by Fang and Saad \citep{fang_two_2009} for problems in the context of electronic structure problems.
+     In the present work, the criteria used for the choice of the most suitable implicit methods are similar to the ones provided by Fang and Saad \citep{fang_two_2009} in the context of electronic structure problems.
      These can be summarized as follows:
      \begin{enumerate}
      \item The dimensionality of the problem is large;
-     \item \(\bm{\mathcal{R}}\) is continuously differentiable, but the analytical form of its derivative is not readily available, or is computationally expensive to compute;
-     \item The cost evaluation of \(\bm{\mathcal{R}}(\mathbf{x})\) is computationally demanding;
+     \item \(\bm{\mathcal{R}}\) is continuously differentiable, but the analytical form of its derivative is not readily available or is computationally expensive to compute;
+     \item The evaluation of \(\bm{\mathcal{R}}(\mathbf{x})\) is computationally demanding;
      \item The problem is noisy, i.e., the computed function values of \(\bm{\mathcal{R}}\) usually contain errors.
      \end{enumerate}
-     Attending to the previous criteria, the most suitable methods should comply with the following desirable features: they must minimize the number of calls to \(\bm{\mathcal{R}}\), as it is expensive to compute; the amount of information saved from previous iterations must also be judiciously chosen as the problem's dimensionality is large; and, they cannot require the analytical derivative of \(\bm{\mathcal{R}}\), since it is not available.
+     Attending to the previous criteria, the most suitable methods should comply with the following desirable features: it must minimize the number of calls to \(\bm{\mathcal{R}}\), as it is expensive to compute; the amount of information saved from previous iterations must be judiciously chosen as the problem's dimensionality is large; and it cannot require the analytical derivative of \(\bm{\mathcal{R}}\), since it is not available.
 
      % In general, any implicit method for solving nonlinear systems of equations available in the literature can be used to solve the partitioned thermomechanical problem as long as it meets these criteria.
      % The approaches considered by the author in \cite{vila-chaNumericalAssessmentPartitioned2023a}: the fixed-point method, the constant underrelaxation method, the Aitken relaxation method, the Broyden-like methods, especially Broyden's method, the Newton-Krylov methods, and the polynomial vector extrapolation methods in cycling mode.
@@ -208,7 +207,7 @@ In the thermomechanical context, the following residual functions \nomenclature[
      % \smallskip
 
      \smallskip
-          \noindent \textit{Remark.} To make it clear to the reader, each time $\bm{\mathcal{R}}(\bullet)$ appears in the formulas; it represents a new execution to the solution sequence of the fields, which requires new calls to the mechanical solver, thermal solver and data communication.
+          \noindent \textit{Remark.} To clarify, each appearance of $\bm{\mathcal{R}}(\bullet)$ in the formulas entails new calls to the mechanical solver, thermal solver, and data communication according to its particular definition.
           \smallskip
 
           \subsection{Fixed-point} \label{sec:fixed_point_approach}
@@ -226,7 +225,7 @@ In the thermomechanical context, the following residual functions \nomenclature[
 
           \subsection{Constant underrelaxation} \label{sec:underrelaxation}
 
-          One of the most straightforward ways to stabilize an iterative method is to use constant underrelaxation (see, .e.g, \cite{erbts_accelerated_2012} or \cite{gatzhammer_efficient_2014}).
+          One of the most straightforward ways to stabilize an iterative method is to use constant underrelaxation (see, e.g., \cite{erbts_accelerated_2012} or \cite{gatzhammer_efficient_2014}).
           The relaxation is performed as follows
           \begin{equation} \label{eq:constant_relaxation}
             \mathbf{x}^{k+1}=(1-\omega) \mathbf{x}^{k}+\omega\bm{\mathcal{S}}(\mathbf{x}^k)=\mathbf{x}^{k} -\omega \bm{\mathcal{R}}(\mathbf{x}^k),
@@ -257,11 +256,10 @@ In the thermomechanical context, the following residual functions \nomenclature[
           \end{equation}
           The increment reads
           \begin{equation} \label{eq:aitken_update}
-            \Delta \mathbf{x}^{k}=\omega^{k}\left(\bm{\mathcal{S}}(\mathbf{x}^{(k)})-\mathbf{x}^{(k)}\right)=-\omega^{k} \bm{\mathcal{R}}(\mathbf{x}^k).
+            \Delta \mathbf{x}^{k}=\omega^{k}\left(\bm{\mathcal{S}}(\mathbf{x}^{(k)})-\mathbf{x}^{(k)}\right)=-\omega^{k} \bm{\mathcal{R}}(\mathbf{x}^k),
           \end{equation}
           with $\omega^{k}$ being the relaxation coefficient.
-          This coefficient is updated in every iteration cycle as a function of two previous residuals.
-
+          This coefficient is updated at every iteration cycle as a function of two previous residuals,
           \begin{equation} \label{eq:aitken_relaxation_factor}
             \omega^{k}=-\omega^{k-1} \frac{\left(\bm{\mathcal{R}}(\mathbf{x}^k)-\bm{\mathcal{R}}(\mathbf{x}^{k-1})\right)^{\mathrm{T}} \bm{\mathcal{R}}(\mathbf{x}^{k-1})}{\left(\bm{\mathcal{R}}(\mathbf{x}^k)-\bm{\mathcal{R}}(\mathbf{x}^{k-1})\right)^{2}}.
           \end{equation}
@@ -270,11 +268,12 @@ In the thermomechanical context, the following residual functions \nomenclature[
           If $\omega^{0}=1$ is chosen, the result will be a fixed-point iteration, then followed by dynamic relaxation.
 
           This approach is also easy to implement, and the additional computational input is acceptable since only inner vector products must be performed.
-          It only requires a residual evaluation per iteration and the previous iteration.
+          It only requires a residual evaluation per iteration and the residual value of the previous iteration.
 
           \subsection{Newton-Krylov methods} \label{sec:newton_krylov}
 
-          The Newton-Raphson or Newton scheme is a very popular iterative solution procedure for nonlinear systems of equations, which converges quadratically, under appropriate conditions.
+          The Newton-Raphson or Newton scheme is a very popular iterative solution procedure for nonlinear systems of equations.
+          When certain mathematical conditions are met, this scheme converges quadratically.
           It can be applied to Equation~\eqref{eq:abstract_residue_equation}, yielding
           \begin{gather}
             \bm{\mathbf{J}}_{\bm{\mathcal{R}}(\mathbf{x}^k)}\Delta \mathbf{x}^k = - \bm{\mathcal{R}}(\mathbf{x}^k), \label{eq:newton_system}\\
@@ -289,11 +288,11 @@ In the thermomechanical context, the following residual functions \nomenclature[
             \pazocal{K}_m = \operatorname{span}\{\mathbf{r}_0, \mathbf{A}\mathbf{r}_0, \mathbf{A}^2 \mathbf{r}_0, \dots, \mathbf{A}^{m-1}\mathbf{r}_0\},
           \end{equation}
           such that the \(m\)-th iterate  \(\mathbf{z}_m\in \pazocal{K}_m\), with \(\mathbf{r}_0 = \mathbf{b} - \mathbf{A} \mathbf{z}_0\).
-          The precise way the \(\mathbf{z}_m\) is built is what distinguishes the different methods.
-          To produce the appropriate Krylov subspace, one needs the product \(\bm{\mathbf{J}}_{\bm{\mathcal{R}}}(\mathbf{x}^k) \mathbf{y}\) in Equation~\eqref{eq:newton_system}, for some vector \(\mathbf{y}\).
+          The precise way in which \(\mathbf{z}_m\) is built is what distinguishes the different methods.
+          To generate the appropriate Krylov subspace, one needs the product \(\bm{\mathbf{J}}_{\bm{\mathcal{R}}}(\mathbf{x}^k) \mathbf{y}\) in Equation~\eqref{eq:newton_system}, for some vector \(\mathbf{y}\).
           It is assumed that the Jacobian is unavailable, so it must be approximated.
           Also, it would be beneficial if the full Jacobian is neither computed in its entirety nor fully stored in memory, i.e., a matrix-free method is desirable.
-          Although the matrix of coefficient $\mathbf{A}=\bm{\mathbf{J}}_{\bm{\mathcal{R}}}$ is not known, it is possible to exploit the fact that $\mathbf{A}$ is a Jacobian matrix, such that the Jacobian-vector product can be approximated with a numerical forward difference directional derivative \citep{kelley_solving_2003}.
+          Although the matrix of coefficients $\mathbf{A}=\bm{\mathbf{J}}_{\bm{\mathcal{R}}}$ is unknown, it is possible to exploit the fact that $\mathbf{A}$ is a Jacobian matrix, such that the Jacobian-vector product can be approximated with a numerical forward difference directional derivative \citep{kelley_solving_2003}.
 
           Since the present use case includes many unknowns, it leads to memory concerns if the Krylov subspace is allowed to grow indefinitely.
           A restarted version where the maximum size of the Krylov space is restricted to \(p\) elements is preferred.
@@ -303,21 +302,21 @@ In the thermomechanical context, the following residual functions \nomenclature[
           Further details on Newton-Krylov methods can be found in \cite{kelley_solving_2003}.
 
           In each nonlinear iteration of the Newton-Krylov method, the number of iterations inside the Krylov subspace solver can be large, and each iteration requires an evaluation of the residual.
-          This number of residual evaluations can be a significant drawback when the intended use assumes that evaluating the function \(\bm{\mathcal{R}}\) is expensive.
+          This number of residual evaluations can be a significant drawback when the evalution of \(\bm{\mathcal{R}}\) is expensive.
           This problem is, however, mitigated by the fact that the linear system in Newton's method is only solved until it satisfies
           \begin{equation}
             \|\bm{\mathbf{J}}_{\bm{\mathcal{R}}}(\mathbf{x}^k) \Delta \mathbf{x}^*_m+ \bm{\mathcal{R}}(\mathbf{x}^k)\| \leq \eta\|\bm{\mathcal{R}}(\mathbf{x}^k)\|,
           \end{equation}
-          where \(\eta\) is called the forcing term, and it is chosen to avoid over-solving the Newton system (Equation~\eqref{eq:newton_system})---essentially, the linear system is solved to an error that does not influence the error in the nonlinear solution procedure.
+          where \(\eta\) is called the forcing term, and it is chosen to avoid over-solving the Newton system (Equation~\eqref{eq:newton_system})--- the linear system is solved to an error that does not influence the error in the nonlinear solution procedure.
           As a simple approach, Kelley \citep{kelley_solving_2003} suggests using a fixed value for the forcing term, e.g., \(\eta=0.1\).
-          However, he describes more sophisticated ways to choose this parameter, such as the Eisenstat-Walker method.
+          However, according to the same author there are more sophisticated ways to choose this parameter, such as the Eisenstat-Walker method.
           The smaller the forcing term \(\eta\), the closer one gets to the standard Newton method.
           However, especially in the first nonlinear iterations, choosing a \(\eta\) that is too small leads to unnecessarily long computational times since the error in the Newton iterations supersedes the error in the solution of the linear system.
 
           \subsection{Broyden-like class} \label{sec:multisecant}
 
           Both the generalized Broyden's family, including Broyden's method, and Anderson's mixing can be understood as methods in the Broyden-like class as described in \cite{fang_two_2009}.
-          They are multisecant quasi-Newton methods, which rely on the Newton update and build approximations to the Jacobian or directly to its inverse.
+          They are multisecant quasi-Newton methods which rely on the Newton update and build approximations to the Jacobian or to its inverse.
 
           Suppose the latest \(m\) iterates of the nonlinear solution sequence is available, which are denoted by \(\mathbf{x}^{1}, \ldots, \mathbf{x}^{m}\).
           Let \(\Delta \mathbf{x}^{i}=\mathbf{x}^{i+1}- \mathbf{x}^{i}\) for \(i=1, \ldots, m-1\).
@@ -366,7 +365,7 @@ In the thermomechanical context, the following residual functions \nomenclature[
 
           \paragraph{Broyden's method} Broyden's method \citep{broydenClassMethodsSolving1965a} with the identity matrix as the initial guess for the inverse of the Jacobian corresponds to using a group size equal to one, \(s=1\), \(\beta=-1\), and enforcing the secant condition according to Equation~\eqref{eq:broyden_type_i}, referring only to the previous two iterations.
 
-          Regarding memory availability, according to Kelley \citep{kelley_solving_2003}, as is often the case with GMRES, the iteration can be restarted if there is no more room to store the vectors.
+          Regarding memory availability, the iteration can be restarted if there is no more room to store the vectors \citep{kelleySolvingNonlinearEquations2003}.
           A different approach, called limited memory in the optimization literature, replaces the oldest stored iterations with the most recent ones.
 
           A set of practical considerations must be taken into account and can be found in \cite{fang_two_2009}.
@@ -378,7 +377,7 @@ In the thermomechanical context, the following residual functions \nomenclature[
           \item For Type-I update, the last group \(\mathbf N^{k}\) is also stored since its computation involves \(\mathbf{G}_{\bm{\mathcal{R}}}^{k}\).
           \end{enumerate}
           and for each update of the inverse of the Jacobian, the computational cost is \(\pazocal{O}(Nm^2)\), due to the \(QR\) decomposition of an \(N\times m\) matrix needed in the computation of \({\mathbf V^j}^T\) (see Equations~\eqref{eq:broyden_type_i} and \eqref{eq:broyden_type_ii}).
-          Kelley \citep{kelley_solving_2003} presents an implementation for Broyden's method, in particular, that halves the memory requirement relative to the one presented in \cite{fang_two_2009}.
+          Kelley \citep{kelley_solving_2003} presents an implementation for Broyden's method that halves the memory requirement relative to the one presented in \cite{fang_two_2009}.
 
           Fang and Saad \citep{fang_two_2009} also employ a simple restarting procedure.\
           If in two consecutive values of \(\bm{\mathcal{R}}\), \(\bm{\mathcal{R}}_\text{old}\) and \(\bm{\mathcal{R}}_\text{new}\), \(\|\bm{\mathcal{R}}_\text{new}\|\) is much larger than \(\|\bm{\mathcal{R}}_\text{old}\|\), the solution procedure is restarted, with the new initial trial values corresponding to \(\bm{\mathcal{R}}_\text{old}\).
@@ -404,24 +403,23 @@ In the thermomechanical context, the following residual functions \nomenclature[
             \mathbf{s}_{p,q} = F\left(\mathbf{w}^{p}, \ldots, \mathbf{w}^{p+q+1}\right),
           \end{equation}
           with \(p\geq 0\) and \(q\geq 1\).
-          For solving the fixed point problem \(\mathbf{x}=\bm{\mathcal{S}}(\mathbf{x})\), one can associate to it the iterative method \(F\) such that the $k$-th iteration of the nonlinear solution sequence is given by
+          For solving the fixed point problem \(\mathbf{x}=\bm{\mathcal{S}}(\mathbf{x})\), one can associate the iterative method \(F\) such that the $k$-th iteration of the nonlinear solution sequence is given by
           \begin{equation}
-            \mathbf{x}^{k+1}=F\left(\bm{\mathcal{S}}^{p}(\mathbf{x}^{k}), \ldots, \bm{\mathcal{S}}^{p+q+1}(\mathbf{x}^{k})\right)
+            \mathbf{x}^{k+1}=F\left(\bm{\mathcal{S}}^{p}(\mathbf{x}^{k}), \ldots, \bm{\mathcal{S}}^{p+q+1}(\mathbf{x}^{k})\right),
           \end{equation}
           where \(\bm{\mathcal{S}}^{i+1}(\mathbf{x})=\bm{\mathcal{S}} \circ \bm{\mathcal{S}}^{i}(\mathbf{x})\) and \(\bm{\mathcal{S}}^{0}(\mathbf{x})=\mathbf{x}\).
           This approach is called full cycling or simply cycling.
-          Essentially, for each nonlinear iteration, the fixed-point is applied  $p$ times in a recursive manner, and the last $q+1$ of this sequence is used to perform the extrapolation.
+          Essentially, for each nonlinear iteration the fixed-point is applied  $p$ times in a recursive manner, and the last $q+1$ of this sequence is used to perform the extrapolation.
 
           Vector extrapolation methods are classified into two types: polynomial methods and methods based on the \(\epsilon\)-algorithm \citep{brezinski_extrapolation_2013, sidi_vector_2017}.
-          In this presentation, only the first category is considered since the second requires a relatively large number of function evaluations per iteration, making it unsuitable for the present use-case.
-          Sidi \citep{sidi_vector_2017} presents four different polynomial extrapolation methods.
-          They all attempt to express the limit of the vector sequence as a linear combination of \(q+1\) iterates, as follows
+          In what follows, only the first category is considered since the second requires a relatively large number of function evaluations per iteration.
+          Sidi \citep{sidi_vector_2017} presents four different polynomial extrapolation methods, that attempt to express the limit of the vector sequence as a linear combination of \(q+1\) iterates,
           \begin{equation}
             \mathbf{x}^{k+1} = \sum_{j=0}^{q} \gamma_{j} \bm{\mathcal{S}}^{p+j}(\mathbf{x}^{k})  = \sum_{j=0}^{q} \gamma_{j} \mathbf{w}^{p+j},
           \end{equation}
           where the notation shorthand $\mathbf{w}^{i} = \bm{\mathcal{S}}^{i}(\mathbf{x}^{k})$ has been introduced.
-          It should be remarked that although the linear combination is performed over $q+1$ vectors, the previously mentioned $q+2$ vectors are still used in the computation of the coefficients $\gamma_{j}$, as will be soon discussed.
-          The methods considered in the present paper are minimal polynomial extrapolation (MPE) and reduced rank extrapolation (RRE).
+          It should be remarked that although the linear combination is performed over $q+1$ vectors, the previously mentioned $q+2$ vectors are still used in the computation of the coefficients $\gamma_{j}$.
+          The methods considered in the present work are the minimal polynomial extrapolation (MPE) and the reduced rank extrapolation (RRE).
 
           \paragraph{MPE}
 

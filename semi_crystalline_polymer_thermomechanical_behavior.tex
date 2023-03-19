@@ -54,7 +54,7 @@ Some of the kinetic units involved in a semi-crystalline polymer's deformation m
 \end{enumerate}
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.6\textwidth]{figures/kinetic_units_scp}
+    \includegraphics[width=0.6\textwidth]{figures/multi_def_mechs}
     \caption{Schematic depiction of the kinetic units associated with relaxation transitions in lamellar PE. 1) between the crystalline cores of the lamellae; 2) regular folds with suppressed mobility; 3) irregular loops; 4) folded tie-chains; 5) free ends of macromolecules coming out of lamellas; 6) slightly curved tie-chains; 7) folds the mobility of which is significantly limited by crystallites; 8) fully straightened tie-chains, the ends of which are fixed by neighboring lamellas. Taken from \cite{arzhakovRelaxationPhysicalMechanical2019}.}
 \label{fig:kinetic_units_relax_scp}
 \end{figure}
@@ -73,12 +73,18 @@ It follows the molecular alignment of the polymer chains, resulting in entropy c
 
 The nature of the deformation associated with each of these mechanisms must be discussed, i.e., whether it is elastic or plastic, reversible or irreversible.
 After all, if they lead to flow, it may appear at first glance that the corresponding deformation is always permanent.
-Consider this simplified picture: \textcolor{BrickRed}{Add a schematic} the mechanisms are parallel combinations of dashpots and springs in series, as described in \cite{kellerIdentificationStructuralProcesses1971}.
+Consider this simplified picture: the mechanisms are parallel combinations of dashpots and springs in series, as described in \cite{kellerIdentificationStructuralProcesses1971} (see Figure~\ref{fig:multi_def_mechs}).
 The differences in the viscosity and stiffness of the springs in this model allow for both permanent deformation and recovery \citep{fotheringhamRoleRecoveryForces1978}.
 Some of the mechanisms may remain elastic, when the viscosity of the corresponding dashpot is very large, and even allow for complete recovery.
 Physically, it means that the kinetic units responsible for a given flow mechanism may be components of a composite overall structural element whose behavior remains elastic.
 Even intralamellar slip in the crystalline part of a semi-crystalline polymer can show some recovery due to the polymer crystallite structure, e.g., when the slip planes cut across fold planes \citep{kellerIdentificationStructuralProcesses1971}.
 The decomposition of deformation into reversible and irreversible parts is discussed based on mechanical experiments in Section~\ref{sec:reversible_and_irreversible_deformation}.
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/multi_def_mechs}
+    \caption{Simplified model of multiple deformation mechanisms as suggested in \cite{kellerIdentificationStructuralProcesses1971}.}
+\label{fig:multi_def_mechs}
+\end{figure}
 
 Regarding the modeling of the deformation behavior connected to each of these phenomena, some of them accept numerically feasible descriptions, e.g., the plastic flow rule corresponding to the nucleation of dislocation in the crystalline part of the polymer or the strain hardening due to the molecular alignment of the amorphous part of the polymer.
 However, there are some hurdles to the practical application of these models.
@@ -86,13 +92,13 @@ Since semi-crystalline polymers are heterogeneous and hierarchical in structure,
 Also, the structure of the material changes with deformation, as does the relative importance of each mechanism in the overall deformation behavior.
 More details on some of these models are provided in Chapter~\ref{ch:modeling_semi_crystalline_polymer}.
 
-To better understand how the micro- and mesostructure evolve with mechanical loading, consider the split of the stress-strain curve proposed by Strobl and coworkers \citep{hissNetworkStretchingSlip1999, hobeikaTemperatureStrainRate2000, hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006}.
-It is based on free shrinkage and step-cycle tests, as well as x-ray scattering experiments on deformed samples.
-The results were obtained for PEs with different degrees of crystallinity and molecular weight above the glass transition temperature.
+To better understand how the micro- and mesostructure evolve with mechanical loading, consider the experimental results of Strobl and coworkers \citep{hissNetworkStretchingSlip1999, hobeikaTemperatureStrainRate2000, hongModelTreatingTensile2004, hongModelTreatmentTensile2004, naViscousForceDominatedTensileDeformation2006}.
+They consist in free shrinkage and step-cycle tests, as well as x-ray scattering experiments on deformed polyethylene samples with different degrees of crystallinity and molecular weight above the glass transition temperature.
+Distinct regimes in the deformation behavior of the all the samples can be identified, with the transition between them, denoted A through D, happening roughly at the same strain levels.
 
 At small strains, below a true strain of approximately \num{0.025}, deformation manifests itself mainly through the soft amorphous layers \citep{patlazhanStructuralMechanicsSemicrystalline2012}.
 In fact, according to Nikolov and coworkers  \citep{nikolovMicroMacroConstitutive2000, nikolovMultiscaleConstitutiveModeling2002}, experiments show that interlamellar shear is the dominant deformation mode at small strains for PE.
-The onset of local flow processes at the end of the Hookean range through isolated slip processes begins at around a true strain of \num{0.025} \citep{hissNetworkStretchingSlip1999}.
+The onset of local flow processes (point A) at the end of the Hookean range through isolated slip processes begins at around a true strain of \num{0.025} \citep{hissNetworkStretchingSlip1999}.
 Taking into account that local stresses in two-phase heterogeneous solids may strongly exceed the imposed stress, plastic flow of crystal lamellae may appear locally at fairly low strains \citep{patlazhanStructuralMechanicsSemicrystalline2012}.
 A collective onset of sliding processes among the crystal blocks composing the crystal lamellae determines the yield point (point B in Figure~\ref{fig:stress_strain_curve_strobl}), at around a true strain of 0.1.
 The beginning of the disintegration of the crystal blocks, which is followed by fibril formation (point C in Figure~\ref{fig:stress_strain_curve_strobl}) starts at around a strain of 0.6.
@@ -148,11 +154,12 @@ After this transient behavior, it sometimes follows a steady state where the str
 \label{fig:response_plastic_polymer}
 \end{figure}
 
+\enlargethispage{\baselineskip}
 \begin{remark}[Definition of yield in polymers]
 YYielding is commonly defined as the beginning of plastic flow.
 When modeling metals far from their melting temperature, it is commonly assumed that plastic flow only begins when a critical stress, the yield stress, is reached.
 Most polymers, on the other hand, may flow, i.e., "yield," at any stress level.
-The initiation of plastic strain is mainly controlled by kinetic processes and appears to play no part in determining the yield stress of the material \citep{fotheringhamRoleRecoveryForces1978}, commonly defined in one of three ways \citep{wardReviewYieldBehaviour1971} (see Figure~\ref{fig:yield_criteria}): \textcolor{BrickRed}{Fix this}
+The initiation of plastic strain is mainly controlled by kinetic processes and appears to play no part in determining the yield stress of the material \citep{fotheringhamRoleRecoveryForces1978}, commonly defined in one of three ways \citep{wardReviewYieldBehaviour1971} (see Figure~\ref{fig:yield_criteria}):
     \begin{itemize}
         \item the stress at the maximum observed load;
         \item the stress corresponding to the point of intersection of two tangent lines on the stress-strain curve;
@@ -165,7 +172,7 @@ The initiation of plastic strain is mainly controlled by kinetic processes and a
                             \includegraphics[width=0.3\textwidth]{figures/yield_criterion_b}
             \hfill
                                 \includegraphics[width=0.3\textwidth]{figures/yield_criterion_c}
-        \captionof{figure}{Yield criteria for polymers.}
+        \captionof{figure}{Yield criteria for polymers: a) stress at the maximum observed load; b) stress corresponding to the point of intersection of two tangent lines on the stress-strain curve; c) stress obtained when offsetting the linear portion of the response by a pre-defined strain amount.}
         \label{fig:yield_criteria}
     \end{center}
 \label{rmrk:yield_polymer}
@@ -358,7 +365,7 @@ In addition to molecular alignment, crystal orientation may also contribute to t
 
 The results presented by G'Sell and Jonas \citep{gsellYieldTransientEffects1981} at constant strain rate show that semi-crystalline polymers such as HDPE, LDPE, PA6 and PA66 show marked strain hardening at \SI{22}{\celsius} and a strain rate of \SI{1e-3}{\per\second}.
 Based on the previously mentioned compressive tests, Schrauwen and coworkers \citep{schrauwenIntrinsicDeformationBehavior2004} conclude that crystallinity and lamellar thickness have no effect on the strain hardening of semi-crystalline polymers, in constrast with the melt cooling procedure and subsequent heat treatments.
-This suggests that the mesostructure may have an effect on the polymer's strain hardening behavior. \colorbox{BrickRed}{See this}
+This implies that the amorphous phase is primarily responsible for the polymer's strain hardening behavior, with the density of entanglements being the primary determinant of hardening intensity \citep{argonPhysicsDeformationFracture2013a}.
 
 \paragraph{Failure}
 The maximum strain at rupture for semi-crystalline polymers can be very large, as evidenced by the results of G'Sell and coworkers \citep{gsellYieldTransientEffects1981, gsellApplicationPlaneSimple1983}.
@@ -464,7 +471,7 @@ This section will first focus on isothermal measurements, then on isochronal mea
 
 The stress relaxation experiment involves applying a constant strain to the material, yielding its so-called relaxation modulus as the corresponding stress response.
 Polymeric systems, as a rule, display a decreasing relaxation modulus with time.
-A sharp drop is however not noticeable in highly semi-crystalline and glassy polymers, which exhibit stress relaxation moduli in the order of \si{\gigal\pascal}, as depicted in Figure~\ref{subfig:relax_modulus_scp}.
+A sharp drop is however not noticeable in highly semi-crystalline and glassy polymers, which exhibit stress relaxation moduli in the order of \si{\giga\pascal}, as depicted in Figure~\ref{subfig:relax_modulus_scp}.
 Semi-crystalline polymers with a lower crystalline content exhibit a primary viscoelastic transition from a glasslike to a leathery consistency as a decrease in the stiffness from the order of \SIrange{10e9}{10e7}{\pascal}, as shown in Figure~\ref{subfig:relax_modulus_scp}.
 s with a degree of crystallinity between 5\% to 10\% are termed by Tobolsky \citep{tobolskyPropertiesStructurePolymers1960} as very slightly crystalline polymers.
 This is similar to the behavior of cross-linked amorphous polymers, since individual molecules may thread in and out of crystalline regions that act as multiple cross-links \citep{ferryViscoelasticPropertiesPolymers1980, gsellYieldTransientEffects1981}.
